@@ -27,3 +27,9 @@ export const sections = [
     'Testimonials',
     'Contact'
 ]
+
+export const specialities = [
+    "I'm a UX/UI Designer",
+    "I'm Mechanical engineer",
+    "I'm a university professor"
+]
