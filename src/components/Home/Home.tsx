@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Typewriter } from 'react-simple-typewriter'
 import { fontSettings,specialities,colors} from '../../constants/constants'
 import engineeringBackground from '../../assets/pexels-olly-3817858.jpg'
+import Button from '../Button/Button'
 
 
 const HomeContainer = styled.div`
@@ -36,6 +37,7 @@ const HomeInner = styled.div`
 
 const TopHeader = styled.p`
   font-weight:500;
+  line-height:5rem;
   font-size:2.8rem;
   z-index:2;
   margin: 0 0 1.6rem 0;
@@ -67,6 +69,13 @@ const Home = () => {
           />
         </TypeWriterContainer>
         <Address>based on Khroub,Constantine</Address>
+        <Button 
+          color={colors.primaryColor}
+          width="14.5rem"
+          height="5.1rem"
+          filledBackground={false}
+          hoverBackground={colors.primaryColor}
+        >Hire Me</Button>
       </HomeInner>
     </HomeContainer>
   )
