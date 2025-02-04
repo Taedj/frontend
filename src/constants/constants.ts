@@ -3,6 +3,8 @@ export const colors = {
     'backgroundVeryDarkColor':'#111418',
     'backgroundDarkColor':'#212529',
     'backgroundLessDarkColor':'#343A40',
+    'backgroundTextDarkColor':'rgb(108, 117, 125)',
+    'backgroundLessTextDarkColor':'rgba(255, 255, 255, 0.5)',
     'whiteWithOpacity':'rgba(255,255,255,0.9)',
     'fbColor':'#1877F2',
     'twColor':'#1DA1F2',
