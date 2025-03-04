@@ -6,21 +6,23 @@ import './App.css'
 import { dimensions } from './constants/constants'
 import SideBar from './components/SideBar/SideBar'
 import Home from './components/Home/Home'
+import Services from './components/Services/Services'
+import About from './components/About/About'
 
-const MainContainer = styled.div`
-  display:grid;
-  grid-template-columns: ${dimensions.sideBarWidth} 1fr;
+
+const SideComponentsContainer = styled.div`
+  margin-left:${dimensions.sideBarWidth};
 `
 
 function App() {
   return (
     <>
-      <MainContainer>
+
         <SideBar/>
-        <div>
+        <SideComponentsContainer>
           <Home/>
-        </div>
-      </MainContainer>
+          <About/>
+        </SideComponentsContainer>
     </>
   )
 }
