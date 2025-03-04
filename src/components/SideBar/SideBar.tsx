@@ -15,7 +15,7 @@ const NavBar = styled.div`
   align-items: center;
   background-color: ${colors.backgroundVeryDarkColor};
   width: ${dimensions.sideBarWidth};
-  height: 100vh;
+  height: 100%;
   // padding:1.6rem;
 `
 
