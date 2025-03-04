@@ -15,8 +15,10 @@ const NavBar = styled.div`
   align-items: center;
   background-color: ${colors.backgroundVeryDarkColor};
   width: ${dimensions.sideBarWidth};
-  height: 100%;
+  height: 100vh;
   // padding:1.6rem;
+  position:fixed;
+  z-index:2;
 `
 
 const ImageHeader = styled.div`

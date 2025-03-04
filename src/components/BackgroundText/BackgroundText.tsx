@@ -9,7 +9,6 @@ interface Props {
 }
 
 const BackgroundTextContainer = styled.div`
-  font-family:${fontSettings.fontFamily};
   position:relative;
   display:flex;
   flex-orientation:column;
@@ -19,6 +18,7 @@ const BackgroundTextContainer = styled.div`
   justify-content:center;
   align-item:center;
   text-align:center;
+  color:white;
 `
 
 const OuterText = styled.h2`

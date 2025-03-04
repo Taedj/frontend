@@ -2,7 +2,7 @@ export const colors = {
     'primaryColor':'#20C997',
     'backgroundVeryDarkColor':'#111418',
     'backgroundDarkColor':'#212529',
-    'backgroundLessDarkColor':'#343A40',
+    'backgroundLessDarkColor':'rgb(33, 37, 41)',
     'backgroundTextDarkColor':'rgb(108, 117, 125)',
     'backgroundLessTextDarkColor':'rgba(255, 255, 255, 0.5)',
     'whiteWithOpacity':'rgba(255,255,255,0.9)',

@@ -1,8 +1,9 @@
 import React from 'react'
+import BackgroundText from '../BackgroundText/BackgroundText'
 
 const Services = () => {
   return (
-    <div>Services</div>
+    <BackgroundText backgroundText="Service" innerText=""/>
   )
 }
 
