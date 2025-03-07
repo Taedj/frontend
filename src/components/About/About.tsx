@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import Paragraph from './Paragraph'
 import VerticalList from './VerticalList'
+import HorizontalList from './HorizontalList'
 import { colors ,fontSettings} from '../../constants/constants'
+
 
 
 const AboutMainContainer = styled.div`
@@ -28,6 +30,7 @@ const About = () => {
           <Paragraph/>
           <VerticalList/>
         </BodyContainer>
+        <HorizontalList/>
       </AboutMainContainer>
     </>
   )
