@@ -4,6 +4,7 @@ import { Typewriter } from 'react-simple-typewriter'
 import { fontSettings,specialities,colors} from '../../constants/constants'
 import engineeringBackground from '../../assets/pexels-olly-3817858.jpg'
 import Button from '../Button/Button'
+import Chevron from '../Chevron/Chevron'
 
 
 const HomeContainer = styled.div`
@@ -77,6 +78,7 @@ const Home = () => {
           hoverBackground={colors.primaryColor}
         >Hire Me</Button>
       </HomeInner>
+      <Chevron/>
     </HomeContainer>
   )
 }

@@ -2,24 +2,33 @@ import React from 'react'
 import styled from 'styled-components'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import Paragraph from './Paragraph'
+import VerticalList from './VerticalList'
 import { colors ,fontSettings} from '../../constants/constants'
 
 
-const MainContainer = styled.div`
+const AboutMainContainer = styled.div`
   background-color:${colors.backgroundLessDarkColor};
   font-family:${fontSettings.fontFamily};
   padding:7.2rem 0;
+  font-size:1.6rem;
+  color:white;
+`
+
+const BodyContainer = styled.div`
+  display:flex;
+  padding:4.8rem;
 `
 
 const About = () => {
   return (
     <>
-      <MainContainer>
+      <AboutMainContainer>
         <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More'/>
-        <div>
+        <BodyContainer>
           <Paragraph/>
-        </div>
-      </MainContainer>
+          <VerticalList/>
+        </BodyContainer>
+      </AboutMainContainer>
     </>
   )
 }

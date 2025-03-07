@@ -8,6 +8,7 @@ import SideBar from './components/SideBar/SideBar'
 import Home from './components/Home/Home'
 import Services from './components/Services/Services'
 import About from './components/About/About'
+import Contact from './components/Contact/Contact'
 
 
 const SideComponentsContainer = styled.div`
@@ -17,7 +18,6 @@ const SideComponentsContainer = styled.div`
 function App() {
   return (
     <>
-
         <SideBar/>
         <SideComponentsContainer>
           <Home/>
