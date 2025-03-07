@@ -10,6 +10,7 @@ interface Props {
   height:string;
   width:string;
   hoverBackground:string|null;
+  outline:boolean;
   children:ReactNode
 }
 
@@ -21,7 +22,9 @@ const Button = (
     width,
     backGroundColor=null,
     filledBackground=true,
-    hoverBackground=null}:Props) => {
+    hoverBackground=null,
+    outline=true,
+    children}:Props) => {
   const CustomizedButton = styled.button`
     font-family:${fontSettings.fontFamily};
     color:${color};
@@ -32,7 +35,7 @@ const Button = (
     border-radius:25px;
     font-size:1.6rem;
     font-weight:600;
-    border: 1px solid ${color};
+    border: ${(outline)? `1px solid ${color}`:"none"};
     z-index:2;
     &:hover {
       ${hoverBackground && `background-color:${hoverBackground};`}
@@ -43,8 +46,7 @@ const Button = (
   console.log(hoverBackground);
   return (
     <>
-      <CustomizedButton>Hire Me</CustomizedButton>
-      <Chevron/>
+      <CustomizedButton>{children}</CustomizedButton>
     </>
   )
 }
