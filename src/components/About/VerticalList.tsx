@@ -27,10 +27,6 @@ const ListItem = styled.li`
     padding:1.2rem 0;
 `
 
-const CVButton = styled(Button)`
-  border:none !important;
-`
-
 
 const VerticalList = () => {
   return (
@@ -41,13 +37,13 @@ const VerticalList = () => {
         <ListItem>Age: 28</ListItem>
         <ListItem>From: Los Angeles, California</ListItem>
       </List>
-      <CVButton
+      <Button
           color="white"
           width="19.5rem"
           height="5rem"
           backGroundColor={colors.primaryColor}
           outline={false}
-        >Download CV</CVButton>    
+        >Download CV</Button>    
     </VerticalListMainContainer>
   )
 }
