@@ -27,15 +27,23 @@ const ListItem = styled.li`
     padding:1.2rem 0;
 `
 
+const ColorChanger = styled.span`
+  color: ${(props) => props.color}
+`
+
+const BoldText = styled.span`
+  font-weight:600;
+`
+
 
 const VerticalList = () => {
   return (
     <VerticalListMainContainer>
       <List>
-        <ListItem>Name: Simone Olivia</ListItem>
-        <ListItem>Email: chat@simone.com</ListItem>
-        <ListItem>Age: 28</ListItem>
-        <ListItem>From: Los Angeles, California</ListItem>
+        <ListItem><BoldText>Name:</BoldText> Simone Olivia</ListItem>
+        <ListItem><BoldText>Email:</BoldText> <ColorChanger color={colors.primaryColor}>chat@simone.com</ColorChanger></ListItem>
+        <ListItem><BoldText>Age:</BoldText> 28</ListItem>
+        <ListItem><BoldText>From:</BoldText> Los Angeles, California</ListItem>
       </List>
       <Button
           color="white"
