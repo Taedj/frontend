@@ -9,7 +9,7 @@ import { colors ,fontSettings} from '../../constants/constants'
 
 
 const AboutMainContainer = styled.div`
-  background-color:${colors.backgroundLessDarkColor};
+  background-color:${colors.backgroundDarkColor};
   font-family:${fontSettings.fontFamily};
   padding:7.2rem 0;
   font-size:1.6rem;

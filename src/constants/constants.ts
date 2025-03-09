@@ -1,8 +1,8 @@
 export const colors = {
     'primaryColor':'#20C997',
     'backgroundVeryDarkColor':'#111418',
-    'backgroundDarkColor':'#212529',
-    'backgroundLessDarkColor':'rgb(33, 37, 41)',
+    'backgroundDarkColor':'rgb(33, 37, 41)',
+    'backgroundLessDarkColor':'rgb(52, 58, 64)',
     'backgroundTextDarkColor':'rgb(108, 117, 125)',
     'backgroundLessTextDarkColor':'rgba(255, 255, 255, 0.5)',
     'cellDescriptionColor':'rgb(222, 227, 228)',

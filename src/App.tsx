@@ -22,6 +22,7 @@ function App() {
         <SideComponentsContainer>
           <Home/>
           <About/>
+          <Services/>
         </SideComponentsContainer>
     </>
   )
