@@ -4,6 +4,8 @@ import { fontSettings,colors } from '../../constants/constants'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import SummaryBox from './SummaryBox'
 import Skills from './Skills'
+import Button from '../Button/Button'
+import { FaDownload } from "react-icons/fa";
 
 
 const MainContainer = styled.div`
@@ -34,7 +36,11 @@ const ExperienceContainer = styled.div`
 
 `
 
-
+const CVButtonContainer = styled.div`
+  display:flex;
+  justify-content:center;
+  margin:5rem;
+`
 
 const Summary = () => {
   return (
@@ -85,6 +91,17 @@ const Summary = () => {
         </ExperienceContainer>
       </SummaryContainer>
       <Skills/>
+      <CVButtonContainer>
+          <Button 
+            color={colors.backgroundTextDarkColor}
+            height="5.2rem"
+            width="21.5rem"
+            backGroundColor="rgba(0, 0, 0, 0)"
+          >
+            Download CV&nbsp;
+            <FaDownload />
+          </Button>
+        </CVButtonContainer>
     </MainContainer>
   )
 }
