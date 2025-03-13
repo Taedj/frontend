@@ -3,12 +3,14 @@ import styled from 'styled-components'
 import { fontSettings,colors } from '../../constants/constants'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import SummaryBox from './SummaryBox'
+import Skills from './Skills'
 
 
 const MainContainer = styled.div`
   font-family:${fontSettings.fontFamily};
   background-color:${colors.backgroundDarkColor};
   color:white;
+  padding:4.8rem;
 `
 
 const SummaryContainer = styled.div`
@@ -81,8 +83,8 @@ const Summary = () => {
               Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
           </SummaryBox>
         </ExperienceContainer>
-
       </SummaryContainer>
+      <Skills/>
     </MainContainer>
   )
 }
