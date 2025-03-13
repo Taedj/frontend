@@ -8,6 +8,7 @@ export const colors = {
     'cellDescriptionColor':'rgb(222, 227, 228)',
     'whiteWithOpacity':'rgba(255,255,255,0.9)',
     'borderColor':'rgba(250, 250, 250, 0.12)',
+    'summaryBoxBackgroundColor':'rgb(17, 20, 24)',
     'fbColor':'#1877F2',
     'twColor':'#1DA1F2',
     'ghColor':'#AAB1B8',
