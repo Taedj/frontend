@@ -13,7 +13,8 @@ export const colors = {
     'twColor':'#1DA1F2',
     'ghColor':'#AAB1B8',
     'gmColor':'#D14836',
-    'categoriesSelectorColor':'rgb(221, 221, 221)'
+    'categoriesSelectorColor':'rgb(221, 221, 221)',
+    'starColor':'rgb(255, 193, 7)'
 }
 
 export const dimensions = {
