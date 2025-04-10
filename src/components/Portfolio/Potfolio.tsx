@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Masonry from "react-masonry-css";
 import BackgroundText from '../BackgroundText/BackgroundText'
+import CategoriesSelector from './CategoriesSelector';
 import { colors,fontSettings } from '../../constants/constants'
 import image1 from '../../assets/images/1.jpg'
 import image2 from '../../assets/images/2.jpg'
@@ -40,6 +41,7 @@ const Potfolio = () => {
   return (
     <MainContainer>
       <BackgroundText backgroundText='PORTFOLIO' innerText='My Work'/>
+      <CategoriesSelector/>
       <ManstoryContainer>
         <Masonry
           breakpointCols={breakpointColumnsObj}

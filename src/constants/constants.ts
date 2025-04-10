@@ -12,7 +12,8 @@ export const colors = {
     'fbColor':'#1877F2',
     'twColor':'#1DA1F2',
     'ghColor':'#AAB1B8',
-    'gmColor':'#D14836'
+    'gmColor':'#D14836',
+    'categoriesSelectorColor':'rgb(221, 221, 221)'
 }
 
 export const dimensions = {
@@ -37,4 +38,11 @@ export const specialities = [
     "I'm a UX/UI Designer",
     "I'm Mechanical engineer",
     "I'm a university professor"
+]
+
+export const categories = [
+    'All',
+    'Desing',
+    'Teaching',
+    'Mechanics'
 ]
