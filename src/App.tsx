@@ -10,6 +10,7 @@ import Services from './components/Services/Services'
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
 import Summary from './components/Summary/Summary'
+import Potfolio from './components/Portfolio/Potfolio'
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <About/>
           <Services/>
           <Summary/>
+          <Potfolio/>
         </SideComponentsContainer>
     </>
   )
