@@ -75,28 +75,28 @@ const SocialMediasItem = styled.li`
   margin:0 1rem;
 `
 
-const FbIcon = styled(FaFacebook)`
+export const FbIcon = styled(FaFacebook)`
   color: ${colors.whiteWithOpacity};
 
   &:hover {
     color: ${colors.fbColor};
   }
 `
-const TwIcon = styled(FaTwitter)`
+export const TwIcon = styled(FaTwitter)`
   color: ${colors.whiteWithOpacity};
 
   &:hover {
     color: ${colors.twColor};
   }
 `
-const GwIcon = styled(FaGithub)`
+export const GwIcon = styled(FaGithub)`
   color: ${colors.whiteWithOpacity};
 
   &:hover {
     color: ${colors.ghColor};
   }
 `
-const GmIcon = styled(SiGmail)`
+export const GmIcon = styled(SiGmail)`
   color: ${colors.whiteWithOpacity};
 
   &:hover {
