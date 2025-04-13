@@ -15,6 +15,7 @@ import Testimonials from './components/Testimonial/Testimonials'
 
 
 
+
 const SideComponentsContainer = styled.div`
   margin-left:${dimensions.sideBarWidth};
 `
@@ -30,6 +31,7 @@ function App() {
           <Summary/>
           <Potfolio/>
           <Testimonials/>
+          <Contact/>
         </SideComponentsContainer>
     </>
   )
