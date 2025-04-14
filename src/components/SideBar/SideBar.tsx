@@ -25,6 +25,11 @@ const ImageHeader = styled.div`
   display:flex;
   flex-direction: column;
   align-items: center;
+  & h1 {
+    font-size:2.1rem;
+    font-weight:600;
+    line-height:2.5rem;
+  }
 `
 
 const ImageContainer = styled.div`
@@ -33,7 +38,7 @@ const ImageContainer = styled.div`
   background-image: url(${tidjani_photo});
   background-size: cover;
   border-radius: 50%; 
-  border: 5px solid ${colors.backgroundLessDarkColor};
+  border: 8px solid ${colors.backgroundLessDarkColor};
   margin-top:2.4rem;
 `
 
@@ -43,8 +48,9 @@ const Sections = styled.ul`
   align-items: center;
   list-style-type: none;
   font-size: 1.6rem;
+  line-height:2.4rem;
   padding:0;
-  font-weight:400;
+  font-weight:600;
 `
 
 const SectionItem = styled.li`
@@ -58,6 +64,11 @@ const SectionItem = styled.li`
     color: ${colors.primaryColor};
     transition: color 0.3s;
   }
+`
+
+const Anchor = styled.a`
+  color:inherit;
+  text-decoration:none;
 `
 
 const SocialMedias = styled.ul`
@@ -108,14 +119,16 @@ export const GmIcon = styled(SiGmail)`
 const SideBar = () => {
   return (
     <>
-      <NavBar>
+      <NavBar id="Home">
         <ImageHeader>
           <ImageContainer/>
           <h1>Zitouni Tidjani</h1>
         </ImageHeader>
         <Sections>
           {sections.map(section => (
-            <SectionItem key={section}>{section}</SectionItem>
+            <SectionItem key={section}>
+              <Anchor href={`#${section}`}>{section}</Anchor>
+            </SectionItem>
           ))}
         </Sections>
         <SocialMedias>

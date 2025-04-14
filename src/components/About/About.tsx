@@ -24,7 +24,7 @@ const BodyContainer = styled.div`
 const About = () => {
   return (
     <>
-      <AboutMainContainer>
+      <AboutMainContainer id="About Me">
         <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More'/>
         <BodyContainer>
           <Paragraph/>

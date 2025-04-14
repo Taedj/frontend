@@ -44,7 +44,7 @@ const CVButtonContainer = styled.div`
 
 const Summary = () => {
   return (
-    <MainContainer>
+    <MainContainer id="Resume">
       <BackgroundText backgroundText="Summary" innerText="Resume"/>
       <SummaryContainer>
         <EducationContainer>

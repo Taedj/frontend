@@ -28,7 +28,7 @@ const EmailFormContainer = styled.div`
 
 const Contact = () => {
   return (
-    <MainContainer>
+    <MainContainer id="Contact">
       <BackgroundText backgroundText='CONTACT' innerText='Get in Touch'/>
       <BodyContainer>
         <AddressBoxContainer>

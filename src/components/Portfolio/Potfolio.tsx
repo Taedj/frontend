@@ -39,7 +39,7 @@ const ManstoryContainer = styled.div`
 
 const Potfolio = () => {
   return (
-    <MainContainer>
+    <MainContainer id="Portfolio">
       <BackgroundText backgroundText='PORTFOLIO' innerText='My Work'/>
       <CategoriesSelector/>
       <ManstoryContainer>

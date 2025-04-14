@@ -20,7 +20,7 @@ const ButtonsContainer = styled.div`
 
 const Testimonials = () => {
   return (
-    <MainContainer>
+    <MainContainer id="Testimonials">
       <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak'/>
       <TestimonialBox image={image1} title="Daniel Xavier" subTitle="User from Spain" testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."/>
       
