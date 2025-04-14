@@ -56,7 +56,6 @@ const EmailForm = () => {
           width="20.5rem"
           backGroundColor={colors.primaryColor}
           outline={false}
-
         >Send Message</Button>
       </ButtonContainer>
     </MainContainer>
