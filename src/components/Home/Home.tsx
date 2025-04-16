@@ -17,6 +17,7 @@ const HomeContainer = styled.div`
 
 const HomeInner = styled.div`
   background-image: url(${engineeringBackground});
+  background-attachment: fixed;
   height:100vh;
   background-size: cover;
   display:flex;
@@ -57,9 +58,10 @@ const TypeWriterContainer = styled.div`
   font-weight:600
 `
 
+
 const Home = () => {
   return (
-    <HomeContainer>
+    <HomeContainer id="Home">
       <HomeInner>
         <TopHeader>Welcome</TopHeader>
         <TypeWriterContainer>
@@ -76,6 +78,7 @@ const Home = () => {
           height="5.1rem"
           filledBackground={false}
           hoverBackground={colors.primaryColor}
+          borderWidth="2px"
         >Hire Me</Button>
       </HomeInner>
       <Chevron/>

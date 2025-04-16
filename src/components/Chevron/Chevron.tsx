@@ -12,19 +12,34 @@ const bounce = keyframes`
   }
 `;
 
-// Create a styled component for the icon
+const ChevronWrapper = styled.div`
+  position: absolute;
+  top: 97%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  cursor: pointer;
+`
+
 const AnimatedChevron = styled(FaChevronDown)`
   animation: ${bounce} 1s infinite ease;
   font-size: 24px; /* Adjust size as needed */
   color: ${colors.whiteWithOpacity}; /* Adjust color as needed */
-  position:absolute;
-  top:97%;
-  left:50%;
+  cursor: pointer;
 `;
+
+const scrollToAboutMe = () => {
+  document.getElementById("About-Me")?.scrollIntoView({ behavior: "smooth" });
+};
+
 
 const Chevron = () => {
   return (
-    <AnimatedChevron/>
+    <>
+        <ChevronWrapper onClick={scrollToAboutMe}>
+          <AnimatedChevron />
+        </ChevronWrapper>
+    </>
   )
 }
 

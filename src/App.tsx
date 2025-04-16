@@ -12,7 +12,7 @@ import Contact from './components/Contact/Contact'
 import Summary from './components/Summary/Summary'
 import Potfolio from './components/Portfolio/Potfolio'
 import Testimonials from './components/Testimonial/Testimonials'
-
+import Footer from './components/Footer/Footer'
 
 
 
@@ -32,6 +32,7 @@ function App() {
           <Potfolio/>
           <Testimonials/>
           <Contact/>
+          <Footer/>
         </SideComponentsContainer>
     </>
   )

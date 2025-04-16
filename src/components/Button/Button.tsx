@@ -1,16 +1,16 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import styled from 'styled-components';
 import { fontSettings } from '../../constants/constants';
-import Chevron from '../Chevron/Chevron';
 
 interface Props {
   color:string;
-  backGroundColor:string|null;
-  filledBackground:boolean;
+  backGroundColor?:string|null;
+  filledBackground?:boolean;
   height:string;
   width:string;
-  hoverBackground:string|null;
-  outline:boolean;
+  hoverBackground?:string|null;
+  outline?:boolean;
+  borderWidth?:string;
   children:ReactNode
 }
 
@@ -24,6 +24,7 @@ const Button = (
     filledBackground=true,
     hoverBackground=null,
     outline=true,
+    borderWidth='1px',
     children}:Props) => {
   const CustomizedButton = styled.button`
     font-family:${fontSettings.fontFamily};
@@ -35,7 +36,7 @@ const Button = (
     border-radius:25px;
     font-size:1.6rem;
     font-weight:600;
-    border: ${(outline)? `1px solid ${color}`:"none"};
+    border: ${(outline)? `${borderWidth} solid ${color}`:"none"};
     z-index:2;
     &:hover {
       ${hoverBackground && `background-color:${hoverBackground};`}
@@ -43,7 +44,6 @@ const Button = (
       transition:background-color 0.5s;
     }
   `;
-  console.log(hoverBackground);
   return (
     <>
       <CustomizedButton>{children}</CustomizedButton>
