@@ -8,14 +8,15 @@ const VerticalListMainContainer = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  padding:0 1.2rem;
   margin-top:4.8rem;
-  margin-left:2.4rem;
 `
 
 const List = styled.ul`
     list-style:none;
     margin-bottom:1.6rem;
-    width:39rem;
+    width:26.5rem;
+    padding-left:2.4rem;
 
     li:last-child {
       border:none
@@ -24,6 +25,8 @@ const List = styled.ul`
 
 const ListItem = styled.li`
     border-bottom : 1px solid ${colors.borderColor};
+    font-size:1.6rem;
+    font-weight:400;
     padding:1.2rem 0;
 `
 
@@ -40,10 +43,10 @@ const VerticalList = () => {
   return (
     <VerticalListMainContainer>
       <List>
-        <ListItem><BoldText>Name:</BoldText> Simone Olivia</ListItem>
-        <ListItem><BoldText>Email:</BoldText> <ColorChanger color={colors.primaryColor}>chat@simone.com</ColorChanger></ListItem>
-        <ListItem><BoldText>Age:</BoldText> 28</ListItem>
-        <ListItem><BoldText>From:</BoldText> Los Angeles, California</ListItem>
+        <ListItem><BoldText>Name:</BoldText> Zitouni Tidjani</ListItem>
+        <ListItem><BoldText>Email:</BoldText> <ColorChanger color={colors.primaryColor}>tidjani@gmail.com</ColorChanger></ListItem>
+        <ListItem><BoldText>Age:</BoldText> 32</ListItem>
+        <ListItem><BoldText>From:</BoldText> Khroub,Contantine</ListItem>
       </List>
       <Button
           color="white"

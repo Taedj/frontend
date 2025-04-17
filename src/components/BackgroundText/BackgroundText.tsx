@@ -14,7 +14,6 @@ const BackgroundTextContainer = styled.div`
   flex-orientation:column;
   padding:0;
   margin:0;
-  margin-bottom:4.8rem;
   justify-content:center;
   align-item:center;
   text-align:center;

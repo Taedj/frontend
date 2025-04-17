@@ -11,14 +11,23 @@ import { colors ,fontSettings} from '../../constants/constants'
 const AboutMainContainer = styled.div`
   background-color:${colors.backgroundDarkColor};
   font-family:${fontSettings.fontFamily};
-  padding:7.2rem 0;
+  padding:7.2rem 4.8rem;
   font-size:1.6rem;
   color:white;
 `
 
 const BodyContainer = styled.div`
   display:flex;
-  padding:4.8rem;
+  width:100%;
+`
+
+const ParagraphContainer = styled.div`
+  flex:3;
+  min-width:0;
+`
+const VerticalListContainer = styled.div`
+  flex:2;
+  min-width:0;
 `
 
 const About = () => {
@@ -27,8 +36,12 @@ const About = () => {
       <AboutMainContainer id="About-Me">
         <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More'/>
         <BodyContainer>
-          <Paragraph/>
-          <VerticalList/>
+          <ParagraphContainer>
+            <Paragraph/>
+          </ParagraphContainer>
+          <VerticalListContainer>
+            <VerticalList/>
+          </VerticalListContainer>
         </BodyContainer>
         <HorizontalList/>
       </AboutMainContainer>
