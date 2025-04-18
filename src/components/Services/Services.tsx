@@ -16,12 +16,13 @@ const BoxesContainer = styled.div`
   grid-template-columns:1fr 1fr;
   padding:0 4.8rem;
   gap:2rem;
+  margin-top:4.8rem;
 `
 
 const Services = () => {
   return (
     <MainContainer id="What-I-Do">
-      <BackgroundText backgroundText="Services" innerText="What I Do?"/>
+      <BackgroundText backgroundText="SERVICES" innerText="What I Do?"/>
       <BoxesContainer>
         <ServiceBox title="Web Design" category="web design">Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.</ServiceBox>
         <ServiceBox  title="UI/UX Design" category="ux/ui">Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.</ServiceBox >
