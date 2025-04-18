@@ -13,10 +13,12 @@ const MainContainer = styled.div`
   background-color:${colors.backgroundDarkColor};
   color:white;
   padding:4.8rem;
+  padding-top:7.2rem;
 `
 
 const SummaryContainer = styled.div`
   display:flex;
+  margin-top:4.8rem;
 `
 
 const EducationTitle = styled.h2`
@@ -39,13 +41,15 @@ const ExperienceContainer = styled.div`
 const CVButtonContainer = styled.div`
   display:flex;
   justify-content:center;
-  margin:5rem;
+  margin:7.5rem;
+  margin-bottom:1.5rem;
 `
+
 
 const Summary = () => {
   return (
     <MainContainer id="Resume">
-      <BackgroundText backgroundText="Summary" innerText="Resume"/>
+      <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
       <SummaryContainer>
         <EducationContainer>
           <EducationTitle>My Education</EducationTitle>
@@ -97,6 +101,8 @@ const Summary = () => {
             height="5.2rem"
             width="21.5rem"
             backGroundColor="rgba(0, 0, 0, 0)"
+            hoverBackground={colors.backgroundTextDarkColor}
+            borderWidth='2px'
           >
             Download CV&nbsp;
             <FaDownload />

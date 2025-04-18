@@ -1,10 +1,12 @@
 import React from 'react'
+import { fontSettings } from '../../constants/constants';
 import ProgressBar from "@ramonak/react-progress-bar";
 import styled from 'styled-components';
 
 
 const MainContainer = styled.div`
-  
+  font-family:${fontSettings.fontFamily};
+  font-weight:600;
 `
 const SkillBody = styled.div`
   display:flex;
@@ -21,6 +23,7 @@ const SkillTitle = styled.h2`
 `
 
 const SkillProgress = styled.span`
+
 `
 
 
