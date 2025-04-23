@@ -6,7 +6,8 @@ const MainContainer = styled.div`
   font-family:${fontSettings.fontFamily};
   font-size:1.6rem;
   font-weight:400;
-  color:${colors.categoriesSelectorColor}
+  color:${colors.categoriesSelectorColor};
+  margin:4.8rem 0;
 `
 
 const Categories = styled.ul`

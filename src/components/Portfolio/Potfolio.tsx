@@ -31,6 +31,7 @@ const breakpointColumnsObj = {
 const MainContainer = styled.div`
   font-family:${fontSettings.fontFamily};
   background-color:${colors.backgroundLessDarkColor};
+  padding:7.2rem 0;
 `
 
 const ManstoryContainer = styled.div`

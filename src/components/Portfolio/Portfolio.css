@@ -1,19 +1,19 @@
 /* Masonry grid container */
 .masonry-grid {
     display: flex;
-    margin-left: -10px; /* Adjust gutter */
+    margin-left: -15px; /* Adjust gutter */
     width: auto;
   }
   
   /* Masonry grid column */
   .masonry-grid_column {
-    padding-left: 10px; /* Adjust gutter */
+    padding-left: 15px; /* Adjust gutter */
     background-clip: padding-box;
   }
   
   /* Masonry item */
   .masonry-item {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
   
   /* Optional: Image styling */
