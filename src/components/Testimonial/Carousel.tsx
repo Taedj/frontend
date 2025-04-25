@@ -7,19 +7,23 @@ const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3,
-    slidesToSlide: 3 // optional, default to 1.
+    slidesToSlide: 3,
+    partialVisible: false
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 2,
-    slidesToSlide: 2 // optional, default to 1.
+    slidesToSlide: 2,
+    partialVisible: false
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
-    slidesToSlide: 1 // optional, default to 1.
+    slidesToSlide: 1,
+    partialVisible: false
   }
 };
+
 
 interface Props {
   deviceType:string,
@@ -32,6 +36,7 @@ const Carousel = ({deviceType,children}:Props) => {
       swipeable={true}
       draggable={true}
       showDots={false}
+      partialVisible={false}
       responsive={responsive}
       ssr={true} // means to render carousel on server-side.
       infinite={true}
@@ -45,6 +50,7 @@ const Carousel = ({deviceType,children}:Props) => {
       deviceType={deviceType}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding"
+      sliderClass="react-multi-carousel-track"
     >
       {children}
     </OriginalCarousel>

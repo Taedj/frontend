@@ -21,6 +21,7 @@ const ButtonsContainer = styled.div`
 
 const TestimonialsContainer = styled(Carousel)`
   margin-top:4.8rem;
+  padding: 0 20px; /* Add horizontal padding */
 `
 
 
@@ -37,12 +38,6 @@ const Testimonials = () => {
         />
         <TestimonialBox 
           image={image2} 
-          title="Daniel Xavier" 
-          subTitle="User from Spain" 
-          testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
-        />
-        <TestimonialBox 
-          image={image1} 
           title="Daniel Xavier" 
           subTitle="User from Spain" 
           testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."

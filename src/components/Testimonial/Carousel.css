@@ -1,4 +1,16 @@
 .carousel-container {
-    max-width: 1800px;
-    margin: 0 auto;
-  }
+  max-width: 1800px;
+  margin: 0 auto;
+  overflow: visible; /* Allows items to extend beyond container */
+}
+
+/* Add gap between items */
+.react-multi-carousel-track {
+  gap: 20px !important; /* Your desired gap size */
+  margin-left: -10px; /* Compensate for gap spacing */
+}
+
+/* Item spacing adjustments */
+.carousel-item-padding {
+  padding: 0 10px; /* Compensate for negative margin */
+}

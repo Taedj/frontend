@@ -10,7 +10,7 @@ const TestimonialContainer = styled.div`
   font-family:${fontSettings.fontFamily};
   font-size:1.6rem;
   line-height:2.88rem;
-  width:40rem;
+
   margin:1rem;
   padding:4.8rem;
   color:white;
