@@ -6,85 +6,6 @@ import {colors,dimensions,fontSettings,sections} from '../../constants/constants
 import tidjani_photo from '../../assets/tidjani_photo.jpg'
 import { FaT } from 'react-icons/fa6';
 
-const NavBar = styled.div`
-  font-family: ${fontSettings.fontFamily};
-  color: ${colors.whiteWithOpacity};
-  display:flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: ${colors.backgroundVeryDarkColor};
-  width: ${dimensions.sideBarWidth};
-  height: 100vh;
-  // padding:1.6rem;
-  position:fixed;
-  z-index:2;
-`
-
-const ImageHeader = styled.div`
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  & h1 {
-    font-size:2.1rem;
-    font-weight:600;
-    line-height:2.5rem;
-  }
-`
-
-const ImageContainer = styled.div`
-  width: 18rem;
-  height:18rem;
-  background-image: url(${tidjani_photo});
-  background-size: cover;
-  border-radius: 50%; 
-  border: 8px solid ${colors.backgroundLessDarkColor};
-  margin-top:2.4rem;
-`
-
-const Sections = styled.ul`
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  list-style-type: none;
-  font-size: 1.6rem;
-  line-height:2.4rem;
-  padding:0;
-  font-weight:600;
-`
-
-const SectionItem = styled.li`
-  padding:1rem;
-
-  &:nth-child(1){
-    color: ${colors.primaryColor}
-  };
-
-  &:hover {
-    color: ${colors.primaryColor};
-    transition: color 0.3s;
-  }
-`
-
-const Anchor = styled.a`
-  color:inherit;
-  text-decoration:none;
-`
-
-const SocialMedias = styled.ul`
-  padding:0 5rem;
-  display:flex;
-  list-style-type: none;
-  justify-content: space-between;
-  padding:0;
-  margin:0;
-  margin-bottom:2.4rem;
-  line-height: 1rem;
-`
-
-const SocialMediasItem = styled.li`
-  margin:0 1rem;
-`
 
 export const FbIcon = styled(FaFacebook)`
   color: ${colors.whiteWithOpacity};
@@ -117,35 +38,60 @@ export const GmIcon = styled(SiGmail)`
 
 
 const SideBar = () => {
+  const [HoveredIndex,setHoveredIndex] = useState(0);
   return (
     <>
-      <NavBar id="Home">
-        <ImageHeader>
-          <ImageContainer/>
-          <h1>Zitouni Tidjani</h1>
-        </ImageHeader>
-        <Sections>
-          {sections.map(section => (
-            <SectionItem key={section}>
-              <Anchor href={`#${section}`}>{section}</Anchor>
-            </SectionItem>
+      <div id="Home" className='flex flex-col justify-between items-center text-white h-screen fixed z-2'
+        style={{
+          fontFamily:fontSettings.fontFamily,
+          backgroundColor:colors.backgroundVeryDarkColor,
+          color:colors.whiteWithOpacity,
+          width:dimensions.sideBarWidth
+        }}
+        >
+        <div className='flex flex-col items-center'>
+          <div className='w-[18rem] h-[18rem] bg-cover rounded-full border-8 mt-[2.4rem]'
+            style={
+              {
+                backgroundImage: `url(${tidjani_photo})`,
+                border:`8px solid ${colors.backgroundLessDarkColor}`
+              }
+            }
+          >
+          </div>
+          <h1 className='text-[2.1rem] font-semibold leading-[2.5rem]'>Zitouni Tidjani</h1>
+        </div>
+        <ul className='flex flex-col items-center list-none text-[1.6rem] leading-[2.4rem] p-0 font-semiboldfont-semibold'>
+          {sections.map((section,index) => (
+            <li key={section} className='p-[1rem]'
+              style={{
+                transition:'color 0.3s',
+                color:(HoveredIndex === index || index === 0)? colors.primaryColor:'white'
+              }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(0)}
+            >
+              <a href={`#${section}`}className='text-inherit no-underline'>
+                {section}
+              </a>
+            </li>
           ))}
-        </Sections>
-        <SocialMedias>
-          <SocialMediasItem>
+        </ul>
+        <ul className='flex justify-between p-0 m-0 mb-[2.4rem] list-none'>
+          <li className="mx-[1rem]">
             <FbIcon size={14} />
-          </SocialMediasItem>
-          <SocialMediasItem>
+          </li>
+          <li className="mx-[1rem]">
             <TwIcon size={14} />
-          </SocialMediasItem>
-          <SocialMediasItem>
+          </li>
+          <li className="mx-[1rem]">
             <GwIcon size={14} />
-          </SocialMediasItem>
-          <SocialMediasItem>
+          </li>
+          <li className="mx-[1rem]">
             <GmIcon size={14} />
-          </SocialMediasItem>
-        </SocialMedias>
-      </NavBar>
+          </li>
+        </ul>
+      </div>
     </>
   )
 }
