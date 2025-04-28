@@ -33,7 +33,7 @@ const VerticalListContainer = styled.div`
 const About = () => {
   return (
     <>
-      <AboutMainContainer id="About-Me">
+      {/* <AboutMainContainer id="About-Me">
         <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More'/>
         <BodyContainer>
           <ParagraphContainer>
@@ -44,7 +44,19 @@ const About = () => {
           </VerticalListContainer>
         </BodyContainer>
         <HorizontalList/>
-      </AboutMainContainer>
+      </AboutMainContainer> */}
+      <div id='About-me' className='py-[7.2rem] px-[4.8rem] text-[1.6rem] text-white' style={{backgroundColor:colors.backgroundDarkColor,fontFamily:fontSettings.fontFamily}}>
+        <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More'/>
+        <div className='flex w-full'>
+          <div className='flex-3 min-w-0'>
+            <Paragraph/>
+          </div>
+          <div className='flex-2 min-w-0'>
+            <VerticalList/>
+          </div>
+        </div>
+        <HorizontalList/>
+      </div>
     </>
   )
 }
