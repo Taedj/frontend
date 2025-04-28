@@ -16,14 +16,14 @@ const HomeContainer = styled.div`
 `
 
 const HomeInner = styled.div`
-  background-image: url(${engineeringBackground});
-  background-attachment: fixed;
-  height:100vh;
-  background-size: cover;
   display:flex;
   flex-direction:column;
   justify-content:center;
+  background-attachment: fixed;
+  height:100vh;
+  background-size: cover;
   align-items:center;
+  background-image: url(${engineeringBackground});
 
   &::before {
     content: "";
@@ -38,9 +38,9 @@ const HomeInner = styled.div`
 `
 
 const TopHeader = styled.p`
-  font-weight:500;
-  line-height:5rem;
   font-size:2.8rem;
+  line-height:5rem;
+  font-weight:500;
   z-index:2;
   margin: 0 0 1.6rem 0;
 `
@@ -61,17 +61,53 @@ const TypeWriterContainer = styled.div`
 
 const Home = () => {
   return (
-    <HomeContainer id="Home">
-      <HomeInner>
-        <TopHeader>Welcome</TopHeader>
-        <TypeWriterContainer>
+    // <HomeContainer id="Home">
+    //   <HomeInner>
+    //     <TopHeader>Welcome</TopHeader>
+    //     <TypeWriterContainer>
+    //       <Typewriter 
+    //         words={specialities}
+    //         typeSpeed={70}
+    //         loop={0}
+    //       />
+    //     </TypeWriterContainer>
+    //     <Address>based on Khroub,Constantine</Address>
+    //     <Button 
+    //       color={colors.primaryColor}
+    //       width="14.5rem"
+    //       height="5.1rem"
+    //       filledBackground={false}
+    //       hoverBackground={colors.primaryColor}
+    //       borderWidth="2px"
+    //     >Hire Me</Button>
+    //   </HomeInner>
+    //   <Chevron/>
+    // </HomeContainer>
+    <div id="Home" className='relative w-full h-screen text-white'
+      style={{
+        fontFamily:fontSettings.fontFamily
+      }}
+    >
+      <div className='flex flex-col justify-center items-center font-bold bg-fixed h-screen bg-cover before:content-[""] before:absolute before:top-0 before:left:0 before:w-full before:h-full before:bg-[rgb(0,0,0,0.7)] before:z-1'
+        style={{
+          backgroundImage:`url(${engineeringBackground})`
+        }}
+      >
+        <p className='text-[2.8rem] font-bold leading-[5rem] z-2 m-0 mb-[1.6rem]'>
+          Welcome
+        </p>
+        <div className='text-[6rem] z-2 h-[6rem] font-bold'>
           <Typewriter 
             words={specialities}
             typeSpeed={70}
             loop={0}
           />
-        </TypeWriterContainer>
-        <Address>based on Khroub,Constantine</Address>
+        </div>
+        <p className='text-[2.1rem] z-2 my-[2.1rem]'
+          style={{
+            color:colors.whiteWithOpacity
+          }}
+        >based on Khroub,Constantine</p>
         <Button 
           color={colors.primaryColor}
           width="14.5rem"
@@ -80,9 +116,9 @@ const Home = () => {
           hoverBackground={colors.primaryColor}
           borderWidth="2px"
         >Hire Me</Button>
-      </HomeInner>
+      </div>
       <Chevron/>
-    </HomeContainer>
+    </div>
   )
 }
 
