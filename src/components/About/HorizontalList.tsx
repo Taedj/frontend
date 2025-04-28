@@ -40,13 +40,22 @@ const ValueDescription = styled.div`
   color:${colors.cellDescriptionColor}
 `
 
-const getCell = (value:string,description:string) => {
-  return <ListItem>
-            <CellContainer>
-              <ValueCell>{value}</ValueCell>
-              <ValueDescription>{description}</ValueDescription>
-            </CellContainer>
-          </ListItem>
+// const getCell = (value:string,description:string) => {
+//   return <ListItem>
+//             <CellContainer>
+//               <ValueCell>{value}</ValueCell>
+//               <ValueDescription>{description}</ValueDescription>
+//             </CellContainer>
+//           </ListItem>
+// }
+
+const getCell = (last:boolean,value:string,description:string) => {
+  return  <li className={`flex-1 py-[2rem] px-[1.2rem] ${last?'border-r-0':''}`} style={{borderRight:`1px solid ${colors.borderColor}`}}>
+            <div className='flex flex-col align-center text-center'>
+              <div className='text-[4.8rem] text-center' style={{color:colors.backgroundLessTextDarkColor}}>{value}</div>
+              <div style={{color:colors.cellDescriptionColor}}>{description}</div>
+            </div>
+          </li>
 }
 
 const value_description = [
@@ -59,14 +68,22 @@ const value_description = [
 const HorizontalList = () => {
   return (
     // should be changed to be used map function 
-    <MainContainer>
-      <List>
-        {getCell(...value_description[0])}
-        {getCell(...value_description[1])} 
-        {getCell(...value_description[2])}
-        {getCell(...value_description[3])}
-      </List>
-    </MainContainer>
+    // <MainContainer>
+    //   <List>
+    //     {getCell(...value_description[0])}
+    //     {getCell(...value_description[1])} 
+    //     {getCell(...value_description[2])}
+    //     {getCell(...value_description[3])}
+    //   </List>
+    // </MainContainer>
+    <div className='mt-[4.8rem]'>
+      <ul className='flex my-0 mx-[4.8rem] text-[1.6rem] list-none' style={{borderBottom:`1px solid ${colors.borderColor}`}}>
+        {getCell(false,value_description[0][0],value_description[0][1])}
+        {getCell(false,value_description[1][0],value_description[1][1])}
+        {getCell(false,value_description[2][0],value_description[2][1])}
+        {getCell(true,value_description[3][0],value_description[3][1])}
+      </ul>
+    </div>
   )
 }
 
