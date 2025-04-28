@@ -103,7 +103,7 @@ const Home = () => {
             loop={0}
           />
         </div>
-        <p className='text-[2.1rem] z-2 my-[2.1rem]'
+        <p className='text-[2.1rem] z-2 my-[2.1rem] font-medium'
           style={{
             color:colors.whiteWithOpacity
           }}
