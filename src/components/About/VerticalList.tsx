@@ -1,61 +1,33 @@
 import React from 'react'
-import styled from 'styled-components'
 import Button from '../Button/Button'
 import { colors } from '../../constants/constants'
-
-const VerticalListMainContainer = styled.div`
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:0 1.2rem;
-  margin-top:4.8rem;
-`
-
-const List = styled.ul`
-    list-style:none;
-    margin-bottom:1.6rem;
-    width:26.5rem;
-    padding-left:2.4rem;
-
-    li:last-child {
-      border:none
-    }
-`
-
-const ListItem = styled.li`
-    border-bottom : 1px solid ${colors.borderColor};
-    font-size:1.6rem;
-    font-weight:400;
-    padding:1.2rem 0;
-`
-
-const ColorChanger = styled.span`
-  color: ${(props) => props.color}
-`
-
-const BoldText = styled.span`
-  font-weight:600;
-`
 
 
 const VerticalList = () => {
   return (
-    <VerticalListMainContainer>
-      <List>
-        <ListItem><BoldText>Name:</BoldText> Zitouni Tidjani</ListItem>
-        <ListItem><BoldText>Email:</BoldText> <ColorChanger color={colors.primaryColor}>tidjani@gmail.com</ColorChanger></ListItem>
-        <ListItem><BoldText>Age:</BoldText> 32</ListItem>
-        <ListItem><BoldText>From:</BoldText> Khroub,Contantine</ListItem>
-      </List>
+    <div className='flex flex-col justify-center align-center py-0 px-[1.2rem] mt-[4.8rem]'>
+      <ul className='list-none mb-[1.6rem] w-[26.5rem] pl-[2.4rem]'>
+        <li className='text-[1.6rem] font-medium py-[1.2rem] px-0' style={{borderBottom:`1px solid ${colors.borderColor}`}}>
+          <span className='font-bold'>Name:</span> Zitouni Tidjani
+        </li>
+        <li className='text-[1.6rem] font-medium py-[1.2rem] px-0' style={{borderBottom:`1px solid ${colors.borderColor}`}}>
+          <span className='font-bold'>Email:</span> <span style={{color:colors.primaryColor}}>tidjani@gmail.com</span>
+        </li>
+        <li className='text-[1.6rem] font-medium py-[1.2rem] px-0' style={{borderBottom:`1px solid ${colors.borderColor}`}}>
+          <span className='font-bold'>Age:</span> 32
+        </li>
+        <li className='text-[1.6rem] font-medium py-[1.2rem] px-0 border-0' style={{borderBottom:`1px solid ${colors.borderColor}`}}>
+          <span className='font-bold'>From:</span> Khroub,Contantine
+        </li>
+      </ul>
       <Button
           color="white"
           width="19.5rem"
           height="5rem"
           backGroundColor={colors.primaryColor}
           outline={false}
-        >Download CV</Button>    
-    </VerticalListMainContainer>
+        >Download CV</Button>  
+    </div>
   )
 }
 
