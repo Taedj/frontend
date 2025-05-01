@@ -1,40 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
 import { colors } from '../../constants/constants'
-
-const MainContainer = styled.div`
-    background-color:${colors.summaryBoxBackgroundColor};
-    padding:2.4rem;
-    margin:2.4rem;
-    border-radius:5px;
-`
-
-const YearBadge = styled.span`
-  height:2.4rem;
-  width:10.2rem;
-  background-color:${colors.primaryColor};
-  font-size:1.4rem;
-  border-radius:5px;
-  padding:0.5rem 1rem;
-`
-
-const Title = styled.h1`
-  font-size:2.1rem;
-  margin-top:2rem;
-  margin-bottom:0.8rem;
-`
-
-const SubTitle = styled.h2`
-  font-size:1.6rem;
-  color:${colors.primaryColor};
-  margin-bottom:1.6rem;
-`
-
-const Body = styled.p`
-  font-size:1.6rem;
-  line-height:2.9rem;
-  color:${colors.backgroundLessTextDarkColor};
-`
 
 interface Props {
   year:string;
@@ -45,12 +10,20 @@ interface Props {
 
 const SummaryBox = ({year,title,subTitle,children}:Props) => {
   return (
-    <MainContainer>
-      <YearBadge>{year}</YearBadge>
-      <Title>{title}</Title>
-      <SubTitle>{subTitle}</SubTitle>
-      <Body>{children}</Body>
-    </MainContainer>
+    <div className='p-[2.4rem] m-[2.4rem] rounded' style={{backgroundColor:colors.summaryBoxBackgroundColor}}>
+      <span className='h-[2.4rem] w-[10.2rem] text-[1.4rem] rounded py-[0.5rem] px-[1rem]' style={{backgroundColor:colors.primaryColor}}>
+        {year}
+      </span>
+      <h1 className='text-[2.1rem] !mt-[2rem] !mb-[0.8rem]'>
+        {title}
+      </h1>
+      <h2 className='text-[1.6rem] leading-[2.9rem] mb-[1.6rem]' style={{color:colors.primaryColor}}>
+        {subTitle}
+      </h2>
+      <p className='text-[1.6rem] leading-[2.9rem]' style={{color:colors.backgroundLessTextDarkColor}}>
+        {children}
+      </p>
+    </div>
   )
 }
 
