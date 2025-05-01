@@ -1,31 +1,6 @@
 import React from 'react'
 import { fontSettings } from '../../constants/constants';
 import ProgressBar from "@ramonak/react-progress-bar";
-import styled from 'styled-components';
-
-
-const MainContainer = styled.div`
-  font-family:${fontSettings.fontFamily};
-  font-weight:600;
-`
-const SkillBody = styled.div`
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:0.8rem;
-  font-size:1.6rem;
-  font-weight:500;
-`
-
-const SkillTitle = styled.h2`
-  margin:0;
-  margin-bottom:0.8rem;
-  font-size:1.6rem;
-`
-
-const SkillProgress = styled.span`
-
-`
-
 
 interface Props {
     progress:number;
@@ -35,13 +10,13 @@ interface Props {
 
 const ProgressRow = ({progress,color,title}:Props) => {
   return (
-    <MainContainer>
-      <SkillBody>
-        <SkillTitle>{title}</SkillTitle>
-        <SkillProgress>{progress + '%'}</SkillProgress>
-      </SkillBody>
+    <div className='text-semibold' style={{fontFamily:fontSettings.fontFamily}}>
+      <div className='flex justify-between mb-[0.8rem] text-[1.6rem] font-semibold'>
+        <h2 className='m-0 mb-[0.8rem] text-[1.6rem]'>{title}</h2>
+        <span>{progress + '%'}</span>
+      </div>
       <ProgressBar completed={progress} bgColor={color} height="8px" isLabelVisible={false} baseBgColor="black"/>
-    </MainContainer>
+    </div>
   )
 }
 
