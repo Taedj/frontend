@@ -1,54 +1,51 @@
-import { ReactNode } from 'react'
+import { ReactNode,useState } from 'react'
 import styled from 'styled-components';
 import { fontSettings } from '../../constants/constants';
 
 interface Props {
   color:string;
-  backGroundColor?:string|null;
+  backGroundColor?:string;
   filledBackground?:boolean;
   height:string;
   width:string;
-  hoverBackground?:string|null;
+  hoverBackground?:string;
   outline?:boolean;
   borderWidth?:string;
   children:ReactNode
 }
 
-
 const Button = (
-  {
-    color,
-    height,
-    width,
-    backGroundColor=null,
-    filledBackground=true,
-    hoverBackground=null,
-    outline=true,
-    borderWidth='1px',
-    children}:Props) => {
-  const CustomizedButton = styled.button`
-    font-family:${fontSettings.fontFamily};
-    color:${color};
-    background-color:${backGroundColor};
-    ${(!filledBackground?"background:none;":"")}
-    height:${height};
-    width:${width};
-    border-radius:25px;
-    font-size:1.6rem;
-    font-weight:600;
-    border: ${(outline)? `${borderWidth} solid ${color}`:"none"};
-    z-index:2;
-    &:hover {
-      ${hoverBackground && `background-color:${hoverBackground};`}
-      color:white;
-      transition:background-color 0.5s;
-    }
-  `;
+    {
+      color,
+      height,
+      width,
+      backGroundColor='',
+      filledBackground=true,
+      hoverBackground='',
+      outline=true,
+      borderWidth='1px',
+      children
+    }:Props) => {
+    const [hover,setHover] = useState(false);
+    const cssBackground = (!filledBackground)?"background:none;":"";
+    const buttonCss = `flex justify-center items-center rounded-[25px] text-[1.6rem] font-semibold z-2 ${cssBackground} transition-colors duration-500`
   return (
-    <>
-      <CustomizedButton>{children}</CustomizedButton>
-    </>
+    <button className={buttonCss}
+        style={{
+            fontFamily:fontSettings.fontFamily,
+            color:hover?'white':color,
+            height:height,
+            width:width,
+            border:`${(outline)? `${borderWidth} solid ${color}`:"none"}`,
+            backgroundColor:hover? hoverBackground:backGroundColor,
+        }}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+    >
+      {children}
+    </button>
   )
 }
+
 
 export default Button
