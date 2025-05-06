@@ -28,22 +28,18 @@ const breakpointColumnsObj = {
   700: 1,    // 1 column at 700px
 };
 
-const MainContainer = styled.div`
-  font-family:${fontSettings.fontFamily};
-  background-color:${colors.backgroundLessDarkColor};
-  padding:7.2rem 0;
-`
-
-const ManstoryContainer = styled.div`
-  padding:0 4.8rem;
-`
-
 const Potfolio = () => {
   return (
-    <MainContainer id="Portfolio">
+    <div id="Portofolio"
+      className='py-[7.2rem] px-0'
+      style={{
+        fontFamily:fontSettings.fontFamily,
+        backgroundColor:colors.backgroundLessDarkColor
+      }}
+    >
       <BackgroundText backgroundText='PORTFOLIO' innerText='My Work'/>
       <CategoriesSelector/>
-      <ManstoryContainer>
+      <div className='py-0 px-[4.8rem]'>
         <Masonry
           breakpointCols={breakpointColumnsObj}
           className="masonry-grid"
@@ -60,8 +56,8 @@ const Potfolio = () => {
             </div>
           ))}
         </Masonry>
-      </ManstoryContainer>
-    </MainContainer>
+      </div>
+    </div>
   )
 }
 
