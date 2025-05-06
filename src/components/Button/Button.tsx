@@ -1,5 +1,4 @@
 import { ReactNode,useState } from 'react'
-import styled from 'styled-components';
 import { fontSettings } from '../../constants/constants';
 
 interface Props {
