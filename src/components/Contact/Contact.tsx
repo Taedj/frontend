@@ -1,44 +1,23 @@
-import React from 'react'
-import styled from 'styled-components'
 import { colors,fontSettings } from '../../constants/constants'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import AddressBox from './AddressBox'
 import EmailForm from './EmailForm'
 
-const MainContainer = styled.div`
-  font-family:${fontSettings.fontFamily};
-  background-color:${colors.backgroundLessDarkColor};
-  padding:7.2rem 4.8rem;
-  color:white;
-`
-
-const BodyContainer = styled.div`
-  display:flex;
-  width:100%;
-`
-
-const AddressBoxContainer = styled.div`
-  flex:1;
-`
-
-const EmailFormContainer = styled.div`
-  flex:4;
-`
-
 
 const Contact = () => {
   return (
-    <MainContainer id="Contact">
+    <div id="Contact" className='py-[7.2rem] px-[4.8rem] text-white' 
+      style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>
       <BackgroundText backgroundText='CONTACT' innerText='Get in Touch'/>
-      <BodyContainer>
-        <AddressBoxContainer>
+      <div className='flex w-full'>
+        <div className='flex-1'>
           <AddressBox/>
-        </AddressBoxContainer>
-        <EmailFormContainer>
+        </div>
+        <div className='flex-4'>
           <EmailForm/>
-        </EmailFormContainer>
-      </BodyContainer>
-    </MainContainer>
+        </div>
+      </div>
+    </div>
   )
 }
 
