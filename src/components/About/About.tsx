@@ -9,7 +9,7 @@ import { colors ,fontSettings} from '../../constants/constants'
 const About = () => {
   return (
     <>
-      <div id='About-me' className='py-[7.2rem] px-[4.8rem] text-[1.6rem] text-white' style={{backgroundColor:colors.backgroundDarkColor,fontFamily:fontSettings.fontFamily}}>
+      <div id='About-Me' className='py-[7.2rem] px-[4.8rem] text-[1.6rem] text-white' style={{backgroundColor:colors.backgroundDarkColor,fontFamily:fontSettings.fontFamily}}>
         <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More'/>
         <div className='flex w-full'>
           <div className='flex-3 min-w-0'>
