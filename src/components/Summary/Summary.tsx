@@ -1,5 +1,3 @@
-import React from 'react'
-import styled from 'styled-components'
 import { fontSettings,colors } from '../../constants/constants'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import SummaryBox from './SummaryBox'
@@ -8,107 +6,8 @@ import Button from '../Button/Button'
 import { FaDownload } from "react-icons/fa";
 
 
-const MainContainer = styled.div`
-  font-family:${fontSettings.fontFamily};
-  background-color:${colors.backgroundDarkColor};
-  color:white;
-  padding:4.8rem;
-  padding-top:7.2rem;
-`
-
-const SummaryContainer = styled.div`
-  display:flex;
-  margin-top:4.8rem;
-`
-
-const EducationTitle = styled.h2`
-  font-size:2.4rem;
-  padding-left:2.4rem;
-`
-
-const EducationContainer = styled.div`
-`
-
-const ExperienceTitle = styled.h2`
-  font-size:2.4rem;
-  padding-left:2.4rem;
-`
-
-const ExperienceContainer = styled.div`
-
-`
-
-const CVButtonContainer = styled.div`
-  display:flex;
-  justify-content:center;
-  margin:7.5rem;
-  margin-bottom:1.5rem;
-`
-
-
 const Summary = () => {
   return (
-    // <MainContainer id="Resume">
-    //   <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
-    //   <SummaryContainer>
-    //     <EducationContainer>
-    //       <EducationTitle>My Education</EducationTitle>
-    //       <SummaryBox 
-    //         year="2000 - 2004" 
-    //         title="Computer Science" 
-    //         subTitle="International University">
-    //           Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-    //       </SummaryBox>
-    //       <SummaryBox 
-    //         year="2000 - 2004" 
-    //         title="Computer Science" 
-    //         subTitle="International University">
-    //           Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-    //       </SummaryBox>
-    //       <SummaryBox 
-    //         year="2000 - 2004" 
-    //         title="Computer Science" 
-    //         subTitle="International University">
-    //           Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-    //       </SummaryBox>
-    //     </EducationContainer>
-    //     <ExperienceContainer>
-    //       <ExperienceTitle>My Experience</ExperienceTitle>
-    //       <SummaryBox 
-    //         year="2000 - 2004" 
-    //         title="Computer Science" 
-    //         subTitle="International University">
-    //           Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-    //       </SummaryBox>
-    //       <SummaryBox 
-    //         year="2000 - 2004" 
-    //         title="Computer Science" 
-    //         subTitle="International University">
-    //           Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-    //       </SummaryBox>
-    //       <SummaryBox 
-    //         year="2000 - 2004" 
-    //         title="Computer Science" 
-    //         subTitle="International University">
-    //           Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-    //       </SummaryBox>
-    //     </ExperienceContainer>
-    //   </SummaryContainer>
-    //   <Skills/>
-    //   <CVButtonContainer>
-    //       <Button 
-    //         color={colors.backgroundTextDarkColor}
-    //         height="5.2rem"
-    //         width="21.5rem"
-    //         backGroundColor="rgba(0, 0, 0, 0)"
-    //         hoverBackground={colors.backgroundTextDarkColor}
-    //         borderWidth='2px'
-    //       >
-    //         Download CV&nbsp;
-    //         <FaDownload />
-    //       </Button>
-    //     </CVButtonContainer>
-    // </MainContainer>
     <div id="Resume" className='text-white p-[4.8rem] pt-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
       <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
       <div className='flex mt-[4.8rem]'>
