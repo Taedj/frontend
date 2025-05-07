@@ -1,6 +1,4 @@
-import React, { ReactNode } from 'react'
-import styled from 'styled-components'
-import { colors,fontSettings } from '../../constants/constants';
+import { colors } from '../../constants/constants';
 
 
 interface Props {
@@ -8,53 +6,15 @@ interface Props {
   innerText:string;
 }
 
-const BackgroundTextContainer = styled.div`
-  position:relative;
-  display:flex;
-  flex-orientation:column;
-  padding:0;
-  margin:0;
-  justify-content:center;
-  align-item:center;
-  text-align:center;
-  color:white;
-`
-
-const OuterText = styled.h2`
-  margin:0;
-  color: ${colors.backgroundTextDarkColor};
-  font-size:13.2rem;
-  opacity:0.1; 
-  
-`
-
-const UnderLine = styled.span`
-  width:8rem;
-  height:3px;
-  background-color:${colors.primaryColor};
-  line-height:5.4rem;
-  display:block;
-  margin-left:31.5rem;
-  margin-right:31.5rem;
-`
-
-const InnerText = styled.p`
-  position:absolute;
-  align-self:center;
-  font-size:3.6rem;
-  display:flex;
-  flex-direction:column;
-`
-
 const BackgroundText = ({backgroundText,innerText}:Props) => {
   return (
-    <BackgroundTextContainer>
-      <OuterText>{backgroundText}</OuterText>
-      <InnerText>
-        {innerText}
-        <UnderLine/>
-      </InnerText>
-    </BackgroundTextContainer>
+    <div className='relative flex flex-col p-0 m-0 justify-center align-center text-center text-white'>
+        <h2 className='m-0 text-[13.2rem] opacity-10' style={{color:colors.backgroundTextDarkColor}}>{backgroundText}</h2>
+        <p className='absolute flex flex-col self-center text-[3.6rem] '>
+          {innerText}
+          <span className='block mx-[31.5rem] w-[8rem] h-[3px] leading-[5.4rem] ' style={{backgroundColor:colors.primaryColor}}></span>
+        </p>
+    </div>
   )
 }
 
