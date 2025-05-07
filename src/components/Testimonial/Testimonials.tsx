@@ -9,15 +9,15 @@ import Carousel from './Carousel'
 
 const Testimonials = () => {
   return (
-    <div id='Testimonials' className='py-[7.2rem] px-[4.8rem]'
+    <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
       style={{
         backgroundColor:colors.backgroundDarkColor,
         fontFamily:fontSettings.fontFamily
       }}
     >
       <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak'/>
-      <div className='mt-[4.8rem] py-0 px-[20px]'>
-        <Carousel deviceType='desktop'>
+      <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
+        <Carousel>
           <TestimonialBox 
             image={image1} 
             title="Daniel Xavier" 
