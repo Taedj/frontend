@@ -9,9 +9,11 @@ const EmailForm = () => {
         <div className='flex w-full'>
           <input type="text" 
             className='flex-1 ml-0 rounded-[5px] p-[1.5rem] text-[1.6rem] m-[1rem] border-0 text-white' 
+            placeholder='Name'
             style={{backgroundColor:colors.backgroundDarkColor}} />
           <input type="text" 
-            className='flex-1 mr-0 rounded-[5px] p-[1.5rem] text-[1.6rem] m-[1rem] border-0 text-white' 
+            className='flex-1 mr-0 rounded-[5px] p-[1.5rem] text-[1.6rem] m-[1rem] border-0 text-white'
+            placeholder='Email'
             style={{backgroundColor:colors.backgroundDarkColor}} />
         </div>
         <textarea 

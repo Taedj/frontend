@@ -27,7 +27,7 @@ const AddressBox = () => {
             color:colors.backgroundLessTextDarkColor
           }}
         >
-          <span className='mr-[2.4rem]'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
+          <span className='mr-[2.4rem] mt-[0.8rem]'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
           <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>(060) 444 434 444</div>
         </div>
         <div className='flex text-[1.6rem] font-medium leading-[2.88rem]'
@@ -35,7 +35,7 @@ const AddressBox = () => {
             color:colors.backgroundLessTextDarkColor
           }}
         >
-          <span className='mr-[2.4rem]'><FaFax size={14} color={colors.primaryColor}/></span>
+          <span className='mr-[2.4rem] mt-[0.8rem]'><FaFax size={14} color={colors.primaryColor}/></span>
           <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>(060) 555 545 555</div>
         </div>
         <div className='flex text-[1.6rem] font-medium leading-[2.88rem]'
@@ -43,7 +43,7 @@ const AddressBox = () => {
             color:colors.backgroundLessTextDarkColor
           }}
         >
-          <span className='mr-[2.4rem]'><IoMdMail size={14} color={colors.primaryColor}/></span>
+          <span className='mr-[2.4rem] mt-[0.8rem]'><IoMdMail size={14} color={colors.primaryColor}/></span>
           <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>chat@simone.com</div>
         </div>
       </div>

@@ -21,14 +21,14 @@ const Home = () => {
         <p className='text-[2.8rem] font-bold leading-[5rem] z-2 m-0 mb-[1.6rem]'>
           Welcome
         </p>
-        <div className='text-[6rem] z-2 h-[6rem] font-bold'>
+        <div className='text-[6rem] mb-[1.6rem] z-2 h-[6rem] font-bold'>
           <Typewriter 
             words={specialities}
             typeSpeed={70}
             loop={0}
           />
         </div>
-        <p className='text-[2.1rem] z-2 my-[2.1rem] font-medium'
+        <p className='text-[2.1rem] z-2 my-[2.4rem] font-medium'
           style={{
             color:colors.whiteWithOpacity
           }}
