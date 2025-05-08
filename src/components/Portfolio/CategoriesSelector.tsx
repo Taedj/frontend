@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { categories,colors,fontSettings } from '../../constants/constants'
 
 interface Props {
@@ -5,6 +6,7 @@ interface Props {
 }
 
 const CategoriesSelector = ({categoryHandler}:Props) => {
+  const [selectedCategory,setSelectedCategory] = useState('All')
   return (
     <div className='text-[1.6rem] font-normal my-[4.8rem] mx-0'
       style={{
@@ -13,7 +15,13 @@ const CategoriesSelector = ({categoryHandler}:Props) => {
       }}
     >
       <ul className='flex list-none justify-center'>
-        {categories.map((categoryText) => <li className='py-[0.96rem] px-[1.6rem]' onClick={() => categoryHandler(categoryText)}>{categoryText}</li>)}
+        {categories.map((categoryText) => <li className='flex flex-col items-center py-[0.96rem] px-[1.6rem] w-[10rem]' onClick={() => {
+          categoryHandler(categoryText);
+          setSelectedCategory(categoryText);
+          }}>
+          {(selectedCategory === categoryText) ? <p style={{color:colors.primaryColor}}>{categoryText}</p> : <p>{categoryText}</p>}
+          {selectedCategory === categoryText && <span className='block mx-[31.5rem] w-[8rem] h-[3px] leading-[5.4rem] mt-[1.2rem]' style={{backgroundColor:colors.primaryColor}}></span>}
+        </li>)}
       </ul>
     </div>
   )
