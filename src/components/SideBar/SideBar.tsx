@@ -72,7 +72,7 @@ const SideBar = () => {
               onMouseLeave={() => setHoveredIndex(0)}
             >
               <a href={`#${section}`}className='text-inherit no-underline'>
-                {section}
+                {section.replaceAll('-',' ')}
               </a>
             </li>
           ))}

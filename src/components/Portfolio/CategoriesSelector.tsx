@@ -27,4 +27,4 @@ const CategoriesSelector = ({categoryHandler}:Props) => {
   )
 }
 
-export default CategoriesSelector
+export default CategoriesSelector;
