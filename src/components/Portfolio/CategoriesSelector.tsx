@@ -1,7 +1,10 @@
 import { categories,colors,fontSettings } from '../../constants/constants'
 
+interface Props {
+  categoryHandler:Function
+}
 
-const CategoriesSelector = () => {
+const CategoriesSelector = ({categoryHandler}:Props) => {
   return (
     <div className='text-[1.6rem] font-normal my-[4.8rem] mx-0'
       style={{
@@ -10,7 +13,7 @@ const CategoriesSelector = () => {
       }}
     >
       <ul className='flex list-none justify-center'>
-        {categories.map((categoryText) => <li className='py-[0.96rem] px-[1.6rem]'>{categoryText}</li>)}
+        {categories.map((categoryText) => <li className='py-[0.96rem] px-[1.6rem]' onClick={() => categoryHandler(categoryText)}>{categoryText}</li>)}
       </ul>
     </div>
   )

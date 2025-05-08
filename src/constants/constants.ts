@@ -43,7 +43,7 @@ export const specialities = [
 
 export const categories = [
     'All',
-    'Desing',
+    'Design',
     'Teaching',
     'Mechanics'
 ]
