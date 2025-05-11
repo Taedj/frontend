@@ -1,6 +1,8 @@
 export const colors = {
     'primaryColor':'#20C997',
     'navbarColor':'rgb(17, 20, 24)',
+    'menuColor':'rgba(0, 0, 0, 0.95)',
+    'menuItemBorderColor':'rgba(250, 250, 250, 0.15)',
     'backgroundVeryDarkColor':'#111418',
     'backgroundDarkColor':'rgb(33, 37, 41)',
     'backgroundLessDarkColor':'#343A40',
