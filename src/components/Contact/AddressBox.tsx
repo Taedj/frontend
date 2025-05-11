@@ -1,7 +1,7 @@
 import { FaPhoneAlt,FaFax  } from "react-icons/fa";
 import { IoMdMail  } from "react-icons/io";
 import { colors } from '../../constants/constants';
-import {FbIcon,TwIcon,GwIcon,GmIcon} from '../SideBar/SideBar'
+import { FbIcon, TwIcon, GwIcon, GmIcon } from '../SideBar/SocialMedias';
 
 const AddressBox = () => {
   return (

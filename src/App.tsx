@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import styled from 'styled-components'
 import './App.css'
 import { colors,dimensions } from './constants/constants'
 import SideBar from './components/SideBar/SideBar'
@@ -13,18 +12,27 @@ import Summary from './components/Summary/Summary'
 import Potfolio from './components/Portfolio/Potfolio'
 import Testimonials from './components/Testimonial/Testimonials'
 import Footer from './components/Footer/Footer'
+import Navbar from './components/Navbar/Navbar'
 
 
-
-const SideComponentsContainer = styled.div`
-  margin-left:${dimensions.sideBarWidth};
-`
+export const checkMobile = () => {
+  return window.innerWidth < dimensions.mobileBreakpoint;
+}
 
 function App() {
+  const [isMobile,setIsMobile] = useState(checkMobile());
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(checkMobile());
+    }
+    window.addEventListener('resize',handleResize);
+    return () => window.removeEventListener('resize',handleResize);
+  },[]);
   return (
     <>
-        <SideBar/>
-        <SideComponentsContainer>
+        {!isMobile && <SideBar/>}
+        <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
+          {isMobile && <Navbar/>}
           <Home/>
           <About/>
           <Services/>
@@ -33,7 +41,7 @@ function App() {
           <Testimonials/>
           <Contact/>
           <Footer/>
-        </SideComponentsContainer>
+        </div>
     </>
   )
 }

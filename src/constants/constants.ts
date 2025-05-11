@@ -1,5 +1,6 @@
 export const colors = {
     'primaryColor':'#20C997',
+    'navbarColor':'rgb(17, 20, 24)',
     'backgroundVeryDarkColor':'#111418',
     'backgroundDarkColor':'rgb(33, 37, 41)',
     'backgroundLessDarkColor':'#343A40',
@@ -19,6 +20,7 @@ export const colors = {
 
 export const dimensions = {
     'sideBarWidth':'24rem',
+    'mobileBreakpoint':992
 }
 
 export const fontSettings = {
