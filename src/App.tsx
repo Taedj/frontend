@@ -53,12 +53,12 @@ function App() {
         <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
           {isMobile && <Navbar/>}
           <Home fontSize={typewriterfontSize}/>
-          <About fontSize={backgroundTextFontSize}/>
-          <Services fontSize={backgroundTextFontSize}/>
-          <Summary fontSize={backgroundTextFontSize}/>
-          <Potfolio fontSize={backgroundTextFontSize}/>
-          <Testimonials fontSize={backgroundTextFontSize}/>
-          <Contact fontSize={backgroundTextFontSize}/>
+          <About fontSize={backgroundTextFontSize} isMobile={isMobile}/>
+          <Services fontSize={backgroundTextFontSize} isMobile={isMobile}/>
+          <Summary fontSize={backgroundTextFontSize} isMobile={isMobile}/>
+          <Potfolio fontSize={backgroundTextFontSize} isMobile={isMobile}/>
+          <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile}/>
+          <Contact fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Footer/>
         </div>
     </>

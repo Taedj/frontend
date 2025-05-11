@@ -12,6 +12,13 @@ const getCell = (last:boolean,value:string,description:string) => {
           </li>
 }
 
+const getClassName = (isMobile:boolean) => {
+  if (isMobile) {
+    return 'grid grid-cols-2 my-0 mx-[4.8rem] text-[1.6rem] list-none';
+  }
+  return 'flex my-0 mx-[4.8rem] text-[1.6rem] list-none';
+}
+
 const value_description = [
   ['10+','Years Experience'],
   ['250+','Happy Clients'],
@@ -19,10 +26,14 @@ const value_description = [
   ['38','Get Awards']
 ]
 
-const HorizontalList = () => {
+interface Props {
+  isMobile:boolean;
+}
+
+const HorizontalList = ({isMobile}:Props) => {
   return (
     <div className='mt-[4.8rem]'>
-      <ul className='flex my-0 mx-[4.8rem] text-[1.6rem] list-none' style={{borderBottom:`1px solid ${colors.borderColor}`}}>
+      <ul className={getClassName(isMobile)} style={{borderBottom:`1px solid ${colors.borderColor}`}}>
         {getCell(false,value_description[0][0],value_description[0][1])}
         {getCell(false,value_description[1][0],value_description[1][1])}
         {getCell(false,value_description[2][0],value_description[2][1])}

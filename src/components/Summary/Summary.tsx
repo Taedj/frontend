@@ -7,9 +7,10 @@ import { FaDownload } from "react-icons/fa";
 
 interface Props {
   fontSize: string;
+  isMobile: boolean;
 }
 
-const Summary = ({ fontSize }: Props) => {
+const Summary = ({ fontSize, isMobile }: Props) => {
   return (
     <div id="Resume" className='text-white p-[4.8rem] pt-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
       <BackgroundText backgroundText="SUMMARY" innerText="Resume" fontSize={fontSize}/>

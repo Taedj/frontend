@@ -5,9 +5,10 @@ import EmailForm from './EmailForm'
 
 interface Props {
   fontSize: string;
+  isMobile: boolean;
 }
 
-const Contact = ({ fontSize }: Props) => {
+const Contact = ({ fontSize, isMobile }: Props) => {
   return (
     <div id="Contact" className='py-[7.2rem] px-[4.8rem] text-white' 
       style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>

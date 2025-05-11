@@ -9,9 +9,10 @@ import Carousel from './Carousel'
 
 interface Props {
   fontSize: string;
+  isMobile: boolean;
 }
 
-const Testimonials = ({ fontSize }: Props) => {
+const Testimonials = ({ fontSize, isMobile }: Props) => {
   return (
     <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
       style={{

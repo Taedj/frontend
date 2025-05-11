@@ -44,9 +44,10 @@ const breakpointColumnsObj = {
 
 interface Props {
   fontSize: string;
+  isMobile: boolean;
 }
 
-const Potfolio = ({ fontSize }: Props) => {
+const Potfolio = ({ fontSize, isMobile }: Props) => {
   const [category,setCategory] = useState('All')
   let selectedData = (category === 'All') ? data : data.filter((item) => item.category === category);
   return (
