@@ -19,11 +19,21 @@ export const checkMobile = () => {
   return window.innerWidth < dimensions.mobileBreakpoint;
 }
 
+const calculateFontSize = () => {
+  if (window.innerWidth < dimensions.mobileBreakpoint) {
+    return `${(window.innerWidth - 492)*0.004 + 4}rem`;
+  }
+  return '6rem';
+}
+
 function App() {
   const [isMobile,setIsMobile] = useState(checkMobile());
+  const [fontSize,setFontSize] = useState(calculateFontSize());
+  
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(checkMobile());
+      setFontSize(calculateFontSize());
     }
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
@@ -33,7 +43,7 @@ function App() {
         {!isMobile && <SideBar/>}
         <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
           {isMobile && <Navbar/>}
-          <Home/>
+          <Home fontSize={fontSize}/>
           <About/>
           <Services/>
           <Summary/>

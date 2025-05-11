@@ -41,8 +41,8 @@ export const sections = [
 
 export const specialities = [
     "I'm a UX/UI Designer",
-    "I'm Mechanical engineer",
-    "I'm a university professor"
+    "I'm a Mechanical engineer",
+    "I'm a professor"
 ]
 
 export const categories = [

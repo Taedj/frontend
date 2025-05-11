@@ -1,12 +1,18 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Typewriter } from 'react-simple-typewriter'
 import { fontSettings,specialities,colors} from '../../constants/constants'
 import engineeringBackground from '../../assets/pexels-olly-3817858.jpg'
 import Button from '../Button/Button'
 import Chevron from '../Chevron/Chevron'
+import { useEffect } from 'react'
 
-const Home = () => {
+
+interface Props {
+  fontSize:string;
+}
+
+const Home = ({fontSize}:Props) => {
+
   return (
     <div id="Home" className='relative w-full h-screen text-white'
       style={{
@@ -21,7 +27,9 @@ const Home = () => {
         <p className='text-[2.8rem] font-bold leading-[5rem] z-2 m-0 mb-[1.6rem]'>
           Welcome
         </p>
-        <div className='text-[6rem] mb-[1.6rem] z-2 h-[6rem] font-bold'>
+        <div className='mb-[1.6rem] z-2 h-[6rem] font-bold' style={{
+          fontSize:fontSize
+        }}>
           <Typewriter 
             words={specialities}
             typeSpeed={70}
