@@ -5,11 +5,14 @@ import Skills from './Skills'
 import Button from '../Button/Button'
 import { FaDownload } from "react-icons/fa";
 
+interface Props {
+  fontSize: string;
+}
 
-const Summary = () => {
+const Summary = ({ fontSize }: Props) => {
   return (
     <div id="Resume" className='text-white p-[4.8rem] pt-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
-      <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
+      <BackgroundText backgroundText="SUMMARY" innerText="Resume" fontSize={fontSize}/>
       <div className='flex mt-[4.8rem]'>
         <div>
           <h2 className='text-[2.4rem] pl-[2.4rem]'>

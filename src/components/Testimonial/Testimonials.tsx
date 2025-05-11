@@ -7,7 +7,11 @@ import image1 from '../../assets/images/danxavier.jpg'
 import image2 from '../../assets/images/negro.jpg'
 import Carousel from './Carousel'
 
-const Testimonials = () => {
+interface Props {
+  fontSize: string;
+}
+
+const Testimonials = ({ fontSize }: Props) => {
   return (
     <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
       style={{
@@ -15,7 +19,7 @@ const Testimonials = () => {
         fontFamily:fontSettings.fontFamily
       }}
     >
-      <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak'/>
+      <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak' fontSize={fontSize}/>
       <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
         <Carousel>
           <TestimonialBox 

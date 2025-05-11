@@ -42,7 +42,11 @@ const breakpointColumnsObj = {
   700: 1,    // 1 column at 700px
 };
 
-const Potfolio = () => {
+interface Props {
+  fontSize: string;
+}
+
+const Potfolio = ({ fontSize }: Props) => {
   const [category,setCategory] = useState('All')
   let selectedData = (category === 'All') ? data : data.filter((item) => item.category === category);
   return (
@@ -53,7 +57,7 @@ const Potfolio = () => {
         backgroundColor:colors.backgroundLessDarkColor
       }}
     >
-      <BackgroundText backgroundText='PORTFOLIO' innerText='My Work'/>
+      <BackgroundText backgroundText='PORTFOLIO' innerText='My Work' fontSize={fontSize}/>
       <CategoriesSelector categoryHandler={setCategory}/>
       <div className='py-0 px-[4.8rem]'>
         <Masonry

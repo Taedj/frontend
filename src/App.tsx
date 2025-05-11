@@ -19,21 +19,30 @@ export const checkMobile = () => {
   return window.innerWidth < dimensions.mobileBreakpoint;
 }
 
-const calculateFontSize = () => {
+const calculateTypeWriterFontSize = () => {
   if (window.innerWidth < dimensions.mobileBreakpoint) {
     return `${(window.innerWidth - 492)*0.004 + 4}rem`;
   }
   return '6rem';
 }
 
+const calculateBackgroundTextFontSize = () => {
+  if (window.innerWidth < 1200) {
+    return `${(window.innerWidth - 492)*0.0014*6 + 7.2}rem`;
+  }
+  return '13.2rem';
+}
+
 function App() {
   const [isMobile,setIsMobile] = useState(checkMobile());
-  const [fontSize,setFontSize] = useState(calculateFontSize());
+  const [typewriterfontSize,setTypewriterFontSize] = useState(calculateTypeWriterFontSize());
+  const [backgroundTextFontSize,setBackgroundTextFontSize] = useState(calculateBackgroundTextFontSize());
   
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(checkMobile());
-      setFontSize(calculateFontSize());
+      setTypewriterFontSize(calculateTypeWriterFontSize());
+      setBackgroundTextFontSize(calculateBackgroundTextFontSize());
     }
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
@@ -43,13 +52,13 @@ function App() {
         {!isMobile && <SideBar/>}
         <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
           {isMobile && <Navbar/>}
-          <Home fontSize={fontSize}/>
-          <About/>
-          <Services/>
-          <Summary/>
-          <Potfolio/>
-          <Testimonials/>
-          <Contact/>
+          <Home fontSize={typewriterfontSize}/>
+          <About fontSize={backgroundTextFontSize}/>
+          <Services fontSize={backgroundTextFontSize}/>
+          <Summary fontSize={backgroundTextFontSize}/>
+          <Potfolio fontSize={backgroundTextFontSize}/>
+          <Testimonials fontSize={backgroundTextFontSize}/>
+          <Contact fontSize={backgroundTextFontSize}/>
           <Footer/>
         </div>
     </>
