@@ -38,11 +38,17 @@ const checkSummaryBreakpoint = () => {
   return false;
 }
 
+const calculateSlidesNumber = () => {
+  if (window.innerWidth < dimensions.mobileBreakpoint) return 1;
+  return 2
+}
+
 function App() {
   const [isMobile,setIsMobile] = useState(checkMobile());
   const [typewriterfontSize,setTypewriterFontSize] = useState(calculateTypeWriterFontSize());
   const [backgroundTextFontSize,setBackgroundTextFontSize] = useState(calculateBackgroundTextFontSize());
   const [summaryBreakpoint,setSummaryBreakpoint] = useState(checkSummaryBreakpoint());
+  const [slideToShow,setSliderToShow] = useState(calculateSlidesNumber())
   
   useEffect(() => {
     const handleResize = () => {
@@ -50,6 +56,7 @@ function App() {
       setTypewriterFontSize(calculateTypeWriterFontSize());
       setBackgroundTextFontSize(calculateBackgroundTextFontSize());
       setSummaryBreakpoint(checkSummaryBreakpoint());
+      setSliderToShow(calculateSlidesNumber());
     }
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
@@ -64,7 +71,7 @@ function App() {
           <Services fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Summary fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={summaryBreakpoint}/>
           <Potfolio fontSize={backgroundTextFontSize} isMobile={isMobile}/>
-          <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile}/>
+          <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile} slideToShow={slideToShow}/>
           <Contact fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Footer/>
         </div>

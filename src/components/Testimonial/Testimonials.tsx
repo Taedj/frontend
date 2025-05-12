@@ -10,9 +10,11 @@ import Carousel from './Carousel'
 interface Props {
   fontSize: string;
   isMobile: boolean;
+  slideToShow:number;
 }
 
-const Testimonials = ({ fontSize, isMobile }: Props) => {
+const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
+  console.log(slideToShow);
   return (
     <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
       style={{
@@ -22,7 +24,7 @@ const Testimonials = ({ fontSize, isMobile }: Props) => {
     >
       <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak' fontSize={fontSize}/>
       <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
-        <Carousel>
+        <Carousel slideToShow={slideToShow}>
           <TestimonialBox 
             image={image1} 
             title="Daniel Xavier" 

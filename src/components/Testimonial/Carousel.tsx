@@ -7,15 +7,16 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 interface Props {
-  children:ReactElement[]
+  children:ReactElement[],
+  slideToShow:number
 }
 
 // const Carousel = ({deviceType,children}:Props) => {
-const Carousel = ({children}:Props) => {
+const Carousel = ({children,slideToShow}:Props) => {
   const settings = {
     dots: true,
     speed: 2000,
-    slidesToShow: 2,
+    slidesToShow: slideToShow, 
     slidesToScroll: 1,
     infinite: true,
     autoplay: true,

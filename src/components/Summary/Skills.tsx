@@ -11,7 +11,6 @@ const getClassName = (breakpoint:boolean) => {
 }
 
 const Skills = ({breakpoint}:Props) => {
-  console.log(breakpoint);
   return (
     <div>
       <h1 className='!my-[2.4rem] !mx-0 text-[2.4rem] font-semibold'>
