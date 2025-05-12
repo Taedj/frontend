@@ -73,7 +73,7 @@ function App() {
           <Potfolio fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile} slideToShow={slideToShow}/>
           <Contact fontSize={backgroundTextFontSize} isMobile={isMobile}/>
-          <Footer/>
+          <Footer isMobile={isMobile}/>
         </div>
     </>
   )
