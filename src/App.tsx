@@ -33,16 +33,23 @@ const calculateBackgroundTextFontSize = () => {
   return '13.2rem';
 }
 
+const checkSummaryBreakpoint = () => {
+  if (window.innerWidth < dimensions.summaryBreakpoint) return true;
+  return false;
+}
+
 function App() {
   const [isMobile,setIsMobile] = useState(checkMobile());
   const [typewriterfontSize,setTypewriterFontSize] = useState(calculateTypeWriterFontSize());
   const [backgroundTextFontSize,setBackgroundTextFontSize] = useState(calculateBackgroundTextFontSize());
+  const [summaryBreakpoint,setSummaryBreakpoint] = useState(checkSummaryBreakpoint());
   
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(checkMobile());
       setTypewriterFontSize(calculateTypeWriterFontSize());
       setBackgroundTextFontSize(calculateBackgroundTextFontSize());
+      setSummaryBreakpoint(checkSummaryBreakpoint());
     }
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
@@ -55,7 +62,7 @@ function App() {
           <Home fontSize={typewriterfontSize}/>
           <About fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Services fontSize={backgroundTextFontSize} isMobile={isMobile}/>
-          <Summary fontSize={backgroundTextFontSize} isMobile={isMobile}/>
+          <Summary fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={summaryBreakpoint}/>
           <Potfolio fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Contact fontSize={backgroundTextFontSize} isMobile={isMobile}/>

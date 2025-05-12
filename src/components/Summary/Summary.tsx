@@ -1,4 +1,4 @@
-import { fontSettings,colors } from '../../constants/constants'
+import { fontSettings,colors, dimensions } from '../../constants/constants'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import SummaryBox from './SummaryBox'
 import Skills from './Skills'
@@ -8,13 +8,19 @@ import { FaDownload } from "react-icons/fa";
 interface Props {
   fontSize: string;
   isMobile: boolean;
+  breakpoint:boolean;
 }
 
-const Summary = ({ fontSize, isMobile }: Props) => {
+const getEducationExperienceParentClass = (breakpoint:boolean) => {
+  if (breakpoint) return 'flex flex-col mt-[4.8rem]';
+  return 'flex mt-[4.8rem]'
+} 
+
+const Summary = ({ fontSize, isMobile ,breakpoint}: Props) => {
   return (
     <div id="Resume" className='text-white p-[4.8rem] pt-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
       <BackgroundText backgroundText="SUMMARY" innerText="Resume" fontSize={fontSize}/>
-      <div className='flex mt-[4.8rem]'>
+      <div className={getEducationExperienceParentClass(breakpoint)}>
         <div>
           <h2 className='text-[2.4rem] pl-[2.4rem]'>
             My Education
@@ -62,7 +68,7 @@ const Summary = ({ fontSize, isMobile }: Props) => {
             </SummaryBox>
         </div>
       </div>
-      <Skills/>
+      <Skills breakpoint={breakpoint}/>
       <div className='flex justify-center !m-[7.5rem] !mb-[1.5rem]'>
         <Button 
         color={colors.backgroundTextDarkColor}

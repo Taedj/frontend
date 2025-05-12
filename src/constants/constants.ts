@@ -22,7 +22,8 @@ export const colors = {
 
 export const dimensions = {
     'sideBarWidth':'24rem',
-    'mobileBreakpoint':992
+    'mobileBreakpoint':992,
+    'summaryBreakpoint':768
 }
 
 export const fontSettings = {
