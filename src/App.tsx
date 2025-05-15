@@ -42,6 +42,12 @@ const calculateSlidesNumber = () => {
   return 2
 }
 
+const calculateJobModelSliderWidth = () => {
+  if (window.innerWidth < dimensions.jobModelSliderWidthSmall) return '38rem';
+  else if (window.innerWidth < dimensions.jobModelSliderWidthMedium) return '40rem';
+  else return '60rem';
+}
+
 function App() {
   const [isMobile,setIsMobile] = useState(checkMobile());
   const [typewriterfontSize,setTypewriterFontSize] = useState(calculateTypeWriterFontSize());
@@ -49,7 +55,8 @@ function App() {
   const [summaryBreakpoint,setSummaryBreakpoint] = useState(checkSummaryBreakpoint());
   const [slideToShow,setSliderToShow] = useState(calculateSlidesNumber())
   const [modalOpen,setModalOpen] = useState(false);
-  
+  const initialSliderWidth = calculateJobModelSliderWidth();
+  const [jobModelSliderWidth,setJobModelSliderWidth] = useState(initialSliderWidth);
   const [works,setWorks] = useState([]);
   
   useEffect(() => {
@@ -60,6 +67,7 @@ function App() {
       setBackgroundTextFontSize(calculateBackgroundTextFontSize());
       setSummaryBreakpoint(checkSummaryBreakpoint());
       setSliderToShow(calculateSlidesNumber());
+      setJobModelSliderWidth(calculateJobModelSliderWidth());
     }
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
@@ -74,7 +82,7 @@ function App() {
           <About fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Services fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Summary fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={summaryBreakpoint}/>
-          <Potfolio fontSize={backgroundTextFontSize} isMobile={isMobile} handleModalOpen={setModalOpen}/>
+          <Potfolio fontSize={backgroundTextFontSize} isMobile={isMobile} handleModalOpen={setModalOpen} sliderWidth={jobModelSliderWidth}/>
           <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile} slideToShow={slideToShow}/>
           <Contact fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Footer isMobile={isMobile}/>

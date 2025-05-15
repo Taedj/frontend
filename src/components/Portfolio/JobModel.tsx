@@ -8,25 +8,41 @@ import '../Testimonial/Carousel.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { RxCross1 } from "react-icons/rx";
 
+interface Props {
+    sliderWidth: string;
+    onClose: () => void;
+}
 
-const JobModel = () => {
+const JobModel = ({sliderWidth,onClose}:Props) => {
     const settings = {
         dots: true,
         speed: 500,
         slidesToShow: 1, 
         slidesToScroll: 1,
         autoplaySpeed: 1000,
-        };
+        adaptiveHeight: true,
+        centerMode: true,
+        centerPadding: '0px',
+        arrows: false
+    };
     return (
-            <div className='p-[1.6rem] text-white rounded-[8px]' style={{backgroundColor:colors.JobModelColor,color:colors.cellDescriptionColor}}>
+            <div className='h-[80vh] p-[1.6rem] text-white rounded-[8px]' style={{backgroundColor:colors.JobModelColor,color:colors.cellDescriptionColor}}>
+                <div className='flex justify-end' onClick={onClose}><RxCross1 size={20}/></div>
                 <h1 className='text-center text-[2.4rem] mb-[2.4rem] font-semibold'>Project Title</h1>
                 <div className='flex px-[1.2rem]'>
-                    <div className='h-[60rem] w-[80rem] overflow-hidden'>
-                        <Slider {...settings}>                        
-                            <img className='max-w-full max-h-full w-auto h-auto block' src={image1} />
-                            <img className='max-w-full max-h-full w-auto h-auto max-w-full h-auto block' src={image2} />
-                            <img className='max-w-full max-h-full w-auto h-auto max-w-full h-auto block' src={image3} />
+                    <div className='h-[70vh]' style={{ width: sliderWidth }}>
+                        <Slider {...settings} className="h-full">                        
+                            <div >
+                                <img className='w-full h-full object-cover' src={image1} />
+                            </div>
+                            <div >
+                                <img className='w-full h-full object-cover' src={image2} />
+                            </div>
+                            <div >
+                                <img className='w-full h-full object-cover' src={image3} />
+                            </div>
                         </Slider>
                     </div>
                     <div className='px-[1.2rem] px-[2.4rem]'>

@@ -24,7 +24,9 @@ export const colors = {
 export const dimensions = {
     'sideBarWidth':'24rem',
     'mobileBreakpoint':992,
-    'summaryBreakpoint':768
+    'summaryBreakpoint':768,
+    'jobModelSliderWidthSmall':768,
+    'jobModelSliderWidthMedium':1200
 }
 
 export const fontSettings = {

@@ -47,10 +47,11 @@ const breakpointColumnsObj = {
 interface Props {
   fontSize: string;
   isMobile: boolean;
+  sliderWidth: string;
   handleModalOpen: (open: boolean) => void;
 }
 
-const Potfolio = ({ fontSize, isMobile, handleModalOpen }: Props) => {
+const Potfolio = ({ fontSize, isMobile,sliderWidth, handleModalOpen }: Props) => {
   const [category,setCategory] = useState('All')
   const [open,setOpen] = useState(false)
   let selectedData = (category === 'All') ? data : data.filter((item) => item.category === category);
@@ -97,7 +98,10 @@ const Potfolio = ({ fontSize, isMobile, handleModalOpen }: Props) => {
                   handleModalOpen(false);
                 }}
               >
-                <JobModel/>
+                <JobModel onClose={() => {
+                  setOpen(false);
+                  handleModalOpen(false);
+                }} sliderWidth={sliderWidth}/>
               </Modal>
               <img
                 src={image.src}
