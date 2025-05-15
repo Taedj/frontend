@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
 import Masonry from "react-masonry-css";
+import Modal from 'react-modal'
 import BackgroundText from '../BackgroundText/BackgroundText'
+import JobModel from './JobModel';
 import CategoriesSelector from './CategoriesSelector';
 import { colors,fontSettings } from '../../constants/constants'
 import image1 from '../../assets/images/1.jpg'
@@ -45,10 +47,12 @@ const breakpointColumnsObj = {
 interface Props {
   fontSize: string;
   isMobile: boolean;
+  handleModalOpen: (open: boolean) => void;
 }
 
-const Potfolio = ({ fontSize, isMobile }: Props) => {
+const Potfolio = ({ fontSize, isMobile, handleModalOpen }: Props) => {
   const [category,setCategory] = useState('All')
+  const [open,setOpen] = useState(false)
   let selectedData = (category === 'All') ? data : data.filter((item) => item.category === category);
   return (
     <div id="Portofolio"
@@ -68,11 +72,39 @@ const Potfolio = ({ fontSize, isMobile }: Props) => {
         >
           {selectedData.map((image) => (
             <div key={image.id} className="masonry-item">
+              <Modal 
+                isOpen={open} 
+                style={{
+                  overlay:{
+                    backgroundColor:colors.backgroundDarkColor,
+                    zIndex: 10000
+                  },
+                  content: {
+                    backgroundColor: colors.backgroundLessDarkColor,
+                    border: 'none',
+                    padding: '0',
+                    inset: '50% auto auto 50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: 'fit-content',
+                    height: 'fit-content',
+                    zIndex: 10000
+                  }
+                }}
+                bodyOpenClassName="modal-open"
+                shouldCloseOnOverlayClick={true}
+                onRequestClose={() => {
+                  setOpen(false);
+                  handleModalOpen(false);
+                }}
+              >
+                <JobModel/>
+              </Modal>
               <img
                 src={image.src}
                 alt={`Masonry item ${image.id}`}
                 style={{ width: "100%", height: "auto" }}
                 loading="lazy"
+                onClick={()=>{setOpen(true);handleModalOpen(true)}}
               />
             </div>
           ))}

@@ -1,0 +1,50 @@
+import React from 'react'
+import { colors } from '../../constants/constants'
+import Carousel from '../Testimonial/Carousel'
+import image1 from '../../assets/images/1.jpg'
+import image2 from '../../assets/images/2.jpg'
+import image3 from '../../assets/images/3.jpg'
+import '../Testimonial/Carousel.css'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+
+const JobModel = () => {
+    const settings = {
+        dots: true,
+        speed: 500,
+        slidesToShow: 1, 
+        slidesToScroll: 1,
+        autoplaySpeed: 1000,
+        };
+    return (
+            <div className='p-[1.6rem] text-white rounded-[8px]' style={{backgroundColor:colors.JobModelColor,color:colors.cellDescriptionColor}}>
+                <h1 className='text-center text-[2.4rem] mb-[2.4rem] font-semibold'>Project Title</h1>
+                <div className='flex px-[1.2rem]'>
+                    <div className='h-[60rem] w-[80rem] overflow-hidden'>
+                        <Slider {...settings}>                        
+                            <img className='max-w-full max-h-full w-auto h-auto block' src={image1} />
+                            <img className='max-w-full max-h-full w-auto h-auto max-w-full h-auto block' src={image2} />
+                            <img className='max-w-full max-h-full w-auto h-auto max-w-full h-auto block' src={image3} />
+                        </Slider>
+                    </div>
+                    <div className='px-[1.2rem] px-[2.4rem]'>
+                        <h2 className='text-[1.8rem] font-semibold'>Project Info:</h2>
+                        <p className='text-[1.6rem] lead-[2.9rem]'>Quidam lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.</p>
+                        <h2 className='text-[1.8rem] font-semibold mt-[2.4rem] mb-[0.8rem]'>Project Details:</h2>
+                        <ul className='mb-[1.6rem]'>
+                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Client:</span> Ruby Clinton</li>
+                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Technologies:</span> iOS,HTML5,CSS3,PHP,Java</li>
+                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Industry:</span> Art & Design</li>
+                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Date:</span> July 16,2019</li>
+                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>URL:</span> www.example.com</li>
+                            <li className='py-[1.2rem] text-[1.6rem]'>Share:</li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    )
+    }
+
+export default JobModel

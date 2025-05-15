@@ -1,8 +1,6 @@
 import { useState,useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { colors,dimensions } from './constants/constants'
+import axios from 'axios';
+import { dimensions } from './constants/constants'
 import SideBar from './components/SideBar/SideBar'
 import Home from './components/Home/Home'
 import Services from './components/Services/Services'
@@ -13,6 +11,7 @@ import Potfolio from './components/Portfolio/Potfolio'
 import Testimonials from './components/Testimonial/Testimonials'
 import Footer from './components/Footer/Footer'
 import Navbar from './components/Navbar/Navbar'
+import JobModel from './components/Portfolio/JobModel';
 
 
 export const checkMobile = () => {
@@ -49,8 +48,12 @@ function App() {
   const [backgroundTextFontSize,setBackgroundTextFontSize] = useState(calculateBackgroundTextFontSize());
   const [summaryBreakpoint,setSummaryBreakpoint] = useState(checkSummaryBreakpoint());
   const [slideToShow,setSliderToShow] = useState(calculateSlidesNumber())
+  const [modalOpen,setModalOpen] = useState(false);
+  
+  const [works,setWorks] = useState([]);
   
   useEffect(() => {
+    axios.get('http://127.0.0.1:8000/home/works/').then(response => setWorks(response.data));
     const handleResize = () => {
       setIsMobile(checkMobile());
       setTypewriterFontSize(calculateTypeWriterFontSize());
@@ -61,20 +64,22 @@ function App() {
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
   },[]);
+  console.log(works);
   return (
     <>
-        {!isMobile && <SideBar/>}
+        {(!isMobile && !modalOpen) && <SideBar/>}
         <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
-          {isMobile && <Navbar/>}
+          {(isMobile  && !modalOpen )&& <Navbar/>}
           <Home fontSize={typewriterfontSize}/>
           <About fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Services fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Summary fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={summaryBreakpoint}/>
-          <Potfolio fontSize={backgroundTextFontSize} isMobile={isMobile}/>
+          <Potfolio fontSize={backgroundTextFontSize} isMobile={isMobile} handleModalOpen={setModalOpen}/>
           <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile} slideToShow={slideToShow}/>
           <Contact fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Footer isMobile={isMobile}/>
         </div>
+        {/* <JobModel/>    */}
     </>
   )
 }

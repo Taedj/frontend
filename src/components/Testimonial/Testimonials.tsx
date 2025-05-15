@@ -14,7 +14,6 @@ interface Props {
 }
 
 const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
-  console.log(slideToShow);
   return (
     <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
       style={{

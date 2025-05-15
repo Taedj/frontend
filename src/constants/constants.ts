@@ -17,7 +17,8 @@ export const colors = {
     'ghColor':'#AAB1B8',
     'gmColor':'#D14836',
     'categoriesSelectorColor':'rgb(221, 221, 221)',
-    'starColor':'rgb(255, 193, 7)'
+    'starColor':'rgb(255, 193, 7)',
+    'JobModelColor':'rgb(52, 58, 64)'
 }
 
 export const dimensions = {
