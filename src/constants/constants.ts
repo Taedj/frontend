@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const colors = {
     'primaryColor':'#20C997',
     'navbarColor':'rgb(17, 20, 24)',
@@ -49,9 +51,12 @@ export const specialities = [
     "I'm a professor"
 ]
 
-export const categories = [
-    'All',
-    'Design',
-    'Teaching',
-    'Mechanics'
-]
+const categories = ['All']
+
+axios.get('http://127.0.0.1:8000/home/services/').then((res) => {
+    res.data.map((item:any) => {
+        categories.push(item.title)
+    })
+})
+
+export { categories }

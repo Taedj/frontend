@@ -72,7 +72,6 @@ function App() {
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
   },[]);
-  console.log(works);
   return (
     <>
         {(!isMobile && !modalOpen) && <SideBar/>}
@@ -82,7 +81,7 @@ function App() {
           <About fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Services fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Summary fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={summaryBreakpoint}/>
-          <Potfolio fontSize={backgroundTextFontSize} isMobile={isMobile} handleModalOpen={setModalOpen} sliderWidth={jobModelSliderWidth}/>
+          <Potfolio data={works} fontSize={backgroundTextFontSize} isMobile={isMobile} handleModalOpen={setModalOpen} sliderWidth={jobModelSliderWidth}/>
           <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile} slideToShow={slideToShow}/>
           <Contact fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Footer isMobile={isMobile}/>

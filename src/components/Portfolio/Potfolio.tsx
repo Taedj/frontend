@@ -1,4 +1,5 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
+import axios from 'axios'
 import styled from 'styled-components'
 import Masonry from "react-masonry-css";
 import Modal from 'react-modal'
@@ -44,17 +45,26 @@ const breakpointColumnsObj = {
   700: 1,    // 1 column at 700px
 };
 
+interface PortfolioItem {
+  id: number;
+  title: string;
+  images: string[];
+  service: string;
+  description: string;
+}
+
 interface Props {
+  data: PortfolioItem[];
   fontSize: string;
   isMobile: boolean;
   sliderWidth: string;
   handleModalOpen: (open: boolean) => void;
 }
 
-const Potfolio = ({ fontSize, isMobile,sliderWidth, handleModalOpen }: Props) => {
+const Potfolio = ({data, fontSize, isMobile,sliderWidth, handleModalOpen }: Props) => {
   const [category,setCategory] = useState('All')
   const [open,setOpen] = useState(false)
-  let selectedData = (category === 'All') ? data : data.filter((item) => item.category === category);
+  let selectedData = (category === 'All') ? data : data.filter((item) => item.service === category);
   return (
     <div id="Portofolio"
       className='py-[7.2rem] px-0'
@@ -71,8 +81,8 @@ const Potfolio = ({ fontSize, isMobile,sliderWidth, handleModalOpen }: Props) =>
           className="masonry-grid"
           columnClassName="masonry-grid_column"
         >
-          {selectedData.map((image) => (
-            <div key={image.id} className="masonry-item">
+          {selectedData.map((work) => (
+            <div key={work.id} className="masonry-item">
               <Modal 
                 isOpen={open} 
                 style={{
@@ -98,14 +108,14 @@ const Potfolio = ({ fontSize, isMobile,sliderWidth, handleModalOpen }: Props) =>
                   handleModalOpen(false);
                 }}
               >
-                <JobModel onClose={() => {
+                <JobModel key={work.id} onClose={() => {
                   setOpen(false);
                   handleModalOpen(false);
-                }} sliderWidth={sliderWidth}/>
+                }} sliderWidth={sliderWidth} title={work.title} description={work.description} images={work.images.map(image => image.image)}/>
               </Modal>
               <img
-                src={image.src}
-                alt={`Masonry item ${image.id}`}
+                src={work.images[0]['image']}
+                alt={`Masonry item ${work.id}`}
                 style={{ width: "100%", height: "auto" }}
                 loading="lazy"
                 onClick={()=>{setOpen(true);handleModalOpen(true)}}
