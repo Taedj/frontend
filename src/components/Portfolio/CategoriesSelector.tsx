@@ -15,7 +15,7 @@ const CategoriesSelector = ({categoryHandler}:Props) => {
       }}
     >
       <ul className='flex list-none justify-center'>
-        {categories.map((categoryText) => <li className='flex flex-col items-center py-[0.96rem] px-[1.6rem] w-[10rem]' onClick={() => {
+        {categories.map((categoryText) => <li className='flex flex-col items-center py-[0.96rem] px-[1.6rem] w-[10rem] hover:cursor-pointer' onClick={() => {
           categoryHandler(categoryText);
           setSelectedCategory(categoryText);
           }}>

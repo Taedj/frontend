@@ -48,7 +48,7 @@ const Home = ({fontSize}:Props) => {
           filledBackground={false}
           hoverBackground={colors.primaryColor}
           borderWidth="2px"
-        >Hire Me</Button>
+        ><a href="#Contact">Hire Me</a></Button>
       </div>
       <Chevron/>
     </div>
