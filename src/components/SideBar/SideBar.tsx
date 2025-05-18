@@ -13,7 +13,7 @@ const SideBar = () => {
   const [HoveredIndex,setHoveredIndex] = useState(0);
   return (
     <>
-      <div id="Home" className='flex flex-col justify-between items-center text-white h-screen fixed z-2'
+      <div className='flex flex-col justify-between items-center text-white h-screen fixed z-2'
         style={{
           fontFamily:fontSettings.fontFamily,
           backgroundColor:colors.backgroundVeryDarkColor,

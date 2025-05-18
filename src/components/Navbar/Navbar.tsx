@@ -31,7 +31,10 @@ const Navbar = () => {
                             }}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(0)}
-                            >{section.replaceAll('-',' ')}</li>)
+                            >
+                                <a href={`#${section}`}className='text-inherit no-underline'>{section.replaceAll('-',' ')}</a>
+                                
+                            </li>)
                         }   
                     </ul>
                 </div>

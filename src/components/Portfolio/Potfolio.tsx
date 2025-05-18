@@ -38,7 +38,7 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth, handleModalOpen }: Prop
   const [selectedWork,setSelectedWork] = useState<PortfolioItem|null>(null);
   let selectedData = (category === 'All') ? data : data.filter((item) => item.service === category);
   return (
-    <div id="Portofolio"
+    <div id="Portfolio"
       className='py-[7.2rem] px-0'
       style={{
         fontFamily:fontSettings.fontFamily,
