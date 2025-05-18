@@ -64,6 +64,7 @@ interface Props {
 const Potfolio = ({data, fontSize, isMobile,sliderWidth, handleModalOpen }: Props) => {
   const [category,setCategory] = useState('All')
   const [open,setOpen] = useState(false)
+  const [selectedWork,setSelectedWork] = useState<PortfolioItem|null>(null);
   let selectedData = (category === 'All') ? data : data.filter((item) => item.service === category);
   return (
     <div id="Portofolio"
@@ -83,6 +84,16 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth, handleModalOpen }: Prop
         >
           {selectedData.map((work) => (
             <div key={work.id} className="masonry-item">
+
+              <img
+                src={work.images[0]['image']}
+                alt={`Masonry item ${work.id}`}
+                style={{ width: "100%", height: "auto" }}
+                loading="lazy"
+                onClick={()=>{setOpen(true);handleModalOpen(true);setSelectedWork(work)}}
+              />
+            </div>
+          ))}
               <Modal 
                 isOpen={open} 
                 style={{
@@ -108,20 +119,11 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth, handleModalOpen }: Prop
                   handleModalOpen(false);
                 }}
               >
-                <JobModel key={work.id} onClose={() => {
+                { selectedWork && <JobModel onClose={() => {
                   setOpen(false);
                   handleModalOpen(false);
-                }} sliderWidth={sliderWidth} title={work.title} description={work.description} images={work.images.map(image => image.image)}/>
+                }} sliderWidth={sliderWidth} title={selectedWork?.title} description={selectedWork?.description} images={selectedWork?.images.map(image => image.image)}/>}
               </Modal>
-              <img
-                src={work.images[0]['image']}
-                alt={`Masonry item ${work.id}`}
-                style={{ width: "100%", height: "auto" }}
-                loading="lazy"
-                onClick={()=>{setOpen(true);handleModalOpen(true)}}
-              />
-            </div>
-          ))}
         </Masonry>
       </div>
     </div>
