@@ -70,19 +70,21 @@ const Summary = ({ fontSize, isMobile ,breakpoint}: Props) => {
       </div>
       <Skills breakpoint={breakpoint}/>
       <div className='flex justify-center !m-[7.5rem] !mb-[1.5rem]'>
-        <Button 
-        color={colors.backgroundTextDarkColor}
-        height="5.2rem"
-        width="21.5rem"
-        backGroundColor="rgba(0, 0, 0, 0)"
-        hoverBackground={colors.backgroundTextDarkColor}
-        borderWidth='2px'
-      >
-        Download CV&nbsp;
-        <FaDownload />
-      </Button>
+        <a href='/resume.pdf' download="My_CV.pdf">
+          <Button 
+          color={colors.backgroundTextDarkColor}
+          height="5.2rem"
+          width="21.5rem"
+          backGroundColor="rgba(0, 0, 0, 0)"
+          hoverBackground={colors.backgroundTextDarkColor}
+          borderWidth='2px'
+        >
+            Download CV&nbsp;
+            <FaDownload />
+          </Button>
+        </a>
       </div>
-      </div>
+    </div>
   )
 }
 
