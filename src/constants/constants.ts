@@ -18,6 +18,9 @@ export const colors = {
     'twColor':'#1DA1F2',
     'ghColor':'#AAB1B8',
     'gmColor':'#D14836',
+    'liColor':'#0077B5',
+    'rgColor':'#00CCBB',
+    'uColor':'#a51c30',
     'categoriesSelectorColor':'rgb(221, 221, 221)',
     'starColor':'rgb(255, 193, 7)',
     'JobModelColor':'rgb(52, 58, 64)'
