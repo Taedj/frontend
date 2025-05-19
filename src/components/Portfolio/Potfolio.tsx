@@ -44,57 +44,59 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth,breakpoint, handleModalO
         backgroundColor:colors.backgroundLessDarkColor
       }}
     >
-      <BackgroundText backgroundText='PORTFOLIO' innerText='My Work' fontSize={fontSize}/>
-      <CategoriesSelector categoryHandler={setCategory}/>
-      <div className='py-0 px-[4.8rem]'>
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="masonry-grid"
-          columnClassName="masonry-grid_column"
-        >
-          {selectedData.map((work) => (
-            <div key={work.id} className="masonry-item">
+      <div className='max-w-[1224px] mx-auto w-full'>
+        <BackgroundText backgroundText='PORTFOLIO' innerText='My Work' fontSize={fontSize}/>
+        <CategoriesSelector categoryHandler={setCategory}/>
+        <div className='py-0 px-[4.8rem]'>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="masonry-grid"
+            columnClassName="masonry-grid_column"
+          >
+            {selectedData.map((work) => (
+              <div key={work.id} className="masonry-item">
 
-              <img
-                src={work.images[0]['image']}
-                alt={`Masonry item ${work.id}`}
-                style={{ width: "100%", height: "auto" }}
-                loading="lazy"
-                onClick={()=>{setOpen(true);handleModalOpen(true);setSelectedWork(work)}}
-              />
-            </div>
-          ))}
-              <Modal 
-                isOpen={open} 
-                style={{
-                  overlay:{
-                    backgroundColor:colors.backgroundDarkColor,
-                    zIndex: 10000
-                  },
-                  content: {
-                    backgroundColor: colors.backgroundLessDarkColor,
-                    border: 'none',
-                    padding: '0',
-                    inset: '50% auto auto 50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: 'fit-content',
-                    height: 'fit-content',
-                    zIndex: 10000
-                  }
-                }}
-                bodyOpenClassName="modal-open"
-                shouldCloseOnOverlayClick={true}
-                onRequestClose={() => {
-                  setOpen(false);
-                  handleModalOpen(false);
-                }}
-              >
-                { selectedWork && <JobModel onClose={() => {
-                  setOpen(false);
-                  handleModalOpen(false);
-                }} sliderWidth={sliderWidth} title={selectedWork?.title} description={selectedWork?.description} images={selectedWork?.images.map(image => image.image)} breakpoint={breakpoint} />}
-              </Modal>
-        </Masonry>
+                <img
+                  src={work.images[0]['image']}
+                  alt={`Masonry item ${work.id}`}
+                  style={{ width: "100%", height: "auto" }}
+                  loading="lazy"
+                  onClick={()=>{setOpen(true);handleModalOpen(true);setSelectedWork(work)}}
+                />
+              </div>
+            ))}
+                <Modal 
+                  isOpen={open} 
+                  style={{
+                    overlay:{
+                      backgroundColor:colors.backgroundDarkColor,
+                      zIndex: 10000
+                    },
+                    content: {
+                      backgroundColor: colors.backgroundLessDarkColor,
+                      border: 'none',
+                      padding: '0',
+                      inset: '50% auto auto 50%',
+                      transform: 'translate(-50%, -50%)',
+                      width: 'fit-content',
+                      height: 'fit-content',
+                      zIndex: 10000
+                    }
+                  }}
+                  bodyOpenClassName="modal-open"
+                  shouldCloseOnOverlayClick={true}
+                  onRequestClose={() => {
+                    setOpen(false);
+                    handleModalOpen(false);
+                  }}
+                >
+                  { selectedWork && <JobModel onClose={() => {
+                    setOpen(false);
+                    handleModalOpen(false);
+                  }} sliderWidth={sliderWidth} title={selectedWork?.title} description={selectedWork?.description} images={selectedWork?.images.map(image => image.image)} breakpoint={breakpoint} />}
+                </Modal>
+          </Masonry>
+        </div>
       </div>
     </div>
   )

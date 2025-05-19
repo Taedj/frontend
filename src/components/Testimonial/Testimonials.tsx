@@ -21,28 +21,30 @@ const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
         fontFamily:fontSettings.fontFamily
       }}
     >
-      <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak' fontSize={fontSize}/>
-      <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
-        <Carousel slideToShow={slideToShow}>
-          <TestimonialBox 
-            image={image1} 
-            title="Daniel Xavier" 
-            subTitle="User from Spain" 
-            testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
-          />
-          <TestimonialBox 
-            image={image2} 
-            title="Daniel Xavier" 
-            subTitle="User from Spain" 
-            testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
-          />
-          <TestimonialBox 
-            image={image1} 
-            title="Daniel Xavier" 
-            subTitle="User from Spain" 
-            testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
-          />
-        </Carousel>
+      <div className='max-w-[1224px] mx-auto w-full'>
+        <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak' fontSize={fontSize}/>
+        <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
+          <Carousel slideToShow={slideToShow}>
+            <TestimonialBox 
+              image={image1} 
+              title="Daniel Xavier" 
+              subTitle="User from Spain" 
+              testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
+            />
+            <TestimonialBox 
+              image={image2} 
+              title="Daniel Xavier" 
+              subTitle="User from Spain" 
+              testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
+            />
+            <TestimonialBox 
+              image={image1} 
+              title="Daniel Xavier" 
+              subTitle="User from Spain" 
+              testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
+            />
+          </Carousel>
+        </div>
       </div>
     </div>
   )

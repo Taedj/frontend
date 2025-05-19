@@ -15,16 +15,18 @@ const About = ({fontSize,isMobile,breakpoint}:Props) => {
   return (
     <>
       <div id='About-Me' className='py-[7.2rem] px-[4.8rem] text-[1.6rem] text-white' style={{backgroundColor:colors.backgroundDarkColor,fontFamily:fontSettings.fontFamily}}>
-        <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More' fontSize={fontSize}/>
-        <div className='flex w-full' style={{flexDirection:breakpoint?'column':'row'}}>
-          <div className='flex-3 min-w-0'>
-            <Paragraph/>
+        <div className='max-w-[1224px] mx-auto w-full'>
+          <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More' fontSize={fontSize}/>
+          <div className='flex w-full' style={{flexDirection:breakpoint?'column':'row'}}>
+            <div className='flex-3 min-w-0'>
+              <Paragraph/>
+            </div>
+            <div className='flex-& min-w-0'>
+              <VerticalList/>
+            </div>
           </div>
-          <div className='flex-2 min-w-0'>
-            <VerticalList/>
-          </div>
+          <HorizontalList isMobile={breakpoint} breakpoint={breakpoint}/>
         </div>
-        <HorizontalList isMobile={breakpoint} breakpoint={breakpoint}/>
       </div>
     </>
   )
