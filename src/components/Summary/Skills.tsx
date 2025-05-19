@@ -17,12 +17,12 @@ const Skills = ({breakpoint}:Props) => {
         My Skills
       </h1>
       <div className={getClassName(breakpoint)}>
-        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor}/>
-        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor}/>
-        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor}/>
-        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor}/>
-        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor}/>
-        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor}/>
+        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor} breakpoint={breakpoint}/>
+        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor} breakpoint={breakpoint}/>
+        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor} breakpoint={breakpoint}/>
+        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor} breakpoint={breakpoint}/>
+        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor} breakpoint={breakpoint}/>
+        <ProgressRow progress={60} title="Web Design" color={colors.primaryColor} breakpoint={breakpoint}/>
       </div>
     </div>
   )
