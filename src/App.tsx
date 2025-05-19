@@ -42,6 +42,11 @@ const calculateSlidesNumber = () => {
   return 2
 }
 
+const checkAboutBreakpoint = () => {
+  if (window.innerWidth < dimensions.aboutBreakpoint) return true;
+  return false; 
+}
+
 const calculateJobModelSliderWidth = () => {
   if (window.innerWidth < dimensions.jobModelSliderWidthSmall) return '38rem';
   else if (window.innerWidth < dimensions.jobModelSliderWidthMedium) return '40rem';
@@ -53,6 +58,7 @@ function App() {
   const [typewriterfontSize,setTypewriterFontSize] = useState(calculateTypeWriterFontSize());
   const [backgroundTextFontSize,setBackgroundTextFontSize] = useState(calculateBackgroundTextFontSize());
   const [summaryBreakpoint,setSummaryBreakpoint] = useState(checkSummaryBreakpoint());
+  const [aboutBreakpoint,setAboutBreakpoint] = useState(checkAboutBreakpoint());
   const [slideToShow,setSliderToShow] = useState(calculateSlidesNumber())
   const [modalOpen,setModalOpen] = useState(false);
   const initialSliderWidth = calculateJobModelSliderWidth();
@@ -68,6 +74,7 @@ function App() {
       setSummaryBreakpoint(checkSummaryBreakpoint());
       setSliderToShow(calculateSlidesNumber());
       setJobModelSliderWidth(calculateJobModelSliderWidth());
+      setAboutBreakpoint(checkAboutBreakpoint());
     }
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
@@ -78,7 +85,7 @@ function App() {
         <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
           {(isMobile  && !modalOpen )&& <Navbar/>}
           <Home fontSize={typewriterfontSize}/>
-          <About fontSize={backgroundTextFontSize} isMobile={isMobile}/>
+          <About fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={aboutBreakpoint}/>
           <Services fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Summary fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={summaryBreakpoint}/>
           <Potfolio data={works} fontSize={backgroundTextFontSize} isMobile={isMobile} handleModalOpen={setModalOpen} sliderWidth={jobModelSliderWidth}/>

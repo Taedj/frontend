@@ -8,14 +8,15 @@ import { colors ,fontSettings} from '../../constants/constants'
 interface Props {
   fontSize:string;
   isMobile:boolean;
+  breakpoint:boolean;
 }
 
-const About = ({fontSize,isMobile}:Props) => {
+const About = ({fontSize,isMobile,breakpoint}:Props) => {
   return (
     <>
       <div id='About-Me' className='py-[7.2rem] px-[4.8rem] text-[1.6rem] text-white' style={{backgroundColor:colors.backgroundDarkColor,fontFamily:fontSettings.fontFamily}}>
         <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More' fontSize={fontSize}/>
-        <div className='flex w-full' style={{flexDirection:isMobile?'column':'row'}}>
+        <div className='flex w-full' style={{flexDirection:breakpoint?'column':'row'}}>
           <div className='flex-3 min-w-0'>
             <Paragraph/>
           </div>
@@ -23,7 +24,7 @@ const About = ({fontSize,isMobile}:Props) => {
             <VerticalList/>
           </div>
         </div>
-        <HorizontalList isMobile={isMobile}/>
+        <HorizontalList isMobile={breakpoint} breakpoint={breakpoint}/>
       </div>
     </>
   )

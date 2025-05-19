@@ -28,6 +28,7 @@ export const dimensions = {
     'mobileBreakpoint':992,
     'summaryBreakpoint':768,
     'jobModelSliderWidthSmall':768,
+    'aboutBreakpoint':768,
     'jobModelSliderWidthMedium':1200
 }
 
