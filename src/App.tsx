@@ -47,6 +47,11 @@ const checkAboutBreakpoint = () => {
   return false; 
 }
 
+const checkJobModelBreakpoint = () => {
+  if (window.innerWidth < dimensions.jobModelSliderWidthSmall) return true;
+  else return false ;
+}
+
 const calculateJobModelSliderWidth = () => {
   if (window.innerWidth < dimensions.jobModelSliderWidthSmall) return '38rem';
   else if (window.innerWidth < dimensions.jobModelSliderWidthMedium) return '40rem';
@@ -63,8 +68,8 @@ function App() {
   const [modalOpen,setModalOpen] = useState(false);
   const initialSliderWidth = calculateJobModelSliderWidth();
   const [jobModelSliderWidth,setJobModelSliderWidth] = useState(initialSliderWidth);
+  const [jobModelBreakpoint,setJobModelBreakpoint] = useState(checkJobModelBreakpoint());
   const [works,setWorks] = useState([]);
-  
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/home/works/').then(response => setWorks(response.data));
     const handleResize = () => {
@@ -74,6 +79,7 @@ function App() {
       setSummaryBreakpoint(checkSummaryBreakpoint());
       setSliderToShow(calculateSlidesNumber());
       setJobModelSliderWidth(calculateJobModelSliderWidth());
+      setJobModelBreakpoint(checkJobModelBreakpoint());
       setAboutBreakpoint(checkAboutBreakpoint());
     }
     window.addEventListener('resize',handleResize);
@@ -88,7 +94,7 @@ function App() {
           <About fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={aboutBreakpoint}/>
           <Services fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Summary fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={summaryBreakpoint}/>
-          <Potfolio data={works} fontSize={backgroundTextFontSize} isMobile={isMobile} handleModalOpen={setModalOpen} sliderWidth={jobModelSliderWidth}/>
+          <Potfolio data={works} fontSize={backgroundTextFontSize} isMobile={isMobile} handleModalOpen={setModalOpen} sliderWidth={jobModelSliderWidth} breakpoint={jobModelBreakpoint}/>
           <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile} slideToShow={slideToShow}/>
           <Contact fontSize={backgroundTextFontSize} isMobile={isMobile}/>
           <Footer isMobile={isMobile}/>

@@ -29,7 +29,7 @@ export const dimensions = {
     'summaryBreakpoint':768,
     'jobModelSliderWidthSmall':768,
     'aboutBreakpoint':768,
-    'jobModelSliderWidthMedium':1200
+    'jobModelSliderWidthMedium':1200,
 }
 
 export const fontSettings = {

@@ -1,9 +1,4 @@
-import React from 'react'
 import { colors } from '../../constants/constants'
-import Carousel from '../Testimonial/Carousel'
-import image1 from '../../assets/images/1.jpg'
-import image2 from '../../assets/images/2.jpg'
-import image3 from '../../assets/images/3.jpg'
 import '../Testimonial/Carousel.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,10 +10,19 @@ interface Props {
     title:string,
     images:string[],
     description:string,
+    breakpoint:boolean;
     onClose: () => void;
 }
 
-const JobModel = ({sliderWidth,title,images,description,onClose}:Props) => {
+const getBodyContainerClassName = (breakpoint:boolean) => {
+    return (breakpoint)? 'flex flex-col px-[1.2rem]':'flex px-[1.2rem]'
+}
+
+const getInfoContainerClassName = (breakpoint:boolean) => {
+    return (breakpoint)? 'mt-[4.8rem] px-[1.2rem] px-[2.4rem]':'px-[1.2rem] px-[2.4rem]'
+}
+
+const JobModel = ({sliderWidth,title,images,description,breakpoint,onClose}:Props) => {
     const settings = {
         dots: true,
         speed: 500,
@@ -34,25 +38,22 @@ const JobModel = ({sliderWidth,title,images,description,onClose}:Props) => {
             <div className='h-[80vh] p-[1.6rem] text-white rounded-[8px]' style={{backgroundColor:colors.JobModelColor,color:colors.cellDescriptionColor}}>
                 <div className='flex justify-end' onClick={onClose}><RxCross1 size={20}/></div>
                 <h1 className='text-center text-[2.4rem] mb-[2.4rem] font-semibold'>{title}</h1>
-                <div className='flex px-[1.2rem]'>
-                    <div className='h-[70vh]' style={{ width: sliderWidth }}>
+                <div className={getBodyContainerClassName(breakpoint)}>
+                    <div style={{ width: sliderWidth }}>
                         <Slider {...settings} className="h-full">     
                             {
                                 images.map(image => <div><img className='w-full h-full object-cover' src={image} /></div> )
                             }                   
                         </Slider>
                     </div>
-                    <div className='px-[1.2rem] px-[2.4rem]'>
+                    <div className={getInfoContainerClassName(breakpoint)}>
                         <h2 className='text-[1.8rem] font-semibold'>Project Info:</h2>
                         <p className='text-[1.6rem] lead-[2.9rem]'>{description}</p>
                         <h2 className='text-[1.8rem] font-semibold mt-[2.4rem] mb-[0.8rem]'>Project Details:</h2>
                         <ul className='mb-[1.6rem]'>
                             <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Client:</span> Ruby Clinton</li>
-                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Technologies:</span> iOS,HTML5,CSS3,PHP,Java</li>
                             <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Industry:</span> Art & Design</li>
                             <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Date:</span> July 16,2019</li>
-                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>URL:</span> www.example.com</li>
-                            <li className='py-[1.2rem] text-[1.6rem]'>Share:</li>
                         </ul>
                     </div>
                 </div>
