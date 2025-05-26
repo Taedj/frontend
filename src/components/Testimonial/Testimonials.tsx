@@ -13,19 +13,33 @@ interface Props {
   slideToShow:number;
 }
 
+interface Review {
+  client_image: string;
+  client_fullname: string;
+  country: string;
+  review: string;
+}
+
+const authHeader = {
+  'Authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5MTkwODM1LCJpYXQiOjE3NDgyNDA0MzUsImp0aSI6Ijg2ZjY0MDkyZTM5ZjRlMTc5NzAwNThhZjUyNjBjZjdmIiwidXNlcl9pZCI6Mn0.nqXD3IpCxDUaFWt--AHlcnFNXdjKXBlFD-jZcrkRrns'
+}
+
 const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
   const [works,setWorks] = useState<object[]>([]);
-  const [reviews,setReviews] = useState<object[]>([]);
+  const [reviews,setReviews] = useState<Review[]>([]);
   useEffect(
     () => {
       axios.get('http://127.0.0.1:8000/home/works').then(res => setWorks(res.data));
-      works.forEach(
-        work => axios.get(
-          `http://127.0.0.1:8000/home/works/${work.id}/reviews`
-        ).then(res => setReviews([...reviews,res.data[0]])))
+      axios.get(`http://127.0.0.1:8000/home/works/2/reviews`,{headers:authHeader})
+        .then(res => setReviews(prevReviews => [...prevReviews, res.data[0]]))
+    //   works.forEach(
+    //     work => axios.get(
+    //       `http://127.0.0.1:8000/home/works/${work.id}/reviews`
+    //     ).then(res => setReviews([...reviews,res.data[0]])))
     }
   ,[])
-  console.log(reviews);
+  console.log('works',works);
+  console.log('reviews',reviews);
   return (
     <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
       style={{
@@ -37,27 +51,9 @@ const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
         <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak' fontSize={fontSize}/>
         <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
           <Carousel slideToShow={slideToShow}>
-            {/* <TestimonialBox 
-              image={image1} 
-              title="Daniel Xavier" 
-              subTitle="User from Spain" 
-              testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
-            />
-            <TestimonialBox 
-              image={image2} 
-              title="Daniel Xavier" 
-              subTitle="User from Spain" 
-              testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
-            />
-            <TestimonialBox 
-              image={image1} 
-              title="Daniel Xavier" 
-              subTitle="User from Spain" 
-              testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
-            /> */}
-            {reviews.map((review,index) => {
-              <TestimonialBox key={index} image={reviews[0].client_image} title={reviews[0].client_fullname} subTitle={`User from ${reviews[0].country}`} testomonial={reviews[0].review}/>
-            })}
+            {reviews.map((review,index) => (
+              <TestimonialBox key={index} image={review.client_image} title={review.client_fullname} subTitle={`User from ${review.country}`} testomonial={review.review}/>
+            ))}
           </Carousel>
         </div>
       </div>
