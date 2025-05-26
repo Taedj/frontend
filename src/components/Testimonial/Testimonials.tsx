@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import {useEffect,useState} from 'react'
+import axios from 'axios'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import TestimonialBox from './TestimonialBox'
 import { colors,fontSettings } from '../../constants/constants'
@@ -14,6 +14,18 @@ interface Props {
 }
 
 const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
+  const [works,setWorks] = useState<object[]>([]);
+  const [reviews,setReviews] = useState<object[]>([]);
+  useEffect(
+    () => {
+      axios.get('http://127.0.0.1:8000/home/works').then(res => setWorks(res.data));
+      works.forEach(
+        work => axios.get(
+          `http://127.0.0.1:8000/home/works/${work.id}/reviews`
+        ).then(res => setReviews([...reviews,res.data[0]])))
+    }
+  ,[])
+  console.log(reviews);
   return (
     <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
       style={{
@@ -25,7 +37,7 @@ const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
         <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak' fontSize={fontSize}/>
         <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
           <Carousel slideToShow={slideToShow}>
-            <TestimonialBox 
+            {/* <TestimonialBox 
               image={image1} 
               title="Daniel Xavier" 
               subTitle="User from Spain" 
@@ -42,7 +54,10 @@ const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
               title="Daniel Xavier" 
               subTitle="User from Spain" 
               testomonial="Easy to use, reasonably priced simply dummy text of the printing and typesetting industry. Quidam lisque persius interesset his et, in quot quidam possim iriure."
-            />
+            /> */}
+            {reviews.map((review,index) => {
+              <TestimonialBox key={index} image={reviews[0].client_image} title={reviews[0].client_fullname} subTitle={`User from ${reviews[0].country}`} testomonial={reviews[0].review}/>
+            })}
           </Carousel>
         </div>
       </div>
