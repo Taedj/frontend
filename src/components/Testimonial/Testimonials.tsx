@@ -21,7 +21,7 @@ interface Review {
 }
 
 const authHeader = {
-  'Authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5MTkwODM1LCJpYXQiOjE3NDgyNDA0MzUsImp0aSI6Ijg2ZjY0MDkyZTM5ZjRlMTc5NzAwNThhZjUyNjBjZjdmIiwidXNlcl9pZCI6Mn0.nqXD3IpCxDUaFWt--AHlcnFNXdjKXBlFD-jZcrkRrns'
+  'Authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5Mzg4OTY2LCJpYXQiOjE3NDg0Mzg1NjYsImp0aSI6ImU0YjAwODY2YTI1YzQ4ZDhhYjhhOWU2ZjNkYThiZWM3IiwidXNlcl9pZCI6Mn0.oJftBAzoKpy4D3jHYFs79gGtjI4Tf1JpGSd7Mm_HZdA'
 }
 
 const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
@@ -52,7 +52,7 @@ const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
         <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
           <Carousel slideToShow={slideToShow}>
             {reviews.map((review,index) => (
-              <TestimonialBox key={index} image={review.client_image} title={review.client_fullname} subTitle={`User from ${review.country}`} testomonial={review.review}/>
+              <TestimonialBox key={index} image={'http://127.0.0.1:8000'+review.client_image} title={review.client_fullname} subTitle={`User from ${review.country}`} testomonial={review.review}/>
             ))}
           </Carousel>
         </div>
