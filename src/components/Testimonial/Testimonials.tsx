@@ -13,6 +13,7 @@ interface Props {
   slideToShow:number;
 }
 
+
 interface Review {
   client_image: string;
   client_fullname: string;
@@ -25,20 +26,13 @@ const authHeader = {
 }
 
 const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
-  const [works,setWorks] = useState<object[]>([]);
   const [reviews,setReviews] = useState<Review[]>([]);
   useEffect(
     () => {
-      axios.get('http://127.0.0.1:8000/home/works').then(res => setWorks(res.data));
-      axios.get(`http://127.0.0.1:8000/home/works/2/reviews`,{headers:authHeader})
-        .then(res => setReviews(prevReviews => [...prevReviews, res.data[0]]))
-    //   works.forEach(
-    //     work => axios.get(
-    //       `http://127.0.0.1:8000/home/works/${work.id}/reviews`
-    //     ).then(res => setReviews([...reviews,res.data[0]])))
+      axios.get('http://127.0.0.1:8000/home/reviews').then(res => setReviews(res.data))
+
     }
   ,[])
-  console.log('works',works);
   console.log('reviews',reviews);
   return (
     <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
