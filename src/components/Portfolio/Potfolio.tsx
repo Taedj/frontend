@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Masonry from "react-masonry-css";
 import Modal from 'react-modal'
 import BackgroundText from '../BackgroundText/BackgroundText'
@@ -35,6 +35,18 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth,breakpoint, handleModalO
   const [category,setCategory] = useState('All')
   const [open,setOpen] = useState(false)
   const [selectedWork,setSelectedWork] = useState<PortfolioItem|null>(null);
+  
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [open]);
+
   let selectedData = (category === 'All') ? data : data.filter((item) => item.service === category);
   return (
     <div id="Portfolio"
@@ -83,7 +95,7 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth,breakpoint, handleModalO
                       zIndex: 10000
                     }
                   }}
-                  bodyOpenClassName="modal-open"
+                  htmlOpenClassName="modal-open"
                   shouldCloseOnOverlayClick={true}
                   onRequestClose={() => {
                     setOpen(false);

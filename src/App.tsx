@@ -12,6 +12,21 @@ import Testimonials from './components/Testimonial/Testimonials'
 import Footer from './components/Footer/Footer'
 import Navbar from './components/Navbar/Navbar'
 import JobModel from './components/Portfolio/JobModel';
+import { ConfigContext } from './context/ConfigContext';
+
+export interface Config {
+  profession_list:string;
+  about_description:string;
+  fullname:string;
+  email:string;
+  age:string;
+  experience_years:number;
+  awards_count:number;
+  phone1:string;
+  phone2:string;
+  home_background_image:string;
+  profile_image:string;
+}
 
 
 export const checkMobile = () => {
@@ -58,6 +73,8 @@ const calculateJobModelSliderWidth = () => {
   else return '60rem';
 }
 
+
+
 function App() {
   const [isMobile,setIsMobile] = useState(checkMobile());
   const [typewriterfontSize,setTypewriterFontSize] = useState(calculateTypeWriterFontSize());
@@ -70,7 +87,9 @@ function App() {
   const [jobModelSliderWidth,setJobModelSliderWidth] = useState(initialSliderWidth);
   const [jobModelBreakpoint,setJobModelBreakpoint] = useState(checkJobModelBreakpoint());
   const [works,setWorks] = useState([]);
+  const [config,setConfig] = useState<Config>({});
   useEffect(() => {
+    axios.get('http://127.0.0.1:8000/core/config/').then(res => setConfig(res.data[0]));
     axios.get('http://127.0.0.1:8000/home/works/').then(response => setWorks(response.data));
     const handleResize = () => {
       setIsMobile(checkMobile());
@@ -85,21 +104,53 @@ function App() {
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
   },[]);
+  console.log('config',config);
   return (
     <>
+      <ConfigContext.Provider value={config}>
         {(!isMobile && !modalOpen) && <SideBar/>}
         <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
-          {(isMobile  && !modalOpen )&& <Navbar/>}
-          <Home fontSize={typewriterfontSize}/>
-          <About fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={aboutBreakpoint}/>
-          <Services fontSize={backgroundTextFontSize} isMobile={isMobile}/>
-          <Summary fontSize={backgroundTextFontSize} isMobile={isMobile} breakpoint={summaryBreakpoint}/>
-          <Potfolio data={works} fontSize={backgroundTextFontSize} isMobile={isMobile} handleModalOpen={setModalOpen} sliderWidth={jobModelSliderWidth} breakpoint={jobModelBreakpoint}/>
-          <Testimonials fontSize={backgroundTextFontSize} isMobile={isMobile} slideToShow={slideToShow}/>
-          <Contact fontSize={backgroundTextFontSize} isMobile={isMobile}/>
-          <Footer isMobile={isMobile}/>
+          {(isMobile  && !modalOpen )&& <Navbar {...config}/>}
+          <Home 
+            fontSize={typewriterfontSize} 
+          />
+          <About 
+            fontSize={backgroundTextFontSize}
+            isMobile={isMobile} 
+            breakpoint={aboutBreakpoint} 
+            {...config}
+          />
+          <Services 
+            fontSize={backgroundTextFontSize} 
+            isMobile={isMobile}
+          />
+          <Summary 
+            fontSize={backgroundTextFontSize} 
+            isMobile={isMobile} 
+            breakpoint={summaryBreakpoint}
+          />
+          <Potfolio 
+            data={works} 
+            fontSize={backgroundTextFontSize} 
+            isMobile={isMobile} 
+            handleModalOpen={setModalOpen} 
+            sliderWidth={jobModelSliderWidth} 
+            breakpoint={jobModelBreakpoint}
+          />
+          <Testimonials 
+            fontSize={backgroundTextFontSize} 
+            isMobile={isMobile} 
+            slideToShow={slideToShow}
+          />
+          <Contact 
+            fontSize={backgroundTextFontSize} 
+            isMobile={isMobile}
+          />
+          <Footer 
+            isMobile={isMobile}
+          />
         </div>
-        {/* <JobModel/>    */}
+      </ConfigContext.Provider>
     </>
   )
 }

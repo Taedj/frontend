@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../constants/constants'
-
+import { useConfig } from '../../context/ConfigContext'
+import { Config } from '../../App'
 
 const getCell = (
   last:boolean,
@@ -32,12 +33,15 @@ const getClassName = (isMobile:boolean) => {
   return 'flex my-0 mx-[4.8rem] text-[1.6rem] list-none';
 }
 
-const value_description = [
-  ['10+','Years Experience'],
-  ['250+','Happy Clients'],
-  ['650+','Projects Done'],
-  ['38','Get Awards']
-]
+const getValueDescription = (config:Config) => {
+  return [
+    [config.experience_years,'Years Experience'],
+    [config.awards_count,'Happy Clients'],
+    ['100','Projects Done'],
+    [config.awards_count,'Get Awards']
+  ]
+}
+
 
 interface Props {
   isMobile:boolean;
@@ -45,6 +49,8 @@ interface Props {
 }
 
 const HorizontalList = ({isMobile,breakpoint}:Props) => {
+  const config = useConfig();
+  const value_description = getValueDescription(config);
   return (
     <div className='mt-[4.8rem]'>
       <ul className={getClassName(isMobile)}>
