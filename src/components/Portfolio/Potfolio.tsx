@@ -17,7 +17,7 @@ const breakpointColumnsObj = {
 interface PortfolioItem {
   id: number;
   title: string;
-  images: string[];
+  images: { image: string }[];
   service: string;
   description: string;
 }
@@ -67,14 +67,17 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth,breakpoint, handleModalO
           >
             {selectedData.map((work) => (
               <div key={work.id} className="masonry-item">
-
                 <img
-                  src={work.images[0]['image']}
+                  src={work.images[0].image}
                   alt={`Masonry item ${work.id}`}
                   style={{ width: "100%", height: "auto" }}
                   loading="lazy"
                   onClick={()=>{setOpen(true);handleModalOpen(true);setSelectedWork(work)}}
                 />
+                <div className="overlay">
+                  <h3>{work.title}</h3>
+                  <p>{work.service}</p>
+                </div>
               </div>
             ))}
                 <Modal 
@@ -105,7 +108,7 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth,breakpoint, handleModalO
                   { selectedWork && <JobModel onClose={() => {
                     setOpen(false);
                     handleModalOpen(false);
-                  }} sliderWidth={sliderWidth} title={selectedWork?.title} description={selectedWork?.description} images={selectedWork?.images.map(image => image.image)} breakpoint={breakpoint} />}
+                  }} sliderWidth={sliderWidth} title={selectedWork.title} description={selectedWork.description} images={selectedWork.images.map(img => img.image)} breakpoint={breakpoint} />}
                 </Modal>
           </Masonry>
         </div>
