@@ -20,7 +20,6 @@ const ServiceBox = ({title,category,children}:Props) => {
     'Mechanical Engineering':<MdEngineering size={40} color={colors.primaryColor}/>,
     'Teaching':<GiTeacher size={40} color={colors.primaryColor}/>
   } as const;
-  console.log(title,category);
   return (
     <div className='flex mb-[4.8rem] text-[2rem]'>
       <div className='flex flex-[0_0_7rem] justify-center items-center h-[7rem] rounded-[8px] mr-[2rem]' style={{backgroundColor:colors.backgroundDarkColor}}>

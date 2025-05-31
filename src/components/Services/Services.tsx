@@ -18,7 +18,6 @@ const getClassName = (isMobile:boolean) => {
 }
 
 const Services = ({ fontSize, isMobile,services }: Props) => {
-  console.log('services',services)
   return (
     <div id="What-I-Do" className='p-0 py-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>

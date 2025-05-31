@@ -33,7 +33,6 @@ const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
 
     }
   ,[])
-  console.log('reviews',reviews);
   return (
     <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
       style={{
