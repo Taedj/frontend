@@ -2,10 +2,12 @@ import React from 'react'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import ServiceBox from './ServiceBox'
 import { colors,fontSettings } from '../../constants/constants'
+import { Service } from '../../App'
 
 interface Props {
   fontSize: string;
   isMobile: boolean;
+  services:Service[];
 }
 
 const getClassName = (isMobile:boolean) => {
@@ -15,16 +17,21 @@ const getClassName = (isMobile:boolean) => {
   return 'flex flex-col p-0 px-[4.8rem] gap-8 mt-[4.8rem]';
 }
 
-const Services = ({ fontSize, isMobile }: Props) => {
+const Services = ({ fontSize, isMobile,services }: Props) => {
+  console.log('services',services)
   return (
     <div id="What-I-Do" className='p-0 py-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SERVICES" innerText="What I Do?" fontSize={fontSize}/>
         <div className={getClassName(isMobile)}>
-            <ServiceBox title="Web Design" category="web design">Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.</ServiceBox>
-            <ServiceBox  title="UI/UX Design" category="ux/ui">Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.</ServiceBox >
-            <ServiceBox  title="Mechanical Engineering" category="mechanical engineering">Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.</ServiceBox>
-            <ServiceBox  title="Teaching" category="teaching">Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.</ServiceBox> 
+          {
+            services.map(
+              service => <ServiceBox 
+                            title={service.title}
+                            category={service.category}
+                          >{service.description}
+                          </ServiceBox>)
+          }
         </div>
       </div>
     </div>

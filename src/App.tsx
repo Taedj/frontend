@@ -34,6 +34,12 @@ export interface Skill {
   percentage:number;
 }
 
+export interface Service {
+  title: string;
+  description: string;
+  category:string;
+}
+
 
 export const checkMobile = () => {
   return window.innerWidth < dimensions.mobileBreakpoint;
@@ -94,11 +100,13 @@ function App() {
   const [jobModelBreakpoint,setJobModelBreakpoint] = useState(checkJobModelBreakpoint());
   const [works,setWorks] = useState([]);
   const [skills,setSkills] = useState([]);
+  const [services,setServices] = useState([]);
   const [config,setConfig] = useState<Config>({});
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/core/config/').then(res => setConfig(res.data[0]));
     axios.get('http://127.0.0.1:8000/home/works/').then(response => setWorks(response.data));
     axios.get('http://127.0.0.1:8000/home/skills/').then(response => setSkills(response.data));
+    axios.get('http://127.0.0.1:8000/home/services/').then(response => setServices(response.data));
     const handleResize = () => {
       setIsMobile(checkMobile());
       setTypewriterFontSize(calculateTypeWriterFontSize());
@@ -131,6 +139,7 @@ function App() {
             <Services 
               fontSize={backgroundTextFontSize} 
               isMobile={isMobile}
+              services={services}
             />
             <Summary 
               fontSize={backgroundTextFontSize} 

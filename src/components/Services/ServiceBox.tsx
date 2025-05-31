@@ -6,23 +6,21 @@ import { MdEngineering } from "react-icons/md";
 import { GiTeacher } from "react-icons/gi";
 import {IconType} from 'react-icons';
 
-type CategoryType = 'ux/ui' | 'web design' | 'mechanical engineering' | 'teaching';
 
 interface Props {
   title: string,
+  category: 'UX/UI design' | 'Mechanical Engineering' | 'Teaching',
   children: string,
-  category: CategoryType
 }
 
-const ServiceBox = ({title,children,category}:Props) => {
+const ServiceBox = ({title,category,children}:Props) => {
 
   const categories = {
-    'ux/ui':<FaQuidditch size={40} color={colors.primaryColor}/>,
-    'web design':<MdOutlineWeb size={40} color={colors.primaryColor}/>,
-    'mechanical engineering':<MdEngineering size={40} color={colors.primaryColor}/>,
-    'teaching':<GiTeacher size={40} color={colors.primaryColor}/>
+    'UX/UI design':<FaQuidditch size={40} color={colors.primaryColor}/>,
+    'Mechanical Engineering':<MdEngineering size={40} color={colors.primaryColor}/>,
+    'Teaching':<GiTeacher size={40} color={colors.primaryColor}/>
   } as const;
-
+  console.log(title,category);
   return (
     <div className='flex mb-[4.8rem] text-[2rem]'>
       <div className='flex flex-[0_0_7rem] justify-center items-center h-[7rem] rounded-[8px] mr-[2rem]' style={{backgroundColor:colors.backgroundDarkColor}}>
