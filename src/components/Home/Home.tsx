@@ -36,11 +36,13 @@ const Home = ({fontSize}:Props) => {
         <div className='mb-[1.6rem] z-2 h-[6rem] font-bold' style={{
           fontSize:fontSize
         }}>
-          <Typewriter 
-            words={getProfessionList(config)}
-            typeSpeed={70}
-            loop={0}
-          />
+          {config.profession_list && (
+            <Typewriter 
+              words={getProfessionList(config)}
+              typeSpeed={70}
+              loop={0}
+            />
+          )}
         </div>
         <p className='text-[2.1rem] z-2 my-[2.4rem] font-medium'
           style={{
