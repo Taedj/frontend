@@ -57,9 +57,9 @@ export const specialities = [
 
 const categories = ['All']
 
-axios.get('http://127.0.0.1:8000/home/services/').then((res) => {
+axios.get('http://127.0.0.1:8000/home/services_categories/').then((res) => {
     res.data.map((item:any) => {
-        categories.push(item.title)
+        categories.push(item.category)
     })
 })
 

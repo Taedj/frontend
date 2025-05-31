@@ -20,6 +20,7 @@ interface PortfolioItem {
   images: { image: string }[];
   service: string;
   description: string;
+  category:string;
 }
 
 interface Props {
@@ -47,7 +48,8 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth,breakpoint, handleModalO
     };
   }, [open]);
 
-  let selectedData = (category === 'All') ? data : data.filter((item) => item.service === category);
+  let selectedData = (category === 'All') ? data : data.filter((item) => item.category === category);
+  console.log(category,selectedData);
   return (
     <div id="Portfolio"
       className='py-[7.2rem] px-0'
