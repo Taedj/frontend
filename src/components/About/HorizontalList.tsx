@@ -26,8 +26,8 @@ const getCell = (
           </li>
 }
 
-const getClassName = (isMobile:boolean) => {
-  if (isMobile) {
+const getClassName = (breakpoint:boolean) => {
+  if (breakpoint) {
     return 'grid grid-cols-2 my-0 mx-[4.8rem] text-[1.6rem] list-none';
   }
   return 'flex my-0 mx-[4.8rem] text-[1.6rem] list-none';
@@ -44,16 +44,15 @@ const getValueDescription = (config:Config) => {
 
 
 interface Props {
-  isMobile:boolean;
   breakpoint:boolean;
 }
 
-const HorizontalList = ({isMobile,breakpoint}:Props) => {
+const HorizontalList = ({breakpoint}:Props) => {
   const config = useConfig();
   const value_description = getValueDescription(config);
   return (
     <div className='mt-[4.8rem]'>
-      <ul className={getClassName(isMobile)}>
+      <ul className={getClassName(breakpoint)}>
         {getCell(
           false,
           value_description[0][0],

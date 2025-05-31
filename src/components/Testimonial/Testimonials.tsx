@@ -42,7 +42,7 @@ const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
       }}
     >
       <div className='max-w-[1224px] mx-auto w-full'>
-        <BackgroundText backgroundText='TESTIMONIAL' innerText='Client Speak' fontSize={fontSize}/>
+        <BackgroundText backgroundText='TESTIMONIAL' innerText='Clients & Students Speak' fontSize={fontSize}/>
         <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
           <Carousel slideToShow={slideToShow}>
             {reviews.map((review,index) => (
