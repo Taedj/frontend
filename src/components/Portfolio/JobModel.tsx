@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { RxCross1 } from "react-icons/rx";
+import './JobModel.css'
 
 interface Props {
     sliderWidth: string;
@@ -29,8 +30,8 @@ const JobModel = ({sliderWidth,title,images,description,breakpoint,onClose}:Prop
         slidesToShow: 1, 
         slidesToScroll: 1,
         autoplaySpeed: 1000,
-        adaptiveHeight: true,
-        centerMode: true,
+        adaptiveHeight: false,
+        centerMode: false,
         centerPadding: '0px',
         arrows: false
     };
@@ -39,10 +40,19 @@ const JobModel = ({sliderWidth,title,images,description,breakpoint,onClose}:Prop
                 <div className='flex justify-end' onClick={onClose}><RxCross1 size={20}/></div>
                 <h1 className='text-center text-[2.4rem] mb-[2.4rem] font-semibold'>{title}</h1>
                 <div className={getBodyContainerClassName(breakpoint)}>
-                    <div style={{ width: sliderWidth }}>
+                    <div className={`slider-container ${breakpoint ? 'mobile' : 'desktop'}`} style={{ width: sliderWidth }}>
                         <Slider {...settings} className="h-full">     
                             {
-                                images.map(image => <div><img className='w-full h-full object-cover' src={image} /></div> )
+                                images.map(image => (
+                                    <div key={image} className="slide-item">
+                                        <div style={{ height: '100%', width: '100%' }}>
+                                            <img 
+                                                src={image} 
+                                                alt={title}
+                                            />
+                                        </div>
+                                    </div>
+                                ))
                             }                   
                         </Slider>
                     </div>

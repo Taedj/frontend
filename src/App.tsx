@@ -110,7 +110,7 @@ function App() {
       <ConfigContext.Provider value={config}>
         {(!isMobile && !modalOpen) && <SideBar/>}
         <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
-          {(isMobile  && !modalOpen )&& <Navbar {...config}/>}
+          {(isMobile  && !modalOpen )&& <Navbar/>}
           <Home 
             fontSize={typewriterfontSize} 
           />

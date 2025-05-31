@@ -10,7 +10,6 @@ import { Config } from '../../App'
 
 interface Props {
   fontSize:string;
-  professionList:string[];
 }
 
 const getProfessionList = (config:Config) => {
