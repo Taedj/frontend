@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { FaFacebook,FaTwitter,FaGithub,FaLinkedin,FaResearchgate,FaUniversity  } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import { colors } from '../../constants/constants'
+import { FaGoogleScholar } from "react-icons/fa6";
+import { socialMediasLinks } from '../../constants/constants';
 
 export const FbIcon = styled(FaFacebook)`
   color: ${colors.whiteWithOpacity};
@@ -56,23 +58,40 @@ export const RgIcon = styled(FaResearchgate)`
   }
 `
 
+export const GsIcon = styled(FaGoogleScholar)`
+  color : ${colors.whiteWithOpacity};
+  &:hover {
+    color:${colors.gsColor};
+  }
+`
+
 const SocialMedias = ({className=''}) => {
   return (
     <ul className={'flex justify-between p-0 m-0 mb-[2.4rem] list-none' + ' ' + className}>
         <li className="mx-[1rem]">
-        <FbIcon size={14} />
+          <a href={socialMediasLinks.facebook}>
+            <FbIcon size={14} />
+          </a>
         </li>
         <li className="mx-[1rem]">
-        <LiIcon size={14} />
+          <a href={socialMediasLinks.linkedin}>
+            <LiIcon size={14} />
+          </a>
         </li>
         <li className="mx-[1rem]">
-        <RgIcon size={14} />
+          <a href={socialMediasLinks.researchGate}>
+            <RgIcon size={14} />
+          </a>
         </li>
         <li className="mx-[1rem]">
-        <GmIcon size={14} />
+          <a href={socialMediasLinks.googleScholar}>
+            <GsIcon size={14} />
+          </a>
         </li>
         <li className="mx-[1rem]">
-        <UiIcon size={14} />
+          <a href={socialMediasLinks.personalUnivPage}>
+            <UiIcon size={14} />
+          </a>
         </li>
     </ul>
   )

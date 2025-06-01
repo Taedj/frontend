@@ -21,6 +21,7 @@ export const colors = {
     'liColor':'#0077B5',
     'rgColor':'#00CCBB',
     'uColor':'#a51c30',
+    'gsColor':'#FBBC05',
     'categoriesSelectorColor':'rgb(221, 221, 221)',
     'starColor':'rgb(255, 193, 7)',
     'JobModelColor':'rgb(52, 58, 64)'
@@ -56,6 +57,14 @@ export const specialities = [
 ]
 
 const categories = ['All']
+
+export const socialMediasLinks = {
+    'facebook':'https://www.facebook.com/tidjani.zitouni.142',
+    'linkedin':'https://www.linkedin.com/in/dr-tidjani-ahmed-zitouni-a9b3b71a4/',
+    'researchGate':'https://www.researchgate.net/profile/Tidjani-Ahmed-Zitouni?ev=hdr_xprf',
+    'googleScholar':'https://scholar.google.com/citations?user=qifRUIAAAAAJ',
+    'personalUnivPage':'https://perso.univ-annaba.dz/fr/zitouni-tidjani-ahmed.1000823.html'
+}
 
 axios.get('http://127.0.0.1:8000/home/services_categories/').then((res) => {
     res.data.map((item:any) => {
