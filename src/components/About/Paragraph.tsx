@@ -10,7 +10,7 @@ const Paragraph = ({fullname,description}:Props) => {
   return (
     <div className='mt-[4.8rem] py-0 px-[1.2rem]'>
         <h1 className='text-[2.8rem] mb-[1.6rem] text-white font-semibold'>
-            I'm <span className='text-left' style={{color:colors.primaryColor}}>{fullname}</span> a Mechanical Engineer
+            I'm <span className='text-left' style={{color:colors.primaryColor}}>{fullname}</span>
         </h1>
         <p className='mb-[1.6rem] leading-[2.8rem]' style={{color:colors.backgroundLessTextDarkColor}}>
             {description}
