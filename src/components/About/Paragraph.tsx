@@ -12,7 +12,7 @@ const Paragraph = ({fullname,description}:Props) => {
         <h1 className='text-[2.8rem] mb-[1.6rem] text-white font-semibold'>
             I'm <span className='text-left' style={{color:colors.primaryColor}}>{fullname}</span>
         </h1>
-        <p className='mb-[1.6rem] leading-[2.8rem]' style={{color:colors.backgroundLessTextDarkColor}}>
+        <p className='text-justify mb-[1.6rem] leading-[2.8rem]' style={{color:colors.backgroundLessTextDarkColor}}>
             {description}
         </p>
         {/* <p className='mb-[1.6rem] leading-[2.8rem]' style={{color:colors.backgroundLessTextDarkColor}}>
