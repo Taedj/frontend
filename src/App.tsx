@@ -14,6 +14,7 @@ import Navbar from './components/Navbar/Navbar'
 import JobModel from './components/Portfolio/JobModel';
 import { ConfigContext } from './context/ConfigContext';
 import { SkillsContext } from './context/SkillsContext';
+import { WorksContext } from './context/WorksContext';
 
 export interface Config {
   profession_list:string;
@@ -123,53 +124,56 @@ function App() {
   },[]);
   return (
     <>
-      <SkillsContext.Provider value={skills}>
-        <ConfigContext.Provider value={config}>
-          {(!isMobile && !modalOpen) && <SideBar/>}
-          <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
-            {(isMobile  && !modalOpen )&& <Navbar/>}
-            <Home 
-              fontSize={typewriterfontSize} 
-            />
-            <About 
-              fontSize={backgroundTextFontSize}
-              isMobile={isMobile} 
-              breakpoint={aboutBreakpoint} 
-              {...config}
-            />
-            <Services 
-              fontSize={backgroundTextFontSize} 
-              isMobile={isMobile}
-              services={services}
-            />
-            <Summary 
-              fontSize={backgroundTextFontSize} 
-              isMobile={isMobile} 
-              breakpoint={summaryBreakpoint}
-            />
-            <Potfolio 
-              data={works} 
-              fontSize={backgroundTextFontSize} 
-              isMobile={isMobile} 
-              handleModalOpen={setModalOpen} 
-              sliderWidth={jobModelSliderWidth} 
-              breakpoint={jobModelBreakpoint}
-            />
-            <Testimonials 
-              fontSize={backgroundTextFontSize} 
-              isMobile={isMobile} 
-              slideToShow={slideToShow}
-            />
-            <Contact 
-              fontSize={backgroundTextFontSize} 
-              isMobile={isMobile}
-            />
-            <Footer 
-              isMobile={isMobile}
-            />
-          </div>
-        </ConfigContext.Provider>
-      </SkillsContext.Provider>
+      <WorksContext.Provider value={works}>
+        <SkillsContext.Provider value={skills}>
+          <ConfigContext.Provider value={config}>
+            {(!isMobile && !modalOpen) && <SideBar/>}
+            <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
+              {(isMobile  && !modalOpen )&& <Navbar/>}
+              <Home 
+                fontSize={typewriterfontSize} 
+              />
+              <About 
+                fontSize={backgroundTextFontSize}
+                isMobile={isMobile} 
+                breakpoint={aboutBreakpoint} 
+                {...config}
+              />
+              <Services 
+                fontSize={backgroundTextFontSize} 
+                isMobile={isMobile}
+                services={services}
+              />
+              <Summary 
+                fontSize={backgroundTextFontSize} 
+                isMobile={isMobile} 
+                breakpoint={summaryBreakpoint}
+              />
+              <Potfolio 
+                data={works} 
+                fontSize={backgroundTextFontSize} 
+                isMobile={isMobile} 
+                handleModalOpen={setModalOpen} 
+                sliderWidth={jobModelSliderWidth} 
+                breakpoint={jobModelBreakpoint}
+              />
+              <Testimonials 
+                fontSize={backgroundTextFontSize} 
+                isMobile={isMobile} 
+                slideToShow={slideToShow}
+              />
+              <Contact 
+                fontSize={backgroundTextFontSize} 
+                isMobile={isMobile}
+              />
+              <Footer 
+                isMobile={isMobile}
+              />
+            </div>
+          </ConfigContext.Provider>
+        </SkillsContext.Provider>
+
+      </WorksContext.Provider>
     </>
   )
 }

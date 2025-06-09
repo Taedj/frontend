@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../constants/constants'
 import { useConfig } from '../../context/ConfigContext'
+import { useWorks } from '../../context/WorksContext'
 import { Config } from '../../App'
 
 const getCell = (
@@ -34,10 +35,12 @@ const getClassName = (breakpoint:boolean) => {
 }
 
 const getValueDescription = (config:Config) => {
+  const works = useWorks();
+  const work_length = (works.length>0)?works.length:0;
   return [
     [config.experience_years,'Years Experience'],
     [config.awards_count,'Happy Clients'],
-    ['100','Projects Done'],
+    [work_length,'Projects Done'],
     [config.awards_count,'Get Awards']
   ]
 }
