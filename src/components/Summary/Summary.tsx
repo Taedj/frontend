@@ -31,68 +31,34 @@ const Summary = ({ fontSize, isMobile ,breakpoint}: Props) => {
     axios.get('http://127.0.0.1:8000/home/experiences/')
       .then(res => setExperiences(res.data))
   },[])
+  console.log('educations',educations)
+  console.log('experiences',experiences)
   return (
     <div id="Resume" className='text-white p-[4.8rem] pt-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SUMMARY" innerText="Resume" fontSize={fontSize}/>
         <div className={getEducationExperienceParentClass(breakpoint)}>
           <div className='w-1/2'>
-            <h2 className='text-[2.4rem] pl-[2.4rem]'>
-              My Education
-            </h2>     
+            {educations.length > 0  && <h2 className='text-[2.4rem] pl-[2.4rem]'>My Education</h2>} 
             <div>
-            {/* <SummaryBox 
-                year="2000 - 2004" 
-                title="Computer Science" 
-                subTitle="International University">
-                  Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-              </SummaryBox>
-              <SummaryBox 
-                year="2000 - 2004" 
-                title="Computer Science" 
-                subTitle="International University">
-                  Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-              </SummaryBox>
-              <SummaryBox 
-                year="2000 - 2004" 
-                title="Computer Science" 
-                subTitle="International University">
-                  Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-              </SummaryBox> */}
               {educations.map(
                 item => (
                 <SummaryBox year={formatYear(item)}
+                            key={item.title}
                             title={item.title}
                             subTitle={item.institution}
                 >
                   {item.description}
                 </SummaryBox>
               ))}
-          </div>
+            </div>
           </div>
           <div className='w-1/2'>
-              <h2 className='text-[2.4rem] pl-[2.4rem]'>My Experience</h2>
-              {/* <SummaryBox 
-                year="2000 - 2004" 
-                title="Computer Science" 
-                subTitle="International University">
-                  Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-              </SummaryBox>
-              <SummaryBox 
-                year="2000 - 2004" 
-                title="Computer Science" 
-                subTitle="International University">
-                  Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-              </SummaryBox>
-              <SummaryBox 
-                year="2000 - 2004" 
-                title="Computer Science" 
-                subTitle="International University">
-                  Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure.
-              </SummaryBox> */}
+              {experiences.length > 0 && <h2 className='text-[2.4rem] pl-[2.4rem]'>My Experience</h2>}
               {experiences.map(
                 item => (
                 <SummaryBox year={formatYear(item)}
+                            key={item.title}
                             title={item.title}
                             subTitle={item.institution}
                 >

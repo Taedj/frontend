@@ -15,13 +15,12 @@ const Skills = ({breakpoint}:Props) => {
   const skills = useSkillsContext();
   return (
     <div>
-      <h1 className='!my-[2.4rem] !mx-0 text-[2.4rem] font-semibold'>
-        My Skills
-      </h1>
+      {skills && skills.length > 0 && <h1 className='!my-[2.4rem] !mx-0 text-[2.4rem] font-semibold'>My Skills</h1>}
       <div className={getClassName(breakpoint)}>
         {
           skills?.map(
             skill => <ProgressRow 
+                        key={skill.title}
                         progress={skill.percentage} 
                         title={skill.title} 
                         color={colors.primaryColor} 

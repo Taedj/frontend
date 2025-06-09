@@ -6,6 +6,7 @@ interface Props {
 }
 
 const CategoriesSelector = ({categoryHandler}:Props) => {
+  console.log('categories',categories);
   const [selectedCategory,setSelectedCategory] = useState('All')
   return (
     <div className='text-[1.6rem] font-normal my-[4.8rem] mx-0'
@@ -15,7 +16,7 @@ const CategoriesSelector = ({categoryHandler}:Props) => {
       }}
     >
       <ul className='flex list-none justify-center'>
-        {categories.map((categoryText) => <li className='flex flex-col items-center py-[0.96rem] px-[1.6rem] w-[10rem] hover:cursor-pointer' onClick={() => {
+        {categories.map((categoryText) => <li key={categoryText} className='flex flex-col items-center py-[0.96rem] px-[1.6rem] w-[10rem] hover:cursor-pointer' onClick={() => {
           categoryHandler(categoryText);
           setSelectedCategory(categoryText);
           }}>

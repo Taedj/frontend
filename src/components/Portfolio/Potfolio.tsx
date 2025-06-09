@@ -14,11 +14,15 @@ const breakpointColumnsObj = {
   700: 1,    // 1 column at 700px
 };
 
+interface ServiceItem {
+  category:string
+}
+
 interface PortfolioItem {
   id: number;
   title: string;
   images: { image: string }[];
-  service: string;
+  service: ServiceItem;
   description: string;
   category:string;
 }
@@ -48,7 +52,8 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth,breakpoint, handleModalO
     };
   }, [open]);
 
-  let selectedData = (category === 'All') ? data : data.filter((item) => item.category === category);
+  let selectedData = (category === 'All') ? data : data.filter((item) => item.service.category === category);
+  console.log('data',data);
   console.log(category,selectedData);
   return (
     <div id="Portfolio"
@@ -78,7 +83,7 @@ const Potfolio = ({data, fontSize, isMobile,sliderWidth,breakpoint, handleModalO
                 />
                 <div className="overlay">
                   <h3>{work.title}</h3>
-                  <p>{work.service}</p>
+                  <p>{work.service.category}</p>
                 </div>
               </div>
             ))}

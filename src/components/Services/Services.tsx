@@ -26,6 +26,7 @@ const Services = ({ fontSize, isMobile,services }: Props) => {
           {
             services.map(
               service => <ServiceBox 
+                            key={service.title}
                             title={service.title}
                             category={service.category}
                           >{service.description}
