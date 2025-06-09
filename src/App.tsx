@@ -25,6 +25,7 @@ export interface Config {
   awards_count:number;
   phone1:string;
   phone2:string;
+  address:string;
   home_background_image:string;
   profile_image:string;
 }
