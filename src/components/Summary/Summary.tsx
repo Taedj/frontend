@@ -31,8 +31,6 @@ const Summary = ({ fontSize, isMobile ,breakpoint}: Props) => {
     axios.get('http://127.0.0.1:8000/home/experiences/')
       .then(res => setExperiences(res.data))
   },[])
-  console.log('educations',educations)
-  console.log('experiences',experiences)
   return (
     <div id="Resume" className='text-white p-[4.8rem] pt-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>
