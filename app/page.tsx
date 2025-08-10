@@ -158,9 +158,7 @@ function App() {
               <Contact 
                 fontSize={backgroundTextFontSize} 
               />
-              <Footer 
-                isMobile={isMobile}
-              />
+              <Footer />
             </div>
           </ConfigContext.Provider>
         </SkillsContext.Provider>
