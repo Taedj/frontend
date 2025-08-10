@@ -13,11 +13,11 @@ const Contact = ({ fontSize}: Props) => {
       style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>
       <BackgroundText backgroundText='CONTACT' innerText='Get in Touch' fontSize={fontSize}/>
       <div className='max-w-[1224px] mx-auto w-full'>
-        <div className='max-md:flex max-md:w-full'>
-          <div className='max-md:flex-1'>
+        <div className='md:flex md:w-full'>
+          <div className='maxmd:flex-1'>
             <AddressBox/>
           </div>
-          <div className='max-md:flex-4 md:flex md:justify-center md:mt-16'>
+          <div className='md:flex-4 max-md:flex max-md:justify-center max-md:mt-16'>
             <EmailForm/>
           </div>
         </div>
