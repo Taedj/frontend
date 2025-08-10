@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+    --color-about-border : rgba(255, 255, 255, 0.5)
+}
+
 html {
   font-size:62.25%;
 }

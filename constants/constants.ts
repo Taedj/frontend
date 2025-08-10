@@ -28,6 +28,7 @@ export const colors = {
 }
 
 export const dimensions = {
+    breakpoint:768,
     'sideBarWidth':'24rem',
     'mobileBreakpoint':992,
     'summaryBreakpoint':768,

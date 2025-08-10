@@ -12,14 +12,14 @@ interface Props {
   breakpoint:boolean;
 }
 
-const About = ({fontSize,isMobile,breakpoint}:Props) => {
+const About = ({fontSize}:Props) => {
   const config = useConfig();
   return (
     <>
       <div id='About-Me' className='py-[7.2rem] px-[4.8rem] text-[1.6rem] text-white' style={{backgroundColor:colors.backgroundDarkColor,fontFamily:fontSettings.fontFamily}}>
         <div className='max-w-[1224px] mx-auto w-full'>
           <BackgroundText backgroundText='ABOUT ME' innerText='Know Me More' fontSize={fontSize}/>
-          <div className='flex w-full' style={{flexDirection:breakpoint?'column':'row'}}>
+          <div className='flex flex-col md:flex-row w-full' >
             <div className='flex-3 min-w-0'>
               <Paragraph fullname={config.fullname} description={config.about_description}/>
             </div>
@@ -27,7 +27,7 @@ const About = ({fontSize,isMobile,breakpoint}:Props) => {
               <VerticalList/>
             </div>
           </div>
-          <HorizontalList isMobile={isMobile} breakpoint={breakpoint}/>
+          <HorizontalList/>
         </div>
       </div>
     </>

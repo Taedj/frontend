@@ -136,8 +136,6 @@ function App() {
               />
               <About 
                 fontSize={backgroundTextFontSize}
-                isMobile={isMobile} 
-                breakpoint={aboutBreakpoint} 
                 {...config}
               />
               <Services 
