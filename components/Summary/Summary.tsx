@@ -9,8 +9,6 @@ import { FaDownload } from "react-icons/fa";
 
 interface Props {
   fontSize: string;
-  isMobile: boolean;
-  breakpoint:boolean;
 }
 
 interface EducationItem {

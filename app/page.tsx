@@ -144,8 +144,6 @@ function App() {
               />
               <Summary 
                 fontSize={backgroundTextFontSize} 
-                isMobile={isMobile} 
-                breakpoint={summaryBreakpoint}
               />
               <Potfolio 
                 data={works} 
