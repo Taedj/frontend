@@ -26,7 +26,7 @@ const formatYear = (item:EducationItem) => {
   return `${item.start_date.slice(0,4)} - ${item.end_date.slice(0,4)}`
 }
 
-const Summary = ({ fontSize, isMobile ,breakpoint}: Props) => {
+const Summary = ({ fontSize}: Props) => {
   const [educations,setEducations] = useState([]);
   const [experiences,setExperiences] = useState([]);
   useEffect(() => {
