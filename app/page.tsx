@@ -157,7 +157,6 @@ function App() {
               />
               <Contact 
                 fontSize={backgroundTextFontSize} 
-                isMobile={isMobile}
               />
               <Footer 
                 isMobile={isMobile}
