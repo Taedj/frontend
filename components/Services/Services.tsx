@@ -2,33 +2,26 @@ import React from 'react'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import ServiceBox from './ServiceBox'
 import { colors,fontSettings } from '../../constants/constants'
-import { Service } from '../../App'
+import { Service } from '../../app/page'
+import { Category } from './ServiceBox'
 
 interface Props {
   fontSize: string;
-  isMobile: boolean;
   services:Service[];
 }
 
-const getClassName = (isMobile:boolean) => {
-  if (!isMobile) {
-    return 'grid grid-cols-2 p-0 px-[4.8rem] gap-8 mt-[4.8rem]';
-  }
-  return 'flex flex-col p-0 px-[4.8rem] gap-8 mt-[4.8rem]';
-}
-
-const Services = ({ fontSize, isMobile,services }: Props) => {
+const Services = ({ fontSize,services }: Props) => {
   return (
     <div id="What-I-Do" className='p-0 py-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SERVICES" innerText="What I Do?" fontSize={fontSize}/>
-        <div className={getClassName(isMobile)}>
+        <div className='md:grid md:grid-cols-2 max-md:flex max-md:flex-col px-[4.8rem] gap-8 mt-[4.8rem]'>
           {
             services.map(
               service => <ServiceBox 
                             key={service.title}
                             title={service.title}
-                            category={service.category}
+                            category={service.category as Category} 
                           >{service.description}
                           </ServiceBox>)
           }

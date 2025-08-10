@@ -140,7 +140,6 @@ function App() {
               />
               <Services 
                 fontSize={backgroundTextFontSize} 
-                isMobile={isMobile}
                 services={services}
               />
               <Summary 

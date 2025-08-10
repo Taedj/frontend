@@ -7,9 +7,11 @@ import { GiTeacher } from "react-icons/gi";
 import {IconType} from 'react-icons';
 
 
+export type Category = 'UX/UI design' | 'Mechanical Engineering' | 'Teaching';
+
 interface Props {
   title: string,
-  category: 'UX/UI design' | 'Mechanical Engineering' | 'Teaching',
+  category: Category,
   children: string,
 }
 
