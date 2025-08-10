@@ -148,10 +148,8 @@ function App() {
               <Potfolio 
                 data={works} 
                 fontSize={backgroundTextFontSize} 
-                isMobile={isMobile} 
                 handleModalOpen={setModalOpen} 
                 sliderWidth={jobModelSliderWidth} 
-                breakpoint={jobModelBreakpoint}
               />
               <Testimonials 
                 fontSize={backgroundTextFontSize} 

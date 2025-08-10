@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { RxCross1 } from "react-icons/rx";
+import { dimensions } from '../../constants/constants';
 import './JobModel.css'
 
 interface Props {
@@ -11,19 +12,12 @@ interface Props {
     title:string,
     images:string[],
     description:string,
-    breakpoint:boolean;
     onClose: () => void;
 }
 
-const getBodyContainerClassName = (breakpoint:boolean) => {
-    return (breakpoint)? 'flex flex-col px-[1.2rem]':'flex px-[1.2rem]'
-}
 
-const getInfoContainerClassName = (breakpoint:boolean) => {
-    return (breakpoint)? 'mt-[4.8rem] px-[1.2rem] px-[2.4rem]':'px-[1.2rem] px-[2.4rem]'
-}
-
-const JobModel = ({sliderWidth,title,images,description,breakpoint,onClose}:Props) => {
+const JobModel = ({sliderWidth,title,images,description,onClose}:Props) => {
+    const {breakpoint} = dimensions;
     const settings = {
         dots: true,
         speed: 500,
@@ -39,7 +33,7 @@ const JobModel = ({sliderWidth,title,images,description,breakpoint,onClose}:Prop
             <div className='h-[80vh] p-[1.6rem] text-white rounded-[8px]' style={{backgroundColor:colors.JobModelColor,color:colors.cellDescriptionColor}}>
                 <div className='flex justify-end' onClick={onClose}><RxCross1 size={20}/></div>
                 <h1 className='text-center text-[2.4rem] mb-[2.4rem] font-semibold'>{title}</h1>
-                <div className={getBodyContainerClassName(breakpoint)}>
+                <div className='flex max-md:flex-col px-[1.2rem]'>
                     <div className={`slider-container ${breakpoint ? 'mobile' : 'desktop'}`} style={{ width: sliderWidth }}>
                         <Slider {...settings} className="h-full">     
                             {
@@ -56,7 +50,7 @@ const JobModel = ({sliderWidth,title,images,description,breakpoint,onClose}:Prop
                             }                   
                         </Slider>
                     </div>
-                    <div className={getInfoContainerClassName(breakpoint)}>
+                    <div className='max-md:mt-[4.8rem] px-[2.4rem]'>
                         <h2 className='text-[1.8rem] font-semibold'>Project Info:</h2>
                         <p className='text-[1.6rem] lead-[2.9rem]'>{description}</p>
                         <h2 className='text-[1.8rem] font-semibold mt-[2.4rem] mb-[0.8rem]'>Project Details:</h2>
