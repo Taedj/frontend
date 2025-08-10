@@ -1,0 +1,71 @@
+/* Masonry grid container */
+.masonry-grid {
+    display: flex;
+    margin-left: -15px; /* Adjust gutter */
+    width: auto;
+  }
+  
+  /* Masonry grid column */
+  .masonry-grid_column {
+    padding-left: 15px; /* Adjust gutter */
+    background-clip: padding-box;
+  }
+  
+  /* Masonry item */
+  .masonry-item {
+    margin-bottom: 15px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  /* Image styling */
+  .masonry-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    display: block;
+  }
+
+  /* Overlay styles */
+  .masonry-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .masonry-item:hover .overlay {
+    opacity: 1;
+  }
+
+  .masonry-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .overlay h3 {
+    color: white;
+    font-size: 2rem;
+    line-height:2.4rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .overlay p {
+    color: #e0e0e0;
+    font-size: 1.6rem;
+  }
