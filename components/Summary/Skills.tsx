@@ -3,20 +3,12 @@ import ProgressRow from './ProgressRow'
 import { colors } from '../../constants/constants'
 import { useSkillsContext } from '../../context/SkillsContext'
 
-interface Props {
-  breakpoint:boolean
-}
-
-const getClassName = (breakpoint:boolean) => {
-  return (breakpoint) ? 'flex flex-col':'grid grid-cols-2 gap-[4rem]'
-}
-
-const Skills = ({breakpoint}:Props) => {
+const Skills = () => {
   const skills = useSkillsContext();
   return (
     <div>
       {skills && skills.length > 0 && <h1 className='!my-[2.4rem] !mx-0 text-[2.4rem] font-semibold'>My Skills</h1>}
-      <div className={getClassName(breakpoint)}>
+      <div className='max-md:flex max-md:flex-col md:grid md:grid-cols-2 md:gap-[4rem]'>
         {
           skills?.map(
             skill => <ProgressRow 
@@ -24,7 +16,6 @@ const Skills = ({breakpoint}:Props) => {
                         progress={skill.percentage} 
                         title={skill.title} 
                         color={colors.primaryColor} 
-                        breakpoint={breakpoint}
                       />
           )
         }

@@ -13,12 +13,16 @@ interface Props {
   breakpoint:boolean;
 }
 
-const getEducationExperienceParentClass = (breakpoint:boolean) => {
-  if (breakpoint) return 'flex flex-col mt-[4.8rem]';
-  return 'flex mt-[4.8rem]'
-} 
+interface EducationItem {
+  title:string,
+  institution:string,
+  description:string,
+  start_date:string,
+  end_date:string
+}
+ 
 
-const formatYear = (item:object) => {
+const formatYear = (item:EducationItem) => {
   return `${item.start_date.slice(0,4)} - ${item.end_date.slice(0,4)}`
 }
 
@@ -35,12 +39,12 @@ const Summary = ({ fontSize, isMobile ,breakpoint}: Props) => {
     <div id="Resume" className='text-white p-[4.8rem] pt-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SUMMARY" innerText="Resume" fontSize={fontSize}/>
-        <div className={getEducationExperienceParentClass(breakpoint)}>
+        <div className='flex max-md:flex-col mt-[4.8rem]'>
           <div className='w-1/2'>
             {educations.length > 0  && <h2 className='text-[2.4rem] pl-[2.4rem]'>My Education</h2>} 
             <div>
               {educations.map(
-                item => (
+                (item:EducationItem) => (
                 <SummaryBox year={formatYear(item)}
                             key={item.title}
                             title={item.title}
@@ -54,7 +58,7 @@ const Summary = ({ fontSize, isMobile ,breakpoint}: Props) => {
           <div className='w-1/2'>
               {experiences.length > 0 && <h2 className='text-[2.4rem] pl-[2.4rem]'>My Experience</h2>}
               {experiences.map(
-                item => (
+                (item:EducationItem) => (
                 <SummaryBox year={formatYear(item)}
                             key={item.title}
                             title={item.title}
@@ -65,7 +69,7 @@ const Summary = ({ fontSize, isMobile ,breakpoint}: Props) => {
               ))}
           </div>
         </div>
-        <Skills breakpoint={breakpoint}/>
+        <Skills/>
         <div className='flex justify-center !m-[7.5rem] !mb-[1.5rem]'>
           <a href='/resume.pdf' download="My_CV.pdf">
             <Button 

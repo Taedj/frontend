@@ -6,16 +6,11 @@ interface Props {
     progress:number;
     color:string;
     title:string;
-    breakpoint:boolean;
 }
 
-const getMainContainerClassName = (breakpoint:boolean) => {
-  return (breakpoint) ? 'text-semibold mb-[2.4rem]':'text-semibold'
-}
-
-const ProgressRow = ({progress,color,title,breakpoint}:Props) => {
+const ProgressRow = ({progress,color,title}:Props) => {
   return (
-    <div className={getMainContainerClassName(breakpoint)} style={{fontFamily:fontSettings.fontFamily}}>
+    <div className='max-md:mb-[2.4rem] text-semibold' style={{fontFamily:fontSettings.fontFamily}}>
       <div className='flex justify-between mb-[0.8rem] text-[1.6rem] font-semibold'>
         <h2 className='m-0 mb-[0.8rem] text-[1.6rem]'>{title}</h2>
         <span>{progress + '%'}</span>
