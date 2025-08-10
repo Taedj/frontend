@@ -9,7 +9,6 @@ import Carousel from './Carousel'
 
 interface Props {
   fontSize: string;
-  isMobile: boolean;
   slideToShow:number;
 }
 
@@ -25,7 +24,7 @@ const authHeader = {
   'Authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5Mzg4OTY2LCJpYXQiOjE3NDg0Mzg1NjYsImp0aSI6ImU0YjAwODY2YTI1YzQ4ZDhhYjhhOWU2ZjNkYThiZWM3IiwidXNlcl9pZCI6Mn0.oJftBAzoKpy4D3jHYFs79gGtjI4Tf1JpGSd7Mm_HZdA'
 }
 
-const Testimonials = ({ fontSize, isMobile,slideToShow }: Props) => {
+const Testimonials = ({ fontSize,slideToShow }: Props) => {
   const [reviews,setReviews] = useState<Review[]>([]);
   useEffect(
     () => {

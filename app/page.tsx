@@ -153,7 +153,6 @@ function App() {
               />
               <Testimonials 
                 fontSize={backgroundTextFontSize} 
-                isMobile={isMobile} 
                 slideToShow={slideToShow}
               />
               <Contact 
