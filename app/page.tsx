@@ -77,7 +77,7 @@ function App() {
   const queryClient = new QueryClient();
   const [isMobile,setIsMobile] = useState(checkMobile());
 
-  
+
 
   const [slideToShow,setSliderToShow] = useState(calculateSlidesNumber())
   const [modalOpen,setModalOpen] = useState(false);
@@ -99,7 +99,6 @@ function App() {
     // const {data:services} = useServices();
     const handleResize = () => {
       setIsMobile(checkMobile());
-      setBackgroundTextFontSize(calculateBackgroundTextFontSize());
       setSliderToShow(calculateSlidesNumber());
       setJobModelSliderWidth(calculateJobModelSliderWidth());
       setJobModelBreakpoint(checkJobModelBreakpoint());
