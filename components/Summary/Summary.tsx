@@ -7,9 +7,6 @@ import Skills from './Skills'
 import Button from '../Button/Button'
 import { FaDownload } from "react-icons/fa";
 
-interface Props {
-  fontSize: string;
-}
 
 interface EducationItem {
   title:string,
@@ -24,7 +21,7 @@ const formatYear = (item:EducationItem) => {
   return `${item.start_date.slice(0,4)} - ${item.end_date.slice(0,4)}`
 }
 
-const Summary = ({ fontSize}: Props) => {
+const Summary = () => {
   const [educations,setEducations] = useState([]);
   const [experiences,setExperiences] = useState([]);
   useEffect(() => {
@@ -36,7 +33,7 @@ const Summary = ({ fontSize}: Props) => {
   return (
     <div id="Resume" className='text-white p-[4.8rem] pt-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>
-        <BackgroundText backgroundText="SUMMARY" innerText="Resume" fontSize={fontSize}/>
+        <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
         <div className='flex max-md:flex-col mt-[4.8rem]'>
           <div className='w-1/2'>
             {educations.length > 0  && <h2 className='text-[2.4rem] pl-[2.4rem]'>My Education</h2>} 

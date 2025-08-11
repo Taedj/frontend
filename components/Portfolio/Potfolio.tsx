@@ -29,12 +29,11 @@ interface PortfolioItem {
 
 interface Props {
   data: PortfolioItem[];
-  fontSize: string;
   sliderWidth: string;
   handleModalOpen: (open: boolean) => void;
 }
 
-const Potfolio = ({data, fontSize,sliderWidth, handleModalOpen }: Props) => {
+const Potfolio = ({data,sliderWidth, handleModalOpen }: Props) => {
   const [category,setCategory] = useState('All')
   const [open,setOpen] = useState(false)
   const [selectedWork,setSelectedWork] = useState<PortfolioItem|null>(null);
@@ -62,7 +61,7 @@ const Potfolio = ({data, fontSize,sliderWidth, handleModalOpen }: Props) => {
       }}
     >
       <div className='max-w-[1224px] mx-auto w-full'>
-        <BackgroundText backgroundText='PORTFOLIO' innerText='My Work' fontSize={fontSize}/>
+        <BackgroundText backgroundText='PORTFOLIO' innerText='My Work'/>
         <CategoriesSelector categoryHandler={setCategory}/>
         <div className='py-0 px-[4.8rem]'>
           <Masonry

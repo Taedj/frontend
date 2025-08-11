@@ -54,14 +54,6 @@ export const checkMobile = () => {
   return window.innerWidth < dimensions.mobileBreakpoint;
 }
 
-const calculateBackgroundTextFontSize = () => {
-  if (window.innerWidth < 1200) {
-    return `${(window.innerWidth - 492)*0.0014*6 + 7.2}rem`;
-  }
-  return '13.2rem';
-}
-
-
 const calculateSlidesNumber = () => {
   if (window.innerWidth < dimensions.mobileBreakpoint) return 1;
   return 2
@@ -84,8 +76,8 @@ const calculateJobModelSliderWidth = () => {
 function App() {
   const queryClient = new QueryClient();
   const [isMobile,setIsMobile] = useState(checkMobile());
-  const [backgroundTextFontSize,setBackgroundTextFontSize] = useState(calculateBackgroundTextFontSize());
 
+  
 
   const [slideToShow,setSliderToShow] = useState(calculateSlidesNumber())
   const [modalOpen,setModalOpen] = useState(false);
@@ -125,30 +117,16 @@ function App() {
               <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
                 {(isMobile  && !modalOpen )&& <Navbar/>}
                 <Home/>
-                <About 
-                  fontSize={backgroundTextFontSize}
-                  {...config}
-                />
-                <Services 
-                  fontSize={backgroundTextFontSize} 
-                  services={services}
-                />
-                <Summary 
-                  fontSize={backgroundTextFontSize} 
-                />
+                <About/>
+                <Services services={services}/>
+                <Summary/>
                 <Potfolio 
                   data={works} 
-                  fontSize={backgroundTextFontSize} 
                   handleModalOpen={setModalOpen} 
                   sliderWidth={jobModelSliderWidth} 
                 />
-                <Testimonials 
-                  fontSize={backgroundTextFontSize} 
-                  slideToShow={slideToShow}
-                />
-                <Contact 
-                  fontSize={backgroundTextFontSize} 
-                />
+                <Testimonials slideToShow={slideToShow}/>
+                <Contact/>
                 <Footer />
               </div>
             </ConfigContext.Provider>

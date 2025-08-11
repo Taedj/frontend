@@ -8,7 +8,6 @@ import image2 from '../../assets/images/negro.jpg'
 import Carousel from './Carousel'
 
 interface Props {
-  fontSize: string;
   slideToShow:number;
 }
 
@@ -24,7 +23,7 @@ const authHeader = {
   'Authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5Mzg4OTY2LCJpYXQiOjE3NDg0Mzg1NjYsImp0aSI6ImU0YjAwODY2YTI1YzQ4ZDhhYjhhOWU2ZjNkYThiZWM3IiwidXNlcl9pZCI6Mn0.oJftBAzoKpy4D3jHYFs79gGtjI4Tf1JpGSd7Mm_HZdA'
 }
 
-const Testimonials = ({ fontSize,slideToShow }: Props) => {
+const Testimonials = ({slideToShow }: Props) => {
   const [reviews,setReviews] = useState<Review[]>([]);
   useEffect(
     () => {
@@ -40,7 +39,7 @@ const Testimonials = ({ fontSize,slideToShow }: Props) => {
       }}
     >
       <div className='max-w-[1224px] mx-auto w-full'>
-        <BackgroundText backgroundText='TESTIMONIAL' innerText='Clients & Students Speak' fontSize={fontSize}/>
+        <BackgroundText backgroundText='TESTIMONIAL' innerText='Clients & Students Speak'/>
         <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
           <Carousel slideToShow={slideToShow}>
             {reviews.map((review,index) => (
