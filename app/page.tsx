@@ -13,50 +13,13 @@ import SideBar from '../components/SideBar/SideBar';
 import Summary from '../components/Summary/Summary';
 import Testimonials from '../components/Testimonial/Testimonials';
 import { dimensions } from '../constants/constants';
+import useIsMobile from '../hooks/useIsMobile';
 
-
-export interface Config {
-  profession_list:string;
-  about_description:string;
-  fullname:string;
-  email:string;
-  age:string;
-  experience_years:number;
-  awards_count:number;
-  phone1:string;
-  phone2:string;
-  address:string;
-  home_background_image:string;
-  profile_image:string;
-}
-
-export interface Skill {
-  title:string;
-  percentage:number;
-}
-
-export interface Service {
-  title: string;
-  description: string;
-  category:string;
-}
-
-
-export const checkMobile = () => {
-  return window.innerWidth < dimensions.mobileBreakpoint;
-}
 
 function App() {
-  const [isMobile,setIsMobile] = useState(false);
   const queryClient = new QueryClient();
   const [modalOpen,setModalOpen] = useState(false);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(checkMobile());
-    }
-    window.addEventListener('resize',handleResize);
-    return () => window.removeEventListener('resize',handleResize);
-  },[]);
+  const {isMobile} = useIsMobile();
   return (
     <>
       <QueryClientProvider client={queryClient}>

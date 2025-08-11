@@ -1,6 +1,11 @@
 import {useQuery} from '@tanstack/react-query';
 import { SkillsClient } from '../http';
 
+export interface Skill {
+    title:string;
+    percentage:number;
+  }
+
 const useSkills = () => {
     return useQuery(
         {

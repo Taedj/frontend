@@ -1,6 +1,12 @@
 import {useQuery} from '@tanstack/react-query';
 import { ServicesClient } from '../http';
 
+export interface Service {
+    title: string;
+    description: string;
+    category:string;
+  }
+
 const useServices = () => {
     return useQuery(
         {
