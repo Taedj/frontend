@@ -12,7 +12,6 @@ const getProfessionList = (config:Config) => {
 
 const Home = () => {
   const {data:config} = useConfig();
-  console.log('config extracted from Home',config);
   return (
     <div id="Home" className='relative w-full h-screen text-white'
       style={{

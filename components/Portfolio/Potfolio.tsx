@@ -27,7 +27,6 @@ interface Props {
 
 const Potfolio = ({handleModalOpen }: Props) => {
   const {data} = useWorks();
-  console.log('data using useWorks',data);
   const [category,setCategory] = useState('All')
   const [open,setOpen] = useState(false)
   const [selectedWork,setSelectedWork] = useState<PortfolioItem|null>(null);
@@ -44,8 +43,6 @@ const Potfolio = ({handleModalOpen }: Props) => {
   }, [open]);
 
   let selectedData = (category === 'All') ? data : data?.filter((item) => item.service.category === category);
-  console.log('data',data);
-  console.log(category,selectedData);
   return (
     <div id="Portfolio"
       className='py-[7.2rem] px-0'

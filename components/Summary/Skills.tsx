@@ -4,7 +4,6 @@ import ProgressRow from './ProgressRow'
 
 const Skills = () => {
   const {data:skills} = useSkills();
-  console.log('skills extracted in Skills component:',skills);
   return (
     <div>
       {skills && skills.length > 0 && <h1 className='!my-[2.4rem] !mx-0 text-[2.4rem] font-semibold'>My Skills</h1>}

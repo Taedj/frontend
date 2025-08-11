@@ -6,7 +6,6 @@ interface Props {
 }
 
 const CategoriesSelector = ({categoryHandler}:Props) => {
-  console.log('categories',categories);
   const [selectedCategory,setSelectedCategory] = useState('All')
   return (
     <div className='text-[1.6rem] font-normal my-[4.8rem] mx-0'

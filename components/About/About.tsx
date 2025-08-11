@@ -9,7 +9,6 @@ import VerticalList from './VerticalList'
 
 const About = () => {
   const {data:config} = useConfig();
-  console.log('config from about',config);
   return (
     <>
       <div id='About-Me' className='py-[7.2rem] px-[4.8rem] text-[1.6rem] text-white' style={{backgroundColor:colors.backgroundDarkColor,fontFamily:fontSettings.fontFamily}}>
