@@ -6,9 +6,9 @@ import Slider from "react-slick";
 import { RxCross1 } from "react-icons/rx";
 import { dimensions } from '../../constants/constants';
 import './JobModel.css'
+import useJobModelSliderWidth from '../../hooks/useJobModelSliderWidth';
 
 interface Props {
-    sliderWidth: string;
     title:string,
     images:string[],
     description:string,
@@ -16,7 +16,8 @@ interface Props {
 }
 
 
-const JobModel = ({sliderWidth,title,images,description,onClose}:Props) => {
+const JobModel = ({title,images,description,onClose}:Props) => {
+    const {sliderWidth} = useJobModelSliderWidth();
     const {breakpoint} = dimensions;
     const settings = {
         dots: true,

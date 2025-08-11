@@ -64,8 +64,6 @@ function App() {
   const queryClient = new QueryClient();
   const [isMobile,setIsMobile] = useState(checkMobile());
   const [modalOpen,setModalOpen] = useState(false);
-  const initialSliderWidth = calculateJobModelSliderWidth();
-  const [jobModelSliderWidth,setJobModelSliderWidth] = useState(initialSliderWidth);
   const [works,setWorks] = useState([]);
   const [skills,setSkills] = useState([]);
   const [services,setServices] = useState([]);
@@ -81,7 +79,6 @@ function App() {
     // const {data:services} = useServices();
     const handleResize = () => {
       setIsMobile(checkMobile());
-      setJobModelSliderWidth(calculateJobModelSliderWidth());
     }
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
@@ -102,7 +99,6 @@ function App() {
                 <Potfolio 
                   data={works} 
                   handleModalOpen={setModalOpen} 
-                  sliderWidth={jobModelSliderWidth} 
                 />
                 <Testimonials/>
                 <Contact/>

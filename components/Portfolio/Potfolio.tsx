@@ -29,11 +29,10 @@ interface PortfolioItem {
 
 interface Props {
   data: PortfolioItem[];
-  sliderWidth: string;
   handleModalOpen: (open: boolean) => void;
 }
 
-const Potfolio = ({data,sliderWidth, handleModalOpen }: Props) => {
+const Potfolio = ({data, handleModalOpen }: Props) => {
   const [category,setCategory] = useState('All')
   const [open,setOpen] = useState(false)
   const [selectedWork,setSelectedWork] = useState<PortfolioItem|null>(null);
@@ -112,7 +111,7 @@ const Potfolio = ({data,sliderWidth, handleModalOpen }: Props) => {
                   { selectedWork && <JobModel onClose={() => {
                     setOpen(false);
                     handleModalOpen(false);
-                  }} sliderWidth={sliderWidth} title={selectedWork.title} description={selectedWork.description} images={selectedWork.images.map(img => img.image)}/>}
+                  }} title={selectedWork.title} description={selectedWork.description} images={selectedWork.images.map(img => img.image)}/>}
                 </Modal>
           </Masonry>
         </div>
