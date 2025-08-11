@@ -54,36 +54,18 @@ export const checkMobile = () => {
   return window.innerWidth < dimensions.mobileBreakpoint;
 }
 
-const calculateSlidesNumber = () => {
-  if (window.innerWidth < dimensions.mobileBreakpoint) return 1;
-  return 2
-}
-
-
-const checkJobModelBreakpoint = () => {
-  if (window.innerWidth < dimensions.jobModelSliderWidthSmall) return true;
-  else return false ;
-}
-
 const calculateJobModelSliderWidth = () => {
   if (window.innerWidth < dimensions.jobModelSliderWidthSmall) return '38rem';
   else if (window.innerWidth < dimensions.jobModelSliderWidthMedium) return '40rem';
   else return '60rem';
 }
 
-
-
 function App() {
   const queryClient = new QueryClient();
   const [isMobile,setIsMobile] = useState(checkMobile());
-
-
-
-  const [slideToShow,setSliderToShow] = useState(calculateSlidesNumber())
   const [modalOpen,setModalOpen] = useState(false);
   const initialSliderWidth = calculateJobModelSliderWidth();
   const [jobModelSliderWidth,setJobModelSliderWidth] = useState(initialSliderWidth);
-  const [jobModelBreakpoint,setJobModelBreakpoint] = useState(checkJobModelBreakpoint());
   const [works,setWorks] = useState([]);
   const [skills,setSkills] = useState([]);
   const [services,setServices] = useState([]);
@@ -99,9 +81,7 @@ function App() {
     // const {data:services} = useServices();
     const handleResize = () => {
       setIsMobile(checkMobile());
-      setSliderToShow(calculateSlidesNumber());
       setJobModelSliderWidth(calculateJobModelSliderWidth());
-      setJobModelBreakpoint(checkJobModelBreakpoint());
     }
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
@@ -124,15 +104,13 @@ function App() {
                   handleModalOpen={setModalOpen} 
                   sliderWidth={jobModelSliderWidth} 
                 />
-                <Testimonials slideToShow={slideToShow}/>
+                <Testimonials/>
                 <Contact/>
                 <Footer />
               </div>
             </ConfigContext.Provider>
           </SkillsContext.Provider>
-
         </WorksContext.Provider>
-
       </QueryClientProvider>
     </>
   )

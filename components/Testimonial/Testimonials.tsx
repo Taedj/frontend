@@ -5,11 +5,9 @@ import TestimonialBox from './TestimonialBox'
 import { colors,fontSettings } from '../../constants/constants'
 import image1 from '../../assets/images/danxavier.jpg'
 import image2 from '../../assets/images/negro.jpg'
+import useSlidesCount from '../../hooks/useSlidesCount'
 import Carousel from './Carousel'
 
-interface Props {
-  slideToShow:number;
-}
 
 
 interface Review {
@@ -20,15 +18,16 @@ interface Review {
 }
 
 const authHeader = {
-  'Authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5Mzg4OTY2LCJpYXQiOjE3NDg0Mzg1NjYsImp0aSI6ImU0YjAwODY2YTI1YzQ4ZDhhYjhhOWU2ZjNkYThiZWM3IiwidXNlcl9pZCI6Mn0.oJftBAzoKpy4D3jHYFs79gGtjI4Tf1JpGSd7Mm_HZdA'
+  'Authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1ODQ1NTQwLCJpYXQiOjE3NTQ4OTUxNDAsImp0aSI6IjQxYjVlYTU5MTkxZDRkNzc4YWY1Zjg1YWM2NjAxYzlhIiwidXNlcl9pZCI6MX0.cYkU0PGodt2u_38FDL0d9HhcKVhvBpjLMZSZKNoxuUY'
 }
 
-const Testimonials = ({slideToShow }: Props) => {
+const Testimonials = () => {
   const [reviews,setReviews] = useState<Review[]>([]);
+  const {slideToShow} = useSlidesCount();
   useEffect(
     () => {
-      axios.get('http://127.0.0.1:8000/home/reviews').then(res => setReviews(res.data))
-
+      axios.get('http://localhost:8000/home/reviews').then(res => setReviews(res.data))
+      console.log('reviews',reviews)
     }
   ,[])
   return (
