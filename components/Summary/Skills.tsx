@@ -1,7 +1,6 @@
-import React from 'react'
-import ProgressRow from './ProgressRow'
 import { colors } from '../../constants/constants'
 import useSkills from '../../hooks/useSkills'
+import ProgressRow from './ProgressRow'
 
 const Skills = () => {
   const {data:skills} = useSkills();

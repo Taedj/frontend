@@ -1,5 +1,4 @@
-import React from 'react'
-import { colors } from '../../constants/constants'
+import { colors } from '../../constants/constants';
 
 interface Props {
   year:string;

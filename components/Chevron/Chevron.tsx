@@ -1,6 +1,5 @@
-import React from 'react'
 import { FaChevronDown } from "react-icons/fa";
-import styled,{keyframes} from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 import { colors } from '../../constants/constants';
 
 const bounce = keyframes`

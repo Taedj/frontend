@@ -1,12 +1,11 @@
-import { colors } from '../../constants/constants'
-import '../Testimonial/Carousel.css'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 import { RxCross1 } from "react-icons/rx";
-import { dimensions } from '../../constants/constants';
-import './JobModel.css'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import { colors, dimensions } from '../../constants/constants';
 import useJobModelSliderWidth from '../../hooks/useJobModelSliderWidth';
+import '../Testimonial/Carousel.css';
+import './JobModel.css';
 
 interface Props {
     title:string,

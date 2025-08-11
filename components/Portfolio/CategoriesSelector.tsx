@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { categories,colors,fontSettings } from '../../constants/constants'
+import { useState } from 'react';
+import { categories, colors, fontSettings } from '../../constants/constants';
 
 interface Props {
   categoryHandler:Function

@@ -1,9 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import { colors,dimensions } from '../../constants/constants'
-import useConfig from '../../hooks/useConfig'
+import { colors, dimensions } from '../../constants/constants'
+import useConfig, { Config } from '../../hooks/useConfig'
 import useWorks from '../../hooks/useWorks'
-import { Config } from '../../app/page'
 
 
 const getCell = (value:string|number,description:string) => {

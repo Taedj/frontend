@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { dimensions } from '../constants/constants';
 
 const useJobModelSliderWidth = () => {

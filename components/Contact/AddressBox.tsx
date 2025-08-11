@@ -1,9 +1,8 @@
-import { FaPhoneAlt,FaFax  } from "react-icons/fa";
-import { IoMdMail  } from "react-icons/io";
+import { FaPhoneAlt } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
 import { colors } from '../../constants/constants';
-import { FbIcon, TwIcon, GwIcon, GmIcon } from '../SideBar/SocialMedias';
-import SocialMedias from "../SideBar/SocialMedias";
 import useConfig from "../../hooks/useConfig";
+import SocialMedias from "../SideBar/SocialMedias";
 
 const AddressBox = () => {
   const {data:config} = useConfig();

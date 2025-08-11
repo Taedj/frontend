@@ -1,12 +1,10 @@
-import {useEffect,useState} from 'react'
 import axios from 'axios'
-import BackgroundText from '../BackgroundText/BackgroundText'
-import TestimonialBox from './TestimonialBox'
-import { colors,fontSettings } from '../../constants/constants'
-import image1 from '../../assets/images/danxavier.jpg'
-import image2 from '../../assets/images/negro.jpg'
+import { useEffect, useState } from 'react'
+import { colors, fontSettings } from '../../constants/constants'
 import useSlidesCount from '../../hooks/useSlidesCount'
+import BackgroundText from '../BackgroundText/BackgroundText'
 import Carousel from './Carousel'
+import TestimonialBox from './TestimonialBox'
 
 
 

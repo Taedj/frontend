@@ -1,7 +1,7 @@
-import {useQuery} from '@tanstack/react-query';
-import {WorksClient} from '../http';
+import { useQuery } from '@tanstack/react-query';
+import { WorksClient } from '../http';
 
-import {ServiceItem} from '../components/Portfolio/Potfolio';
+import { ServiceItem } from '../components/Portfolio/Potfolio';
 
 export interface PortfolioItem {
     id: number;

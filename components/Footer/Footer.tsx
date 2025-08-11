@@ -1,4 +1,4 @@
-import { colors,fontSettings } from '../../constants/constants'
+import { colors, fontSettings } from '../../constants/constants'
 
 const Footer = () => {
   return (

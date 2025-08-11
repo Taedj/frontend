@@ -1,11 +1,11 @@
 import axios from 'axios'
-import {useState,useEffect} from 'react'
-import { fontSettings,colors, dimensions } from '../../constants/constants'
+import { useEffect, useState } from 'react'
+import { FaDownload } from "react-icons/fa"
+import { colors, fontSettings } from '../../constants/constants'
 import BackgroundText from '../BackgroundText/BackgroundText'
-import SummaryBox from './SummaryBox'
-import Skills from './Skills'
 import Button from '../Button/Button'
-import { FaDownload } from "react-icons/fa";
+import Skills from './Skills'
+import SummaryBox from './SummaryBox'
 
 
 interface EducationItem {

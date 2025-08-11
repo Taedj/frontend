@@ -1,6 +1,6 @@
-import WorksClient from "./WorksService";
-import SkillsClient from "./SkillsService";
-import ServicesClient from "./ServicesService";
 import ConfigClient from "./ConfigService";
+import ServicesClient from "./ServicesService";
+import SkillsClient from "./SkillsService";
+import WorksClient from "./WorksService";
 
-export {WorksClient,SkillsClient,ServicesClient,ConfigClient};
+export { ConfigClient, ServicesClient, SkillsClient, WorksClient };

@@ -1,7 +1,6 @@
-import React from 'react'
-import Button from '../Button/Button'
 import { colors } from '../../constants/constants'
 import useConfig from '../../hooks/useConfig'
+import Button from '../Button/Button'
 
 
 const VerticalList = () => {

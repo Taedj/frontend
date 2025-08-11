@@ -1,10 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import { FaFacebook,FaTwitter,FaGithub,FaLinkedin,FaResearchgate,FaUniversity  } from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
-import { colors } from '../../constants/constants'
+import { FaFacebook, FaGithub, FaLinkedin, FaResearchgate, FaTwitter, FaUniversity } from "react-icons/fa";
 import { FaGoogleScholar } from "react-icons/fa6";
-import { socialMediasLinks } from '../../constants/constants';
+import { SiGmail } from "react-icons/si";
+import styled from 'styled-components';
+import { colors, socialMediasLinks } from '../../constants/constants';
 
 export const FbIcon = styled(FaFacebook)`
   color: ${colors.whiteWithOpacity};

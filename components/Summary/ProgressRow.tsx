@@ -1,6 +1,5 @@
-import React from 'react'
-import { fontSettings } from '../../constants/constants';
 import ProgressBar from "@ramonak/react-progress-bar";
+import { fontSettings } from '../../constants/constants';
 
 interface Props {
     progress:number;

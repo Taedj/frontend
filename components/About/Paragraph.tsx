@@ -1,5 +1,4 @@
-import React from 'react'
-import { colors } from '../../constants/constants'
+import { colors } from '../../constants/constants';
 
 interface Props {
   fullname?:string;
@@ -15,9 +14,6 @@ const Paragraph = ({fullname,description}:Props) => {
         <p className='text-justify mb-[1.6rem] leading-[2.8rem]' style={{color:colors.backgroundLessTextDarkColor}}>
             {description}
         </p>
-        {/* <p className='mb-[1.6rem] leading-[2.8rem]' style={{color:colors.backgroundLessTextDarkColor}}>
-            Delivering work within time and budget which meets client’s requirements is our moto. Lorem Ipsum has been the industry's standard dummy text ever when an unknown printer took a galley.
-        </p> */}
     </div>
 
   )

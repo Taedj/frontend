@@ -1,7 +1,6 @@
 import { colors } from '../../constants/constants'
 import Button from '../Button/Button'
 
-
 const EmailForm = () => {
   return (
     <div className='py-0 px-[4.8rem]'>

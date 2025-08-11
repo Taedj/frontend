@@ -1,13 +1,13 @@
 "use client";
-import {useState, useEffect} from 'react'
+import { useEffect, useState } from 'react';
 import Masonry from "react-masonry-css";
-import Modal from 'react-modal'
-import BackgroundText from '../BackgroundText/BackgroundText'
-import JobModel from './JobModel';
+import Modal from 'react-modal';
+import { colors, fontSettings } from '../../constants/constants';
+import useWorks, { PortfolioItem } from '../../hooks/useWorks';
+import BackgroundText from '../BackgroundText/BackgroundText';
 import CategoriesSelector from './CategoriesSelector';
-import { colors,fontSettings } from '../../constants/constants'
-import useWorks,{PortfolioItem} from '../../hooks/useWorks';
-import './Portfolio.css'
+import JobModel from './JobModel';
+import './Portfolio.css';
 
 
 const breakpointColumnsObj = {

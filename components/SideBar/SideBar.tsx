@@ -1,11 +1,7 @@
-import {useState} from 'react'
-import styled from 'styled-components'
-import {colors,dimensions,fontSettings,sections} from '../../constants/constants'
-import tidjani_photo from '../../assets/tidjani_photo.jpg'
-import { FaT } from 'react-icons/fa6';
-import SocialMedias from './SocialMedias'
+import { useState } from 'react';
+import { colors, dimensions, fontSettings, sections } from '../../constants/constants';
 import useConfig from '../../hooks/useConfig';
-import { Config } from '../../app/page';
+import SocialMedias from './SocialMedias';
 
 
 const SideBar = () => {

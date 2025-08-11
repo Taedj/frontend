@@ -1,10 +1,7 @@
-import React from 'react'
-import { fontSettings,colors } from '../../constants/constants'
-import { MdOutlineWeb } from "react-icons/md";
 import { FaQuidditch } from "react-icons/fa";
-import { MdEngineering } from "react-icons/md";
 import { GiTeacher } from "react-icons/gi";
-import {IconType} from 'react-icons';
+import { MdEngineering } from "react-icons/md";
+import { colors } from '../../constants/constants';
 
 
 export type Category = 'UX/UI design' | 'Mechanical Engineering' | 'Teaching';

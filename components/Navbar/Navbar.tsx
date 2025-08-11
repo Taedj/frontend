@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { colors, fontSettings,sections } from '../../constants/constants'
-import SocialMedias from '../SideBar/SocialMedias'
+import { useState } from 'react';
 import { MdMenu } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
+import { colors, fontSettings, sections } from '../../constants/constants';
 import useConfig from '../../hooks/useConfig';
+import SocialMedias from '../SideBar/SocialMedias';
 
 
 const Navbar = () => {

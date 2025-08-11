@@ -1,10 +1,7 @@
-import React from 'react'
-import BackgroundText from '../BackgroundText/BackgroundText'
-import ServiceBox from './ServiceBox'
-import { colors,fontSettings } from '../../constants/constants'
-import { Service } from '../../app/page'
-import { Category } from './ServiceBox'
+import { colors, fontSettings } from '../../constants/constants'
 import useServices from '../../hooks/useServices'
+import BackgroundText from '../BackgroundText/BackgroundText'
+import ServiceBox, { Category } from './ServiceBox'
 
 
 const Services = () => {

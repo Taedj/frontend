@@ -1,9 +1,9 @@
-import { ReactElement } from 'react'
+import { ReactElement } from 'react';
 import "react-multi-carousel/lib/styles.css";
-import './Carousel.css'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import './Carousel.css';
 
 interface Props {
   children:ReactElement[],

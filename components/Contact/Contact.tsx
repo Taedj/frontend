@@ -1,4 +1,4 @@
-import { colors,fontSettings } from '../../constants/constants'
+import { colors, fontSettings } from '../../constants/constants'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import AddressBox from './AddressBox'
 import EmailForm from './EmailForm'

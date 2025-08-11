@@ -1,10 +1,9 @@
-import React from 'react'
+import { colors, fontSettings } from '../../constants/constants'
+import useConfig from '../../hooks/useConfig'
 import BackgroundText from '../BackgroundText/BackgroundText'
+import HorizontalList from './HorizontalList'
 import Paragraph from './Paragraph'
 import VerticalList from './VerticalList'
-import HorizontalList from './HorizontalList'
-import { colors ,fontSettings} from '../../constants/constants'
-import useConfig from '../../hooks/useConfig'
 
 
 
