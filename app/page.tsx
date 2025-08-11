@@ -16,6 +16,12 @@ import JobModel from '../components/Portfolio/JobModel';
 import { ConfigContext } from '../context/ConfigContext';
 import { SkillsContext } from '../context/SkillsContext';
 import { WorksContext } from '../context/WorksContext';
+import { CoreClient,HomeClient } from '../http';
+import { QueryClientProvider,QueryClient } from 'react-query';
+import useConfig from '../hooks/useConfig';
+import useWorks from '../hooks/useWorks';
+import useServices from '../hooks/useServices';
+import useSkills from '../hooks/useSkills';
 
 export interface Config {
   profession_list:string;
@@ -48,13 +54,6 @@ export const checkMobile = () => {
   return window.innerWidth < dimensions.mobileBreakpoint;
 }
 
-const calculateTypeWriterFontSize = () => {
-  if (window.innerWidth < dimensions.mobileBreakpoint) {
-    return `${(window.innerWidth - 492)*0.004 + 4}rem`;
-  }
-  return '6rem';
-}
-
 const calculateBackgroundTextFontSize = () => {
   if (window.innerWidth < 1200) {
     return `${(window.innerWidth - 492)*0.0014*6 + 7.2}rem`;
@@ -62,20 +61,12 @@ const calculateBackgroundTextFontSize = () => {
   return '13.2rem';
 }
 
-const checkSummaryBreakpoint = () => {
-  if (window.innerWidth < dimensions.summaryBreakpoint) return true;
-  return false;
-}
 
 const calculateSlidesNumber = () => {
   if (window.innerWidth < dimensions.mobileBreakpoint) return 1;
   return 2
 }
 
-const checkAboutBreakpoint = () => {
-  if (window.innerWidth < dimensions.aboutBreakpoint) return true;
-  return false; 
-}
 
 const checkJobModelBreakpoint = () => {
   if (window.innerWidth < dimensions.jobModelSliderWidthSmall) return true;
@@ -91,11 +82,11 @@ const calculateJobModelSliderWidth = () => {
 
 
 function App() {
+  const queryClient = new QueryClient();
   const [isMobile,setIsMobile] = useState(checkMobile());
-  const [typewriterfontSize,setTypewriterFontSize] = useState(calculateTypeWriterFontSize());
   const [backgroundTextFontSize,setBackgroundTextFontSize] = useState(calculateBackgroundTextFontSize());
-  const [summaryBreakpoint,setSummaryBreakpoint] = useState(checkSummaryBreakpoint());
-  const [aboutBreakpoint,setAboutBreakpoint] = useState(checkAboutBreakpoint());
+
+
   const [slideToShow,setSliderToShow] = useState(calculateSlidesNumber())
   const [modalOpen,setModalOpen] = useState(false);
   const initialSliderWidth = calculateJobModelSliderWidth();
@@ -110,60 +101,62 @@ function App() {
     axios.get('http://127.0.0.1:8000/home/works/').then(response => setWorks(response.data));
     axios.get('http://127.0.0.1:8000/home/skills/').then(response => setSkills(response.data));
     axios.get('http://127.0.0.1:8000/home/services/').then(response => setServices(response.data));
+    // const {data:config} = useConfig();
+    // const {data:works} = useWorks();
+    // const {data:skills} = useSkills();
+    // const {data:services} = useServices();
     const handleResize = () => {
       setIsMobile(checkMobile());
-      setTypewriterFontSize(calculateTypeWriterFontSize());
       setBackgroundTextFontSize(calculateBackgroundTextFontSize());
-      setSummaryBreakpoint(checkSummaryBreakpoint());
       setSliderToShow(calculateSlidesNumber());
       setJobModelSliderWidth(calculateJobModelSliderWidth());
       setJobModelBreakpoint(checkJobModelBreakpoint());
-      setAboutBreakpoint(checkAboutBreakpoint());
     }
     window.addEventListener('resize',handleResize);
     return () => window.removeEventListener('resize',handleResize);
   },[]);
   return (
     <>
-      <WorksContext.Provider value={works}>
-        <SkillsContext.Provider value={skills}>
-          <ConfigContext.Provider value={config}>
-            {(!isMobile && !modalOpen) && <SideBar/>}
-            <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
-              {(isMobile  && !modalOpen )&& <Navbar/>}
-              <Home 
-                fontSize={typewriterfontSize} 
-              />
-              <About 
-                fontSize={backgroundTextFontSize}
-                {...config}
-              />
-              <Services 
-                fontSize={backgroundTextFontSize} 
-                services={services}
-              />
-              <Summary 
-                fontSize={backgroundTextFontSize} 
-              />
-              <Potfolio 
-                data={works} 
-                fontSize={backgroundTextFontSize} 
-                handleModalOpen={setModalOpen} 
-                sliderWidth={jobModelSliderWidth} 
-              />
-              <Testimonials 
-                fontSize={backgroundTextFontSize} 
-                slideToShow={slideToShow}
-              />
-              <Contact 
-                fontSize={backgroundTextFontSize} 
-              />
-              <Footer />
-            </div>
-          </ConfigContext.Provider>
-        </SkillsContext.Provider>
+      <QueryClientProvider client={queryClient}>
+        <WorksContext.Provider value={works}>
+          <SkillsContext.Provider value={skills}>
+            <ConfigContext.Provider value={config}>
+              {(!isMobile && !modalOpen) && <SideBar/>}
+              <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
+                {(isMobile  && !modalOpen )&& <Navbar/>}
+                <Home/>
+                <About 
+                  fontSize={backgroundTextFontSize}
+                  {...config}
+                />
+                <Services 
+                  fontSize={backgroundTextFontSize} 
+                  services={services}
+                />
+                <Summary 
+                  fontSize={backgroundTextFontSize} 
+                />
+                <Potfolio 
+                  data={works} 
+                  fontSize={backgroundTextFontSize} 
+                  handleModalOpen={setModalOpen} 
+                  sliderWidth={jobModelSliderWidth} 
+                />
+                <Testimonials 
+                  fontSize={backgroundTextFontSize} 
+                  slideToShow={slideToShow}
+                />
+                <Contact 
+                  fontSize={backgroundTextFontSize} 
+                />
+                <Footer />
+              </div>
+            </ConfigContext.Provider>
+          </SkillsContext.Provider>
 
-      </WorksContext.Provider>
+        </WorksContext.Provider>
+
+      </QueryClientProvider>
     </>
   )
 }

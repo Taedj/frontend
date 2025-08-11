@@ -8,16 +8,13 @@ import { useEffect } from 'react'
 import { useConfig } from '../../context/ConfigContext'
 import { Config } from '../../App'
 
-interface Props {
-  fontSize:string;
-}
 
 const getProfessionList = (config:Config) => {
   if (config.profession_list) return config.profession_list.split(',');
   return []
 }
 
-const Home = ({fontSize}:Props) => {
+const Home = () => {
   const config = useConfig();
   return (
     <div id="Home" className='relative w-full h-screen text-white'
@@ -33,8 +30,8 @@ const Home = ({fontSize}:Props) => {
         <p className='text-[2.8rem] font-bold leading-[5rem] z-2 m-0 mb-[1.6rem]'>
           Welcome
         </p>
-        <div className='mb-[1.6rem] z-2 h-[6rem] font-bold' style={{
-          fontSize:fontSize
+        <div className='md:!text-[6rem] mb-[1.6rem] z-2 h-[6rem] font-bold' style={{
+          fontSize:`8vw`
         }}>
           {config.profession_list && (
             <Typewriter 
