@@ -3,11 +3,11 @@ import { colors, fontSettings,sections } from '../../constants/constants'
 import SocialMedias from '../SideBar/SocialMedias'
 import { MdMenu } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
-import { useConfig } from '../../context/ConfigContext';
+import useConfig from '../../hooks/useConfig';
 
 
 const Navbar = () => {
-    const config = useConfig();
+  const {data:config} = useConfig();
   const [menuClicked,setMenuClicked] = useState(false);
   const [HoveredIndex,setHoveredIndex] = useState(0);
   return (
@@ -16,7 +16,7 @@ const Navbar = () => {
             <div className='flex justify-between align-center items-center text-white px-[1.6rem] h-[6.6rem] font-semibold' style={{
                 backgroundColor:colors.navbarColor,
             }}>
-                <h1 className='text-[2.1rem]'>{config.fullname}</h1>
+                <h1 className='text-[2.1rem]'>{config?.fullname}</h1>
                 <div className='flex items-center'>
                     <SocialMedias className="!mb-0" />
                     {(!menuClicked) && <MdMenu size={30} className='ml-[1.6rem]' onClick={() => setMenuClicked(!menuClicked)}/>}

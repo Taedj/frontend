@@ -1,10 +1,11 @@
 import React from 'react'
 import ProgressRow from './ProgressRow'
 import { colors } from '../../constants/constants'
-import { useSkillsContext } from '../../context/SkillsContext'
+import useSkills from '../../hooks/useSkills'
 
 const Skills = () => {
-  const skills = useSkillsContext();
+  const {data:skills} = useSkills();
+  console.log('skills extracted in Skills component:',skills);
   return (
     <div>
       {skills && skills.length > 0 && <h1 className='!my-[2.4rem] !mx-0 text-[2.4rem] font-semibold'>My Skills</h1>}

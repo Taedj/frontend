@@ -1,27 +1,19 @@
 'use client';
-import { useState,useEffect } from 'react'
 import axios from 'axios';
-import { dimensions } from '../constants/constants'
-import SideBar from '../components/SideBar/SideBar'
-import Home from '../components/Home/Home'
-import Services from '../components/Services/Services'
-import About from '../components/About/About'
-import Contact from '../components/Contact/Contact'
-import Summary from '../components/Summary/Summary'
-import Potfolio from '../components/Portfolio/Potfolio'
-import Testimonials from '../components/Testimonial/Testimonials'
-import Footer from '../components/Footer/Footer'
-import Navbar from '../components/Navbar/Navbar'
-import JobModel from '../components/Portfolio/JobModel';
-import { ConfigContext } from '../context/ConfigContext';
-import { SkillsContext } from '../context/SkillsContext';
-import { WorksContext } from '../context/WorksContext';
-import { CoreClient,HomeClient } from '../http';
-import { QueryClientProvider,QueryClient } from 'react-query';
-import useConfig from '../hooks/useConfig';
-import useWorks from '../hooks/useWorks';
-import useServices from '../hooks/useServices';
-import useSkills from '../hooks/useSkills';
+import { useEffect, useState } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import About from '../components/About/About';
+import Contact from '../components/Contact/Contact';
+import Footer from '../components/Footer/Footer';
+import Home from '../components/Home/Home';
+import Navbar from '../components/Navbar/Navbar';
+import Potfolio from '../components/Portfolio/Potfolio';
+import Services from '../components/Services/Services';
+import SideBar from '../components/SideBar/SideBar';
+import Summary from '../components/Summary/Summary';
+import Testimonials from '../components/Testimonial/Testimonials';
+import { dimensions } from '../constants/constants';
+
 
 export interface Config {
   profession_list:string;
@@ -54,29 +46,11 @@ export const checkMobile = () => {
   return window.innerWidth < dimensions.mobileBreakpoint;
 }
 
-const calculateJobModelSliderWidth = () => {
-  if (window.innerWidth < dimensions.jobModelSliderWidthSmall) return '38rem';
-  else if (window.innerWidth < dimensions.jobModelSliderWidthMedium) return '40rem';
-  else return '60rem';
-}
-
 function App() {
+  const [isMobile,setIsMobile] = useState(false);
   const queryClient = new QueryClient();
-  const [isMobile,setIsMobile] = useState(checkMobile());
   const [modalOpen,setModalOpen] = useState(false);
-  const [works,setWorks] = useState([]);
-  const [skills,setSkills] = useState([]);
-  const [services,setServices] = useState([]);
-  const [config,setConfig] = useState<Config>({});
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/core/config/').then(res => setConfig(res.data[0]));
-    axios.get('http://127.0.0.1:8000/home/works/').then(response => setWorks(response.data));
-    axios.get('http://127.0.0.1:8000/home/skills/').then(response => setSkills(response.data));
-    axios.get('http://127.0.0.1:8000/home/services/').then(response => setServices(response.data));
-    // const {data:config} = useConfig();
-    // const {data:works} = useWorks();
-    // const {data:skills} = useSkills();
-    // const {data:services} = useServices();
     const handleResize = () => {
       setIsMobile(checkMobile());
     }
@@ -86,27 +60,20 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <WorksContext.Provider value={works}>
-          <SkillsContext.Provider value={skills}>
-            <ConfigContext.Provider value={config}>
-              {(!isMobile && !modalOpen) && <SideBar/>}
-              <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
-                {(isMobile  && !modalOpen )&& <Navbar/>}
-                <Home/>
-                <About/>
-                <Services services={services}/>
-                <Summary/>
-                <Potfolio 
-                  data={works} 
-                  handleModalOpen={setModalOpen} 
-                />
-                <Testimonials/>
-                <Contact/>
-                <Footer />
-              </div>
-            </ConfigContext.Provider>
-          </SkillsContext.Provider>
-        </WorksContext.Provider>
+        {(!isMobile && !modalOpen) && <SideBar/>}
+        <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
+          {(isMobile  && !modalOpen )&& <Navbar/>}
+          <Home/>
+          <About/>
+          <Services/>
+          <Summary/>
+          <Potfolio 
+            handleModalOpen={setModalOpen} 
+          />
+          <Testimonials/>
+          <Contact/>
+          <Footer />
+        </div>
       </QueryClientProvider>
     </>
   )

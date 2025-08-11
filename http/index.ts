@@ -1,4 +1,6 @@
-import HomeClient from "./HomeHttpService";
-import CoreClient from "./CoreHttpService";
+import WorksClient from "./WorksService";
+import SkillsClient from "./SkillsService";
+import ServicesClient from "./ServicesService";
+import ConfigClient from "./ConfigService";
 
-export {HomeClient,CoreClient};
+export {WorksClient,SkillsClient,ServicesClient,ConfigClient};

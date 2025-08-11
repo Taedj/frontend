@@ -1,3 +1,4 @@
+"use client";
 import {useState, useEffect} from 'react'
 import Masonry from "react-masonry-css";
 import Modal from 'react-modal'
@@ -5,6 +6,7 @@ import BackgroundText from '../BackgroundText/BackgroundText'
 import JobModel from './JobModel';
 import CategoriesSelector from './CategoriesSelector';
 import { colors,fontSettings } from '../../constants/constants'
+import useWorks,{PortfolioItem} from '../../hooks/useWorks';
 import './Portfolio.css'
 
 
@@ -14,25 +16,18 @@ const breakpointColumnsObj = {
   700: 1,    // 1 column at 700px
 };
 
-interface ServiceItem {
+export interface ServiceItem {
   category:string
 }
 
-interface PortfolioItem {
-  id: number;
-  title: string;
-  images: { image: string }[];
-  service: ServiceItem;
-  description: string;
-  category:string;
-}
 
 interface Props {
-  data: PortfolioItem[];
   handleModalOpen: (open: boolean) => void;
 }
 
-const Potfolio = ({data, handleModalOpen }: Props) => {
+const Potfolio = ({handleModalOpen }: Props) => {
+  const {data} = useWorks();
+  console.log('data using useWorks',data);
   const [category,setCategory] = useState('All')
   const [open,setOpen] = useState(false)
   const [selectedWork,setSelectedWork] = useState<PortfolioItem|null>(null);
@@ -48,7 +43,7 @@ const Potfolio = ({data, handleModalOpen }: Props) => {
     };
   }, [open]);
 
-  let selectedData = (category === 'All') ? data : data.filter((item) => item.service.category === category);
+  let selectedData = (category === 'All') ? data : data?.filter((item) => item.service.category === category);
   console.log('data',data);
   console.log(category,selectedData);
   return (
@@ -68,7 +63,7 @@ const Potfolio = ({data, handleModalOpen }: Props) => {
             className="masonry-grid"
             columnClassName="masonry-grid_column"
           >
-            {selectedData.map((work) => (
+            {selectedData?.map((work) => (
               <div key={work.id} className="masonry-item">
                 <img
                   src={work.images[0].image}

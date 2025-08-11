@@ -4,19 +4,19 @@ import ServiceBox from './ServiceBox'
 import { colors,fontSettings } from '../../constants/constants'
 import { Service } from '../../app/page'
 import { Category } from './ServiceBox'
+import useServices from '../../hooks/useServices'
 
-interface Props {
-  services:Service[];
-}
 
-const Services = ({ services }: Props) => {
+const Services = () => {
+  const {data:services} = useServices();
+  console.log('extracted  services from Services component:',services);
   return (
     <div id="What-I-Do" className='p-0 py-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SERVICES" innerText="What I Do?"/>
         <div className='md:grid md:grid-cols-2 max-md:flex max-md:flex-col px-[4.8rem] gap-8 mt-[4.8rem]'>
           {
-            services.map(
+            services?.map(
               service => <ServiceBox 
                             key={service.title}
                             title={service.title}

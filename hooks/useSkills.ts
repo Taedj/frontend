@@ -1,12 +1,13 @@
-import {useQuery} from 'react-query';
-import { HomeClient } from '../http';
+import {useQuery} from '@tanstack/react-query';
+import { SkillsClient } from '../http';
 
 const useSkills = () => {
     return useQuery(
         {
-            queryKey :['config'],
-            queryFn :() => HomeClient.getAll('skills'),
-            staleTime:24*60*60 // 1 day
+            queryKey :['skills'],
+            queryFn :() => SkillsClient.getAll('/skills'),
+            staleTime:24*60*60*1000, // 1 day
+            placeholderData:[]
         }
     )
 }  

@@ -1,12 +1,24 @@
-import {useQuery} from 'react-query';
-import { HomeClient } from '../http';
+import {useQuery} from '@tanstack/react-query';
+import {WorksClient} from '../http';
+
+import {ServiceItem} from '../components/Portfolio/Potfolio';
+
+export interface PortfolioItem {
+    id: number;
+    title: string;
+    images: { image: string }[];
+    service: ServiceItem;
+    description: string;
+    category:string;
+  }
 
 const useWorks = () => {
-    return useQuery(
+    return useQuery<PortfolioItem[]>(
         {
-            queryKey :['config'],
-            queryFn :() => HomeClient.getAll('works'),
-            staleTime:24*60*60 // 1 day
+            queryKey :['works'],
+            queryFn :async () => await WorksClient.getAll('/works'),
+            staleTime:24*60*60*1000, // 1 day,
+            placeholderData:[]
         }
     )
 }  

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors,dimensions } from '../../constants/constants'
-import { useConfig } from '../../context/ConfigContext'
-import { useWorks } from '../../context/WorksContext'
+import useConfig from '../../hooks/useConfig'
+import useWorks from '../../hooks/useWorks'
 import { Config } from '../../app/page'
 
 
@@ -14,14 +14,24 @@ const getCell = (value:string|number,description:string) => {
 }
 
 
-const getValueDescription = (config:Config):[string|number,string][] => {
-  const works = useWorks();
-  const work_length = (works.length>0)?works.length:0;
+const getValueDescription = (config:Config|undefined):[string|number,string][] => {
+  const {data:works} = useWorks();
+  let work_length = 0;
+  if (works) {
+    work_length = works.length;
+  }
+  if (config)
+    return [
+      [config.experience_years,'Years Experience'],
+      [config.awards_count,'Happy Clients'],
+      [work_length,'Projects Done'],
+      [config.awards_count,'Get Awards']
+    ]
   return [
-    [config.experience_years,'Years Experience'],
-    [config.awards_count,'Happy Clients'],
+    ['','Years Experience'],
+    ['','Happy Clients'],
     [work_length,'Projects Done'],
-    [config.awards_count,'Get Awards']
+    ['','Get Awards']
   ]
 }
 
@@ -43,7 +53,7 @@ const borderStyles = {
 
 const HorizontalList = () => {
   const {breakpoint} = dimensions;
-  const config = useConfig();
+  const {data:config} = useConfig();
   const value_description = getValueDescription(config);
   return (
     <div className='mt-[4.8rem]'>

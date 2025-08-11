@@ -2,8 +2,8 @@ import React from 'react'
 import { colors } from '../../constants/constants'
 
 interface Props {
-  fullname:string;
-  description:string;
+  fullname?:string;
+  description?:string;
 }
 
 const Paragraph = ({fullname,description}:Props) => {
