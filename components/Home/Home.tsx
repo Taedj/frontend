@@ -23,7 +23,7 @@ const Home = () => {
           backgroundImage:`url(${config?.home_background_image})`
         }}
       >
-        <p className='text-5xl font-bold leading-[5rem] z-2 m-0 mb-6'>
+        <p className='text-5xl font-bold leading-20 z-2 m-0 mb-6'>
           Welcome
         </p>
         <div className='md:!text-8xl mb-6 z-2 h-[6rem] font-bold' style={{

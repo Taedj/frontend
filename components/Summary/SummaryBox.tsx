@@ -16,10 +16,10 @@ const SummaryBox = ({year,title,subTitle,children}:Props) => {
       <h1 className='text-4xl !mt-8 !mb-3'>
         {title}
       </h1>
-      <h2 className='text-2xl leading-[2.9rem] mb-6' style={{color:colors.primaryColor}}>
+      <h2 className='text-2xl leading-12 mb-6' style={{color:colors.primaryColor}}>
         {subTitle}
       </h2>
-      <p className='text-2xl leading-[2.9rem]' style={{color:colors.backgroundLessTextDarkColor}}>
+      <p className='text-2xl leading-12' style={{color:colors.backgroundLessTextDarkColor}}>
         {children}
       </p>
     </div>

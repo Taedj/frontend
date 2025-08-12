@@ -11,7 +11,7 @@ const Paragraph = ({fullname,description}:Props) => {
         <h1 className='text-5xl mb-6 text-white font-semibold'>
             I'm <span className='text-left' style={{color:colors.primaryColor}}>{fullname}</span>
         </h1>
-        <p className='text-justify mb-6 leading-[2.8rem]' style={{color:colors.backgroundLessTextDarkColor}}>
+        <p className='text-justify mb-6 leading-11' style={{color:colors.backgroundLessTextDarkColor}}>
             {description}
         </p>
     </div>

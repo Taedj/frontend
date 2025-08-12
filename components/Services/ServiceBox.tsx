@@ -28,7 +28,7 @@ const ServiceBox = ({title,category,children}:Props) => {
         <h2 className='!m-0 !mb-4 font-semibold text-white text-4xl text-left'>
           {title}
         </h2>
-        <p className='leading-[2.9rem] text-2xl m-0' style={{color:colors.backgroundLessTextDarkColor}}>{children}</p>
+        <p className='leading-12 text-2xl m-0' style={{color:colors.backgroundLessTextDarkColor}}>{children}</p>
       </div>
     </div>
   )

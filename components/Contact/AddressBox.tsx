@@ -11,21 +11,21 @@ const AddressBox = () => {
     <div>
       <h1 className='text-4xl font-medium m-0 mb-6'>ADDRESS</h1>
       <div className='mb-10'>
-        <p className='text-2xl font-normal leading-[2.88rem]' 
+        <p className='text-2xl font-normal leading-12' 
           style={{color:colors.backgroundLessTextDarkColor}}>
           {addressList[0]}
         </p>
-        <p className='text-2xl font-normal leading-[2.88rem]' 
+        <p className='text-2xl font-normal leading-12' 
           style={{color:colors.backgroundLessTextDarkColor}}>
             {addressList[1]}
         </p>
-        <p className='text-2xl font-normal leading-[2.88rem]' 
+        <p className='text-2xl font-normal leading-12' 
           style={{color:colors.backgroundLessTextDarkColor}}>
             {addressList[2]}
         </p>
       </div>
       <div className='mb-10'>
-        <div className='flex text-2xl font-medium leading-[2.88rem]'
+        <div className='flex text-2xl font-medium leading-12'
           style={{
             color:colors.backgroundLessTextDarkColor
           }}
@@ -33,7 +33,7 @@ const AddressBox = () => {
           <span className='mr-10 mt-3'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
           <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>{config?.phone1}</div>
         </div>
-        <div className='flex text-2xl font-medium leading-[2.88rem]'
+        <div className='flex text-2xl font-medium leading-12'
           style={{
             color:colors.backgroundLessTextDarkColor
           }}
@@ -41,7 +41,7 @@ const AddressBox = () => {
           <span className='mr-10 mt-3'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
           <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>{config?.phone2}</div>
         </div>
-        <div className='flex text-2xl font-medium leading-[2.88rem]'
+        <div className='flex text-2xl font-medium leading-12'
           style={{
             color:colors.backgroundLessTextDarkColor
           }}

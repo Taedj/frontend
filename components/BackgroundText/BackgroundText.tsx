@@ -11,7 +11,7 @@ const BackgroundText = ({backgroundText,innerText}:Props) => {
         <h2 className='xl:!text-[13.2rem] m-0 opacity-10' style={{color:colors.backgroundTextDarkColor,fontWeight:550,fontSize:'12vw'}}>{backgroundText}</h2>
         <p className='absolute flex flex-col self-center text-[3.6rem] font-semibold'>
           {innerText}
-          <span className='block mx-[31.5rem] w-[8rem] h-[3px] leading-[5.4rem]' style={{backgroundColor:colors.primaryColor}}></span>
+          <span className='block mx-[31.5rem] w-[8rem] h-[3px] leading-22' style={{backgroundColor:colors.primaryColor}}></span>
         </p>
     </div>
   )

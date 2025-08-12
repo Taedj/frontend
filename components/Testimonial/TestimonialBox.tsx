@@ -10,7 +10,7 @@ interface Props {
 
 const TestimonialBox = ({image,title,subTitle,testomonial}:Props) => {
   return (
-    <div className='rounded-[5px] text-2xl leading-[2.88rem] m-4 p-20 text-white'
+    <div className='rounded-[5px] text-2xl leading-12 m-4 p-20 text-white'
       style={{
         fontFamily:fontSettings.fontFamily,
         backgroundColor:colors.backgroundVeryDarkColor,

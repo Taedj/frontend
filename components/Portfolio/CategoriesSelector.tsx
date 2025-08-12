@@ -20,7 +20,7 @@ const CategoriesSelector = ({categoryHandler}:Props) => {
           setSelectedCategory(categoryText);
           }}>
           {(selectedCategory === categoryText) ? <p style={{color:colors.primaryColor}}>{categoryText}</p> : <p>{categoryText}</p>}
-          {selectedCategory === categoryText && <span className='block mx-[31.5rem] w-[8rem] h-[3px] leading-[5.4rem] mt-5' style={{backgroundColor:colors.primaryColor}}></span>}
+          {selectedCategory === categoryText && <span className='block mx-[31.5rem] w-[8rem] h-[3px] leading-22 mt-5' style={{backgroundColor:colors.primaryColor}}></span>}
         </li>)}
       </ul>
     </div>
