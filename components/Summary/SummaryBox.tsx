@@ -10,7 +10,7 @@ interface Props {
 const SummaryBox = ({year,title,subTitle,children}:Props) => {
   return (
     <div className='p-10 m-10 rounded' style={{backgroundColor:colors.summaryBoxBackgroundColor}}>
-      <span className='h-[2.4rem] w-[10.2rem] text-2xl rounded py-2 px-4' style={{backgroundColor:colors.primaryColor}}>
+      <span className='h-10 w-41 text-2xl rounded py-2 px-4' style={{backgroundColor:colors.primaryColor}}>
         {year}
       </span>
       <h1 className='text-4xl !mt-8 !mb-3'>

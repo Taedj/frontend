@@ -21,7 +21,7 @@ const ServiceBox = ({title,category,children}:Props) => {
   } as const;
   return (
     <div className='flex mb-20 text-3xl'>
-      <div className='flex flex-[0_0_7rem] justify-center items-center h-[7rem] rounded-[8px] mr-8' style={{backgroundColor:colors.backgroundDarkColor}}>
+      <div className='flex flex-[0_0_7rem] justify-center items-center h-28 rounded-[8px] mr-8' style={{backgroundColor:colors.backgroundDarkColor}}>
         {categories[category]}
       </div>
       <div>

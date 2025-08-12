@@ -17,7 +17,7 @@ const TestimonialBox = ({image,title,subTitle,testomonial}:Props) => {
       }}
     >
       <div className='flex mb-10'>
-        <div className='h-[6.7rem] w-[6.7rem]'>
+        <div className='h-27 w-27'>
           <img className='w-full h-full object-cover rounded-full' src={image} />
         </div>
         <div className='ml-6'>

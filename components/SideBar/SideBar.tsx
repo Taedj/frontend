@@ -18,7 +18,7 @@ const SideBar = () => {
         }}
         >
         <div className='flex flex-col items-center'>
-          <div className='w-[18rem] h-[18rem] mb-5 bg-cover rounded-full border-8 mt-10'
+          <div className='w-72 h-72 mb-5 bg-cover rounded-full border-8 mt-10'
             style={
               {
                 backgroundImage: `url(${config?.profile_image})`,

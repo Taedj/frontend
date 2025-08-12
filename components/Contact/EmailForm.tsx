@@ -17,7 +17,7 @@ const EmailForm = () => {
             style={{backgroundColor:colors.backgroundDarkColor}} />
         </div>
         <textarea 
-          className='rounded-[5px] p-6 text-2xl m-0 border-0 text-white w-full h-[14.8rem]' 
+          className='rounded-[5px] p-6 text-2xl m-0 border-0 text-white w-full h-59' 
           placeholder='Tell us more about your needs....'
           style={{backgroundColor:colors.backgroundDarkColor}}/>
       </div>

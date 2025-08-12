@@ -51,7 +51,7 @@ const AddressBox = () => {
         </div>
       </div>
       <h1 className='text-4xl font-semibold m-0 mb-5'>FOLLOW ME</h1>
-      <ul className='flex justify-between list-none w-[14rem] p-0'>
+      <ul className='flex justify-between list-none w-56 p-0'>
           <SocialMedias/>
       </ul>
     </div>

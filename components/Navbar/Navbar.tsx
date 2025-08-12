@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <>
         <div style={{fontFamily:fontSettings.fontFamily}}>
-            <div className='flex justify-between align-center items-center text-white px-6 h-[6.6rem] font-semibold' style={{
+            <div className='flex justify-between align-center items-center text-white px-6 h-26 font-semibold' style={{
                 backgroundColor:colors.navbarColor,
             }}>
                 <h1 className='text-4xl'>{config?.fullname}</h1>
