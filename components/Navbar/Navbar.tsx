@@ -13,21 +13,21 @@ const Navbar = () => {
   return (
     <>
         <div style={{fontFamily:fontSettings.fontFamily}}>
-            <div className='flex justify-between align-center items-center text-white px-[1.6rem] h-[6.6rem] font-semibold' style={{
+            <div className='flex justify-between align-center items-center text-white px-6 h-[6.6rem] font-semibold' style={{
                 backgroundColor:colors.navbarColor,
             }}>
                 <h1 className='text-[2.1rem]'>{config?.fullname}</h1>
                 <div className='flex items-center'>
                     <SocialMedias className="!mb-0" />
-                    {(!menuClicked) && <MdMenu size={30} className='ml-[1.6rem]' onClick={() => setMenuClicked(!menuClicked)}/>}
-                    {(menuClicked) && <RxCross1 size={30} className='ml-[1.6rem]' onClick={() => setMenuClicked(!menuClicked)}/>}
+                    {(!menuClicked) && <MdMenu size={30} className='ml-6' onClick={() => setMenuClicked(!menuClicked)}/>}
+                    {(menuClicked) && <RxCross1 size={30} className='ml-6' onClick={() => setMenuClicked(!menuClicked)}/>}
                 </div>
             </div>
             {menuClicked && 
                 <div className='absolute w-full z-50'>
                     <ul className='text-white text-[1.6rem]'style={{backgroundColor:colors.menuColor}}>
                         {
-                            sections.map((section,index) => <li key={index} className='p-[0.8rem] border-b' style={{
+                            sections.map((section,index) => <li key={index} className='p-3 border-b' style={{
                             transition:'color 0.3s',
                             color:(HoveredIndex === index || index === 0)? colors.primaryColor:'white',
                             borderColor:colors.menuItemBorderColor

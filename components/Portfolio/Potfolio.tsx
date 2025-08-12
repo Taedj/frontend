@@ -45,7 +45,7 @@ const Potfolio = ({handleModalOpen }: Props) => {
   let selectedData = (category === 'All') ? data : data?.filter((item) => item.service.category === category);
   return (
     <div id="Portfolio"
-      className='py-[7.2rem] px-0'
+      className='py-29 px-0'
       style={{
         fontFamily:fontSettings.fontFamily,
         backgroundColor:colors.backgroundLessDarkColor
@@ -54,7 +54,7 @@ const Potfolio = ({handleModalOpen }: Props) => {
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText='PORTFOLIO' innerText='My Work'/>
         <CategoriesSelector categoryHandler={setCategory}/>
-        <div className='py-0 px-[4.8rem]'>
+        <div className='py-0 px-20'>
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="masonry-grid"

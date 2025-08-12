@@ -23,10 +23,10 @@ const Home = () => {
           backgroundImage:`url(${config?.home_background_image})`
         }}
       >
-        <p className='text-[2.8rem] font-bold leading-[5rem] z-2 m-0 mb-[1.6rem]'>
+        <p className='text-[2.8rem] font-bold leading-[5rem] z-2 m-0 mb-6'>
           Welcome
         </p>
-        <div className='md:!text-[6rem] mb-[1.6rem] z-2 h-[6rem] font-bold' style={{
+        <div className='md:!text-[6rem] mb-6 z-2 h-[6rem] font-bold' style={{
           fontSize:`8vw`
         }}>
           {config?.profession_list && (
@@ -37,7 +37,7 @@ const Home = () => {
             />
           )}
         </div>
-        <p className='text-[2.1rem] z-2 my-[2.4rem] font-medium'
+        <p className='text-[2.1rem] z-2 my-10 font-medium'
           style={{
             color:colors.whiteWithOpacity
           }}

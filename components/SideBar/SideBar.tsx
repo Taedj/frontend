@@ -18,7 +18,7 @@ const SideBar = () => {
         }}
         >
         <div className='flex flex-col items-center'>
-          <div className='w-[18rem] h-[18rem] mb-[1.2rem] bg-cover rounded-full border-8 mt-[2.4rem]'
+          <div className='w-[18rem] h-[18rem] mb-5 bg-cover rounded-full border-8 mt-10'
             style={
               {
                 backgroundImage: `url(${config?.profile_image})`,
@@ -31,7 +31,7 @@ const SideBar = () => {
         </div>
         <ul className='flex flex-col items-center list-none text-[1.8rem] leading-[2.4rem] p-0 font-semiboldfont-semibold'>
           {sections.map((section,index) => (
-            <li key={section} className='p-[1rem]'
+            <li key={section} className='p-4'
               style={{
                 transition:'color 0.3s',
                 color:(HoveredIndex === index || index === 0)? colors.primaryColor:'white'

@@ -9,8 +9,8 @@ const AddressBox = () => {
   const addressList = (config?.address)?config.address.split(','):[];
   return (
     <div>
-      <h1 className='text-[2.1rem] font-medium m-0 mb-[1.6rem]'>ADDRESS</h1>
-      <div className='mb-[2.4rem]'>
+      <h1 className='text-[2.1rem] font-medium m-0 mb-6'>ADDRESS</h1>
+      <div className='mb-10'>
         <p className='text-[1.6rem] font-normal leading-[2.88rem]' 
           style={{color:colors.backgroundLessTextDarkColor}}>
           {addressList[0]}
@@ -24,13 +24,13 @@ const AddressBox = () => {
             {addressList[2]}
         </p>
       </div>
-      <div className='mb-[2.4rem]'>
+      <div className='mb-10'>
         <div className='flex text-[1.6rem] font-medium leading-[2.88rem]'
           style={{
             color:colors.backgroundLessTextDarkColor
           }}
         >
-          <span className='mr-[2.4rem] mt-[0.8rem]'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
+          <span className='mr-10 mt-3'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
           <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>{config?.phone1}</div>
         </div>
         <div className='flex text-[1.6rem] font-medium leading-[2.88rem]'
@@ -38,7 +38,7 @@ const AddressBox = () => {
             color:colors.backgroundLessTextDarkColor
           }}
         >
-          <span className='mr-[2.4rem] mt-[0.8rem]'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
+          <span className='mr-10 mt-3'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
           <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>{config?.phone2}</div>
         </div>
         <div className='flex text-[1.6rem] font-medium leading-[2.88rem]'
@@ -46,11 +46,11 @@ const AddressBox = () => {
             color:colors.backgroundLessTextDarkColor
           }}
         >
-          <span className='mr-[2.4rem] mt-[0.8rem]'><IoMdMail size={14} color={colors.primaryColor}/></span>
+          <span className='mr-10 mt-3'><IoMdMail size={14} color={colors.primaryColor}/></span>
           <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>{config?.email}</div>
         </div>
       </div>
-      <h1 className='text-[2.1rem] font-semibold m-0 mb-[1.6rem]'>FOLLOW ME</h1>
+      <h1 className='text-[2.1rem] font-semibold m-0 mb-5'>FOLLOW ME</h1>
       <ul className='flex justify-between list-none w-[14rem] p-0'>
           <SocialMedias/>
       </ul>

@@ -53,27 +53,27 @@ const HorizontalList = () => {
   const {data:config} = useConfig();
   const value_description = getValueDescription(config);
   return (
-    <div className='mt-[4.8rem]'>
-      <ul className='max-md:grid max-md:grid-cols-2 md:flex my-0 mx-[4.8rem] text-[1.6rem] list-none'>
-        <li className={`flex-1 py-[2rem] px-[1.2rem] ${borderStyles['max-md:bottom']} ${borderStyles.right}`}>
+    <div className='mt-19'>
+      <ul className='max-md:grid max-md:grid-cols-2 md:flex my-0 mx-19 text-[1.6rem] list-none'>
+        <li className={`flex-1 py-8 px-5 ${borderStyles['max-md:bottom']} ${borderStyles.right}`}>
           {getCell(
             value_description[0][0],
             value_description[0][1],
           )}
         </li>
-        <li className={`flex-1 py-[2rem] px-[1.2rem] ${borderStyles['max-md:left']} ${borderStyles['max-md:bottom']} ${borderStyles['md:right']}`}>
+        <li className={`flex-1 py-8 px-5 ${borderStyles['max-md:left']} ${borderStyles['max-md:bottom']} ${borderStyles['md:right']}`}>
           {getCell(
             value_description[1][0],
             value_description[1][1], 
           )}
         </li>
-        <li className={`flex-1 py-[2rem] px-[1.2rem] ${borderStyles['max-md:top']} ${borderStyles.right}`}>
+        <li className={`flex-1 py-8 px-5 ${borderStyles['max-md:top']} ${borderStyles.right}`}>
           {getCell(
             value_description[2][0],
             value_description[2][1],
           )}
         </li>
-        <li className={`flex-1 py-[2rem] px-[1.2rem] ${borderStyles['max-md:top']} ${borderStyles['max-md:left']}`}>
+        <li className={`flex-1 py-8 px-5 ${borderStyles['max-md:top']} ${borderStyles['max-md:left']}`}>
           {getCell(
             value_description[3][0],
             value_description[3][1],

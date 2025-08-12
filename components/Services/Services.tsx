@@ -7,10 +7,10 @@ import ServiceBox, { Category } from './ServiceBox'
 const Services = () => {
   const {data:services} = useServices();
   return (
-    <div id="What-I-Do" className='p-0 py-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>
+    <div id="What-I-Do" className='p-0 py-29' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SERVICES" innerText="What I Do?"/>
-        <div className='md:grid md:grid-cols-2 max-md:flex max-md:flex-col px-[4.8rem] gap-8 mt-[4.8rem]'>
+        <div className='md:grid md:grid-cols-2 max-md:flex max-md:flex-col px-20 gap-8 mt-20'>
           {
             services?.map(
               service => <ServiceBox 

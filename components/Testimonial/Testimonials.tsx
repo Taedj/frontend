@@ -28,7 +28,7 @@ const Testimonials = () => {
     }
   ,[])
   return (
-    <div id='Testimonials' className='py-[7.2rem] px-[4.8rem] w-full overflow-hidden'
+    <div id='Testimonials' className='py-29 px-20 w-full overflow-hidden'
       style={{
         backgroundColor:colors.backgroundDarkColor,
         fontFamily:fontSettings.fontFamily
@@ -36,7 +36,7 @@ const Testimonials = () => {
     >
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText='TESTIMONIAL' innerText='Clients & Students Speak'/>
-        <div className='mt-[4.8rem] py-0 px-[2rem] max-w-[80%] mx-auto'>
+        <div className='mt-20 py-0 px-8 max-w-[80%] mx-auto'>
           <Carousel slideToShow={slideToShow}>
             {reviews.map((review,index) => (
               <TestimonialBox key={index} image={'http://127.0.0.1:8000'+review.client_image} title={review.client_fullname} subTitle={`User from ${review.country}`} testomonial={review.review}/>

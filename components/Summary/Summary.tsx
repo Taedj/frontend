@@ -31,12 +31,12 @@ const Summary = () => {
       .then(res => setExperiences(res.data))
   },[])
   return (
-    <div id="Resume" className='text-white p-[4.8rem] pt-[7.2rem]' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
+    <div id="Resume" className='text-white p-20 pt-29' style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundDarkColor}}>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
-        <div className='flex max-md:flex-col mt-[4.8rem]'>
+        <div className='flex max-md:flex-col mt-20'>
           <div className='w-1/2'>
-            {educations.length > 0  && <h2 className='text-[2.4rem] pl-[2.4rem]'>My Education</h2>} 
+            {educations.length > 0  && <h2 className='text-[2.4rem] pl-10'>My Education</h2>} 
             <div>
               {educations.map(
                 (item:EducationItem) => (
@@ -51,7 +51,7 @@ const Summary = () => {
             </div>
           </div>
           <div className='w-1/2'>
-              {experiences.length > 0 && <h2 className='text-[2.4rem] pl-[2.4rem]'>My Experience</h2>}
+              {experiences.length > 0 && <h2 className='text-[2.4rem] pl-10'>My Experience</h2>}
               {experiences.map(
                 (item:EducationItem) => (
                 <SummaryBox year={formatYear(item)}
@@ -65,7 +65,7 @@ const Summary = () => {
           </div>
         </div>
         <Skills/>
-        <div className='flex justify-center !m-[7.5rem] !mb-[1.5rem]'>
+        <div className='flex justify-center !m-30 !mb-6'>
           <a href='/resume.pdf' download="My_CV.pdf">
             <Button 
             color={colors.backgroundTextDarkColor}

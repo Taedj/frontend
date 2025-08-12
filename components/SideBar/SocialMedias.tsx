@@ -65,28 +65,28 @@ export const GsIcon = styled(FaGoogleScholar)`
 
 const SocialMedias = ({className=''}) => {
   return (
-    <ul className={'flex justify-between p-0 m-0 mb-[2.4rem] list-none' + ' ' + className}>
-        <li className="mx-[1rem]">
+    <ul className={'flex justify-between p-0 m-0 mb-10 list-none' + ' ' + className}>
+        <li className="mx-4">
           <a href={socialMediasLinks.facebook}>
             <FbIcon size={14} />
           </a>
         </li>
-        <li className="mx-[1rem]">
+        <li className="mx-4">
           <a href={socialMediasLinks.linkedin}>
             <LiIcon size={14} />
           </a>
         </li>
-        <li className="mx-[1rem]">
+        <li className="mx-4">
           <a href={socialMediasLinks.researchGate}>
             <RgIcon size={14} />
           </a>
         </li>
-        <li className="mx-[1rem]">
+        <li className="mx-4">
           <a href={socialMediasLinks.googleScholar}>
             <GsIcon size={14} />
           </a>
         </li>
-        <li className="mx-[1rem]">
+        <li className="mx-4">
           <a href={socialMediasLinks.personalUnivPage}>
             <UiIcon size={14} />
           </a>

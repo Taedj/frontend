@@ -30,10 +30,10 @@ const JobModel = ({title,images,description,onClose}:Props) => {
         arrows: false
     };
     return (
-            <div className='h-[80vh] p-[1.6rem] text-white rounded-[8px]' style={{backgroundColor:colors.JobModelColor,color:colors.cellDescriptionColor}}>
+            <div className='h-[80vh] p-6 text-white rounded-[8px]' style={{backgroundColor:colors.JobModelColor,color:colors.cellDescriptionColor}}>
                 <div className='flex justify-end' onClick={onClose}><RxCross1 size={20}/></div>
-                <h1 className='text-center text-[2.4rem] mb-[2.4rem] font-semibold'>{title}</h1>
-                <div className='flex max-md:flex-col px-[1.2rem]'>
+                <h1 className='text-center text-[2.4rem] mb-10 font-semibold'>{title}</h1>
+                <div className='flex max-md:flex-col px-5'>
                     <div className={`slider-container ${breakpoint ? 'mobile' : 'desktop'}`} style={{ width: sliderWidth }}>
                         <Slider {...settings} className="h-full">     
                             {
@@ -50,14 +50,14 @@ const JobModel = ({title,images,description,onClose}:Props) => {
                             }                   
                         </Slider>
                     </div>
-                    <div className='max-md:mt-[4.8rem] px-[2.4rem]'>
+                    <div className='max-md:mt-20 px-10'>
                         <h2 className='text-[1.8rem] font-semibold'>Project Info:</h2>
                         <p className='text-[1.6rem] lead-[2.9rem]'>{description}</p>
-                        <h2 className='text-[1.8rem] font-semibold mt-[2.4rem] mb-[0.8rem]'>Project Details:</h2>
-                        <ul className='mb-[1.6rem]'>
-                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Client:</span> Ruby Clinton</li>
-                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Industry:</span> Art & Design</li>
-                            <li className='py-[1.2rem] text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Date:</span> July 16,2019</li>
+                        <h2 className='text-[1.8rem] font-semibold mt-10 mb-3'>Project Details:</h2>
+                        <ul className='mb-6'>
+                            <li className='py-5 text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Client:</span> Ruby Clinton</li>
+                            <li className='py-5 text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Industry:</span> Art & Design</li>
+                            <li className='py-5 text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Date:</span> July 16,2019</li>
                         </ul>
                     </div>
                 </div>
