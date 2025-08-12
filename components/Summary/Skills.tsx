@@ -7,7 +7,7 @@ const Skills = () => {
   return (
     <div>
       {skills && skills.length > 0 && <h1 className='!my-10 !mx-0 text-4xl font-semibold'>My Skills</h1>}
-      <div className='max-md:flex max-md:flex-col md:grid md:grid-cols-2 md:gap-[4rem]'>
+      <div className='max-md:flex max-md:flex-col md:grid md:grid-cols-2 md:gap-16'>
         {
           skills?.map(
             skill => <ProgressRow 

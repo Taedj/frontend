@@ -52,7 +52,7 @@ const JobModel = ({title,images,description,onClose}:Props) => {
                     </div>
                     <div className='max-md:mt-20 px-10'>
                         <h2 className='text-3xl font-semibold'>Project Info:</h2>
-                        <p className='text-2xl lead-[2.9rem]'>{description}</p>
+                        <p className='text-2xl leading-12'>{description}</p>
                         <h2 className='text-3xl font-semibold mt-10 mb-3'>Project Details:</h2>
                         <ul className='mb-6'>
                             <li className='py-5 text-2xl border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Client:</span> Ruby Clinton</li>

@@ -9,7 +9,7 @@ const BackgroundText = ({backgroundText,innerText}:Props) => {
   return (
     <div className='relative flex flex-col p-0 m-0 justify-center align-center text-center text-white'>
         <h2 className='xl:!text-[13.2rem] m-0 opacity-10' style={{color:colors.backgroundTextDarkColor,fontWeight:550,fontSize:'12vw'}}>{backgroundText}</h2>
-        <p className='absolute flex flex-col self-center text-[3.6rem] font-semibold'>
+        <p className='absolute flex flex-col self-center text-6xl font-semibold'>
           {innerText}
           <span className='block mx-[31.5rem] w-32 h-1 leading-22' style={{backgroundColor:colors.primaryColor}}></span>
         </p>
