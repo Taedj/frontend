@@ -27,7 +27,7 @@ const Button = (
     }:Props) => {
     const [hover,setHover] = useState(false);
     const cssBackground = (!filledBackground)?"background:none;":"";
-    const buttonCss = `flex justify-center items-center rounded-[25px] text-[1.6rem] font-semibold z-2 ${cssBackground} transition-colors duration-500`
+    const buttonCss = `flex justify-center items-center rounded-[25px] text-2xl font-semibold z-2 ${cssBackground} transition-colors duration-500`
   return (
     <button className={buttonCss}
         style={{

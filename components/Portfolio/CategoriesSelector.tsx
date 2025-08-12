@@ -8,7 +8,7 @@ interface Props {
 const CategoriesSelector = ({categoryHandler}:Props) => {
   const [selectedCategory,setSelectedCategory] = useState('All')
   return (
-    <div className='text-[1.6rem] font-normal my-19 mx-0'
+    <div className='text-2xl font-normal my-19 mx-0'
       style={{
         fontFamily:fontSettings.fontFamily,
         color:colors.categoriesSelectorColor

@@ -54,7 +54,7 @@ const HorizontalList = () => {
   const value_description = getValueDescription(config);
   return (
     <div className='mt-19'>
-      <ul className='max-md:grid max-md:grid-cols-2 md:flex my-0 mx-19 text-[1.6rem] list-none'>
+      <ul className='max-md:grid max-md:grid-cols-2 md:flex my-0 mx-19 text-2xl list-none'>
         <li className={`flex-1 py-8 px-5 ${borderStyles['max-md:bottom']} ${borderStyles.right}`}>
           {getCell(
             value_description[0][0],

@@ -16,7 +16,7 @@ const Navbar = () => {
             <div className='flex justify-between align-center items-center text-white px-6 h-[6.6rem] font-semibold' style={{
                 backgroundColor:colors.navbarColor,
             }}>
-                <h1 className='text-[2.1rem]'>{config?.fullname}</h1>
+                <h1 className='text-4xl'>{config?.fullname}</h1>
                 <div className='flex items-center'>
                     <SocialMedias className="!mb-0" />
                     {(!menuClicked) && <MdMenu size={30} className='ml-6' onClick={() => setMenuClicked(!menuClicked)}/>}
@@ -25,7 +25,7 @@ const Navbar = () => {
             </div>
             {menuClicked && 
                 <div className='absolute w-full z-50'>
-                    <ul className='text-white text-[1.6rem]'style={{backgroundColor:colors.menuColor}}>
+                    <ul className='text-white text-2xl'style={{backgroundColor:colors.menuColor}}>
                         {
                             sections.map((section,index) => <li key={index} className='p-3 border-b' style={{
                             transition:'color 0.3s',

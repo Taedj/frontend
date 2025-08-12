@@ -32,7 +32,7 @@ const JobModel = ({title,images,description,onClose}:Props) => {
     return (
             <div className='h-[80vh] p-6 text-white rounded-[8px]' style={{backgroundColor:colors.JobModelColor,color:colors.cellDescriptionColor}}>
                 <div className='flex justify-end' onClick={onClose}><RxCross1 size={20}/></div>
-                <h1 className='text-center text-[2.4rem] mb-10 font-semibold'>{title}</h1>
+                <h1 className='text-center text-4xl mb-10 font-semibold'>{title}</h1>
                 <div className='flex max-md:flex-col px-5'>
                     <div className={`slider-container ${breakpoint ? 'mobile' : 'desktop'}`} style={{ width: sliderWidth }}>
                         <Slider {...settings} className="h-full">     
@@ -51,13 +51,13 @@ const JobModel = ({title,images,description,onClose}:Props) => {
                         </Slider>
                     </div>
                     <div className='max-md:mt-20 px-10'>
-                        <h2 className='text-[1.8rem] font-semibold'>Project Info:</h2>
-                        <p className='text-[1.6rem] lead-[2.9rem]'>{description}</p>
-                        <h2 className='text-[1.8rem] font-semibold mt-10 mb-3'>Project Details:</h2>
+                        <h2 className='text-3xl font-semibold'>Project Info:</h2>
+                        <p className='text-2xl lead-[2.9rem]'>{description}</p>
+                        <h2 className='text-3xl font-semibold mt-10 mb-3'>Project Details:</h2>
                         <ul className='mb-6'>
-                            <li className='py-5 text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Client:</span> Ruby Clinton</li>
-                            <li className='py-5 text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Industry:</span> Art & Design</li>
-                            <li className='py-5 text-[1.6rem] border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Date:</span> July 16,2019</li>
+                            <li className='py-5 text-2xl border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Client:</span> Ruby Clinton</li>
+                            <li className='py-5 text-2xl border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Industry:</span> Art & Design</li>
+                            <li className='py-5 text-2xl border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Date:</span> July 16,2019</li>
                         </ul>
                     </div>
                 </div>

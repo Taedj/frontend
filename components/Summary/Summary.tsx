@@ -36,7 +36,7 @@ const Summary = () => {
         <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
         <div className='flex max-md:flex-col mt-20'>
           <div className='w-1/2'>
-            {educations.length > 0  && <h2 className='text-[2.4rem] pl-10'>My Education</h2>} 
+            {educations.length > 0  && <h2 className='text-4xl pl-10'>My Education</h2>} 
             <div>
               {educations.map(
                 (item:EducationItem) => (
@@ -51,7 +51,7 @@ const Summary = () => {
             </div>
           </div>
           <div className='w-1/2'>
-              {experiences.length > 0 && <h2 className='text-[2.4rem] pl-10'>My Experience</h2>}
+              {experiences.length > 0 && <h2 className='text-4xl pl-10'>My Experience</h2>}
               {experiences.map(
                 (item:EducationItem) => (
                 <SummaryBox year={formatYear(item)}

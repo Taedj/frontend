@@ -3,7 +3,7 @@ import { colors, fontSettings } from '../../constants/constants'
 const Footer = () => {
   return (
     <div 
-      className='flex max-md:flex-col justify-between py-27 px-20 text-[1.6rem] '
+      className='flex max-md:flex-col justify-between py-27 px-20 text-2xl '
       style={{
         fontFamily:fontSettings.fontFamily,
         backgroundColor:colors.backgroundDarkColor,

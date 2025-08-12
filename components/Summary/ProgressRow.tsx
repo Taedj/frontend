@@ -10,8 +10,8 @@ interface Props {
 const ProgressRow = ({progress,color,title}:Props) => {
   return (
     <div className='max-md:mb-10 text-semibold' style={{fontFamily:fontSettings.fontFamily}}>
-      <div className='flex justify-between mb-3 text-[1.6rem] font-semibold'>
-        <h2 className='m-0 mb-3 text-[1.6rem]'>{title}</h2>
+      <div className='flex justify-between mb-3 text-2xl font-semibold'>
+        <h2 className='m-0 mb-3 text-2xl'>{title}</h2>
         <span>{progress + '%'}</span>
       </div>
       <ProgressBar completed={progress} bgColor={color} height="8px" isLabelVisible={false} baseBgColor="black"/>
