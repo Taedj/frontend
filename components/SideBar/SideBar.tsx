@@ -11,7 +11,6 @@ const SideBar = () => {
     <>
       <div className='flex flex-col justify-between items-center text-white h-screen fixed z-2 bg-bg-very-dark text-opacity-white'
         style={{
-          fontFamily:fontSettings.fontFamily,
           width:dimensions.sideBarWidth
         }}
         >

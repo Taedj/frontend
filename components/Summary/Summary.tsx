@@ -31,7 +31,7 @@ const Summary = () => {
       .then(res => setExperiences(res.data))
   },[])
   return (
-    <div id="Resume" className='text-white p-20 pt-29 bg-bg-dark' style={{fontFamily:fontSettings.fontFamily}}>
+    <div id="Resume" className='text-white p-20 pt-29 bg-bg-dark'>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
         <div className='flex max-md:flex-col mt-20'>

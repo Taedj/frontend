@@ -28,11 +28,7 @@ const Testimonials = () => {
     }
   ,[])
   return (
-    <div id='Testimonials' className='py-29 px-20 w-full overflow-hidden bg-bg-dark'
-      style={{
-        fontFamily:fontSettings.fontFamily
-      }}
-    >
+    <div id='Testimonials' className='py-29 px-20 w-full overflow-hidden bg-bg-dark'>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText='TESTIMONIAL' innerText='Clients & Students Speak'/>
         <div className='mt-20 py-0 px-8 max-w-[80%] mx-auto'>

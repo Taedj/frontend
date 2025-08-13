@@ -10,11 +10,7 @@ interface Props {
 
 const TestimonialBox = ({image,title,subTitle,testomonial}:Props) => {
   return (
-    <div className='rounded-[5px] text-2xl leading-12 m-4 p-20 text-white bg-bg-very-dark'
-      style={{
-        fontFamily:fontSettings.fontFamily,
-      }}
-    >
+    <div className='rounded-[5px] text-2xl leading-12 m-4 p-20 text-white bg-bg-very-dark'>
       <div className='flex mb-10'>
         <div className='h-27 w-27'>
           <img className='w-full h-full object-cover rounded-full' src={image} />
