@@ -37,11 +37,7 @@ const Home = () => {
             />
           )}
         </div>
-        <p className='text-4xl z-2 my-10 font-medium'
-          style={{
-            color:colors.whiteWithOpacity
-          }}
-        >based on Khroub,Constantine</p>
+        <p className='text-4xl z-2 my-10 font-medium text-opacity-white'>based on Khroub,Constantine</p>
         <Button 
           color={colors.primaryColor}
           width="14.5rem"

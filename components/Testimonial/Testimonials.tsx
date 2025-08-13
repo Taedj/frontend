@@ -28,9 +28,8 @@ const Testimonials = () => {
     }
   ,[])
   return (
-    <div id='Testimonials' className='py-29 px-20 w-full overflow-hidden'
+    <div id='Testimonials' className='py-29 px-20 w-full overflow-hidden bg-bg-dark'
       style={{
-        backgroundColor:colors.backgroundDarkColor,
         fontFamily:fontSettings.fontFamily
       }}
     >

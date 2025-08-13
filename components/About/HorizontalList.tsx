@@ -5,8 +5,8 @@ import useWorks from '../../hooks/useWorks'
 
 const getCell = (value:string|number,description:string) => {
   return <div className='flex flex-col align-center text-center'>
-            <div className='text-7xl text-center' style={{color:colors.backgroundLessTextDarkColor}}>{value}</div>
-            <div style={{color:colors.cellDescriptionColor}}>{description}</div>
+            <div className='text-7xl text-center text-bg-text-less-dark'>{value}</div>
+            <div className='text-cell-description'>{description}</div>
           </div>
 }
 

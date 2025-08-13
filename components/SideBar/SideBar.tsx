@@ -9,11 +9,9 @@ const SideBar = () => {
   const {data:config} = useConfig();
   return (
     <>
-      <div className='flex flex-col justify-between items-center text-white h-screen fixed z-2'
+      <div className='flex flex-col justify-between items-center text-white h-screen fixed z-2 bg-bg-very-dark text-opacity-white'
         style={{
           fontFamily:fontSettings.fontFamily,
-          backgroundColor:colors.backgroundVeryDarkColor,
-          color:colors.whiteWithOpacity,
           width:dimensions.sideBarWidth
         }}
         >

@@ -1,7 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-    --color-about-border : rgba(255, 255, 255, 0.5)
+    --color-about-border : rgba(255, 255, 255, 0.5);
+    --color-primary:#20C997;
+    --color-navbar:rgb(17, 20, 24);
+    --color-menu:rgba(0, 0, 0, 0.95);
+    --color-menu-item-border:rgba(250, 250, 250, 0.15);
+    --color-bg-very-dark:#111418;
+    --color-bg-dark:rgb(33, 37, 41);
+    --color-bg-less-dark:#343A40;
+    --color-bg-text-dark:rgb(108, 117, 125);
+    --color-bg-text-less-dark:rgba(255, 255, 255, 0.5);
+    --color-cell-description:rgb(222, 227, 228);
+    --color-opacity-white:rgba(255,255,255,0.9);
+    --color-border:rgba(250, 250, 250, 0.12);
+    --color-summary-box-bg:rgb(17, 20, 24);
+    --color-categories-selector:rgb(221, 221, 221);
+    --color-star-color:rgb(255, 193, 7);
+    --color-job-model:rgb(52, 58, 64)
 }
 
 html {

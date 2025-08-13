@@ -5,8 +5,8 @@ import EmailForm from './EmailForm'
 
 const Contact = () => {
   return (
-    <div id="Contact" className='py-29 px-20 text-white' 
-      style={{fontFamily:fontSettings.fontFamily,backgroundColor:colors.backgroundLessDarkColor}}>
+    <div id="Contact" className='py-29 px-20 text-white bg-bg-less-dark' 
+      style={{fontFamily:fontSettings.fontFamily}}>
       <BackgroundText backgroundText='CONTACT' innerText='Get in Touch'/>
       <div className='max-w-[1224px] mx-auto w-full'>
         <div className='md:flex md:w-full'>

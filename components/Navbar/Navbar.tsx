@@ -13,9 +13,7 @@ const Navbar = () => {
   return (
     <>
         <div style={{fontFamily:fontSettings.fontFamily}}>
-            <div className='flex justify-between align-center items-center text-white px-6 h-26 font-semibold' style={{
-                backgroundColor:colors.navbarColor,
-            }}>
+            <div className='flex justify-between align-center items-center text-white px-6 h-26 font-semibold bg-navbar'>
                 <h1 className='text-4xl'>{config?.fullname}</h1>
                 <div className='flex items-center'>
                     <SocialMedias className="!mb-0" />
@@ -25,7 +23,7 @@ const Navbar = () => {
             </div>
             {menuClicked && 
                 <div className='absolute w-full z-50'>
-                    <ul className='text-white text-2xl'style={{backgroundColor:colors.menuColor}}>
+                    <ul className='text-white text-2xl bg-menu'>
                         {
                             sections.map((section,index) => <li key={index} className='p-3 border-b' style={{
                             transition:'color 0.3s',

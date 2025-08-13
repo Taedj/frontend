@@ -21,14 +21,14 @@ const ServiceBox = ({title,category,children}:Props) => {
   } as const;
   return (
     <div className='flex mb-20 text-3xl'>
-      <div className='flex flex-[0_0_7rem] justify-center items-center h-28 rounded-[8px] mr-8' style={{backgroundColor:colors.backgroundDarkColor}}>
+      <div className='flex flex-[0_0_7rem] justify-center items-center h-28 rounded-[8px] mr-8 bg-bg-dark'>
         {categories[category]}
       </div>
       <div>
         <h2 className='!m-0 !mb-4 font-semibold text-white text-4xl text-left'>
           {title}
         </h2>
-        <p className='leading-12 text-2xl m-0' style={{color:colors.backgroundLessTextDarkColor}}>{children}</p>
+        <p className='leading-12 text-2xl m-0 text-bg-text-less-dark'>{children}</p>
       </div>
     </div>
   )

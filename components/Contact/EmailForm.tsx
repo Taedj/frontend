@@ -8,18 +8,15 @@ const EmailForm = () => {
       <div>
         <div className='flex max-md:flex-col w-full'>
           <input type="text" 
-            className='flex-1 md:mr-4 md:mb-4 ml-0 rounded-[5px] p-6 text-2xl m-4 border-0 text-white' 
-            placeholder='Name'
-            style={{backgroundColor:colors.backgroundDarkColor}} />
+            className='flex-1 md:mr-4 md:mb-4 ml-0 rounded-[5px] p-6 text-2xl m-4 border-0 text-white bg-bg-dark' 
+            placeholder='Name'/>
           <input type="text" 
-            className='flex-1 md:ml-4 mr-0 rounded-[5px] p-6 text-2xl m-4 border-0 text-white'
-            placeholder='Email'
-            style={{backgroundColor:colors.backgroundDarkColor}} />
+            className='flex-1 md:ml-4 mr-0 rounded-[5px] p-6 text-2xl m-4 border-0 text-white bg-bg-dark'
+            placeholder='Email'/>
         </div>
         <textarea 
-          className='rounded-[5px] p-6 text-2xl m-0 border-0 text-white w-full h-59' 
-          placeholder='Tell us more about your needs....'
-          style={{backgroundColor:colors.backgroundDarkColor}}/>
+          className='rounded-[5px] p-6 text-2xl m-0 border-0 text-white w-full h-59 bg-bg-dark' 
+          placeholder='Tell us more about your needs....'/>
       </div>
       <div className='flex justify-center mt-10'>
         <Button

@@ -11,43 +11,28 @@ const AddressBox = () => {
     <div>
       <h1 className='text-4xl font-medium m-0 mb-6'>ADDRESS</h1>
       <div className='mb-10'>
-        <p className='text-2xl font-normal leading-12' 
-          style={{color:colors.backgroundLessTextDarkColor}}>
+        <p className='text-2xl font-normal leading-12 text-bg-text-less-dark'>
           {addressList[0]}
         </p>
-        <p className='text-2xl font-normal leading-12' 
-          style={{color:colors.backgroundLessTextDarkColor}}>
+        <p className='text-2xl font-normal leading-12 text-bg-text-less-dark'>
             {addressList[1]}
         </p>
-        <p className='text-2xl font-normal leading-12' 
-          style={{color:colors.backgroundLessTextDarkColor}}>
+        <p className='text-2xl font-normal leading-12 text-bg-text-less-dark'>
             {addressList[2]}
         </p>
       </div>
       <div className='mb-10'>
-        <div className='flex text-2xl font-medium leading-12'
-          style={{
-            color:colors.backgroundLessTextDarkColor
-          }}
-        >
+        <div className='flex text-2xl font-medium leading-12 text-bg-text-less-dark'>
           <span className='mr-10 mt-3'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
-          <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>{config?.phone1}</div>
+          <div className='flex justify-between list-none p-0'>{config?.phone1}</div>
         </div>
-        <div className='flex text-2xl font-medium leading-12'
-          style={{
-            color:colors.backgroundLessTextDarkColor
-          }}
-        >
+        <div className='flex text-2xl font-medium leading-12 text-bg-text-less-dark'>
           <span className='mr-10 mt-3'><FaPhoneAlt size={14} color={colors.primaryColor}/></span>
-          <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>{config?.phone2}</div>
+          <div className='flex justify-between list-none p-0 text-bg-text-less-dark'>{config?.phone2}</div>
         </div>
-        <div className='flex text-2xl font-medium leading-12'
-          style={{
-            color:colors.backgroundLessTextDarkColor
-          }}
-        >
-          <span className='mr-10 mt-3'><IoMdMail size={14} color={colors.primaryColor}/></span>
-          <div className='flex justify-between list-none p-0' style={{color:colors.backgroundLessTextDarkColor}}>{config?.email}</div>
+        <div className='flex text-2xl font-medium leading-12 text-bg-text-less-dark'>
+          <span className='mr-10 mt-3 text-primary'><IoMdMail size={14}/></span>
+          <div className='flex justify-between list-none p-0 text-bg-text-less-dark'>{config?.email}</div>
         </div>
       </div>
       <h1 className='text-4xl font-semibold m-0 mb-5'>FOLLOW ME</h1>

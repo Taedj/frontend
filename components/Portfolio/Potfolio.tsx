@@ -45,10 +45,9 @@ const Potfolio = ({handleModalOpen }: Props) => {
   let selectedData = (category === 'All') ? data : data?.filter((item) => item.service.category === category);
   return (
     <div id="Portfolio"
-      className='py-29 px-0'
+      className='py-29 px-0 bg-bg-less-dark'
       style={{
         fontFamily:fontSettings.fontFamily,
-        backgroundColor:colors.backgroundLessDarkColor
       }}
     >
       <div className='max-w-[1224px] mx-auto w-full'>

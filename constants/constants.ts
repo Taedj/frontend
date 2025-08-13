@@ -14,6 +14,10 @@ export const colors = {
     'whiteWithOpacity':'rgba(255,255,255,0.9)',
     'borderColor':'rgba(250, 250, 250, 0.12)',
     'summaryBoxBackgroundColor':'rgb(17, 20, 24)',
+    'categoriesSelectorColor':'rgb(221, 221, 221)',
+    'starColor':'rgb(255, 193, 7)',
+    'JobModelColor':'rgb(52, 58, 64)',
+    
     'fbColor':'#1877F2',
     'twColor':'#1DA1F2',
     'ghColor':'#AAB1B8',
@@ -21,10 +25,7 @@ export const colors = {
     'liColor':'#0077B5',
     'rgColor':'#00CCBB',
     'uColor':'#a51c30',
-    'gsColor':'#FBBC05',
-    'categoriesSelectorColor':'rgb(221, 221, 221)',
-    'starColor':'rgb(255, 193, 7)',
-    'JobModelColor':'rgb(52, 58, 64)'
+    'gsColor':'#FBBC05'
 }
 
 export const dimensions = {

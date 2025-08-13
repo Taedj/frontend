@@ -10,10 +10,9 @@ interface Props {
 
 const TestimonialBox = ({image,title,subTitle,testomonial}:Props) => {
   return (
-    <div className='rounded-[5px] text-2xl leading-12 m-4 p-20 text-white'
+    <div className='rounded-[5px] text-2xl leading-12 m-4 p-20 text-white bg-bg-very-dark'
       style={{
         fontFamily:fontSettings.fontFamily,
-        backgroundColor:colors.backgroundVeryDarkColor,
       }}
     >
       <div className='flex mb-10'>
@@ -22,7 +21,7 @@ const TestimonialBox = ({image,title,subTitle,testomonial}:Props) => {
         </div>
         <div className='ml-6'>
           <h1 className='text-2xl m-0'>{title}</h1>
-          <h2 className='text-2xl m-0'style={{color:colors.backgroundTextDarkColor}}>{subTitle}</h2>
+          <h2 className='text-2xl m-0 text-bg-text-dark'>{subTitle}</h2>
         </div>
       </div>
       <p className='font-semibold mb-10'>{testomonial}</p>

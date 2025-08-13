@@ -30,7 +30,7 @@ const JobModel = ({title,images,description,onClose}:Props) => {
         arrows: false
     };
     return (
-            <div className='h-[80vh] p-6 text-white rounded-[8px]' style={{backgroundColor:colors.JobModelColor,color:colors.cellDescriptionColor}}>
+            <div className='h-[80vh] p-6 rounded-[8px] bg-job-model text-cell-description'>
                 <div className='flex justify-end' onClick={onClose}><RxCross1 size={20}/></div>
                 <h1 className='text-center text-4xl mb-10 font-semibold'>{title}</h1>
                 <div className='flex max-md:flex-col px-5'>
@@ -55,9 +55,9 @@ const JobModel = ({title,images,description,onClose}:Props) => {
                         <p className='text-2xl leading-12'>{description}</p>
                         <h2 className='text-3xl font-semibold mt-10 mb-3'>Project Details:</h2>
                         <ul className='mb-6'>
-                            <li className='py-5 text-2xl border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Client:</span> Ruby Clinton</li>
-                            <li className='py-5 text-2xl border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Industry:</span> Art & Design</li>
-                            <li className='py-5 text-2xl border-b' style={{borderBottomColor:colors.borderColor}}><span className='font-semibold'>Date:</span> July 16,2019</li>
+                            <li className='py-5 text-2xl border-b border-b-border'><span className='font-semibold'>Client:</span> Ruby Clinton</li>
+                            <li className='py-5 text-2xl border-b border-b-border' ><span className='font-semibold'>Industry:</span> Art & Design</li>
+                            <li className='py-5 text-2xl border-b border-b-border'><span className='font-semibold'>Date:</span> July 16,2019</li>
                         </ul>
                     </div>
                 </div>
