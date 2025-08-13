@@ -60,7 +60,7 @@ const Potfolio = ({handleModalOpen }: Props) => {
                 <img
                   src={work.images[0].image}
                   alt={`Masonry item ${work.id}`}
-                  style={{ width: "100%", height: "auto" }}
+                  className='w-full h-auto'
                   loading="lazy"
                   onClick={()=>{setOpen(true);handleModalOpen(true);setSelectedWork(work)}}
                 />

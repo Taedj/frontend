@@ -22,9 +22,7 @@ const Home = () => {
         <p className='text-5xl font-bold leading-20 z-2 m-0 mb-6'>
           Welcome
         </p>
-        <div className='md:!text-8xl mb-6 z-2 h-24 font-bold' style={{
-          fontSize:`8vw`
-        }}>
+        <div className='md:!text-8xl mb-6 z-2 h-24 font-bold text-[8vw]'>
           {config?.profession_list && (
             <Typewriter 
               words={getProfessionList(config)}

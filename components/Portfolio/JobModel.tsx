@@ -39,7 +39,7 @@ const JobModel = ({title,images,description,onClose}:Props) => {
                             {
                                 images.map(image => (
                                     <div key={image} className="slide-item">
-                                        <div style={{ height: '100%', width: '100%' }}>
+                                        <div  className='h-full w-full'>
                                             <img 
                                                 src={image} 
                                                 alt={title}
