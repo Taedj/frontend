@@ -6,6 +6,8 @@ import BackgroundText from '../BackgroundText/BackgroundText'
 import Button from '../Button/Button'
 import Skills from './Skills'
 import SummaryBox from './SummaryBox'
+import useEducations from '../../hooks/useEducations'
+import useExperiences from '../../hooks/useExperiences'
 
 
 interface EducationItem {
@@ -22,23 +24,17 @@ const formatYear = (item:EducationItem) => {
 }
 
 const Summary = () => {
-  const [educations,setEducations] = useState([]);
-  const [experiences,setExperiences] = useState([]);
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/home/educations/')
-      .then(res => setEducations(res.data));
-    axios.get('http://127.0.0.1:8000/home/experiences/')
-      .then(res => setExperiences(res.data))
-  },[])
+  const {data:educations} = useEducations();
+  const {data:experiences} = useExperiences();
   return (
     <div id="Resume" className='text-white p-20 pt-29 bg-bg-dark'>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
         <div className='flex max-md:flex-col mt-20'>
           <div className='w-1/2'>
-            {educations.length > 0  && <h2 className='text-4xl pl-10'>My Education</h2>} 
+            {educations?.length! > 0  && <h2 className='text-4xl pl-10'>My Education</h2>} 
             <div>
-              {educations.map(
+              {educations?.map(
                 (item:EducationItem) => (
                 <SummaryBox year={formatYear(item)}
                             key={item.title}
@@ -51,8 +47,8 @@ const Summary = () => {
             </div>
           </div>
           <div className='w-1/2'>
-              {experiences.length > 0 && <h2 className='text-4xl pl-10'>My Experience</h2>}
-              {experiences.map(
+              {experiences?.length! > 0 && <h2 className='text-4xl pl-10'>My Experience</h2>}
+              {experiences?.map(
                 (item:EducationItem) => (
                 <SummaryBox year={formatYear(item)}
                             key={item.title}
