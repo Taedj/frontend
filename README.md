@@ -213,13 +213,10 @@ This project is licensed under the MIT License.
 
 ## 👤 Author
 
-**Dr. Tidjani Ahmed Zitouni**
+**Bensouici Akram**
 
-- **GitHub**: [@Taedj](https://github.com/Taedj)
-- **LinkedIn**: [Dr. Tidjani Ahmed Zitouni](https://www.linkedin.com/in/dr-tidjani-ahmed-zitouni-a9b3b71a4/)
-- **ResearchGate**: [Tidjani Ahmed Zitouni](https://www.researchgate.net/profile/Tidjani-Ahmed-Zitouni)
-- **Google Scholar**: [Tidjani Ahmed Zitouni](https://scholar.google.com/citations?user=qifRUIAAAAAJ)
-- **University Page**: [Personal University Page](https://perso.univ-annaba.dz/fr/zitouni-tidjani-ahmed.1000823.html)
+- **GitHub**: [@bensouiciakram](https://github.com/bensouiciakram)
+- **LinkedIn**: [Bensouici Akram](https://linkedin.com/in/bensouiciakram)
 
 ## 🙏 Acknowledgments
 
