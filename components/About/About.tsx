@@ -9,7 +9,6 @@ import clientLogger from '../../lib/clientLogger'
 
 
 const About = () => {
-  clientLogger.info('Fetching website config');
   const {data:config} = useConfig();
   return (
     <>

@@ -31,7 +31,7 @@ function App() {
   const [modalOpen,setModalOpen] = useState(false);
   const {isMobile} = useIsMobile();
 
-  console.info(isMobile ? 'Mobile|Tablet Client':'Desktop Client');
+  clientLogger.info(isMobile ? 'Mobile|Tablet Client':'Desktop Client');
 
   return (
     <>

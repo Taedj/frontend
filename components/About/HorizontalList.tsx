@@ -14,7 +14,6 @@ const getCell = (value:string|number,description:string) => {
 
 const getValueDescription = (config:Config|undefined):[string|number,string][] => {
   const {data:works} = useWorks();
-  clientLogger.info('Fetching works for calculate how much works done');
   let work_length = 0;
   if (works) {
     work_length = works.length;

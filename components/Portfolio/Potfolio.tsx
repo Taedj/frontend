@@ -8,6 +8,7 @@ import BackgroundText from '../BackgroundText/BackgroundText';
 import CategoriesSelector from './CategoriesSelector';
 import JobModel from './JobModel';
 import './Portfolio.css';
+import clientLogger from '../../lib/clientLogger';
 
 
 const breakpointColumnsObj = {
@@ -34,6 +35,7 @@ const Potfolio = ({handleModalOpen }: Props) => {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden';
+      clientLogger.info(`job page popup`);
     } else {
       document.body.style.overflow = 'unset';
     }
