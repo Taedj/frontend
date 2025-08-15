@@ -12,11 +12,14 @@ const getProfessionList = (config:Config) => {
 
 const Home = () => {
   const {data:config} = useConfig();
+  const bgImage = config?.home_background_image?
+                    `url(${config?.home_background_image})`:
+                    undefined;
   return (
     <div id="Home" className='relative w-full h-screen text-white'>
       <div className='flex flex-col justify-center items-center font-bold bg-fixed h-screen bg-cover before:content-[""] before:absolute before:top-0 before:left:0 before:w-full before:h-full before:bg-[rgb(0,0,0,0.7)] before:z-1'
         style={{
-          backgroundImage:`url(${config?.home_background_image})`
+          backgroundImage:bgImage
         }}
       >
         <p className='text-5xl font-bold leading-20 z-2 m-0 mb-6'>

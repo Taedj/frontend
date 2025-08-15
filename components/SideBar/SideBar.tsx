@@ -1,3 +1,4 @@
+"use client";
 import { useState } from 'react';
 import { colors, dimensions, fontSettings, sections } from '../../constants/constants';
 import useConfig from '../../hooks/useConfig';
@@ -7,6 +8,9 @@ import SocialMedias from './SocialMedias';
 const SideBar = () => {
   const [HoveredIndex,setHoveredIndex] = useState(0);
   const {data:config} = useConfig();
+  const bgImage = config?.profile_image?
+                    `url(${config?.profile_image})`:
+                    undefined;
   return (
     <>
       <div className='flex flex-col justify-between items-center h-screen fixed z-2 bg-bg-very-dark text-opacity-white'
@@ -18,7 +22,7 @@ const SideBar = () => {
           <div className='w-72 h-72 mb-5 bg-cover rounded-full border-8 mt-10'
             style={
               {
-                backgroundImage: `url(${config?.profile_image})`,
+                backgroundImage: bgImage,
                 border:`8px solid ${colors.backgroundLessDarkColor}`
               }
             }
