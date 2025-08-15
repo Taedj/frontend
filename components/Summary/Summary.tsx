@@ -1,7 +1,5 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 import { FaDownload } from "react-icons/fa"
-import { colors, fontSettings } from '../../constants/constants'
+import { colors } from '../../constants/constants'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import Button from '../Button/Button'
 import Skills from './Skills'
@@ -32,7 +30,7 @@ const Summary = () => {
         <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
         <div className='flex max-md:flex-col mt-20'>
           <div className='w-1/2'>
-            {educations?.length! > 0  && <h2 className='text-4xl pl-10'>My Education</h2>} 
+            {(educations && educations?.length > 0)&& <h2 className='text-4xl pl-10'>My Education</h2>} 
             <div>
               {educations?.map(
                 (item:EducationItem) => (
@@ -47,7 +45,7 @@ const Summary = () => {
             </div>
           </div>
           <div className='w-1/2'>
-              {experiences?.length! > 0 && <h2 className='text-4xl pl-10'>My Experience</h2>}
+              {(experiences && experiences?.length > 0)  && <h2 className='text-4xl pl-10'>My Experience</h2>}
               {experiences?.map(
                 (item:EducationItem) => (
                 <SummaryBox year={formatYear(item)}

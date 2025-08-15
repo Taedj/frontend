@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Masonry from "react-masonry-css";
 import Modal from 'react-modal';
-import { colors, fontSettings } from '../../constants/constants';
+import { colors} from '../../constants/constants';
 import useWorks, { PortfolioItem } from '../../hooks/useWorks';
 import BackgroundText from '../BackgroundText/BackgroundText';
 import CategoriesSelector from './CategoriesSelector';
@@ -44,7 +44,7 @@ const Potfolio = ({handleModalOpen }: Props) => {
     };
   }, [open]);
 
-  let selectedData = (category === 'All') ? data : data?.filter((item) => item.service.category === category);
+  const selectedData = (category === 'All') ? data : data?.filter((item) => item.service.category === category);
   return (
     <div id="Portfolio"
       className='py-29 px-0 bg-bg-less-dark'>

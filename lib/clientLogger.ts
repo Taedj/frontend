@@ -14,7 +14,7 @@ const shouldLog = (level: keyof typeof LOG_LEVELS) => {
 };
 
 export const clientLogger = {
-  info: (message: string, data?: any, context?: string) => {
+  info: (message: string, data?: unknown, context?: string) => {
     if (!shouldLog('info')) return;
     
     const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
@@ -27,7 +27,7 @@ export const clientLogger = {
     }
   },
   
-  warn: (message: string, data?: any, context?: string) => {
+  warn: (message: string, data?: unknown, context?: string) => {
     if (!shouldLog('warn')) return;
     
     const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
@@ -40,7 +40,7 @@ export const clientLogger = {
     }
   },
   
-  error: (message: string, error?: any, context?: string) => {
+  error: (message: string, error?: unknown, context?: string) => {
     if (!shouldLog('error')) return;
     
     const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
@@ -53,11 +53,11 @@ export const clientLogger = {
     }
   },
   
-  debug: (message: string, data?: any, context?: string) => {
+  debug: (message: string, data?: unknown, context?: string) => {
     if (!shouldLog('debug')) return;
     
     const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
-    const prefix = `[timestamp}] 🐛 ${context ? `[${context}]` : ''}`;
+    const prefix = `[${timestamp}] 🐛 ${context ? `[${context}]` : ''}`;
     
     if (data) {
       console.debug(`${prefix} ${message}`, data);

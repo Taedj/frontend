@@ -1,4 +1,3 @@
-import { colors } from '../../constants/constants';
 
 interface Props {
   year:string;

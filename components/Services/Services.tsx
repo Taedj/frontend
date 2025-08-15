@@ -1,4 +1,3 @@
-import { colors, fontSettings } from '../../constants/constants'
 import useServices from '../../hooks/useServices'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import ServiceBox, { Category } from './ServiceBox'

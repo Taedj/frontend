@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { colors, fontSettings } from '../../constants/constants';
 import useCategories from '../../hooks/useCategories';
 
 interface Props {
-  categoryHandler:Function
+  categoryHandler:(string) => void;
 }
 
 const CategoriesSelector = ({categoryHandler}:Props) => {

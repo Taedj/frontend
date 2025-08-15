@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { colors, fontSettings } from '../../constants/constants'
 import useSlidesCount from '../../hooks/useSlidesCount'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import Carousel from './Carousel'
@@ -15,9 +14,9 @@ interface Review {
   review: string;
 }
 
-const authHeader = {
-  'Authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1ODQ1NTQwLCJpYXQiOjE3NTQ4OTUxNDAsImp0aSI6IjQxYjVlYTU5MTkxZDRkNzc4YWY1Zjg1YWM2NjAxYzlhIiwidXNlcl9pZCI6MX0.cYkU0PGodt2u_38FDL0d9HhcKVhvBpjLMZSZKNoxuUY'
-}
+// const authHeader = {
+//   'Authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1ODQ1NTQwLCJpYXQiOjE3NTQ4OTUxNDAsImp0aSI6IjQxYjVlYTU5MTkxZDRkNzc4YWY1Zjg1YWM2NjAxYzlhIiwidXNlcl9pZCI6MX0.cYkU0PGodt2u_38FDL0d9HhcKVhvBpjLMZSZKNoxuUY'
+// }
 
 const Testimonials = () => {
   const [reviews,setReviews] = useState<Review[]>([]);

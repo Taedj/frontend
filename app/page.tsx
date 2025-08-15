@@ -1,5 +1,5 @@
 'use client';
-import { QueryClient,QueryCache, QueryClientProvider } from '@tanstack/react-query';
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import About from '../components/About/About';
 import Contact from '../components/Contact/Contact';
@@ -13,7 +13,6 @@ import Summary from '../components/Summary/Summary';
 import Testimonials from '../components/Testimonial/Testimonials';
 import { dimensions } from '../constants/constants';
 import useIsMobile from '../hooks/useIsMobile';
-import logger from '../lib/logger';
 import clientLogger from '../lib/clientLogger';
 
 

@@ -1,5 +1,5 @@
 import { Typewriter } from 'react-simple-typewriter'
-import { colors, fontSettings } from '../../constants/constants'
+import { colors } from '../../constants/constants'
 import useConfig, { Config } from '../../hooks/useConfig'
 import Button from '../Button/Button'
 import Chevron from '../Chevron/Chevron'

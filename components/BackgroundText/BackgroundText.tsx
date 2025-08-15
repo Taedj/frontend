@@ -1,5 +1,3 @@
-import { colors } from '../../constants/constants';
-
 interface Props {
   backgroundText:string,
   innerText:string;

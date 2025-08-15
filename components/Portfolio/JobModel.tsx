@@ -2,7 +2,7 @@ import { RxCross1 } from "react-icons/rx";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { colors, dimensions } from '../../constants/constants';
+import { dimensions } from '../../constants/constants';
 import useJobModelSliderWidth from '../../hooks/useJobModelSliderWidth';
 import '../Testimonial/Carousel.css';
 import './JobModel.css';

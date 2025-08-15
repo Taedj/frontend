@@ -1,7 +1,5 @@
-import { colors, dimensions } from '../../constants/constants'
 import useConfig, { Config } from '../../hooks/useConfig'
 import useWorks from '../../hooks/useWorks'
-import clientLogger from '../../lib/clientLogger'
 
 
 const getCell = (value:string|number,description:string) => {
@@ -12,23 +10,18 @@ const getCell = (value:string|number,description:string) => {
 }
 
 
-const getValueDescription = (config:Config|undefined):[string|number,string][] => {
-  const {data:works} = useWorks();
-  let work_length = 0;
-  if (works) {
-    work_length = works.length;
-  }
+const getValueDescription = (config:Config|undefined,worthLength:number):[string|number,string][] => {
   if (config)
     return [
       [config.experience_years,'Years Experience'],
       [config.awards_count,'Happy Clients'],
-      [work_length,'Projects Done'],
+      [worthLength,'Projects Done'],
       [config.awards_count,'Get Awards']
     ]
   return [
     ['','Years Experience'],
     ['','Happy Clients'],
-    [work_length,'Projects Done'],
+    [worthLength,'Projects Done'],
     ['','Get Awards']
   ]
 }
@@ -50,9 +43,14 @@ const borderStyles = {
 
 
 const HorizontalList = () => {
-  const {breakpoint} = dimensions;
   const {data:config} = useConfig();
-  const value_description = getValueDescription(config);
+
+  const {data:works} = useWorks();
+  let workLength = 0;
+  if (works) {
+    workLength = works.length;
+  }
+  const value_description = getValueDescription(config,workLength);
   return (
     <div className='mt-19'>
       <ul className='max-md:grid max-md:grid-cols-2 md:flex my-0 mx-19 text-2xl list-none'>

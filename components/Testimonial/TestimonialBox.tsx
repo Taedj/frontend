@@ -1,5 +1,5 @@
 import { AiFillStar } from "react-icons/ai";
-import { colors, fontSettings } from '../../constants/constants';
+import { colors } from '../../constants/constants';
 
 interface Props {
   image:string;

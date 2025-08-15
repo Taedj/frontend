@@ -1,5 +1,3 @@
-import { colors, fontSettings } from '../../constants/constants'
-
 const Footer = () => {
   return (
     <div 
