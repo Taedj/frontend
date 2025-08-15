@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { dimensions } from '../constants/constants';
+import clientLogger from '../lib/clientLogger';
 
 const useIsMobile = () => {
   const [isMobile,setIsMobile] = useState(false);
@@ -10,7 +11,7 @@ const useIsMobile = () => {
 
   useEffect(() => {
     setIsMobile(checkMobile());
-    
+    clientLogger.info(isMobile?'Mobile view':'Desktop View');
     const handleResize = () => {
         setIsMobile(checkMobile());
     };

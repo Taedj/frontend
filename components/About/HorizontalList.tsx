@@ -1,6 +1,7 @@
 import { colors, dimensions } from '../../constants/constants'
 import useConfig, { Config } from '../../hooks/useConfig'
 import useWorks from '../../hooks/useWorks'
+import clientLogger from '../../lib/clientLogger'
 
 
 const getCell = (value:string|number,description:string) => {
@@ -13,6 +14,7 @@ const getCell = (value:string|number,description:string) => {
 
 const getValueDescription = (config:Config|undefined):[string|number,string][] => {
   const {data:works} = useWorks();
+  clientLogger.info('Fetching works for calculate how much works done');
   let work_length = 0;
   if (works) {
     work_length = works.length;

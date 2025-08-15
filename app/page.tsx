@@ -1,5 +1,5 @@
 'use client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient,QueryCache, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import About from '../components/About/About';
 import Contact from '../components/Contact/Contact';
@@ -13,12 +13,26 @@ import Summary from '../components/Summary/Summary';
 import Testimonials from '../components/Testimonial/Testimonials';
 import { dimensions } from '../constants/constants';
 import useIsMobile from '../hooks/useIsMobile';
+import logger from '../lib/logger';
+import clientLogger from '../lib/clientLogger';
 
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+      onSuccess: (data, query) => {
+        clientLogger.info(`Query success for ${query.queryKey}`, data);
+      },
+      onError: (err, query) => {
+        console.error(`Query error for ${query.queryKey}`, err);
+      },
+    }),
+  });
   const [modalOpen,setModalOpen] = useState(false);
   const {isMobile} = useIsMobile();
+
+  console.info(isMobile ? 'Mobile|Tablet Client':'Desktop Client');
+
   return (
     <>
       <QueryClientProvider client={queryClient}>

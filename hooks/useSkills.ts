@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { SkillsClient } from '../http';
+import clientLogger from '../lib/clientLogger';
 
 export interface Skill {
     title:string;
@@ -12,7 +13,7 @@ const useSkills = () => {
             queryKey :['skills'],
             queryFn :() => SkillsClient.getAll('/skills'),
             staleTime:24*60*60*1000, // 1 day
-            placeholderData:[]
+            placeholderData:[],
         }
     )
 }  

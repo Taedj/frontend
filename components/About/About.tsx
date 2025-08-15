@@ -4,10 +4,12 @@ import BackgroundText from '../BackgroundText/BackgroundText'
 import HorizontalList from './HorizontalList'
 import Paragraph from './Paragraph'
 import VerticalList from './VerticalList'
+import clientLogger from '../../lib/clientLogger'
 
 
 
 const About = () => {
+  clientLogger.info('Fetching website config');
   const {data:config} = useConfig();
   return (
     <>
