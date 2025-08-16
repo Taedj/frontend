@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { colors, dimensions, sections } from '../../constants/constants';
 import useConfig from '../../hooks/useConfig';
 import SocialMedias from './SocialMedias';
+import Link from 'next/link';
 
 
 const SideBar = () => {
@@ -30,7 +31,7 @@ const SideBar = () => {
           </div>
           <h1 className='text-4xl font-semibold leading-10'>{config?.fullname}</h1>
         </div>
-        <ul className='flex flex-col items-center list-none text-3xl leading-10 p-0 font-semiboldfont-semibold'>
+        <ul className='flex flex-col items-center list-none text-3xl leading-10 p-0 font-semibold'>
           {sections.map((section,index) => (
             <li key={section} className='p-4'
               style={{
@@ -46,6 +47,14 @@ const SideBar = () => {
             </li>
           ))}
         </ul>
+        <div className="text-3xl font-semibold ">
+          <span className='mr-4 hover:text-primary'>
+            <Link href='/signin'>Sign-in</Link>
+          </span>
+          <span className="hover:text-primary">
+            <Link href='/signup'>Sign-up</Link>
+          </span>
+        </div>
         <SocialMedias/>
       </div>
     </>

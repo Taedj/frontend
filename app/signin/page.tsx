@@ -1,5 +1,6 @@
 'use client';
 import React from 'react'
+import Link from 'next/link';
 import Button from '../../components/Button/Button'
 import { colors } from '../../constants/constants'
 
@@ -34,7 +35,7 @@ const Page = () => {
               </div>
           </form>
           <div className="switch-auth text-lg text-center">
-              Don't have an account? <a className="text-primary" href="signin.html">Sign Up</a>
+              Don't have an account? <span className="text-primary"><Link href="/signup">Sign Up</Link></span>
           </div>
       </div>
     </div>
