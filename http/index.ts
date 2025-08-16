@@ -5,6 +5,7 @@ import WorksClient from "./WorksService";
 import EducationClient from "./EducationsService";
 import ExperiencesClient from "./ExperiencesService";
 import CategoriesClient from "./CategoriesService";
+import EmailClient from "./EmailService";
 
 export { 
     ConfigClient,
@@ -13,5 +14,6 @@ export {
     WorksClient,
     EducationClient,
     ExperiencesClient,
-    CategoriesClient
+    CategoriesClient,
+    EmailClient
 };
