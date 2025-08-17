@@ -6,6 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button/Button'
 import { colors } from '../../constants/constants'
+import { User } from '../../hooks/useCreateUser';
+import useCreateUser from '../../hooks/useCreateUser';
 
 const styles = {
   input:'bg-bg-dark text-bg-text-less-dark w-full py-5 px-6 border-none rounded-md text-2xl "transition-[border] duration-300 focus:outline-none',
@@ -24,7 +26,10 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 
+
+
 const Page = () => {
+  const {mutate} = useCreateUser();
   const {register,handleSubmit} = useForm<FormData>({
     resolver:zodResolver(schema)
   });
@@ -32,7 +37,7 @@ const Page = () => {
     <div id="sign-in" className='m-0 p-0 flex justify-center items-center h-screen bg-bg-less-dark text-white'>
       <div className="auth-container rounded-xl w-full max-w-[400px] p-12">
           <h1 className='text-center mb-10 font-semibold text-primary text-5xl'>Create an Account</h1>
-          <form onSubmit={handleSubmit(data => console.log(data))}>
+          <form onSubmit={handleSubmit(user => mutate(user))}>
               <div className="form-group mb-8">
                   <label htmlFor="first-name" className={styles.label}>First Name</label>
                   <input {...register('firstName')} type="text" id="first-name" placeholder="John Doe" name="firstName" className={styles.input} />
