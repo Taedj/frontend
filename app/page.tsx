@@ -25,22 +25,20 @@ function App() {
 
   return (
     <>
-      
-        {(!isMobile && !modalOpen) && <SideBar/>}
-        <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
-          {(isMobile  && !modalOpen )&& <Navbar/>}
-          <Home/>
-          <About/>
-          <Services/>
-          <Summary/>
-          <Potfolio 
-            handleModalOpen={setModalOpen} 
-          />
-          <Testimonials/>
-          <Contact/>
-          <Footer />
-        </div>
-      
+      {(!isMobile && !modalOpen) && <SideBar/>}
+      <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
+        {(isMobile  && !modalOpen )&& <Navbar/>}
+        <Home/>
+        <About/>
+        <Services/>
+        <Summary/>
+        <Potfolio 
+          handleModalOpen={setModalOpen} 
+        />
+        <Testimonials/>
+        <Contact/>
+        <Footer />
+      </div>
     </>
   )
 }

@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 import Button from '../../components/Button/Button'
 import { colors } from '../../constants/constants'
+import useLogin from '../../hooks/useLogin';
 
 const styles = {
   input:'bg-bg-dark text-bg-text-less-dark w-full py-5 px-6 border-none rounded-md text-2xl "transition-[border] duration-300 focus:outline-none',
@@ -13,13 +14,14 @@ const styles = {
 }
 
 const schema = z.object({
-  email:z.email(),
+  username:z.string(),
   password:z.string()
 })
 
 type FormData = z.infer<typeof schema>;
 
 const Page = () => {
+  const {mutate} = useLogin();
   const {register,handleSubmit} = useForm<FormData>(
     {resolver:zodResolver(schema)}
   );
@@ -27,10 +29,10 @@ const Page = () => {
     <div id="sign-in" className='m-0 p-0 flex justify-center items-center h-screen bg-bg-less-dark text-white'>
       <div className="auth-container rounded-xl w-full max-w-[400px] p-12">
           <h1 className='text-center mb-10 font-semibold text-primary text-5xl'>Login</h1>
-          <form onSubmit={handleSubmit(data => console.log(data))}>
+          <form onSubmit={handleSubmit(data => mutate(data))}>
               <div className="form-group mb-8">
-                  <label htmlFor="email" className={styles.label}>Email</label>
-                  <input {...register('email')} type="text" id="email" placeholder="bensouiciakram@gmail.com" name="email" className={styles.input} />
+                  <label htmlFor="username" className={styles.label}>Username</label>
+                  <input {...register('username')} type="text" id="username" placeholder="kiroutek" name="username" className={styles.input} />
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="password" className={styles.label}>Password</label>
