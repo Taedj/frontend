@@ -18,6 +18,8 @@ const schema = z.object({
   firstName:z.string().min(3).max(100),
   lastName:z.string().min(3).max(100),
   phone: z.string().regex(/^\+?[1-9]\d{1,14}$/),
+  age:z.string(),
+  username:z.string(),
   email:z.email(),
   password:z.string(),
   confirmPassword:z.string()
@@ -47,8 +49,16 @@ const Page = () => {
                   <input  {...register('lastName')} type="text" id="last-name" placeholder="John Doe" name="lastName" className={styles.input} />
               </div>
               <div className="form-group mb-8">
+                  <label htmlFor="age" className={styles.label}>Age</label>
+                  <input  {...register('age')} type="text" id="age" placeholder="30" name="age" className={styles.input} />
+              </div>
+              <div className="form-group mb-8">
                   <label htmlFor="phone" className={styles.label}>Phone</label>
                   <input  {...register('phone')} type="text" id="phone" placeholder="John Doe" name="phone" className={styles.input} />
+              </div>
+              <div className="form-group mb-8">
+                  <label htmlFor="username" className={styles.label}>Username</label>
+                  <input  {...register('username')} type="text" id="username" placeholder="kiroutek" name="username" className={styles.input} required/>
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="email" className={styles.label}>Email</label>

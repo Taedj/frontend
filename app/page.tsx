@@ -1,5 +1,5 @@
 'use client';
-import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import { useState } from 'react';
 import About from '../components/About/About';
 import Contact from '../components/Contact/Contact';
@@ -17,16 +17,7 @@ import clientLogger from '../lib/clientLogger';
 
 
 function App() {
-  const queryClient = new QueryClient({
-    queryCache: new QueryCache({
-      onSuccess: (data, query) => {
-        clientLogger.info(`Query success for ${query.queryKey}`, data);
-      },
-      onError: (err, query) => {
-        console.error(`Query error for ${query.queryKey}`, err);
-      },
-    }),
-  });
+
   const [modalOpen,setModalOpen] = useState(false);
   const {isMobile} = useIsMobile();
 
@@ -34,7 +25,7 @@ function App() {
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
+      
         {(!isMobile && !modalOpen) && <SideBar/>}
         <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
           {(isMobile  && !modalOpen )&& <Navbar/>}
@@ -49,7 +40,7 @@ function App() {
           <Contact/>
           <Footer />
         </div>
-      </QueryClientProvider>
+      
     </>
   )
 }
