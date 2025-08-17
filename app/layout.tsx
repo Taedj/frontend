@@ -1,5 +1,5 @@
 'use client';
-import type { Metadata } from 'next'
+// import type { Metadata } from 'next'
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import clientLogger from '../lib/clientLogger';
 import './globals.css'

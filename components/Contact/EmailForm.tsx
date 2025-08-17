@@ -12,13 +12,13 @@ const EmailForm = () => {
     Message:z.string().max(1000)
   })
   type FormData = z.infer<typeof schema>;
-  const { mutate, isPending, isError, isSuccess } = useSendEmail();
+  const { mutate } = useSendEmail();
 
   const onSubmit = (data) => {
     mutate(data);
   }
 
-  const {register,handleSubmit,formState:{errors}} = useForm<FormData>({resolver:zodResolver(schema)});
+  const {register,handleSubmit} = useForm<FormData>({resolver:zodResolver(schema)});
   return (
     <form className='py-0 px-20' onSubmit={handleSubmit(onSubmit)}>
       <h1 className='m-0 mb-4 text-4xl'>SEND US A NOTE</h1>

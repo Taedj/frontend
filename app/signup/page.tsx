@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button/Button'
 import { colors } from '../../constants/constants'
-import { User } from '../../hooks/useCreateUser';
 import useCreateUser from '../../hooks/useCreateUser';
 
 const styles = {
