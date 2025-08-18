@@ -27,6 +27,13 @@ class AuthClient {
             { withCredentials: true }
         );
     }
+
+    checkLogin = async function() {
+        return await axiosInstance.get(
+            this.endpoint + 'check_login/',
+            { withCredentials: true }
+        )
+    }
 }
 
 export default AuthClient;

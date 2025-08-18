@@ -32,9 +32,6 @@ const Page = () => {
     {resolver:zodResolver(schema)}
   );
   if (isSuccess){
-    const {isLoggedIn,setIsLoggedIn} = useIsLogged();
-    setIsLoggedIn(true);
-    console.log('isLogged value',isLoggedIn);
     redirect('/');
   }
   return (
