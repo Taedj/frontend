@@ -1,6 +1,7 @@
 'use client';
 // import type { Metadata } from 'next'
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AuthProvider from '../context/isLoggedProvider';
 import clientLogger from '../lib/clientLogger';
 import './globals.css'
 
@@ -27,10 +28,11 @@ export default function RootLayout({
   });
   return (
     <QueryClientProvider client={queryClient}>
-      <html lang="en">
-        
-        <body>{children}</body>
-      </html>
+      <AuthProvider>
+        <html lang="en">
+          <body>{children}</body>
+        </html>
+      </AuthProvider>
     </QueryClientProvider>
   )
 }

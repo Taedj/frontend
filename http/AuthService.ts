@@ -14,8 +14,17 @@ class AuthClient {
 
     login = async function(creds:Login) {
         return await axiosInstance.post<Login>(
-            this.endpoint, 
-            creds
+            this.endpoint + 'login/', 
+            creds,
+            { withCredentials: true }
+        );
+    }
+
+    logout = async function() {
+        return await axiosInstance.post(
+            this.endpoint + 'logout/',
+            {},
+            { withCredentials: true }
         );
     }
 }

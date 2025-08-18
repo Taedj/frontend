@@ -4,11 +4,15 @@ import { colors, dimensions, sections } from '../../constants/constants';
 import useConfig from '../../hooks/useConfig';
 import SocialMedias from './SocialMedias';
 import Link from 'next/link';
+import useIsLogged from '../../hooks/useIsLogged';
+import useLogout from '../../hooks/useLogout';
 
 
 const SideBar = () => {
   const [HoveredIndex,setHoveredIndex] = useState(0);
   const {data:config} = useConfig();
+  const {isLoggedIn} = useIsLogged();
+  const {mutate} = useLogout();
   const bgImage = config?.profile_image?
                     `url(${config?.profile_image})`:
                     undefined;
@@ -47,14 +51,21 @@ const SideBar = () => {
             </li>
           ))}
         </ul>
-        <div className="text-3xl font-semibold ">
+        { !isLoggedIn && <div className="text-3xl font-semibold ">
           <span className='mr-4 hover:text-primary'>
             <Link href='/signin'>Sign-in</Link>
           </span>
           <span className="hover:text-primary">
             <Link href='/signup'>Sign-up</Link>
           </span>
+        </div>}
+        {
+          isLoggedIn && <div className="text-3xl font-semibold ">
+          <span className="hover:text-primary">
+            <a href='/' onClick={() => mutate()}>Logout</a>
+          </span>
         </div>
+        }
         <SocialMedias/>
       </div>
     </>

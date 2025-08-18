@@ -6,12 +6,12 @@ export interface Login {
     password:string
 }
 
-const useLogin = () => {
+const useLogout = () => {
     const authClient = new AuthClient('/core/signin/');
     return useMutation({
-        mutationKey:['login'],
-        mutationFn:(creds:Login) => authClient.login(creds)
+        mutationKey:['logout'],
+        mutationFn:() => authClient.logout()
     })
 }
 
-export default useLogin;
+export default useLogout;
