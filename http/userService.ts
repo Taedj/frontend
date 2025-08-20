@@ -1,5 +1,5 @@
 import axios from "axios";
-import { User } from "../hooks/useCreateUser";
+import { User,ActivationParams } from "../hooks/useCreateUser";
 
 const axiosInstance = axios.create({
     baseURL: 'http://localhost:8000'
@@ -22,6 +22,13 @@ class UserClient {
                 }
             }
         );
+    }
+
+    activate = async function(activationParams:ActivationParams) {
+        return await axiosInstance.post<ActivationParams>(
+            this.endpoint + 'activation/',
+            activationParams
+        )
     }
 }
 

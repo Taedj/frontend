@@ -11,6 +11,16 @@ export interface User {
     re_password:string
 }
 
+export type ActivationParams = {
+    uid:string,
+    token:string
+}
+
+export const activateUser = async (activationParams:ActivationParams) => {
+    const userClient = new UserClient('/auth/users/');
+    await userClient.activate(activationParams);
+}
+
 const useCreateUser = () => {
     const userClient = new UserClient('/auth/users/');
     return useMutation({

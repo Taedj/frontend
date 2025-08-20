@@ -27,8 +27,6 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 
-
-
 const Page = () => {
   const {mutate} = useCreateUser();
   const {register,handleSubmit} = useForm<FormData>({
