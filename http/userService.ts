@@ -15,7 +15,12 @@ class UserClient {
     create = async function(user:User) {
         return await axiosInstance.post<User>(
             this.endpoint, 
-            user
+            user,
+            {
+                headers:{
+                    "Content-Type": "application/json",
+                }
+            }
         );
     }
 }

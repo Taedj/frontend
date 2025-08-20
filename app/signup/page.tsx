@@ -14,14 +14,14 @@ const styles = {
 }
 
 const schema = z.object({
-  firstName:z.string().min(3).max(100),
-  lastName:z.string().min(3).max(100),
-  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/),
+  first_name:z.string().min(3).max(100),
+  last_name:z.string().min(3).max(100),
+  phone1: z.string(),//.regex(/^\+?[1-9]\d{1,14}$/),
   age:z.string(),
   username:z.string(),
   email:z.email(),
   password:z.string(),
-  confirmPassword:z.string()
+  re_password:z.string()
 })
 
 type FormData = z.infer<typeof schema>;
@@ -41,11 +41,11 @@ const Page = () => {
           <form onSubmit={handleSubmit(user => mutate(user))}>
               <div className="form-group mb-8">
                   <label htmlFor="first-name" className={styles.label}>First Name</label>
-                  <input {...register('firstName')} type="text" id="first-name" placeholder="John Doe" name="firstName" className={styles.input} />
+                  <input {...register('first_name')} type="text" id="first-name" placeholder="John Doe" name="first_name" className={styles.input} />
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="last-name" className={styles.label}>Last Name</label>
-                  <input  {...register('lastName')} type="text" id="last-name" placeholder="John Doe" name="lastName" className={styles.input} />
+                  <input  {...register('last_name')} type="text" id="last-name" placeholder="John Doe" name="last_name" className={styles.input} />
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="age" className={styles.label}>Age</label>
@@ -53,7 +53,7 @@ const Page = () => {
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="phone" className={styles.label}>Phone</label>
-                  <input  {...register('phone')} type="text" id="phone" placeholder="John Doe" name="phone" className={styles.input} />
+                  <input  {...register('phone1')} type="text" id="phone" placeholder="John Doe" name="phone1" className={styles.input} />
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="username" className={styles.label}>Username</label>
@@ -68,8 +68,8 @@ const Page = () => {
                   <input  {...register('password')} type="password" id="password" placeholder="••••••••" name="password" className={styles.input} required/>
               </div>
               <div className="form-group mb-8">
-                  <label htmlFor="confirm-password" className={styles.label}>Confirm Password</label>
-                  <input  {...register('confirmPassword')} type="password" id="confirm-password" placeholder="••••••••" name="confirmPassword" className={styles.input} required/>
+                  <label htmlFor="re_password" className={styles.label}>Confirm Password</label>
+                  <input  {...register('re_password')} type="password" id="re_password" placeholder="••••••••" name="re_password" className={styles.input} required/>
               </div>
               <div className='flex justify-center my-12'>
                 <Button
