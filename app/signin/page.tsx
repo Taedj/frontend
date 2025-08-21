@@ -16,7 +16,7 @@ const styles = {
 }
 
 const schema = z.object({
-  username:z.string(),
+  username:z.string().min(3),
   password:z.string()
 })
 
@@ -28,7 +28,7 @@ const Page = () => {
   const onSubmit = (data) => {
     mutate(data);
   }
-  const {register,handleSubmit} = useForm<FormData>(
+  const {register,handleSubmit,formState:{errors}} = useForm<FormData>(
     {resolver:zodResolver(schema)}
   );
   if (isSuccess){
@@ -42,10 +42,16 @@ const Page = () => {
               <div className="form-group mb-8">
                   <label htmlFor="username" className={styles.label}>Username</label>
                   <input {...register('username')} type="text" id="username" placeholder="kiroutek" name="username" className={styles.input} />
+                  {errors.username &&(
+                    <p className='text-red-500 text-2xl my-2'>{errors.username.type}</p>
+                  )}
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="password" className={styles.label}>Password</label>
                   <input {...register('password')} type="text" id="password" placeholder="********" name="password" className={styles.input} />
+                  {errors.password &&(
+                    <p className='text-red-500 text-2xl my-2'>{errors.password.type}</p>
+                  )}
               </div>
               <div className='flex justify-center my-12'>
                 <Button

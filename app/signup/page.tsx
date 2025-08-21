@@ -33,7 +33,7 @@ type FormData = z.infer<typeof schema>;
 const Page = () => {
   const router = useRouter();
   const {mutate,isSuccess} = useCreateUser();
-  const {register,handleSubmit} = useForm<FormData>({
+  const {register,handleSubmit,formState:{errors}} = useForm<FormData>({
     resolver:zodResolver(schema)
   });
   const onSubmit = (user:User) => {
@@ -45,6 +45,7 @@ const Page = () => {
     },
     [isSuccess,router]
   )
+  console.log('errors',errors);
   return (
     <div id="sign-in" className='m-0 p-0 flex justify-center items-center h-screen bg-bg-less-dark text-white'>
       <div className="auth-container rounded-xl w-full max-w-[400px] p-12">
@@ -53,34 +54,42 @@ const Page = () => {
               <div className="form-group mb-8">
                   <label htmlFor="first-name" className={styles.label}>First Name</label>
                   <input {...register('first_name')} type="text" id="first-name" placeholder="John Doe" name="first_name" className={styles.input} />
+                  <p className='text-red-500 text-2xl my-2'>{errors.first_name?.type}</p>
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="last-name" className={styles.label}>Last Name</label>
                   <input  {...register('last_name')} type="text" id="last-name" placeholder="John Doe" name="last_name" className={styles.input} />
+                  <p className='text-red-500 text-2xl my-2'>{errors.last_name?.type}</p>
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="age" className={styles.label}>Age</label>
                   <input  {...register('age')} type="text" id="age" placeholder="30" name="age" className={styles.input} />
+                  <p className='text-red-500 text-2xl my-2'>{errors.age?.type}</p>
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="phone" className={styles.label}>Phone</label>
                   <input  {...register('phone1')} type="text" id="phone" placeholder="John Doe" name="phone1" className={styles.input} />
+                  <p className='text-red-500 text-2xl my-2'>{errors.phone1?.type}</p>
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="username" className={styles.label}>Username</label>
                   <input  {...register('username')} type="text" id="username" placeholder="kiroutek" name="username" className={styles.input} required/>
+                  <p className='text-red-500 text-2xl my-2'>{errors.username?.type}</p>
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="email" className={styles.label}>Email</label>
                   <input  {...register('email')} type="email" id="email" placeholder="john@example.com" name="email" className={styles.input} required/>
+                  <p className='text-red-500 text-2xl my-2'>{errors.email?.type}</p>
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="password" className={styles.label}>Password</label>
                   <input  {...register('password')} type="password" id="password" placeholder="••••••••" name="password" className={styles.input} required/>
+                  <p className='text-red-500 text-2xl my-2'>{errors.password?.type}</p>
               </div>
               <div className="form-group mb-8">
                   <label htmlFor="re_password" className={styles.label}>Confirm Password</label>
                   <input  {...register('re_password')} type="password" id="re_password" placeholder="••••••••" name="re_password" className={styles.input} required/>
+                  <p className='text-red-500 text-2xl my-2'>{errors.re_password?.type}</p>
               </div>
               <div className='flex justify-center my-12'>
                 <Button
