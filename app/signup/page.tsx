@@ -1,12 +1,14 @@
 'use client';
 import React from 'react'
 import Link from 'next/link';
+import { redirect } from "next/navigation";
 import {z} from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button/Button'
 import { colors } from '../../constants/constants'
 import useCreateUser from '../../hooks/useCreateUser';
+import { User } from '../../hooks/useCreateUser';
 
 const styles = {
   input:'bg-bg-dark text-bg-text-less-dark w-full py-5 px-6 border-none rounded-md text-2xl "transition-[border] duration-300 focus:outline-none',
@@ -27,11 +29,16 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 
+
 const Page = () => {
-  const {mutate} = useCreateUser();
+  const {mutate,isSuccess} = useCreateUser();
   const {register,handleSubmit} = useForm<FormData>({
     resolver:zodResolver(schema)
   });
+  const onSubmit = (user:User) => {
+    mutate(user);
+  }
+  if (isSuccess) redirect('/');
   return (
     <div id="sign-in" className='m-0 p-0 flex justify-center items-center h-screen bg-bg-less-dark text-white'>
       <div className="auth-container rounded-xl w-full max-w-[400px] p-12">
@@ -75,7 +82,7 @@ const Page = () => {
                   width="30rem"
                   height="5rem"
                   backGroundColor={colors.primaryColor}
-                  hoverBackground={colors.primaryColor}
+                  hoverBackground={colors.hoverPrimaryColor}
                   outline={false}
                 >Sign Up</Button>
               </div>

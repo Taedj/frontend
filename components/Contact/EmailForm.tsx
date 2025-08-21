@@ -27,7 +27,7 @@ const EmailForm = () => {
           <input 
             {...register('Name')}
             type="text"
-            className='flex-1 md:mr-4 md:mb-4 ml-0 rounded-[5px] p-6 text-2xl m-4 border-0 text-white bg-bg-dark' 
+            className='flex-1 md:mr-4 md:mb-4 mx-0 mb-0 rounded-[5px] p-6 text-2xl m-4 border-0 text-white bg-bg-dark' 
             placeholder='Name'
             name='Name'
             required
@@ -35,7 +35,7 @@ const EmailForm = () => {
           <input 
             {...register('Email')}
             type="email" 
-            className='flex-1 md:ml-4 mr-0 rounded-[5px] p-6 text-2xl m-4 border-0 text-white bg-bg-dark'
+            className='flex-1 md:ml-4 mr-0 rounded-[5px] p-6 text-2xl my-4 border-0 text-white bg-bg-dark'
             placeholder='Email'
             name='Email'
             required
@@ -54,7 +54,7 @@ const EmailForm = () => {
           height="5.4rem"
           width="20.5rem"
           backGroundColor={colors.primaryColor}
-          hoverBackground="rgb(27, 170, 128)"
+          hoverBackground={colors.hoverPrimaryColor}
           outline={false}
         >Send Message</Button>
       </div>

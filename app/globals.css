@@ -3,6 +3,7 @@
 @theme {
     --color-about-border : rgba(255, 255, 255, 0.5);
     --color-primary:#20C997;
+    --color-hover-primary:#189e76;
     --color-navbar:rgb(17, 20, 24);
     --color-menu:rgba(0, 0, 0, 0.95);
     --color-menu-item-border:rgba(250, 250, 250, 0.15);

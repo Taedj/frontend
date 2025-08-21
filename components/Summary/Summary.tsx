@@ -29,7 +29,7 @@ const Summary = () => {
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText="SUMMARY" innerText="Resume"/>
         <div className='flex max-md:flex-col mt-20'>
-          <div className='w-1/2'>
+          <div className='md:w-1/2'>
             {(educations && educations?.length > 0)&& <h2 className='text-4xl pl-10'>My Education</h2>} 
             <div>
               {educations?.map(
@@ -44,7 +44,7 @@ const Summary = () => {
               ))}
             </div>
           </div>
-          <div className='w-1/2'>
+          <div className='md:w-1/2'>
               {(experiences && experiences?.length > 0)  && <h2 className='text-4xl pl-10'>My Experience</h2>}
               {experiences?.map(
                 (item:EducationItem) => (

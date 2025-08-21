@@ -26,7 +26,7 @@ const VerticalList = () => {
           width="19.5rem"
           height="5rem"
           backGroundColor={colors.primaryColor}
-          hoverBackground={colors.primaryColor}
+          hoverBackground={colors.hoverPrimaryColor}
           outline={false}
         >Download CV</Button>  
     </div>

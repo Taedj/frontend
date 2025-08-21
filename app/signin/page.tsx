@@ -53,7 +53,7 @@ const Page = () => {
                   width="30rem"
                   height="5rem"
                   backGroundColor={colors.primaryColor}
-                  hoverBackground={colors.primaryColor}
+                  hoverBackground={colors.hoverPrimaryColor}
                   outline={false}
                 >Sign In</Button>
               </div>

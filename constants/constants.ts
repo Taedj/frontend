@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export const colors = {
     'primaryColor':'#20C997',
+    'hoverPrimaryColor':'#189e76',
     'navbarColor':'rgb(17, 20, 24)',
     'menuColor':'rgba(0, 0, 0, 0.95)',
     'menuItemBorderColor':'rgba(250, 250, 250, 0.15)',
