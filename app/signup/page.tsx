@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form';
 import Button from '../../components/Button/Button'
 import { colors } from '../../constants/constants'
 import useCreateUser from '../../hooks/useCreateUser';
-import { User } from '../../hooks/useCreateUser';
 
 const styles = {
   input:'bg-bg-dark text-bg-text-less-dark w-full py-5 px-6 border-none rounded-md text-2xl "transition-[border] duration-300 focus:outline-none',
@@ -36,9 +35,6 @@ const Page = () => {
   const {register,handleSubmit,formState:{errors}} = useForm<FormData>({
     resolver:zodResolver(schema)
   });
-  const onSubmit = (user:User) => {
-    mutate(user);
-  }
   useEffect(
     ()=>{
       if (isSuccess) router.push('/signup/activation');

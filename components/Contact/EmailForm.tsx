@@ -22,13 +22,13 @@ const EmailForm = () => {
   return (
     <form className='py-0 px-20' onSubmit={handleSubmit(onSubmit)}>
       <h1 className='m-0 mb-4 text-4xl'>SEND US A NOTE</h1>
-      <div>
-        <div className='flex max-md:flex-col w-full'>
-          <div>
+      <div className='flex gap-4 flex-col'>
+        <div className='flex max-md:flex-col w-full gap-4'>
+          <div className='flex-1'>
             <input 
               {...register('Name')}
               type="text"
-              className='flex-1 md:mr-4 md:mb-4 mx-0 mb-0 rounded-[5px] p-6 text-2xl m-4 border-0 text-white bg-bg-dark' 
+              className='rounded-[5px] p-6 text-2xl border-0 text-white bg-bg-dark w-full' 
               placeholder='Name'
               name='Name'
               required
@@ -37,11 +37,11 @@ const EmailForm = () => {
               <p className='text-red-500 text-2xl my-2'>{errors.Name.type}</p>
             )}
           </div>
-          <div>
+          <div className='flex-1'>
             <input 
               {...register('Email')}
               type="email" 
-              className='flex-1 md:ml-4 mr-0 rounded-[5px] p-6 text-2xl my-4 border-0 text-white bg-bg-dark'
+              className='rounded-[5px] p-6 text-2xl border-0 text-white bg-bg-dark w-full'
               placeholder='Email'
               name='Email'
               required

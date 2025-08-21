@@ -8,7 +8,6 @@ import {useForm} from 'react-hook-form';
 import Button from '../../components/Button/Button'
 import { colors } from '../../constants/constants'
 import useLogin from '../../hooks/useLogin';
-import useIsLogged from '../../hooks/useIsLogged';
 
 const styles = {
   input:'bg-bg-dark text-bg-text-less-dark w-full py-5 px-6 border-none rounded-md text-2xl "transition-[border] duration-300 focus:outline-none',
