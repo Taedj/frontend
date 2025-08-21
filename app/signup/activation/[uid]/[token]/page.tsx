@@ -1,8 +1,8 @@
 'use client';
 import React, { useEffect } from 'react'
 import { useParams } from 'next/navigation'
-import { ActivationParams } from '../../../../hooks/useCreateUser'
-import { activateUser } from '../../../../hooks/useCreateUser'
+import { ActivationParams } from '../../../../../hooks/useCreateUser'
+import { activateUser } from '../../../../../hooks/useCreateUser'
 
 
 const Activation = () => {

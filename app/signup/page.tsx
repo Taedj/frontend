@@ -1,7 +1,7 @@
 'use client';
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link';
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {z} from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -31,6 +31,7 @@ type FormData = z.infer<typeof schema>;
 
 
 const Page = () => {
+  const router = useRouter();
   const {mutate,isSuccess} = useCreateUser();
   const {register,handleSubmit} = useForm<FormData>({
     resolver:zodResolver(schema)
@@ -38,7 +39,12 @@ const Page = () => {
   const onSubmit = (user:User) => {
     mutate(user);
   }
-  if (isSuccess) redirect('/');
+  useEffect(
+    ()=>{
+      if (isSuccess) router.push('/signup/activation');
+    },
+    [isSuccess,router]
+  )
   return (
     <div id="sign-in" className='m-0 p-0 flex justify-center items-center h-screen bg-bg-less-dark text-white'>
       <div className="auth-container rounded-xl w-full max-w-[400px] p-12">
