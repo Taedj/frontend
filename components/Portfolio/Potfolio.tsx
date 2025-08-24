@@ -1,8 +1,9 @@
+// Portfolio.tsx
 "use client";
 import { useEffect, useState } from 'react';
 import Masonry from "react-masonry-css";
 import Modal from 'react-modal';
-import { colors} from '../../constants/constants';
+import { colors } from '../../constants/constants';
 import useWorks, { PortfolioItem } from '../../hooks/useWorks';
 import BackgroundText from '../BackgroundText/BackgroundText';
 import CategoriesSelector from './CategoriesSelector';
@@ -46,12 +47,12 @@ const Potfolio = ({handleModalOpen }: Props) => {
 
   const selectedData = (category === 'All') ? data : data?.filter((item) => item.service.category === category);
   return (
-    <div id="Portfolio"
-      className='py-29 px-0 bg-bg-less-dark'>
+    <div id="Portfolio" className='py-29 px-0 bg-bg-less-dark'>
       <div className='max-w-[1224px] mx-auto w-full'>
         <BackgroundText backgroundText='PORTFOLIO' innerText='My Work'/>
         <CategoriesSelector categoryHandler={setCategory}/>
-        <div className='py-0 px-20'>
+        {/* Responsive padding wrapper (keeps same DOM structure) */}
+        <div className='py-0 px-6 sm:px-10 md:px-12 lg:px-20'>
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="masonry-grid"
@@ -62,7 +63,7 @@ const Potfolio = ({handleModalOpen }: Props) => {
                 <img
                   src={work.images[0].image}
                   alt={`Masonry item ${work.id}`}
-                  className='w-full h-auto'
+                  className='w-full h-auto object-cover'
                   loading="lazy"
                   onClick={()=>{setOpen(true);handleModalOpen(true);setSelectedWork(work)}}
                 />
@@ -72,36 +73,39 @@ const Potfolio = ({handleModalOpen }: Props) => {
                 </div>
               </div>
             ))}
-                <Modal 
-                  isOpen={open} 
-                  style={{
-                    overlay:{
-                      backgroundColor:colors.backgroundDarkColor,
-                      zIndex: 10000
-                    },
-                    content: {
-                      backgroundColor: colors.backgroundLessDarkColor,
-                      border: 'none',
-                      padding: '0',
-                      inset: '50% auto auto 50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: 'fit-content',
-                      height: 'fit-content',
-                      zIndex: 10000
-                    }
-                  }}
-                  htmlOpenClassName="modal-open"
-                  shouldCloseOnOverlayClick={true}
-                  onRequestClose={() => {
-                    setOpen(false);
-                    handleModalOpen(false);
-                  }}
-                >
-                  { selectedWork && <JobModel onClose={() => {
-                    setOpen(false);
-                    handleModalOpen(false);
-                  }} title={selectedWork.title} description={selectedWork.description} images={selectedWork.images.map(img => img.image)}/>}
-                </Modal>
+
+            {/* Modal preserved inside Masonry exactly like your original */}
+            <Modal 
+              isOpen={open} 
+              style={{
+                overlay:{
+                  backgroundColor:colors.backgroundDarkColor,
+                  zIndex: 10000
+                },
+                content: {
+                  backgroundColor: colors.backgroundLessDarkColor,
+                  border: 'none',
+                  padding: '0',
+                  inset: '50% auto auto 50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: 'fit-content',
+                  height: 'fit-content',
+                  zIndex: 10000
+                }
+              }}
+              htmlOpenClassName="modal-open"
+              shouldCloseOnOverlayClick={true}
+              onRequestClose={() => {
+                setOpen(false);
+                handleModalOpen(false);
+              }}
+            >
+              { selectedWork && <JobModel onClose={() => {
+                setOpen(false);
+                handleModalOpen(false);
+              }} title={selectedWork.title} description={selectedWork.description} images={selectedWork.images.map(img => img.image)}/> }
+            </Modal>
+
           </Masonry>
         </div>
       </div>
@@ -110,3 +114,4 @@ const Potfolio = ({handleModalOpen }: Props) => {
 }
 
 export default Potfolio
+
