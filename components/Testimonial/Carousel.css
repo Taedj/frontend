@@ -1,16 +1,23 @@
+/* Carousel.css */
 .carousel-container {
   max-width: 1800px;
   margin: 0 auto;
-  overflow: visible; /* Allows items to extend beyond container */
+  overflow: visible;
 }
 
-/* Add gap between items */
-.react-multi-carousel-track {
-  gap: 20px !important; /* Your desired gap size */
-  margin-left: -10px; /* Compensate for gap spacing */
+/* Add gap between items (for react-slick we need padding) */
+.slick-slide {
+  padding: 0 8px; /* small screens */
 }
 
-/* Item spacing adjustments */
-.carousel-item-padding {
-  padding: 0 10px; /* Compensate for negative margin */
+@media (min-width: 640px) {
+  .slick-slide {
+    padding: 0 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slick-slide {
+    padding: 0 20px;
+  }
 }
