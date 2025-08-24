@@ -4,47 +4,55 @@ import useConfig, { Config } from '../../hooks/useConfig'
 import Button from '../Button/Button'
 import Chevron from '../Chevron/Chevron'
 
-
-const getProfessionList = (config:Config) => {
-  if (config.profession_list) return config.profession_list.split(',');
+const getProfessionList = (config: Config) => {
+  if (config.profession_list) return config.profession_list.split(',')
   return []
 }
 
 const Home = () => {
-  const {data:config} = useConfig();
-  const bgImage = config?.home_background_image?
-                    `url(${config?.home_background_image})`:
-                    undefined;
+  const { data: config } = useConfig()
+  const bgImage = config?.home_background_image
+    ? `url(${config?.home_background_image})`
+    : undefined
+
   return (
-    <div id="Home" className='relative w-full h-screen text-white'>
-      <div className='flex flex-col justify-center items-center font-bold bg-fixed h-screen bg-cover before:content-[""] before:absolute before:top-0 before:left:0 before:w-full before:h-full before:bg-[rgb(0,0,0,0.7)] before:z-1'
-        style={{
-          backgroundImage:bgImage
-        }}
+    <div id="Home" className="relative w-full h-screen text-white">
+      <div
+        className={`relative flex flex-col justify-center items-center w-full h-screen bg-fixed bg-cover before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black/70 before:z-0`}
+        style={{ backgroundImage: bgImage }}
       >
-        <p className='text-5xl font-bold leading-20 z-2 m-0 mb-6'>
-          Welcome
-        </p>
-        <div className='md:!text-8xl mb-6 z-2 h-24 font-bold text-[8vw]'>
-          {config?.profession_list && (
-            <Typewriter 
-              words={getProfessionList(config)}
-              typeSpeed={70}
-              loop={0}
-            />
-          )}
-        </div>
-        <p className='text-4xl z-2 my-10 font-medium text-opacity-white'>based on Khroub,Constantine</p>
-        <Button 
+      <p className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight z-10 mb-6 text-center">
+        Welcome
+      </p>
+
+      {/* Typewriter */}
+      <div className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-extrabold z-10 mb-8 text-center h-24 md:h-auto">
+        {config?.profession_list && (
+          <Typewriter
+            words={getProfessionList(config)}
+            typeSpeed={70}
+            loop={0}
+          />
+        )}
+      </div>
+
+      {/* Location */}
+      <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium z-10 mb-10 text-center">
+        based on Khroub, Constantine
+      </p>
+        <Button
           color={colors.primaryColor}
           width="14.5rem"
           height="5.1rem"
           filledBackground={false}
           hoverBackground={colors.primaryColor}
           borderWidth="2px"
-        ><a href="#Contact">Hire Me</a></Button>
+        >
+          <a href="#Contact">Hire Me</a>
+        </Button>
       </div>
-      <Chevron/>
+
+      <Chevron />
     </div>
   )
 }
