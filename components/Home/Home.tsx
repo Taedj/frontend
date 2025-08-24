@@ -21,12 +21,13 @@ const Home = () => {
         className={`relative flex flex-col justify-center items-center w-full h-screen bg-fixed bg-cover before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black/70 before:z-0`}
         style={{ backgroundImage: bgImage }}
       >
-      <p className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight z-10 mb-6 text-center">
+      {/* Welcome text */}
+      <p className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.2] z-10 mb-6 text-center">
         Welcome
       </p>
 
       {/* Typewriter */}
-      <div className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-extrabold z-10 mb-8 text-center h-24 md:h-auto">
+      <div className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-extrabold leading-[1.1] z-10 mb-10 text-center h-24 md:h-auto">
         {config?.profession_list && (
           <Typewriter
             words={getProfessionList(config)}
@@ -37,7 +38,7 @@ const Home = () => {
       </div>
 
       {/* Location */}
-      <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium z-10 mb-10 text-center">
+      <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.3] z-10 mb-12 text-center">
         based on Khroub, Constantine
       </p>
         <Button

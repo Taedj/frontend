@@ -6,29 +6,32 @@ import Button from '../Button/Button';
 const VerticalList = () => {
   const {data:config} = useConfig();
   return (
-    <div className='flex flex-col justify-center align-center py-0 px-5 mt-19 font-semibold'>
-      <ul className='list-none mb-5 w-[26.5rem]'>
-        <li className='text-2xl py-5 px-0 border-b border-b-border' >
-          <span className='font-bold'>Name:</span> {config?.fullname}
+    <div className="flex flex-col px-5 mt-12 font-semibold">
+      <ul className="list-none w-[26.5rem] divide-y divide-border">
+        <li className="py-4 text-2xl">
+          <span className="font-bold">Name:</span> {config?.fullname}
         </li>
-        <li className='text-2xl py-5 px-0 border-b border-b-border'>
-          <span className='font-bold'>Email:</span> <span className='text-primary'>{config?.email}</span>
+        <li className="py-4 text-2xl">
+          <span className="font-bold">Email:</span> <span className="text-primary">{config?.email}</span>
         </li>
-        <li className='text-2xl py-5 px-0 border-b border-b-border'>
-          <span className='font-bold'>Age:</span> {config?.age}
+        <li className="py-4 text-2xl">
+          <span className="font-bold">Age:</span> {config?.age}
         </li>
-        <li className='text-2xl py-5 px-0 border-0'>
-          <span className='font-bold'>From:</span> Khroub,Contantine
+        <li className="py-4 text-2xl border-0">
+          <span className="font-bold">From:</span> Khroub, Constantine
         </li>
       </ul>
       <Button
-          color="white"
-          width="19.5rem"
-          height="5rem"
-          backGroundColor={colors.primaryColor}
-          hoverBackground={colors.hoverPrimaryColor}
-          outline={false}
-        >Download CV</Button>  
+        color="white"
+        width="19.5rem"
+        height="5rem"
+        backGroundColor={colors.primaryColor}
+        hoverBackground={colors.hoverPrimaryColor}
+        outline={false}
+        className="mt-8"
+      >
+        Download CV
+      </Button>
     </div>
   )
 }

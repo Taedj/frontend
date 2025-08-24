@@ -6,15 +6,14 @@ interface Props {
 
 const Paragraph = ({fullname,description}:Props) => {
   return (
-    <div className='mt-19 py-0 px-5'>
-        <h1 className='text-5xl mb-6 text-white font-semibold'>
-            I'm <span className='text-left text-primary'>{fullname}</span>
-        </h1>
-        <p className='text-justify mb-6 leading-11 text-bg-text-less-dark'>
-            {description}
-        </p>
+    <div className="mt-12 px-5">
+      <h1 className="text-5xl mb-6 font-semibold">
+        I'm <span className="text-primary">{fullname}</span>
+      </h1>
+      <p className="text-justify mb-10 leading-relaxed text-bg-text-less-dark">
+        {description}
+      </p>
     </div>
-
   )
 }
 

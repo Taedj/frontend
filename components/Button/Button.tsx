@@ -10,6 +10,7 @@ interface Props {
   hoverBackground?:string;
   outline?:boolean;
   borderWidth?:string;
+  className?:string,
   children:ReactNode
 }
 
@@ -23,12 +24,14 @@ const Button = (
       hoverBackground='',
       outline=true,
       borderWidth='1px',
+      className='',
       children
     }:Props) => {
     const [hover,setHover] = useState(false);
     const cssBackground = (!filledBackground)?"background:none;":"";
-    const buttonCss = `flex justify-center items-center rounded-[25px] text-2xl font-semibold z-2 ${cssBackground} transition-colors duration-500`
-  return (
+    let buttonCss = `flex justify-center items-center rounded-[25px] text-2xl font-semibold z-2 ${cssBackground} transition-colors duration-500`
+    buttonCss += ' ' + className;
+    return (
     <button className={buttonCss}
         style={{
             fontFamily:fontSettings.fontFamily,
