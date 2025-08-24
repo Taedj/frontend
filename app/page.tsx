@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import About from '../components/About/About';
 import Contact from '../components/Contact/Contact';
@@ -11,36 +10,44 @@ import Services from '../components/Services/Services';
 import SideBar from '../components/SideBar/SideBar';
 import Summary from '../components/Summary/Summary';
 import Testimonials from '../components/Testimonial/Testimonials';
-import { dimensions } from '../constants/constants';
 import useIsMobile from '../hooks/useIsMobile';
 import clientLogger from '../lib/clientLogger';
 
-
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const { isMobile } = useIsMobile();
 
-  const [modalOpen,setModalOpen] = useState(false);
-  const {isMobile} = useIsMobile();
-
-  clientLogger.info(isMobile ? 'Mobile|Tablet Client':'Desktop Client');
+  clientLogger.info(isMobile ? 'Mobile|Tablet Client' : 'Desktop Client');
 
   return (
-    <>
-      {(!isMobile && !modalOpen) && <SideBar/>}
-      <div style={{marginLeft:isMobile ? '0' : dimensions.sideBarWidth}}>
-        {(isMobile  && !modalOpen )&& <Navbar/>}
-        <Home/>
-        <About/>
-        <Services/>
-        <Summary/>
-        <Potfolio 
-          handleModalOpen={setModalOpen} 
-        />
-        <Testimonials/>
-        <Contact/>
+    <div className="flex overflow-x-hidden">
+      {/* Sidebar */}
+      {!isMobile && !modalOpen && (
+        <aside className="hidden lg:block fixed top-0 left-0 h-full w-sidebar">
+          <SideBar />
+        </aside>
+      )}
+
+      {/* Main content */}
+      <main
+        className={`
+          ${!isMobile && !modalOpen
+            ? 'lg:ml-sidebar lg:w-[calc(100%-theme(spacing.sidebar))]'
+            : 'w-full'}
+        `}
+      >
+        {isMobile && !modalOpen && <Navbar />}
+        <Home />
+        <About />
+        <Services />
+        <Summary />
+        <Potfolio handleModalOpen={setModalOpen} />
+        <Testimonials />
+        <Contact />
         <Footer />
-      </div>
-    </>
-  )
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

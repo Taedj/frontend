@@ -19,11 +19,7 @@ const SideBar = () => {
                     undefined;
   return (
     <>
-      <div className='flex flex-col justify-between items-center h-screen fixed z-2 bg-bg-very-dark text-opacity-white'
-        style={{
-          width:dimensions.sideBarWidth
-        }}
-        >
+      <div className='flex flex-col justify-between items-center h-screen fixed z-2 bg-bg-very-dark text-opacity-white w-sidebar'>
         <div className='flex flex-col items-center'>
           <div className='w-72 h-72 mb-5 bg-cover rounded-full border-8 mt-10'
             style={
@@ -36,7 +32,7 @@ const SideBar = () => {
           </div>
           <h1 className='text-4xl font-semibold leading-10'>{config?.fullname}</h1>
         </div>
-        <ul className='flex flex-col items-center list-none text-3xl leading-10 p-0 font-semibold'>
+        <ul className='flex flex-col items-center list-none text-3xl leading-10 p-0 m-0 font-semibold w-full'>
           {sections.map((section,index) => (
             <li key={section} className='p-4'
               style={{

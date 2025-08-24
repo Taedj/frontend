@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @theme {
     --color-about-border : rgba(255, 255, 255, 0.5);
     --color-primary:#20C997;
@@ -18,7 +19,9 @@
     --color-summary-box-bg:rgb(17, 20, 24);
     --color-categories-selector:rgb(221, 221, 221);
     --color-star-color:rgb(255, 193, 7);
-    --color-job-model:rgb(52, 58, 64)
+    --color-job-model:rgb(52, 58, 64);
+
+    --spacing-sidebar: 260px;
 }
 
 html {
