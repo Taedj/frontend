@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { ServicesClient } from '../http';
 import clientLogger from '../lib/clientLogger';
+import { Category } from '../components/Services/ServiceBox';
 
 export interface Service {
     title: string;
     description: string;
-    category:string;
+    category:Category;
   }
 
 const useServices = () => {
