@@ -1,8 +1,9 @@
 import axios from "axios";
 import { ClientMessage } from "../hooks/useSendEmail";
+import { API_URL } from "../constants/constants";
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8000' // notice the slash ✅
+    baseURL: API_URL // notice the slash ✅
 })
 
 class EmailClient {

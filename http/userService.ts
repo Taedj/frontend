@@ -1,8 +1,9 @@
 import axios from "axios";
 import { User,ActivationParams } from "../hooks/useCreateUser";
+import { API_URL } from "../constants/constants";
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8000'
+    baseURL: API_URL
 })
 
 class UserClient {
