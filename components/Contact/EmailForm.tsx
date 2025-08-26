@@ -32,7 +32,7 @@ const EmailForm = () => {
             <input
               {...register('Name')}
               type="text"
-              className="rounded-md p-4 sm:p-6 text-lg sm:text-2xl border-0 text-white bg-bg-dark w-full outline-none"
+              className="rounded-md p-4 sm:p-6 text-2xl border-0 text-white bg-bg-dark w-full outline-none"
               placeholder="Name"
               name="Name"
               required
@@ -45,7 +45,7 @@ const EmailForm = () => {
             <input
               {...register('Email')}
               type="email"
-              className="rounded-md p-4 sm:p-6 text-lg sm:text-2xl border-0 text-white bg-bg-dark w-full outline-none"
+              className="rounded-md p-4 sm:p-6 text-2xl border-0 text-white bg-bg-dark w-full outline-none"
               placeholder="Email"
               name="Email"
               required
@@ -57,7 +57,7 @@ const EmailForm = () => {
         </div>
         <textarea
           {...register('Message')}
-          className="rounded-md p-4 sm:p-6 text-lg sm:text-2xl border-0 text-white w-full h-48 sm:h-60 bg-bg-dark outline-none"
+          className="rounded-md p-4 sm:p-6 text-2xl border-0 text-white w-full h-48 sm:h-60 bg-bg-dark outline-none"
           name="Message"
           placeholder="Tell us more about your needs..."
         />

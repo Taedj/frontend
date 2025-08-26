@@ -32,7 +32,7 @@ export const colors = {
 export const dimensions = {
     breakpoint:768,
     'sideBarWidth':'24rem',
-    'mobileBreakpoint':992,
+    'mobileBreakpoint':1024,
     'summaryBreakpoint':768,
     'jobModelSliderWidthSmall':768,
     'aboutBreakpoint':768,

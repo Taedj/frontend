@@ -12,7 +12,9 @@ const About = () => {
     <>
       <div id='About-Me' className="py-24 px-6 md:px-12 text-2xl text-white bg-bg-dark">
         <div className="max-w-[1224px] mx-auto">
-          <BackgroundText backgroundText="ABOUT ME" innerText="Know Me More" />
+          <div className='mb-16'>
+            <BackgroundText backgroundText="ABOUT ME" innerText="Know Me More" />
+          </div>
           <div className="flex flex-col md:flex-row gap-12">
             <div className="flex-[3] min-w-0">
               <Paragraph fullname={config?.fullname} description={config?.about_description} />

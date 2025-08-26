@@ -7,17 +7,17 @@ const VerticalList = () => {
   const {data:config} = useConfig();
   return (
     <div className="flex flex-col px-5 mt-12 font-semibold">
-      <ul className="list-none w-[26.5rem] divide-y divide-border">
-        <li className="py-4 text-2xl">
+      <ul className="text-2xl list-none w-[26.5rem] divide-y divide-border">
+        <li className="py-6">
           <span className="font-bold">Name:</span> {config?.fullname}
         </li>
-        <li className="py-4 text-2xl">
+        <li className="py-6">
           <span className="font-bold">Email:</span> <span className="text-primary">{config?.email}</span>
         </li>
-        <li className="py-4 text-2xl">
+        <li className="py-6">
           <span className="font-bold">Age:</span> {config?.age}
         </li>
-        <li className="py-4 text-2xl border-0">
+        <li className="py-6 border-0">
           <span className="font-bold">From:</span> Khroub, Constantine
         </li>
       </ul>

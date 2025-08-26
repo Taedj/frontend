@@ -25,7 +25,7 @@ const Testimonials = () => {
   return (
     <div id="Testimonials" className="py-20 px-4 sm:px-10 md:px-16 lg:px-20 w-full overflow-hidden bg-bg-dark">
       <div className="max-w-[1224px] mx-auto w-full">
-        <BackgroundText backgroundText="TESTIMONIAL" innerText="Clients & Students Speak"/>
+        <BackgroundText backgroundText="TESTIMONIAL" innerText={`Clients & Students\nSpeak`} />
         <div className="mt-10 sm:mt-16 md:mt-20 px-2 sm:px-6 md:px-8 max-w-full sm:max-w-[90%] md:max-w-[80%] mx-auto">
           <Carousel slideToShow={slideToShow}>
             {reviews.map((review,index) => (

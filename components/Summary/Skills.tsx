@@ -8,7 +8,7 @@ const Skills = () => {
   return (
     <div>
       {skills && skills.length > 0 && (
-        <h1 className="text-3xl md:text-4xl font-semibold mb-12">
+        <h1 className="text-4xl md:text-4xl font-semibold mb-12">
           My Skills
         </h1>
       )}

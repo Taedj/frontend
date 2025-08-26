@@ -8,10 +8,10 @@ const Contact = () => {
       <BackgroundText backgroundText="CONTACT" innerText="Get in Touch" />
       <div className="max-w-[1224px] mx-auto w-full">
         <div className="flex flex-col md:flex-row md:gap-16 w-full">
-          <div className="md:w-auto">
+          <div className="md:w-auto order-2 md:order-1">
             <AddressBox />
           </div>
-          <div className="flex-1 mt-10 md:mt-0">
+          <div className="flex-1 mt-10 md:mt-0 order-1 md:order-2 mb-16">
             <EmailForm />
           </div>
         </div>

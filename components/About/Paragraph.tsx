@@ -10,7 +10,7 @@ const Paragraph = ({fullname,description}:Props) => {
       <h1 className="text-5xl mb-6 font-semibold">
         I'm <span className="text-primary">{fullname}</span>
       </h1>
-      <p className="text-justify mb-10 leading-relaxed text-bg-text-less-dark">
+      <p className="text-justify text-2xl mb-10 leading-10 text-bg-text-less-dark">
         {description}
       </p>
     </div>

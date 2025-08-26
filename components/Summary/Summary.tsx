@@ -32,7 +32,7 @@ const Summary = () => {
           {/* Education */}
           <div className="flex-1">
             {educations && educations.length > 0 && (
-              <h2 className="text-3xl md:text-4xl font-semibold pl-6 mb-8">
+              <h2 className="text-4xl font-semibold pl-6 mb-8">
                 My Education
               </h2>
             )}
@@ -99,3 +99,4 @@ const Summary = () => {
 }
 
 export default Summary
+

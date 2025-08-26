@@ -25,10 +25,10 @@ const ServiceBox = ({ title, category, children }: Props) => {
       </div>
 
       <div className="min-w-0">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white mb-2 leading-snug">
+        <h2 className="text-3xl sm:text-4xl md:text-4xl font-semibold text-white mb-2 leading-snug">
           {title}
         </h2>
-        <p className="text-base sm:text-lg md:text-xl text-bg-text-less-dark leading-relaxed">
+        <p className="text-2xl sm:text-3xl md:text-3xl text-bg-text-less-dark leading-11">
           {children}
         </p>
       </div>

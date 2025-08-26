@@ -12,7 +12,7 @@ const Navbar = () => {
   const [HoveredIndex,setHoveredIndex] = useState(0);
   return (
     <>
-        <div>
+        <div className='fixed w-full top-0 left-0 z-50'>
             <div className='flex justify-between align-center items-center text-white px-6 h-26 font-semibold bg-navbar'>
                 <h1 className='text-4xl'>{config?.fullname}</h1>
                 <div className='flex items-center'>
