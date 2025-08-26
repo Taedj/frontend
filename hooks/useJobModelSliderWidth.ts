@@ -5,10 +5,14 @@ const useJobModelSliderWidth = () => {
   const [sliderWidth, setSliderWidth] = useState('');
   
   const calculateJobModelSliderWidth = () => {
-    if (window.innerWidth < dimensions.jobModelSliderWidthSmall) return '38rem';
-    else if (window.innerWidth < dimensions.jobModelSliderWidthMedium) return '40rem';
-    else return '60rem';
-  }
+    if (window.innerWidth < dimensions.jobModelSliderWidthSmall) {
+      return '95vw'; // almost full width on small devices
+    } else if (window.innerWidth < dimensions.jobModelSliderWidthMedium) {
+      return '80vw'; // medium screens
+    } else {
+      return '60vw'; // large screens
+    }
+  };
 
   useEffect(() => {
     setSliderWidth(calculateJobModelSliderWidth());
