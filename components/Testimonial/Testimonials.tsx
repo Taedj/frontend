@@ -4,6 +4,7 @@ import useSlidesCount from '../../hooks/useSlidesCount'
 import BackgroundText from '../BackgroundText/BackgroundText'
 import Carousel from './Carousel'
 import TestimonialBox from './TestimonialBox'
+import { API_URL } from '../../constants/constants'
 
 
 
@@ -19,7 +20,7 @@ const Testimonials = () => {
   const {slideToShow} = useSlidesCount();
   useEffect(
     () => {
-      axios.get('http://localhost:8000/home/reviews').then(res => setReviews(res.data))
+      axios.get(API_URL+'/home/reviews').then(res => setReviews(res.data))
     }
   ,[])
   return (
@@ -31,7 +32,7 @@ const Testimonials = () => {
             {reviews.map((review,index) => (
               <TestimonialBox
                 key={index}
-                image={'http://127.0.0.1:8000'+review.client_image}
+                image={API_URL+review.client_image}
                 title={review.client_fullname}
                 subTitle={`User from ${review.country}`}
                 testomonial={review.review}

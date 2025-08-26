@@ -69,7 +69,7 @@ export const socialMediasLinks = {
     'personalUnivPage':'https://perso.univ-annaba.dz/fr/zitouni-tidjani-ahmed.1000823.html'
 }
 
-axios.get('http://127.0.0.1:8000/home/services_categories/').then((res) => {
+axios.get(process.env.NEXT_PUBLIC_API_URL +'/home/services_categories/').then((res) => {
     res.data.map((item:any) => {
         categories.push(item.category)
     })
