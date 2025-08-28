@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import {z} from 'zod';
@@ -29,6 +29,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
+
 const Page = () => {
   const router = useRouter();
   const {mutate,isSuccess} = useCreateUser();
@@ -36,8 +37,14 @@ const Page = () => {
     resolver:zodResolver(schema)
   });
 
+  const onSubmit = (user:FormData) => {
+    mutate(user);
+  }
+
   useEffect(() => {
-    if (isSuccess) router.push('/signup/activation');
+    if (isSuccess) {
+      router.push('/signup/activation');
+    };
   }, [isSuccess, router]);
 
   return (
@@ -47,7 +54,7 @@ const Page = () => {
           Create an Account
         </h1>
 
-        <form onSubmit={handleSubmit(user => mutate(user))}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           {/* First Name */}
           <div className="form-group mb-6 md:mb-8">
             <label htmlFor="first-name" className={styles.label}>First Name</label>
