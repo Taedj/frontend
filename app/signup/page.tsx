@@ -31,6 +31,7 @@ type FormData = z.infer<typeof schema>;
 
 
 const Page = () => {
+  throw new Error('debug error');
   const router = useRouter();
   const {mutate,isSuccess} = useCreateUser();
   const {register,handleSubmit,formState:{errors}} = useForm<FormData>({
