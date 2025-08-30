@@ -1,5 +1,6 @@
 import { AiFillStar } from "react-icons/ai";
 import { colors } from '../../constants/constants';
+import Image from "next/image";
 
 interface Props {
   image: string;
@@ -24,10 +25,12 @@ const TestimonialBox = ({ image, title, subTitle, testomonial }: Props) => {
     >
       {/* Avatar + Titles */}
       <div className="flex items-center mb-6 sm:mb-8 md:mb-10">
-        <div className="h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36">
-          <img
+        <div className="h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36 relative">
+          <Image
             className="w-full h-full object-cover rounded-full"
             src={image}
+            alt={title}
+            fill
           />
         </div>
         <div className="ml-5 sm:ml-7">

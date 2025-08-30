@@ -21,17 +21,19 @@ const VerticalList = () => {
           <span className="font-bold">From:</span> Khroub, Constantine
         </li>
       </ul>
-      <Button
-        color="white"
-        width="19.5rem"
-        height="5rem"
-        backGroundColor={colors.primaryColor}
-        hoverBackground={colors.hoverPrimaryColor}
-        outline={false}
-        className="mt-8"
-      >
-        Download CV
+      <a href="/resume.pdf" download="My_CV.pdf">
+        <Button
+          color="white"
+          width="19.5rem"
+          height="5rem"
+          backGroundColor={colors.primaryColor}
+          hoverBackground={colors.hoverPrimaryColor}
+          outline={false}
+          className="mt-8"
+        >
+          Download CV
       </Button>
+      </a>
     </div>
   )
 }

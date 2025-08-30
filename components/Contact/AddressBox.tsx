@@ -28,7 +28,7 @@ const AddressBox = () => {
           <span>{config?.phone2}</span>
         </div>
         <div className="flex max-md:justify-center items-start text-2xl font-medium leading-7 sm:leading-12 text-bg-text-less-dark">
-          <IoMdMail size={16} className="mr-3 mt-1" />
+          <IoMdMail size={16} color={colors.primaryColor} className="mr-3 mt-1" />
           <span>{config?.email}</span>
         </div>
       </div>

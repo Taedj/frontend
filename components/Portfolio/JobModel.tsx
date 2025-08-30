@@ -1,5 +1,6 @@
 import { RxCross1 } from "react-icons/rx";
 import Slider from "react-slick";
+import Image from "next/image";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { dimensions } from '../../constants/constants';
@@ -56,9 +57,10 @@ const JobModel = ({ title, images, description, onClose }: Props) => {
                         {images.map((image) => (
                             <div key={image} className="slide-item">
                                 <div className='h-full w-full'>
-                                    <img 
+                                    <Image 
                                         src={image} 
                                         alt={title} 
+                                        fill
                                         className="w-full h-auto object-cover rounded-md"
                                     />
                                 </div>

@@ -2,6 +2,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Masonry from "react-masonry-css";
+import Image from 'next/image';
 import Modal from 'react-modal';
 import { colors } from '../../constants/constants';
 import useWorks, { PortfolioItem } from '../../hooks/useWorks';
@@ -60,8 +61,10 @@ const Potfolio = ({handleModalOpen }: Props) => {
           >
             {selectedData?.map((work) => (
               <div key={work.id} className="masonry-item">
-                <img
+                <Image
                   src={work.images[0].image}
+                  width={500}
+                  height={300}
                   alt={`Masonry item ${work.id}`}
                   className='w-full h-auto object-cover'
                   loading="lazy"

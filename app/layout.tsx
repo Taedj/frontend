@@ -16,6 +16,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const queryClient = new QueryClient({
+    defaultOptions:{
+      queries:{
+        staleTime:1000 * 60 * 60 * 24 * 3, // 3 days
+        gcTime:1000 * 60 * 60 * 24 * 3, // 3 days
+      }
+    },
     queryCache: new QueryCache({
       onSuccess: (data, query) => {
         clientLogger.info(`Query success for ${query.queryKey}`, data);
@@ -24,7 +30,9 @@ export default function RootLayout({
         console.error(`Query error for ${query.queryKey}`, err);
       },
     }),
-  });
+  },
+);
+
   return (
     <QueryClientProvider client={queryClient}>
         <html lang="en">
