@@ -1,6 +1,6 @@
-import { colors } from '../../constants/constants'
-import useSkills from '../../hooks/useSkills'
-import ProgressRow from './ProgressRow'
+import { colors } from "../../constants/constants";
+import useSkills from "../../hooks/useSkills";
+import ProgressRow from "./ProgressRow";
 
 const Skills = () => {
   const { data: skills } = useSkills();
@@ -8,13 +8,11 @@ const Skills = () => {
   return (
     <div>
       {skills && skills.length > 0 && (
-        <h1 className="text-4xl md:text-4xl font-semibold mb-12">
-          My Skills
-        </h1>
+        <h1 className="text-4xl md:text-4xl font-semibold mb-12">My Skills</h1>
       )}
 
       <div className="grid md:grid-cols-2 gap-10">
-        {skills?.map(skill => (
+        {skills?.map((skill) => (
           <ProgressRow
             key={skill.title}
             progress={skill.percentage}
@@ -24,7 +22,7 @@ const Skills = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;

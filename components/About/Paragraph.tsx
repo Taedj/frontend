@@ -1,10 +1,9 @@
-
 interface Props {
-  fullname?:string;
-  description?:string;
+  fullname?: string;
+  description?: string;
 }
 
-const Paragraph = ({fullname,description}:Props) => {
+const Paragraph = ({ fullname, description }: Props) => {
   return (
     <div className="mt-12 px-5">
       <h1 className="text-5xl mb-6 font-semibold">
@@ -14,7 +13,7 @@ const Paragraph = ({fullname,description}:Props) => {
         {description}
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default Paragraph
+export default Paragraph;

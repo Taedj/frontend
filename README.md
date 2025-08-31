@@ -22,26 +22,31 @@ A modern, responsive personal portfolio website built with **Next.js 15**, **Rea
 ## 🛠️ Technologies Used
 
 ### Frontend Framework
+
 - **Next.js 15.4.6** - React framework with App Router
 - **React 18.3.1** - UI library
 - **TypeScript 5.6.2** - Type-safe JavaScript
 
 ### Styling & UI
+
 - **Tailwind CSS 4.1.11** - Utility-first CSS framework
 - **Styled Components 6.1.14** - CSS-in-JS styling
 - **React Icons 5.4.0** - Icon library
 
 ### Carousels & Animations
+
 - **React Slick 0.30.3** - Carousel component
 - **React Multi Carousel 2.8.6** - Multi-item carousel
 - **React Simple Typewriter 5.0.1** - Typing animations
 - **React Modal 3.16.3** - Modal dialogs
 
 ### Data Management
+
 - **React Query (TanStack Query) 5.85.3** - Server state management
 - **Axios 1.9.0** - HTTP client for API calls
 
 ### Development Tools
+
 - **ESLint 9.17.0** - Code linting
 - **Pino 9.9.0** - High-performance logging
 - **PostCSS 8.5.6** - CSS processing
@@ -49,32 +54,38 @@ A modern, responsive personal portfolio website built with **Next.js 15**, **Rea
 ## 📦 Installation
 
 1. **Clone the repository:**
+
 ```bash
 git clone https://github.com/Taedj/frontend
 ```
 
 2. **Navigate to the project directory:**
+
 ```bash
 cd frontend
 ```
 
 3. **Install dependencies:**
+
 ```bash
 npm install
 ```
 
 4. **Set up environment variables:**
-Create a `.env.local` file in the root directory and add:
+   Create a `.env.local` file in the root directory and add:
+
 ```env
 NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
 ```
 
 5. **Start the development server:**
+
 ```bash
 npm run dev
 ```
 
 6. **Build for production:**
+
 ```bash
 npm run build
 npm start
@@ -141,16 +152,21 @@ frontend/
 ## 🔧 Configuration
 
 ### Environment Setup
+
 The project uses configuration files in the `config/` directory for different environments:
+
 - `development.json` - Development environment settings
 - `production.json` - Production environment settings
 - `custom-environment-variables.json` - Environment variable mappings
 
 ### API Configuration
+
 The backend API is configured in `constants/constants.ts` and connects to a Django backend at `http://127.0.0.1:8000`.
 
 ### Customization
+
 You can customize:
+
 - **Colors and Theme**: Modify `constants/constants.ts`
 - **Content**: Update component files in `components/`
 - **Styling**: Modify `app/globals.css` and component-specific CSS files
@@ -158,20 +174,24 @@ You can customize:
 ## 📱 Responsive Design
 
 The website is fully responsive with breakpoints defined in `constants/constants.ts`:
+
 - **Mobile**: < 768px
-- **Tablet**: 768px - 1200px  
+- **Tablet**: 768px - 1200px
 - **Desktop**: > 1200px
 
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
 ```bash
 npm install -g vercel
 vercel
 ```
 
 ### Other Platforms
+
 The project can be deployed to:
+
 - **Netlify**
 - **Railway**
 - **DigitalOcean App Platform**
@@ -180,6 +200,7 @@ The project can be deployed to:
 ## 🔌 Backend Integration
 
 This frontend connects to a **Django backend** providing:
+
 - **Dynamic content management**
 - **Portfolio categories and works**
 - **Services and skills data**
@@ -189,12 +210,14 @@ This frontend connects to a **Django backend** providing:
 ## 🧪 Development
 
 ### Available Scripts
+
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
 ### Code Quality
+
 - **ESLint** configuration for code quality
 - **TypeScript** for type safety
 - **Prettier** for code formatting

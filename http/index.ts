@@ -8,14 +8,14 @@ import CategoriesClient from "./CategoriesService";
 import EmailClient from "./EmailService";
 import UserClient from "./userService";
 
-export { 
-    ConfigClient,
-    ServicesClient,
-    SkillsClient,
-    WorksClient,
-    EducationClient,
-    ExperiencesClient,
-    CategoriesClient,
-    EmailClient,
-    UserClient
+export {
+  ConfigClient,
+  ServicesClient,
+  SkillsClient,
+  WorksClient,
+  EducationClient,
+  ExperiencesClient,
+  CategoriesClient,
+  EmailClient,
+  UserClient,
 };

@@ -1,5 +1,5 @@
 import { AiFillStar } from "react-icons/ai";
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 import Image from "next/image";
 
 interface Props {
@@ -34,9 +34,7 @@ const TestimonialBox = ({ image, title, subTitle, testomonial }: Props) => {
           />
         </div>
         <div className="ml-5 sm:ml-7">
-          <h1 className="text-3xl sm:text-4xl  font-semibold m-0">
-            {title}
-          </h1>
+          <h1 className="text-3xl sm:text-4xl  font-semibold m-0">{title}</h1>
           <h2 className="text-xl sm:text-2xl  m-0 text-bg-text-dark">
             {subTitle}
           </h2>
@@ -49,7 +47,7 @@ const TestimonialBox = ({ image, title, subTitle, testomonial }: Props) => {
       </p>
 
       {/* Stars */}
-      <div className="flex text-3xl sm:text-4xl md:text-5xl"> 
+      <div className="flex text-3xl sm:text-4xl md:text-5xl">
         <AiFillStar color={colors.starColor} />
         <AiFillStar color={colors.starColor} />
         <AiFillStar color={colors.starColor} />

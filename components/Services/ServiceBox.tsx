@@ -1,9 +1,9 @@
 import { FaQuidditch } from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import { MdEngineering } from "react-icons/md";
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
-export type Category = 'UX/UI design' | 'Mechanical Engineering' | 'Teaching';
+export type Category = "UX/UI design" | "Mechanical Engineering" | "Teaching";
 
 interface Props {
   title: string;
@@ -13,9 +13,11 @@ interface Props {
 
 const ServiceBox = ({ title, category, children }: Props) => {
   const categories = {
-    'UX/UI design': <FaQuidditch size={40} color={colors.primaryColor} />,
-    'Mechanical Engineering': <MdEngineering size={40} color={colors.primaryColor} />,
-    'Teaching': <GiTeacher size={40} color={colors.primaryColor} />
+    "UX/UI design": <FaQuidditch size={40} color={colors.primaryColor} />,
+    "Mechanical Engineering": (
+      <MdEngineering size={40} color={colors.primaryColor} />
+    ),
+    Teaching: <GiTeacher size={40} color={colors.primaryColor} />,
   } as const;
 
   return (

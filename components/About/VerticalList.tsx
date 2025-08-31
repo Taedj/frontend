@@ -1,10 +1,9 @@
-import { colors } from '../../constants/constants';
-import useConfig from '../../hooks/useConfig';
-import Button from '../Button/Button';
-
+import { colors } from "../../constants/constants";
+import useConfig from "../../hooks/useConfig";
+import Button from "../Button/Button";
 
 const VerticalList = () => {
-  const {data:config} = useConfig();
+  const { data: config } = useConfig();
   return (
     <div className="flex flex-col px-5 mt-12 font-semibold">
       <ul className="text-2xl list-none w-[26.5rem] divide-y divide-border">
@@ -12,7 +11,8 @@ const VerticalList = () => {
           <span className="font-bold">Name:</span> {config?.fullname}
         </li>
         <li className="py-6">
-          <span className="font-bold">Email:</span> <span className="text-primary">{config?.email}</span>
+          <span className="font-bold">Email:</span>{" "}
+          <span className="text-primary">{config?.email}</span>
         </li>
         <li className="py-6">
           <span className="font-bold">Age:</span> {config?.age}
@@ -32,10 +32,10 @@ const VerticalList = () => {
           className="mt-8"
         >
           Download CV
-      </Button>
+        </Button>
       </a>
     </div>
-  )
-}
+  );
+};
 
-export default VerticalList
+export default VerticalList;

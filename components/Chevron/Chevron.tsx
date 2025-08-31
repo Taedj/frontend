@@ -1,6 +1,6 @@
 import { FaChevronDown } from "react-icons/fa";
-import styled, { keyframes } from 'styled-components';
-import { colors } from '../../constants/constants';
+import styled, { keyframes } from "styled-components";
+import { colors } from "../../constants/constants";
 
 const bounce = keyframes`
   100% {
@@ -18,7 +18,7 @@ const ChevronWrapper = styled.div`
   transform: translateX(-50%);
   z-index: 1;
   cursor: pointer;
-`
+`;
 
 const AnimatedChevron = styled(FaChevronDown)`
   animation: ${bounce} 1s infinite ease;
@@ -31,15 +31,14 @@ const scrollToAboutMe = () => {
   document.getElementById("About-Me")?.scrollIntoView({ behavior: "smooth" });
 };
 
-
 const Chevron = () => {
   return (
     <>
-        <ChevronWrapper onClick={scrollToAboutMe}>
-          <AnimatedChevron />
-        </ChevronWrapper>
+      <ChevronWrapper onClick={scrollToAboutMe}>
+        <AnimatedChevron />
+      </ChevronWrapper>
     </>
-  )
-}
+  );
+};
 
-export default Chevron
+export default Chevron;

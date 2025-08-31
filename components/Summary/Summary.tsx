@@ -1,23 +1,23 @@
-import { FaDownload } from "react-icons/fa"
-import { colors } from '../../constants/constants'
-import BackgroundText from '../BackgroundText/BackgroundText'
-import Button from '../Button/Button'
-import Skills from './Skills'
-import SummaryBox from './SummaryBox'
-import useEducations from '../../hooks/useEducations'
-import useExperiences from '../../hooks/useExperiences'
+import { FaDownload } from "react-icons/fa";
+import { colors } from "../../constants/constants";
+import BackgroundText from "../BackgroundText/BackgroundText";
+import Button from "../Button/Button";
+import Skills from "./Skills";
+import SummaryBox from "./SummaryBox";
+import useEducations from "../../hooks/useEducations";
+import useExperiences from "../../hooks/useExperiences";
 
 interface EducationItem {
-  title: string,
-  institution: string,
-  description: string,
-  start_date: string,
-  end_date: string
+  title: string;
+  institution: string;
+  description: string;
+  start_date: string;
+  end_date: string;
 }
 
 const formatYear = (item: EducationItem) => {
-  return `${item.start_date.slice(0,4)} - ${item.end_date.slice(0,4)}`
-}
+  return `${item.start_date.slice(0, 4)} - ${item.end_date.slice(0, 4)}`;
+};
 
 const Summary = () => {
   const { data: educations } = useEducations();
@@ -32,9 +32,7 @@ const Summary = () => {
           {/* Education */}
           <div className="flex-1">
             {educations && educations.length > 0 && (
-              <h2 className="text-4xl font-semibold pl-6 mb-8">
-                My Education
-              </h2>
+              <h2 className="text-4xl font-semibold pl-6 mb-8">My Education</h2>
             )}
             <div className="space-y-8">
               {educations?.map((item: EducationItem) => (
@@ -95,8 +93,7 @@ const Summary = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Summary
-
+export default Summary;

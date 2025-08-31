@@ -1,17 +1,17 @@
-import { useMutation } from "@tanstack/react-query"
-import AuthClient from "../http/AuthService"
+import { useMutation } from "@tanstack/react-query";
+import AuthClient from "../http/AuthService";
 
 export interface Login {
-    username:string,
-    password:string
+  username: string;
+  password: string;
 }
 
 const useLogin = () => {
-    const authClient = new AuthClient('/core/signin/');
-    return useMutation({
-        mutationKey:['login'],
-        mutationFn:(creds:Login) => authClient.login(creds)
-    })
-}
+  const authClient = new AuthClient("/core/signin/");
+  return useMutation({
+    mutationKey: ["login"],
+    mutationFn: (creds: Login) => authClient.login(creds),
+  });
+};
 
 export default useLogin;

@@ -1,23 +1,17 @@
-'use client';
-import React, { useEffect } from 'react'
-import { useParams } from 'next/navigation'
-import { ActivationParams } from '../../../../../hooks/useCreateUser'
-import { activateUser } from '../../../../../hooks/useCreateUser'
+"use client";
+import React, { useEffect } from "react";
+import { useParams } from "next/navigation";
+import { ActivationParams } from "../../../../../hooks/useCreateUser";
+import { activateUser } from "../../../../../hooks/useCreateUser";
 import { useRouter } from "next/navigation";
-
 
 const Activation = () => {
   const router = useRouter();
-  const activationParams = useParams<ActivationParams>()
-  useEffect(
-    () => {
-      activateUser(activationParams);
-      setTimeout(
-        () => router.push('/signin'),
-        2000
-      )
-    },[]
-  )
+  const activationParams = useParams<ActivationParams>();
+  useEffect(() => {
+    activateUser(activationParams);
+    setTimeout(() => router.push("/signin"), 2000);
+  }, []);
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-bg-less-dark px-4">
       <div className="w-full max-w-3xl flex flex-col items-center text-center">
@@ -47,8 +41,8 @@ const Activation = () => {
 
         {/* Description */}
         <p className="mb-6 text-base text-gray-400 sm:text-lg md:text-xl max-w-xl sm:max-w-2xl lg:max-w-3xl">
-          Your account has been successfully activated. You can now log in and start
-          exploring all the features.
+          Your account has been successfully activated. You can now log in and
+          start exploring all the features.
         </p>
 
         {/* Subtext */}
@@ -57,8 +51,7 @@ const Activation = () => {
         </p>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default Activation
+export default Activation;
