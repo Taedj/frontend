@@ -36,7 +36,6 @@ const Button = ({
     <button
       className={buttonCss}
       style={{
-        fontFamily: fontSettings.fontFamily,
         color: hover ? "white" : color,
         height: height,
         width: width,
