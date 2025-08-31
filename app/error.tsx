@@ -2,7 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const ErrorPage = () => {
+const ErrorPage = ({ error, reset }: { error: Error; reset: () => void }) => {
   const router = useRouter();
   return (
     <div className="flex min-h-screen items-center justify-center bg-bg-less-dark px-4 text-center">
@@ -29,6 +29,7 @@ const ErrorPage = () => {
         <p className="mb-6 text-base sm:text-lg md:text-xl text-gray-400 max-w-md sm:max-w-xl lg:max-w-2xl mx-auto">
           Oops! Something went wrong on our end. Please try again later.
         </p>
+        <p className="text-red-500">{error.message}</p>
         <a
           href="/"
           className="inline-block rounded-2xl bg-primary px-5 py-2 sm:px-6 sm:py-3 text-sm sm:text-base text-white font-medium "

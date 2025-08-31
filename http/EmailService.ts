@@ -14,10 +14,19 @@ class EmailClient {
   }
 
   send = async function (clientMessage: ClientMessage) {
-    return await axiosInstance.post<ClientMessage>(
-      this.endpoint, // no leading slash ✅
-      clientMessage,
-    );
+    try {
+      const response = await axiosInstance.post<ClientMessage>(
+        this.endpoint, // no leading slash ✅
+        clientMessage
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error when sending Email", error);
+      throw {
+        message: error.response?.data?.message,
+        status: error.response?.status,
+      };
+    }
   };
 }
 

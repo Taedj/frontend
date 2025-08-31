@@ -14,17 +14,39 @@ class AuthClient {
   }
 
   login = async function (creds: Login) {
-    return await axiosInstance.post<Login>(this.endpoint + "login/", creds, {
-      withCredentials: true,
-    });
+    try {
+      const response = await axiosInstance.post<Login>(
+        this.endpoint + "login/",
+        creds,
+        {
+          withCredentials: true,
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error when Login", error);
+      throw {
+        message: error.response?.data?.message,
+        status: error.response?.status,
+      };
+    }
   };
 
   logout = async function () {
-    return await axiosInstance.post(
-      this.endpoint + "logout/",
-      {},
-      { withCredentials: true },
-    );
+    try {
+      const response = await axiosInstance.post(
+        this.endpoint + "logout/",
+        {},
+        { withCredentials: true }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error when logout", error);
+      throw {
+        message: error.response?.data?.message,
+        status: error.response?.status,
+      };
+    }
   };
 
   checkLogin = async function () {
