@@ -59,8 +59,6 @@ export const specialities = [
     "I'm a professor"
 ]
 
-const categories = ['All']
-
 export const socialMediasLinks = {
     'facebook':'https://www.facebook.com/tidjani.zitouni.142',
     'linkedin':'https://www.linkedin.com/in/dr-tidjani-ahmed-zitouni-a9b3b71a4/',
@@ -68,13 +66,5 @@ export const socialMediasLinks = {
     'googleScholar':'https://scholar.google.com/citations?user=qifRUIAAAAAJ',
     'personalUnivPage':'https://perso.univ-annaba.dz/fr/zitouni-tidjani-ahmed.1000823.html'
 }
-
-axios.get(process.env.NEXT_PUBLIC_API_URL +'/home/services_categories/').then((res) => {
-    res.data.map((item:any) => {
-        categories.push(item.category)
-    })
-})
-
-export { categories }
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";

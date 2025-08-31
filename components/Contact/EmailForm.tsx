@@ -7,9 +7,13 @@ import Button from '../Button/Button';
 
 const EmailForm = () => {
   const schema = z.object({
-    Name: z.string().min(2).max(100),
-    Email: z.email(),
-    Message: z.string().max(1000)
+    Name:  z.string()
+            .min(2, "Name must be at least 2 characters")
+            .max(100, "Name must be at most 100 characters"),
+    Email: z.string()
+            .email("Invalid email address"),
+    Message: z.string()
+              .max(1000, "Message must be at most 1000 characters"),
   });
 
   type FormData = z.infer<typeof schema>;
@@ -38,7 +42,7 @@ const EmailForm = () => {
               required
             />
             {errors.Name && (
-              <p className="text-red-500 text-sm sm:text-2xl mt-1">{errors.Name.type}</p>
+              <p className="text-red-500 text-sm sm:text-2xl mt-1">{errors.Name.message}</p>
             )}
           </div>
           <div className="flex-1">
@@ -51,7 +55,7 @@ const EmailForm = () => {
               required
             />
             {errors.Email && (
-              <p className="text-red-500 text-sm sm:text-2xl mt-1">{errors.Email.type}</p>
+              <p className="text-red-500 text-sm sm:text-2xl mt-1">{errors.Email.message}</p>
             )}
           </div>
         </div>
@@ -62,7 +66,7 @@ const EmailForm = () => {
           placeholder="Tell us more about your needs..."
         />
         {errors.Message && (
-          <p className="text-red-500 text-sm sm:text-2xl mt-1">{errors.Message.type}</p>
+          <p className="text-red-500 text-sm sm:text-2xl mt-1">{errors.Message.message}</p>
         )}
       </div>
       <div className="flex justify-center mt-8 sm:mt-10">

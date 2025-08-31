@@ -17,9 +17,20 @@ const styles = {
 }
 
 const schema = z.object({
-  username:z.string().min(3),
+  username:z.string()
+            .min(3, { message: "Username must be at least 3 characters long" })
+            .max(20, { message: "Username must not exceed 20 characters" })
+            .regex(/^[a-zA-Z0-9_]+$/, {
+              message: "Username can only contain letters, numbers, and underscores",
+          }),
   password:z.string()
-})
+            .min(8, { message: "Password must be at least 8 characters long" })
+            .max(100, { message: "Password is too long" })
+            .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
+            .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter" })
+            .regex(/[0-9]/, { message: "Password must contain at least one number" })
+            .regex(/[^A-Za-z0-9]/, { message: "Password must contain at least one special character" }),
+        })
 
 type FormData = z.infer<typeof schema>;
 
@@ -44,14 +55,14 @@ const Page = () => {
                   <label htmlFor="username" className={styles.label}>Username</label>
                   <input {...register('username')} type="text" id="username" placeholder="kiroutek" name="username" className={styles.input} />
                   {errors.username &&(
-                    <p className='text-red-500 text-sm md:text-2xl my-2'>{errors.username.type}</p>
+                    <p className='text-red-500 text-sm md:text-2xl my-2'>{errors.username.message}</p>
                   )}
               </div>
               <div className="form-group mb-6 md:mb-8">
                   <label htmlFor="password" className={styles.label}>Password</label>
                   <input {...register('password')} type="password" id="password" placeholder="********" name="password" className={styles.input} />
                   {errors.password &&(
-                    <p className='text-red-500 text-sm md:text-2xl my-2'>{errors.password.type}</p>
+                    <p className='text-red-500 text-sm md:text-2xl my-2'>{errors.password.message}</p>
                   )}
               </div>
               <div className='flex justify-center my-8 md:my-12'>
