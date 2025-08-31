@@ -4,8 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { colors } from "../../constants/constants";
 import useSendEmail from "../../hooks/useSendEmail";
 import Button from "../Button/Button";
+import useIsLogged from "../../hooks/useIsLogged";
 
 const EmailForm = () => {
+  const { isLogged } = useIsLogged();
   const schema = z.object({
     Name: z
       .string()
@@ -89,6 +91,7 @@ const EmailForm = () => {
           backGroundColor={colors.primaryColor}
           hoverBackground={colors.hoverPrimaryColor}
           outline={false}
+          disabled={!isLogged}
         >
           Send Message
         </Button>

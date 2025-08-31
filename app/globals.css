@@ -19,7 +19,7 @@
   --color-categories-selector: rgb(221, 221, 221);
   --color-star-color: rgb(255, 193, 7);
   --color-job-model: rgb(52, 58, 64);
-
+  --color-btn-disabled-bg:rgba(32, 201, 151, 0.3);
   --spacing-sidebar: 260px;
 }
 

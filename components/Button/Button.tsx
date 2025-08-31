@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { fontSettings } from "../../constants/constants";
+import { fontSettings, colors } from "../../constants/constants";
 
 interface Props {
   color: string;
@@ -11,6 +11,7 @@ interface Props {
   outline?: boolean;
   borderWidth?: string;
   className?: string;
+  disabled?: boolean;
   children: ReactNode;
 }
 
@@ -24,11 +25,12 @@ const Button = ({
   outline = true,
   borderWidth = "1px",
   className = "",
+  disabled = false,
   children,
 }: Props) => {
   const [hover, setHover] = useState(false);
   const cssBackground = !filledBackground ? "background:none;" : "";
-  let buttonCss = `flex justify-center items-center rounded-[25px] text-2xl font-semibold z-2 ${cssBackground} transition-colors duration-500 cursor-pointer`;
+  let buttonCss = `flex justify-center items-center rounded-[25px] text-2xl font-semibold z-2   disabled:bg-gray-400 ${cssBackground} transition-colors duration-500 cursor-pointer`;
   buttonCss += " " + className;
   return (
     <button
@@ -39,10 +41,15 @@ const Button = ({
         height: height,
         width: width,
         border: `${outline ? `${borderWidth} solid ${color}` : "none"}`,
-        backgroundColor: hover ? hoverBackground : backGroundColor,
+        backgroundColor: disabled
+          ? colors.buttonDesabledBackgroundColor
+          : hover
+          ? hoverBackground
+          : backGroundColor,
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      disabled={disabled}
     >
       {children}
     </button>

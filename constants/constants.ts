@@ -18,6 +18,7 @@ export const colors = {
   categoriesSelectorColor: "rgb(221, 221, 221)",
   starColor: "rgb(255, 193, 7)",
   JobModelColor: "rgb(52, 58, 64)",
+  buttonDesabledBackgroundColor: "rgba(32, 201, 151, 0.3)",
 
   fbColor: "#1877F2",
   twColor: "#1DA1F2",
