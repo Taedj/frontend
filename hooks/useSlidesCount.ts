@@ -5,7 +5,7 @@ const useSlidesCount = () => {
   const [slideToShow, setSlideToShow] = useState(2);
 
   const calculateSlidesNumber = () => {
-    if (window.innerWidth < dimensions.mobileBreakpoint) return 1;
+    if (window.innerWidth < dimensions.sliderBreakpoint) return 1;
     return 2;
   };
 

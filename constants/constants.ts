@@ -34,6 +34,7 @@ export const dimensions = {
   breakpoint: 768,
   sideBarWidth: "24rem",
   mobileBreakpoint: 1024,
+  sliderBreakpoint: 1536,
   summaryBreakpoint: 768,
   jobModelSliderWidthSmall: 768,
   aboutBreakpoint: 768,
