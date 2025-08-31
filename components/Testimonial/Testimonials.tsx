@@ -11,11 +11,13 @@ interface Review {
   client_fullname: string;
   country: string;
   review: string;
+  stars: number;
 }
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const { slideToShow } = useSlidesCount();
+  console.log("reviews", reviews);
   useEffect(() => {
     axios.get(API_URL + "/home/reviews").then((res) => setReviews(res.data));
   }, []);
@@ -38,6 +40,7 @@ const Testimonials = () => {
                 title={review.client_fullname}
                 subTitle={`User from ${review.country}`}
                 testomonial={review.review}
+                stars={review.stars}
               />
             ))}
           </Carousel>

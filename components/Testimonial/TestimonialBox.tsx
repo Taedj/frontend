@@ -1,15 +1,37 @@
 import { AiFillStar } from "react-icons/ai";
 import { colors } from "../../constants/constants";
 import Image from "next/image";
+import { ReactNode } from "react";
 
 interface Props {
   image: string;
   title: string;
   subTitle: string;
   testomonial: string;
+  stars: number;
 }
 
-const TestimonialBox = ({ image, title, subTitle, testomonial }: Props) => {
+const starsGenerators = (starsCount: number): ReactNode => {
+  return (
+    <div className="flex text-3xl sm:text-4xl md:text-5xl">
+      {Array.from({ length: 5 }, (_, i) => i).map((number, index) =>
+        index < starsCount ? (
+          <AiFillStar color={colors.starColor} />
+        ) : (
+          <AiFillStar color="white" />
+        )
+      )}
+    </div>
+  );
+};
+
+const TestimonialBox = ({
+  image,
+  title,
+  subTitle,
+  testomonial,
+  stars,
+}: Props) => {
   return (
     <div
       className="
@@ -48,11 +70,7 @@ const TestimonialBox = ({ image, title, subTitle, testomonial }: Props) => {
 
       {/* Stars */}
       <div className="flex text-3xl sm:text-4xl md:text-5xl">
-        <AiFillStar color={colors.starColor} />
-        <AiFillStar color={colors.starColor} />
-        <AiFillStar color={colors.starColor} />
-        <AiFillStar color={colors.starColor} />
-        <AiFillStar color="white" />
+        {starsGenerators(stars)}
       </div>
     </div>
   );
