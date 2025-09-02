@@ -2,7 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const ErrorPage = ({ error, reset }: { error: Error; reset: () => void }) => {
+const ErrorPage = ({ error }: { error: Error }) => {
   const router = useRouter();
   return (
     <div className="flex min-h-screen items-center justify-center bg-bg-less-dark px-4 text-center">
@@ -33,7 +33,7 @@ const ErrorPage = ({ error, reset }: { error: Error; reset: () => void }) => {
         <a
           href="/"
           className="inline-block rounded-2xl bg-primary px-5 py-2 sm:px-6 sm:py-3 text-sm sm:text-base text-white font-medium "
-          onClick={(e) => router.push("/")}
+          onClick={() => router.push("/")}
         >
           Back to Home
         </a>

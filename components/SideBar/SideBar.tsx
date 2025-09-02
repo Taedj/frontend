@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { colors, dimensions, sections } from "../../constants/constants";
+import { colors, sections } from "../../constants/constants";
 import useConfig from "../../hooks/useConfig";
 import SocialMedias from "./SocialMedias";
 import Link from "next/link";

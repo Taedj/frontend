@@ -32,7 +32,7 @@ const NotFound = () => {
         <a
           href="/"
           className="inline-block rounded-2xl bg-primary px-5 py-2 sm:px-6 sm:py-3 text-sm sm:text-base text-white font-medium hover:bg-red-700 transition"
-          onClick={(e) => router.push("/")}
+          onClick={() => router.push("/")}
         >
           Back to Home
         </a>

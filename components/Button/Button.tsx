@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { fontSettings, colors } from "../../constants/constants";
+import { colors } from "../../constants/constants";
 
 interface Props {
   color: string;

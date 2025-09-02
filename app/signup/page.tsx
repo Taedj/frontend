@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
@@ -40,7 +40,7 @@ const schema = z
       .max(20, "Username must be at most 20 characters")
       .regex(
         /^[a-zA-Z0-9_]+$/,
-        "Username can only contain letters, numbers, and underscores",
+        "Username can only contain letters, numbers, and underscores"
       ),
     email: z.string().email("Invalid email address").max(100),
     password: z
@@ -52,7 +52,7 @@ const schema = z
       .regex(/[0-9]/, "Password must contain at least one number")
       .regex(
         /[^A-Za-z0-9]/,
-        "Password must contain at least one special character",
+        "Password must contain at least one special character"
       ),
     re_password: z.string(),
   })

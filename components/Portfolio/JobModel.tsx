@@ -4,7 +4,6 @@ import Image from "next/image";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { dimensions } from "../../constants/constants";
-import useJobModelSliderWidth from "../../hooks/useJobModelSliderWidth";
 import "../Testimonial/Carousel.css";
 import "./JobModel.css";
 
@@ -16,7 +15,6 @@ interface Props {
 }
 
 const JobModel = ({ title, images, description, onClose }: Props) => {
-  const { sliderWidth } = useJobModelSliderWidth();
   const { breakpoint } = dimensions;
 
   const settings = {
@@ -51,7 +49,9 @@ const JobModel = ({ title, images, description, onClose }: Props) => {
       <h1 className="text-center text-5xl mb-12 font-semibold">{title}</h1>
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-2 sm:px-5 md:px-10">
         <div
-          className={`slider-container ${breakpoint ? "mobile" : "desktop"} w-full md:w-1/2`}
+          className={`slider-container ${
+            breakpoint ? "mobile" : "desktop"
+          } w-full md:w-1/2`}
         >
           <Slider {...settings} className="h-full">
             {images.map((image) => (
