@@ -36,7 +36,7 @@ const Testimonials = () => {
             {reviews.map((review, index) => (
               <TestimonialBox
                 key={index}
-                image={API_URL + review.client_image}
+                image={review.client_image}
                 title={review.client_fullname}
                 subTitle={`User from ${review.country}`}
                 testomonial={review.review}
