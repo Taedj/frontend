@@ -3,10 +3,9 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "8000",
-        pathname: "/media/**", // adjust if needed
+        protocol: "https",
+        hostname: "supreme-anett-tidjanizitouni-76253975.koyeb.app",
+        pathname: "/media/**",
       },
     ],
   },
