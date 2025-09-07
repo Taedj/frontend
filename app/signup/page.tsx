@@ -65,7 +65,8 @@ type FormData = z.infer<typeof schema>;
 
 const Page = () => {
   const router = useRouter();
-  const { mutate, isSuccess, isPending } = useCreateUser();
+  const { mutate, isSuccess, isPending, isError, error } = useCreateUser();
+  console.log({ isError, error });
   const {
     register,
     handleSubmit,
@@ -234,7 +235,9 @@ const Page = () => {
               {errors.re_password?.message}
             </p>
           </div>
-
+          <p className="text-red-500 text-sm md:text-2xl my-1 md:my-2">
+            {error && error?.data && Object.values(error?.data)[0]}
+          </p>
           {/* Button */}
           <div className="flex justify-center my-8 md:my-12">
             <Button

@@ -8,6 +8,14 @@ import CategoriesClient from "./CategoriesService";
 import EmailClient from "./EmailService";
 import UserClient from "./userService";
 
+export interface APIError {
+  status?: number;
+  data?: {
+    detail?: string;
+    [key: string]: any;
+  };
+}
+
 export {
   ConfigClient,
   ServicesClient,

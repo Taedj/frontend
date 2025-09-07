@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { User, ActivationParams } from "../hooks/useCreateUser";
 import { API_URL } from "../constants/constants";
+import { APIError } from ".";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
@@ -14,24 +15,29 @@ class UserClient {
     this.endpoint = endpoint;
   }
 
-  create = async function (user: User) {
+  create = async (user: User) => {
     try {
       const response = await axiosInstance.post<User>(this.endpoint, user, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
       return response.data;
     } catch (error) {
-      console.error("Error when creating new user", error);
+      if (axios.isAxiosError(error)) {
+        // ✅ Consistent structured error
+        const err: APIError = {
+          status: error.response?.status ?? 500,
+          data: error.response?.data ?? { detail: "Unknown error" },
+        };
+        throw err;
+      }
       throw {
-        message: error.response?.data?.message,
-        status: error.response?.status,
+        status: 500,
+        data: { detail: "Unexpected error during user creation" },
       };
     }
   };
 
-  activate = async function (activationParams: ActivationParams) {
+  activate = async (activationParams: ActivationParams) => {
     try {
       const response = await axiosInstance.post<ActivationParams>(
         this.endpoint + "activation/",
@@ -39,10 +45,16 @@ class UserClient {
       );
       return response.data;
     } catch (error) {
-      console.error("Error when activating new user", error);
+      if (axios.isAxiosError(error)) {
+        const err: APIError = {
+          status: error.response?.status ?? 500,
+          data: error.response?.data ?? { detail: "Unknown error" },
+        };
+        throw err;
+      }
       throw {
-        message: error.response?.data?.message,
-        status: error.response?.status,
+        status: 500,
+        data: { detail: "Unexpected error during activation" },
       };
     }
   };

@@ -43,8 +43,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const Page = () => {
-  const { mutate, isSuccess, isPending } = useLogin();
-
+  const { mutate, isSuccess, isPending, isError, error } = useLogin();
+  console.log({ isError, error });
   const onSubmit = (data: FormData) => {
     mutate(data);
   };
@@ -99,6 +99,11 @@ const Page = () => {
             {errors.password && (
               <p className="text-red-500 text-sm md:text-2xl my-2">
                 {errors.password.message}
+              </p>
+            )}
+            {isError && (
+              <p className="text-red-500 text-sm md:text-2xl my-2">
+                {error?.data?.detail ?? "Something went wrong"}
               </p>
             )}
           </div>

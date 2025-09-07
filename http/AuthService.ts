@@ -14,26 +14,27 @@ class AuthClient {
     this.endpoint = endpoint;
   }
 
-  login = async function (creds: Login) {
+  login = async (creds: Login) => {
     try {
       const response = await axiosInstance.post<Login>(
         this.endpoint + "login/",
         creds,
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
       return response.data;
     } catch (error) {
-      console.error("Error when Login", error);
-      throw {
-        message: error.response?.data?.message,
-        status: error.response?.status,
-      };
+      console.log("this is inside Login method:", error);
+      if (axios.isAxiosError(error)) {
+        throw {
+          status: error.response?.status,
+          data: error.response?.data,
+        };
+      }
+      throw { status: 500, data: { detail: "Unexpected error during login" } };
     }
   };
 
-  logout = async function () {
+  logout = async () => {
     try {
       const response = await axiosInstance.post(
         this.endpoint + "logout/",
@@ -42,15 +43,17 @@ class AuthClient {
       );
       return response.data;
     } catch (error) {
-      console.error("Error when logout", error);
-      throw {
-        message: error.response?.data?.message,
-        status: error.response?.status,
-      };
+      if (axios.isAxiosError(error)) {
+        throw {
+          status: error.response?.status,
+          data: error.response?.data,
+        };
+      }
+      throw { status: 500, data: { detail: "Unexpected error during logout" } };
     }
   };
 
-  checkLogin = async function () {
+  checkLogin = async () => {
     return await axiosInstance.get(this.endpoint + "check_login/", {
       withCredentials: true,
     });
