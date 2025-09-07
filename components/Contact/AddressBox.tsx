@@ -30,14 +30,16 @@ const AddressBox = () => {
           />
           <span>{config?.phone1}</span>
         </div>
-        <div className="flex max-md:justify-center items-start text-2xl font-medium leading-7 sm:leading-12 text-bg-text-less-dark">
-          <FaPhoneAlt
-            size={16}
-            color={colors.primaryColor}
-            className="mr-3 mt-1"
-          />
-          <span>{config?.phone2}</span>
-        </div>
+        {config?.phone2 && (
+          <div className="flex max-md:justify-center items-start text-2xl font-medium leading-7 sm:leading-12 text-bg-text-less-dark">
+            <FaPhoneAlt
+              size={16}
+              color={colors.primaryColor}
+              className="mr-3 mt-1"
+            />
+            <span>{config?.phone2}</span>
+          </div>
+        )}
         <div className="flex max-md:justify-center items-start text-2xl font-medium leading-7 sm:leading-12 text-bg-text-less-dark">
           <IoMdMail
             size={16}

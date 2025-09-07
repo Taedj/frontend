@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import Button from "../../components/Button/Button";
 import { colors } from "../../constants/constants";
 import useCreateUser from "../../hooks/useCreateUser";
+import Spinner from "../../components/Spinner/Spinner";
 
 const styles = {
   input:
@@ -64,7 +65,7 @@ type FormData = z.infer<typeof schema>;
 
 const Page = () => {
   const router = useRouter();
-  const { mutate, isSuccess } = useCreateUser();
+  const { mutate, isSuccess, isPending } = useCreateUser();
   const {
     register,
     handleSubmit,
@@ -244,6 +245,7 @@ const Page = () => {
               hoverBackground={colors.hoverPrimaryColor}
               outline={false}
             >
+              {isPending && <Spinner />}
               Sign Up
             </Button>
           </div>

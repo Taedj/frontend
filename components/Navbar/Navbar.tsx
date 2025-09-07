@@ -65,13 +65,13 @@ const Navbar = () => {
                     key={sections.length}
                     className="hover:text-primary p-3 border-b border-menu-item-border"
                   >
-                    <Link href="/signin">Sign-in</Link>
+                    <Link href="/signin">Sign in</Link>
                   </li>
                   <li
                     key={sections.length + 1}
                     className="hover:text-primary p-3"
                   >
-                    <Link href="/signup">Sign-up</Link>
+                    <Link href="/signup">Sign up</Link>
                   </li>
                 </>
               )}

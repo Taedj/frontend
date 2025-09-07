@@ -55,10 +55,10 @@ const SideBar = () => {
         {!isLogged && (
           <div className="text-3xl font-semibold ">
             <span className="mr-4 hover:text-primary">
-              <Link href="/signin">Sign-in</Link>
+              <Link href="/signin">Sign in</Link>
             </span>
             <span className="hover:text-primary">
-              <Link href="/signup">Sign-up</Link>
+              <Link href="/signup">Sign up</Link>
             </span>
           </div>
         )}

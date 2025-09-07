@@ -9,12 +9,12 @@ const CategoriesSelector = ({ categoryHandler }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const { data: categories } = useCategories();
   return (
-    <div className="text-base sm:text-lg md:text-2xl font-normal my-10 sm:my-16 mx-0 text-categories-selector">
+    <div className="text-lg sm:text-xl md:text-2xl font-normal my-10 sm:my-16 mx-0 text-categories-selector">
       <ul className="flex flex-wrap list-none justify-center gap-4 sm:gap-8">
         {categories?.map((categoryText) => (
           <li
             key={categoryText}
-            className="flex flex-col text-2xl font-semibold items-center py-2 sm:py-4 px-4 sm:px-6 min-w-[6rem] sm:w-40 hover:cursor-pointer"
+            className="flex flex-col text-center font-semibold items-center py-2 sm:py-4 px-4 sm:px-6 min-w-[6rem] sm:w-40 hover:cursor-pointer"
             onClick={() => {
               categoryHandler(categoryText);
               setSelectedCategory(categoryText);
