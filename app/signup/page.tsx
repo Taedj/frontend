@@ -66,7 +66,6 @@ type FormData = z.infer<typeof schema>;
 const Page = () => {
   const router = useRouter();
   const { mutate, isSuccess, isPending, isError, error } = useCreateUser();
-  console.log({ isError, error });
   const {
     register,
     handleSubmit,

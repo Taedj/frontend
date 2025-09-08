@@ -17,7 +17,6 @@ interface Review {
 const Testimonials = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const { slideToShow } = useSlidesCount();
-  console.log("reviews", reviews);
   useEffect(() => {
     axios.get(API_URL + "/home/reviews").then((res) => setReviews(res.data));
   }, []);

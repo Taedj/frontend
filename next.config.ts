@@ -12,6 +12,12 @@ const nextConfig = {
         hostname: "phpezebkmsnlxmbnkope.supabase.co",
         pathname: "/storage/v1/object/**",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8000",
+        pathname: "/media/**",
+      },
     ],
   },
 };

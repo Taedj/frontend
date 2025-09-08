@@ -23,7 +23,6 @@ class AuthClient {
       );
       return response.data;
     } catch (error) {
-      console.log("this is inside Login method:", error);
       if (axios.isAxiosError(error)) {
         throw {
           status: error.response?.status,

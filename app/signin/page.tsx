@@ -44,7 +44,6 @@ type FormData = z.infer<typeof schema>;
 
 const Page = () => {
   const { mutate, isSuccess, isPending, isError, error } = useLogin();
-  console.log({ isError, error });
   const onSubmit = (data: FormData) => {
     mutate(data);
   };

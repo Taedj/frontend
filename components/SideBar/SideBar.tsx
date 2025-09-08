@@ -11,7 +11,6 @@ const SideBar = () => {
   const [HoveredIndex, setHoveredIndex] = useState(0);
   const { data: config } = useConfig();
   const { isLogged } = useIsLogged();
-  console.log("is LoggedIn in Sidebar", isLogged);
   const { mutate } = useLogout();
   const bgImage = config?.profile_image
     ? `url(${config?.profile_image})`
