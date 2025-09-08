@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { UserClient } from "../http";
+import { APIError, UserClient } from "../http";
 
 export interface User {
   first_name: string;
@@ -23,7 +23,7 @@ export const activateUser = async (activationParams: ActivationParams) => {
 
 const useCreateUser = () => {
   const userClient = new UserClient("/auth/users/");
-  return useMutation({
+  return useMutation<User,APIError,User>({
     mutationKey: ["user"],
     mutationFn: async (user: User) => await userClient.create(user),
   });

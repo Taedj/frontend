@@ -29,7 +29,9 @@ const ErrorPage = ({ error }: { error: Error }) => {
         <p className="mb-6 text-base sm:text-lg md:text-xl text-gray-400 max-w-md sm:max-w-xl lg:max-w-2xl mx-auto">
           Oops! Something went wrong on our end. Please try again later.
         </p>
-        <p className="text-red-500">{error.message}</p>
+        {process.env.NODE_ENV === "development" && (
+          <p className="text-red-500">{error.message}</p>
+        )}
         <a
           href="/"
           className="inline-block rounded-2xl bg-primary px-5 py-2 sm:px-6 sm:py-3 text-sm sm:text-base text-white font-medium "
