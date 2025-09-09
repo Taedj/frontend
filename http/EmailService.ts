@@ -17,7 +17,7 @@ class EmailClient {
   send = async function (clientMessage: ClientMessage) {
     try {
       const response = await axiosInstance.post<ClientMessage>(
-        this.endpoint, // no leading slash ✅
+        this.endpoint,
         clientMessage
       );
       return response.data;

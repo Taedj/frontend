@@ -5,6 +5,7 @@ import { colors } from "../../constants/constants";
 import useSendEmail from "../../hooks/useSendEmail";
 import Button from "../Button/Button";
 import useIsLogged from "../../hooks/useIsLogged";
+import Spinner from "../Spinner/Spinner";
 
 const EmailForm = () => {
   const { isLogged } = useIsLogged();
@@ -18,8 +19,7 @@ const EmailForm = () => {
   });
 
   type FormData = z.infer<typeof schema>;
-  const { mutate } = useSendEmail();
-
+  const { mutate, isPending } = useSendEmail();
   const onSubmit = (data: FormData) => {
     mutate(data);
   };
@@ -93,6 +93,7 @@ const EmailForm = () => {
           outline={false}
           disabled={!isLogged}
         >
+          {isPending && <Spinner />}
           Send Message
         </Button>
       </div>
