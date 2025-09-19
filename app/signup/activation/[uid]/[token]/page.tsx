@@ -11,7 +11,7 @@ const Activation = () => {
   useEffect(() => {
     activateUser(activationParams);
     setTimeout(() => router.push("/signin"), 2000);
-  }, []);
+  }, [activationParams, router]);
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-bg-less-dark px-4">
       <div className="w-full max-w-3xl flex flex-col items-center text-center">

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { colors, sections } from "../../constants/constants";
 import useConfig from "../../hooks/useConfig";
 import SocialMedias from "./SocialMedias";
-import Link from "next/link";
+
 import useLogout from "../../hooks/useLogout";
 import useIsLogged from "../../hooks/useIsLogged";
 
@@ -30,16 +30,7 @@ const SideBar = () => {
             {config?.fullname}
           </h1>
         </div>
-        {!isLogged && (
-          <div className="text-xl font-semibold ">
-            <span className="mr-4" style={{ color: colors.primaryColor }}>
-              <Link href="/signin">Login</Link>
-            </span>
-            <span style={{ color: colors.primaryColor }}>
-              <Link href="/signup">Register</Link>
-            </span>
-          </div>
-        )}
+
         <ul className="flex flex-col items-center list-none text-3xl leading-10 p-0 m-0 font-semibold w-full">
           {sections.map((section, index) => (
             <li
