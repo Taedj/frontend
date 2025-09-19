@@ -12,6 +12,7 @@ import Summary from "../components/Summary/Summary";
 import Testimonials from "../components/Testimonial/Testimonials";
 import useIsMobile from "../hooks/useIsMobile";
 import clientLogger from "../lib/clientLogger";
+import Header from "../components/Header/Header";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,6 +39,7 @@ function App() {
           }
         `}
       >
+        <Header />
         {isMobile && !modalOpen && <Navbar />}
         <Home />
         <About />
