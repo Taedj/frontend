@@ -7,7 +7,7 @@ const Header = () => {
   const { isLogged } = useIsLogged();
 
   return (
-    <div className="hidden lg:flex justify-end items-center p-4">
+    <div className="hidden lg:flex justify-end items-center p-4 bg-transparent absolute top-0 right-0 w-full">
       {!isLogged && (
         <div className="text-xl font-semibold">
           <span className="mr-4" style={{ color: colors.primaryColor }}>
