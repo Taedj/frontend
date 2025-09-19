@@ -7,9 +7,11 @@ const Footer = () => {
         Reserved.
       </div>
       <div className="flex flex-wrap justify-center md:justify-end gap-4">
-        <span className="cursor-pointer hover:text-primary transition">
-          Terms & Policy
-        </span>
+        <Link href="/privacy-policy">
+          <span className="cursor-pointer hover:text-primary transition">
+            Privacy Policy
+          </span>
+        </Link>
         <span className="cursor-pointer hover:text-primary transition">
           Disclaimer
         </span>
