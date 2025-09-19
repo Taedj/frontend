@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 py-24 px-6 md:px-20 text-2xl lg:text-3xl bg-bg-dark text-bg-text-less-dark">
