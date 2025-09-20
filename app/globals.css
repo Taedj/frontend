@@ -27,3 +27,7 @@ html {
   font-size: 62.25%;
   font-family: Poppins, sans-serif;
 }
+
+header, nav {
+  background: transparent !important;
+}
