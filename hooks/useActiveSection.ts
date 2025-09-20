@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { sections } from "../constants/constants";
 
 const useActiveSection = () => {
@@ -7,47 +7,34 @@ const useActiveSection = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        const visibleSections = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visibleSections.length > 0) {
-          setActiveSection(visibleSections[0].target.id);
+        let visibleSection: string | null = null;
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            visibleSection = entry.target.id;
+          }
+        }
+        if (visibleSection) {
+          setActiveSection(visibleSection);
         }
       },
-      {
-        root: null,
-        rootMargin: "0px 0px -30% 0px", // triggers earlier for top sections
-        threshold: 0, // fire as soon as it enters
-      }
+      { threshold: 0.6 }
     );
-
-    const elements: HTMLElement[] = [];
 
     sections.forEach((section) => {
       const el = document.getElementById(section);
-      if (el) {
-        observer.observe(el);
-        elements.push(el);
-      }
+      if (el) observer.observe(el);
     });
 
-    const handleScroll = () => {
-      const scrollPos = window.innerHeight + window.scrollY;
-      const pageHeight = document.body.offsetHeight;
-
-      if (scrollPos >= pageHeight - 2) {
-        setActiveSection(sections[sections.length - 1]);
-      }
-    };
-
-    return () => {
-      elements.forEach((el) => observer.unobserve(el));
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => observer.disconnect();
   }, []);
 
-  return { activeSection };
+  // 👇 manual override when clicking
+  const handleSetActiveSection = useCallback((id: string) => {
+    setActiveSection(id);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  return { activeSection, setActiveSection: handleSetActiveSection };
 };
 
 export default useActiveSection;

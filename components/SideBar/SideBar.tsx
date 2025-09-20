@@ -9,7 +9,7 @@ import useIsLogged from "../../hooks/useIsLogged";
 import useActiveSection from "../../hooks/useActiveSection";
 
 const SideBar = () => {
-  const { activeSection } = useActiveSection();
+  const { activeSection, setActiveSection } = useActiveSection();
   const [HoveredIndex, setHoveredIndex] = useState(0);
   const { data: config } = useConfig();
   const { isLogged } = useIsLogged();
@@ -48,7 +48,14 @@ const SideBar = () => {
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(-1)}
               >
-                <a href={`#${section}`} className="text-inherit no-underline">
+                <a
+                  href={`#${section}`}
+                  className="text-inherit no-underline cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault(); // stop default jump
+                    setActiveSection(section); // update state + smooth scroll
+                  }}
+                >
                   {section.replaceAll("-", " ")}
                 </a>
               </li>
