@@ -18,7 +18,14 @@ const Navbar = () => {
     <>
       <div className="fixed w-full top-0 left-0 z-50">
         <div className="flex justify-between align-center items-center text-white px-6 h-26 font-semibold bg-navbar">
-          <h1 className="text-4xl">{config?.fullname}</h1>
+          {config?.profile_image && (
+            <img
+              src={config.profile_image}
+              alt="Profile"
+              className="w-10 h-10 rounded-full mr-2"
+            />
+          )}
+          <h1 className="text-xl md:text-2xl lg:text-3xl">{config?.fullname}</h1>
           <div className="flex items-center">
             <SocialMedias className="!mb-0" />
             {!menuClicked && (
