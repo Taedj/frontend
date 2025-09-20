@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { colors } from "../../constants/constants";
+
 import useIsLogged from "../../hooks/useIsLogged";
 
 const Header = () => {
