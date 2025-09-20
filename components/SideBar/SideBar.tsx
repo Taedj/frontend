@@ -6,8 +6,10 @@ import SocialMedias from "./SocialMedias";
 
 import useLogout from "../../hooks/useLogout";
 import useIsLogged from "../../hooks/useIsLogged";
+import useActiveSection from "../../hooks/useActiveSection";
 
 const SideBar = () => {
+  const { activeSection } = useActiveSection();
   const [HoveredIndex, setHoveredIndex] = useState(0);
   const { data: config } = useConfig();
   const { isLogged } = useIsLogged();
@@ -32,25 +34,26 @@ const SideBar = () => {
         </div>
 
         <ul className="flex flex-col items-center list-none text-3xl leading-10 p-0 m-0 font-semibold w-full">
-          {sections.map((section, index) => (
-            <li
-              key={section}
-              className="p-4"
-              style={{
-                transition: "color 0.3s",
-                color:
-                  HoveredIndex === index || index === 0
-                    ? colors.primaryColor
-                    : "white",
-              }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(0)}
-            >
-              <a href={`#${section}`} className="text-inherit no-underline">
-                {section.replaceAll("-", " ")}
-              </a>
-            </li>
-          ))}
+          {sections.map((section, index) => {
+            const isActive = activeSection === section;
+            const isHovered = HoveredIndex === index;
+            return (
+              <li
+                key={section}
+                className="p-4"
+                style={{
+                  transition: "color 0.3s",
+                  color: isHovered || isActive ? colors.primaryColor : "white",
+                }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(-1)}
+              >
+                <a href={`#${section}`} className="text-inherit no-underline">
+                  {section.replaceAll("-", " ")}
+                </a>
+              </li>
+            );
+          })}
         </ul>
         {isLogged && (
           <div className="text-3xl font-semibold ">
