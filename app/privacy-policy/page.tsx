@@ -91,7 +91,7 @@ const PrivacyPolicyPage = () => {
             <li>Legally required records may be retained up to 1 year.</li>
           </ul>
 
-          <p>For requests, please email: tidjanizitouni@gmail.com</p>
+          <p>For requests, please email: tidjanizitouni@gmail.com.</p>
         </div>
       </div>
     </div>
