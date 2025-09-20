@@ -7,7 +7,7 @@ const PrivacyPolicyPage = () => {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold text-primary mb-4">Privacy Policy</h1>
         <div className="prose prose-invert">
-          <p>This Privacy Policy describes how your personal information is collected, used, and shared when you use our mobile applications (the "Apps").</p>
+          <p>This Privacy Policy describes how your personal information is collected, used, and shared when you use our mobile applications.</p>
 
           <h2 className="text-2xl font-bold text-primary mt-6 mb-2">Information We Collect</h2>
           <p>We may collect the following types of information:</p>
@@ -16,7 +16,7 @@ const PrivacyPolicyPage = () => {
             <li><strong>Information we collect automatically:</strong> When you use our Apps, we may automatically collect certain information, including:
               <ul className="list-disc list-inside ml-4">
                 <li><strong>Device Information:</strong> We may collect information about your mobile device, including the device model, operating system version, unique device identifiers, and mobile network information.</li>
-                <li><strong>Usage Information:</strong> We may collect information about how you use our Apps, suchs as the features you use, the content you view, and the actions you take.</li>
+                <li><strong>Usage Information:</strong> We may collect information about how you use our Apps, such as the features you use, the content you view, and the actions you take.</li>
                 <li><strong>Log Information:</strong> We may collect log information, such as your IP address, access times, and other system activity.</li>
               </ul>
             </li>
