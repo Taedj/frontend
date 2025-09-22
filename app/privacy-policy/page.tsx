@@ -6,7 +6,7 @@ const PrivacyPolicyPage = () => {
     <div className="bg-bg-less-dark text-white min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold text-primary mb-4">Privacy Policy</h1>
-        <div className="prose prose-invert">
+        <div className="prose prose-invert md:prose-lg lg:prose-xl">
           <p>This Privacy Policy describes how your personal information is collected, used, and shared when you use our mobile applications.</p>
 
           <h2 className="text-2xl font-bold text-primary mt-6 mb-2">Information We Collect</h2>
