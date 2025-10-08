@@ -85,7 +85,7 @@ const Page = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      router.push("/signup/activation");
+      router.push("/signin");
     }
   }, [isSuccess, router]);
 
