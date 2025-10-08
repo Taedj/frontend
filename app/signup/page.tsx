@@ -56,6 +56,11 @@ const schema = z
         "Password must contain at least one special character"
       ),
     re_password: z.string(),
+    address: z.string().min(2, "Address must be at least 2 characters"),
+    city: z.string().min(2, "City must be at least 2 characters"),
+    state: z.string().min(2, "State must be at least 2 characters"),
+    zip: z.string().min(2, "Zip must be at least 2 characters"),
+    country: z.string().min(2, "Country must be at least 2 characters"),
   })
   .refine((data) => data.password === data.re_password, {
     message: "Passwords do not match",
@@ -161,6 +166,94 @@ const Page = () => {
             <p className="text-red-500 text-sm md:text-2xl my-1 md:my-2">
               {errors.phone1?.message}
             </p>
+          </div>
+
+          <div className="md:flex gap-4">
+            {/* Address */}
+            <div className="form-group mb-6 md:mb-8">
+              <label htmlFor="address" className={styles.label}>
+                Address
+              </label>
+              <input
+                {...register("address")}
+                type="text"
+                id="address"
+                placeholder="123 Main St"
+                className={styles.input}
+              />
+              <p className="text-red-500 text-sm md:text-2xl my-1 md:my-2">
+                {errors.address?.message}
+              </p>
+            </div>
+
+            {/* City */}
+            <div className="form-group mb-6 md:mb-8">
+              <label htmlFor="city" className={styles.label}>
+                City
+              </label>
+              <input
+                {...register("city")}
+                type="text"
+                id="city"
+                placeholder="Anytown"
+                className={styles.input}
+              />
+              <p className="text-red-500 text-sm md:text-2xl my-1 md:my-2">
+                {errors.city?.message}
+              </p>
+            </div>
+          </div>
+
+          <div className="md:flex gap-4">
+            {/* State */}
+            <div className="form-group mb-6 md:mb-8">
+              <label htmlFor="state" className={styles.label}>
+                State
+              </label>
+              <input
+                {...register("state")}
+                type="text"
+                id="state"
+                placeholder="CA"
+                className={styles.input}
+              />
+              <p className="text-red-500 text-sm md:text-2xl my-1 md:my-2">
+                {errors.state?.message}
+              </p>
+            </div>
+
+            {/* Zip */}
+            <div className="form-group mb-6 md:mb-8">
+              <label htmlFor="zip" className={styles.label}>
+                Zip
+              </label>
+              <input
+                {...register("zip")}
+                type="text"
+                id="zip"
+                placeholder="12345"
+                className={styles.input}
+              />
+              <p className="text-red-500 text-sm md:text-2xl my-1 md:my-2">
+                {errors.zip?.message}
+              </p>
+            </div>
+            {/* Country */}
+            <div className="form-group mb-6 md:mb-8">
+              <label htmlFor="country" className={styles.label}>
+                Country
+              </label>
+              <input
+                {...register("country")}
+                type="text"
+                id="country"
+                placeholder="USA"
+                className={styles.input}
+              />
+              <p className="text-red-500 text-sm md:text-2xl my-1 md:my-2">
+                {errors.country?.message}
+              </p>
+            </div>
           </div>
 
           {/* Username */}
