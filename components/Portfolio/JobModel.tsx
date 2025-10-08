@@ -71,19 +71,6 @@ const JobModel = ({ title, images, description, onClose }: Props) => {
         <div className="w-full md:w-1/2 mt-4 md:mt-0 px-2 sm:px-4">
           <h2 className="text-4xl font-semibold mb-4">Project Info:</h2>
           <p className="text-2xl sm:text-3xl leading-12 mb-12">{description}</p>
-
-          <h2 className="text-4xl font-semibold mt-8 mb-5">Project Details:</h2>
-          <ul className="mb-4 space-y-4">
-            <li className="py-4 text-2xl sm:text-3xl border-b border-b-border">
-              <span className="font-semibold">Client:</span> Ruby Clinton
-            </li>
-            <li className="py-4 text-2xl sm:text-3xl border-b border-b-border">
-              <span className="font-semibold">Industry:</span> Art & Design
-            </li>
-            <li className="py-4 text-2xl sm:text-3xl border-b border-b-border">
-              <span className="font-semibold">Date:</span> July 16, 2019
-            </li>
-          </ul>
         </div>
       </div>
     </div>

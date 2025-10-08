@@ -21,7 +21,7 @@ const VerticalList = () => {
           <span className="font-bold">From:</span> Khroub, Constantine
         </li>
       </ul>
-      <a href="/resume.pdf" download="My_CV.pdf">
+      <a href="https://drive.google.com/file/d/1-XryxNaj88LKIjB46DbiIQ4yX3nxILg_/view?usp=sharing" download="My_CV.pdf">
         <Button
           color="white"
           width="19.5rem"

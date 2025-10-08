@@ -77,7 +77,7 @@ const Summary = () => {
 
         {/* Download CV */}
         <div className="flex justify-center mt-16">
-          <a href="/resume.pdf" download="My_CV.pdf">
+          <a href="https://drive.google.com/file/d/1-XryxNaj88LKIjB46DbiIQ4yX3nxILg_/view?usp=sharing" download="My_CV.pdf">
             <Button
               color={colors.backgroundTextDarkColor}
               height="5.2rem"
