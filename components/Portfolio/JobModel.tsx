@@ -37,13 +37,13 @@ const JobModel = ({ title, category, images = [], description, technologies = []
           <ImageGallery images={images} />
         </div>
         <div className="w-full md:w-2/3 mt-4 md:mt-0 px-2 sm:px-4 overflow-y-auto">
-          <h1 className="text-4xl md:text-5xl font-semibold mb-2">{title}</h1>
+          <h1 className="text-base font-semibold mb-2">{title}</h1>
           <p className="text-xl md:text-2xl text-gray-400 mb-4">{category}</p>
           <h2 className="text-2xl md:text-3xl font-semibold mb-2">Project Info:</h2>
-          <div className="text-lg md:text-xl leading-7 mb-4">
+          <div className="text-sm leading-7 mb-4">
             <ReactMarkdown
               components={{
-                a: ({...props}) => <a style={{fontWeight: 'bold', color: 'blue'}} {...props} />
+                a: ({...props}) => <a style={{fontWeight: 'bold', color: 'red', backgroundColor: 'yellow'}} {...props} />
               }}
             >
               {description}
@@ -55,8 +55,8 @@ const JobModel = ({ title, category, images = [], description, technologies = []
             ))}
           </ul>
           <div className="flex gap-4">
-            {projectUrl && <a href={projectUrl} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Live Demo</a>}
-            {sourceCodeUrl && <a href={sourceCodeUrl} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Source Code</a>}
+            {projectUrl && <a href={projectUrl} target="_blank" rel="noreferrer" className="text-red-500 bg-yellow-300 hover:underline">Live Demo</a>}
+            {sourceCodeUrl && <a href={sourceCodeUrl} target="_blank" rel="noreferrer" className="text-red-500 bg-yellow-300 hover:underline">Source Code</a>}
           </div>
         </div>
       </div>
