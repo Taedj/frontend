@@ -1,0 +1,31 @@
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001;
+}
+
+.fullscreen-image-container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+}
+
+.fullscreen-image {
+  object-fit: contain;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+}

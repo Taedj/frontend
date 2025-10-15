@@ -17,9 +17,9 @@ const JobModel = ({ title, category, images = [], description, technologies = []
   return (
     <div
       className="
-            w-[95vw] sm:w-[85vw] md:w-[80vw] lg:w-[70vw] 
+            w-[95vw] sm:w-[90vw] md:w-[85vw] lg:w-[80vw] 
             max-w-[90rem] 
-            h-[90vh] 
+            h-[95vh] 
             p-4 sm:p-6 md:p-8 
             rounded-lg 
             bg-job-model 
@@ -32,18 +32,17 @@ const JobModel = ({ title, category, images = [], description, technologies = []
         <RxCross1 size={24} />
       </div>
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-2 sm:px-5 md:px-10">
-        <div className="w-full md:w-1/2 h-[60vh]">
+        <div className="w-full md:w-2/3 h-[60vh]">
           <ImageGallery images={images} />
         </div>
-        <div className="w-full md:w-1/2 mt-4 md:mt-0 px-2 sm:px-4">
-          <h1 className="text-4xl font-semibold mb-2">{title}</h1>
-          <p className="text-xl text-gray-400 mb-4">{category}</p>
-          <h2 className="text-2xl font-semibold mb-2">Project Info:</h2>
-          <p className="text-lg leading-7 mb-4">{description}</p>
-          <h2 className="text-2xl font-semibold mb-2">Technologies Used:</h2>
+        <div className="w-full md:w-1/3 mt-4 md:mt-0 px-2 sm:px-4">
+          <h1 className="text-4xl md:text-5xl font-semibold mb-2">{title}</h1>
+          <p className="text-xl md:text-2xl text-gray-400 mb-4">{category}</p>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-2">Project Info:</h2>
+          <p className="text-lg md:text-xl leading-7 mb-4 whitespace-pre-wrap">{description}</p>
           <ul className="list-disc list-inside mb-4">
             {technologies.map((tech, index) => (
-              <li key={index} className="text-lg">{tech}</li>
+              <li key={index} className="text-lg md:text-xl">{tech}</li>
             ))}
           </ul>
           <div className="flex gap-4">
