@@ -8,6 +8,10 @@ interface Props {
 }
 
 const ImageGallery = ({ images }: Props) => {
+  if (!images || images.length === 0) {
+    return <div className="image-gallery-empty">No images to display.</div>;
+  }
+
   const [mainImage, setMainImage] = useState(images[0] || '');
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
 
@@ -22,10 +26,6 @@ const ImageGallery = ({ images }: Props) => {
   const handleCloseFullscreen = () => {
     setFullscreenImage(null);
   };
-
-  if (!images || images.length === 0) {
-    return <div className="image-gallery-empty">No images to display.</div>;
-  }
 
   return (
     <>
