@@ -33,8 +33,8 @@ const JobModel = ({ title, category, images = [], description, technologies = []
         <RxCross1 size={24} />
       </div>
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-2 sm:px-5 md:px-10 flex-grow overflow-y-auto">
-        <div className="w-full md:w-1/3">
-            <div className="md:sticky top-0">
+        <div className="w-full md:w-1/3 h-full">
+            <div className="md:sticky top-0 h-full">
                 <ImageGallery images={images} />
             </div>
         </div>
