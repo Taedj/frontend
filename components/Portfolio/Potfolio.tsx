@@ -95,7 +95,7 @@ const Potfolio = ({ handleModalOpen }: Props) => {
               isOpen={open}
               style={{
                 overlay: {
-                  backgroundColor: colors.backgroundDarkColor,
+                  backgroundColor: "rgba(33, 37, 41, 0.8)",
                   zIndex: 10000,
                 },
                 content: {

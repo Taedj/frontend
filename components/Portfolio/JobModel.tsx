@@ -40,7 +40,7 @@ const JobModel = ({ title, category, images = [], description, technologies = []
           <h1 className="text-[25px] font-semibold mb-2">{title}</h1>
           <p className="text-xl md:text-2xl text-gray-400 mb-4">{category}</p>
           <h2 className="text-2xl md:text-3xl font-semibold mb-2">Project Info:</h2>
-          <div className="text-[23px] leading-7 mb-4">
+          <div className="text-[20px] leading-loose mb-4">
             <ReactMarkdown
               components={{
                 a: ({...props}) => <a style={{fontWeight: 'bold', color: 'red', backgroundColor: 'yellow'}} {...props} />
