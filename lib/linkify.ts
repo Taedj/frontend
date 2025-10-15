@@ -1,4 +1,7 @@
-const linkify = (text: string) => {
+const linkify = (text: string | null | undefined) => {
+  if (!text) {
+    return "";
+  }
   // Regex to find Markdown links: [text](url)
   const markdownLinkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g;
   // Regex to find raw URLs
