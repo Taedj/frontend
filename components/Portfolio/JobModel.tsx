@@ -13,7 +13,7 @@ interface Props {
   onClose: () => void;
 }
 
-const JobModel = ({ title, category, images, description, technologies, projectUrl, sourceCodeUrl, onClose }: Props) => {
+const JobModel = ({ title, category, images = [], description, technologies = [], projectUrl, sourceCodeUrl, onClose }: Props) => {
   return (
     <div
       className="
