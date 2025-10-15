@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import FullscreenImage from './FullscreenImage';
 import './ImageGallery.css';
 
@@ -38,7 +39,7 @@ const ImageGallery = ({ images }: Props) => {
     <>
       <div className="image-gallery-container">
         <div className="main-image-display" onClick={handleMainImageClick}>
-                    {mainImage && <img src={mainImage} alt="Main Gallery" className="w-full h-auto" />}
+                              {mainImage && <Image src={mainImage} alt="Main Gallery" layout="fill" objectFit="contain" />}
         </div>
         <div className="thumbnail-strip">
           {images.map((image, index) => (
@@ -47,7 +48,7 @@ const ImageGallery = ({ images }: Props) => {
               className={`thumbnail ${image === mainImage ? 'active' : ''}`}
               onClick={() => handleThumbnailClick(image)}
             >
-                            <img src={image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                                          <Image src={image} alt={`Thumbnail ${index + 1}`} layout="fill" objectFit="cover" />
             </div>
           ))}
         </div>
