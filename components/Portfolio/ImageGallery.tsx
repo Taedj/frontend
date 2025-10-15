@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import FullscreenImage from './FullscreenImage';
 import './ImageGallery.css';
@@ -8,8 +8,14 @@ interface Props {
 }
 
 const ImageGallery = ({ images }: Props) => {
-  const [mainImage, setMainImage] = useState(images[0] || '');
+  const [mainImage, setMainImage] = useState<string | null>(null);
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (images && images.length > 0) {
+      setMainImage(images[0]);
+    }
+  }, [images]);
 
   if (!images || images.length === 0) {
     return <div className="image-gallery-empty">No images to display.</div>;
@@ -20,7 +26,9 @@ const ImageGallery = ({ images }: Props) => {
   };
 
   const handleMainImageClick = () => {
-    setFullscreenImage(mainImage);
+    if (mainImage) {
+      setFullscreenImage(mainImage);
+    }
   };
 
   const handleCloseFullscreen = () => {
@@ -31,7 +39,7 @@ const ImageGallery = ({ images }: Props) => {
     <>
       <div className="image-gallery-container">
         <div className="main-image-display" onClick={handleMainImageClick}>
-          <Image src={mainImage} alt="Main Gallery" layout="fill" objectFit="contain" />
+          {mainImage && <Image src={mainImage} alt="Main Gallery" layout="fill" objectFit="contain" />}
         </div>
         <div className="thumbnail-strip">
           {images.map((image, index) => (
