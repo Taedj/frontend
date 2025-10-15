@@ -1,6 +1,6 @@
 // Portfolio.tsx
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Masonry from "react-masonry-css";
 import Image from "next/image";
 import Modal from "react-modal";
@@ -10,7 +10,7 @@ import BackgroundText from "../BackgroundText/BackgroundText";
 import CategoriesSelector from "./CategoriesSelector";
 import JobModel from "./JobModel";
 import "./Portfolio.css";
-import clientLogger from "../../lib/clientLogger";
+
 
 const breakpointColumnsObj = {
   default: 3, // 3 columns by default
