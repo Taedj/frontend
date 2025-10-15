@@ -1,7 +1,7 @@
 import { RxCross1 } from "react-icons/rx";
 import ImageGallery from "./ImageGallery";
 import "./JobModel.css";
-import linkify from "../../lib/linkify";
+import ReactMarkdown from "react-markdown";
 
 interface Props {
   title: string;
@@ -40,10 +40,9 @@ const JobModel = ({ title, category, images = [], description, technologies = []
           <h1 className="text-4xl md:text-5xl font-semibold mb-2">{title}</h1>
           <p className="text-xl md:text-2xl text-gray-400 mb-4">{category}</p>
           <h2 className="text-2xl md:text-3xl font-semibold mb-2">Project Info:</h2>
-          <p
-            className="text-lg md:text-xl leading-7 mb-4"
-            dangerouslySetInnerHTML={{ __html: linkify(description) }}
-          />
+          <div className="text-lg md:text-xl leading-7 mb-4">
+            <ReactMarkdown>{description}</ReactMarkdown>
+          </div>
           <ul className="list-disc list-inside mb-4">
             {technologies.map((tech, index) => (
               <li key={index} className="text-lg md:text-xl">{tech}</li>
