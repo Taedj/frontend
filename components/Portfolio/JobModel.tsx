@@ -43,7 +43,7 @@ const JobModel = ({ title, category, images = [], description, technologies = []
           <div className="text-lg md:text-xl leading-7 mb-4">
             <ReactMarkdown
               components={{
-                a: ({...props}) => <a style={{fontWeight: 'bold', color: 'red', backgroundColor: 'yellow'}} {...props} />
+                a: ({...props}) => <a style={{fontWeight: 'bold', color: 'blue'}} {...props} />
               }}
             >
               {description}
