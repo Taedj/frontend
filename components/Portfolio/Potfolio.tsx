@@ -1,6 +1,6 @@
 // Portfolio.tsx
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import Image from "next/image";
 import Modal from "react-modal";
@@ -10,6 +10,9 @@ import BackgroundText from "../BackgroundText/BackgroundText";
 import CategoriesSelector from "./CategoriesSelector";
 import JobModel from "./JobModel";
 import "./Portfolio.css";
+
+
+import clientLogger from "../../lib/clientLogger";
 
 
 const breakpointColumnsObj = {
@@ -32,6 +35,18 @@ const Potfolio = ({ handleModalOpen }: Props) => {
   const [open, setOpen] = useState(false);
   const [selectedWork, setSelectedWork] = useState<PortfolioItem | null>(null);
   const [visibleItems, setVisibleItems] = useState(6);
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+      clientLogger.info(`job page popup`);
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [open]);
 
 
 
