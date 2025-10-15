@@ -26,17 +26,17 @@ const JobModel = ({ title, category, images = [], description, technologies = []
             bg-job-model 
             text-cell-description 
             mx-auto 
-            overflow-auto
+            flex flex-col
         "
     >
       <div className="flex justify-end mb-4" onClick={onClose}>
         <RxCross1 size={24} />
       </div>
-      <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-2 sm:px-5 md:px-10">
-        <div className="w-full md:w-2/3 h-[60vh]">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-2 sm:px-5 md:px-10 flex-grow">
+        <div className="w-full md:w-1/3 h-full">
           <ImageGallery images={images} />
         </div>
-        <div className="w-full md:w-1/3 mt-4 md:mt-0 px-2 sm:px-4">
+        <div className="w-full md:w-2/3 mt-4 md:mt-0 px-2 sm:px-4 overflow-y-auto">
           <h1 className="text-4xl md:text-5xl font-semibold mb-2">{title}</h1>
           <p className="text-xl md:text-2xl text-gray-400 mb-4">{category}</p>
           <h2 className="text-2xl md:text-3xl font-semibold mb-2">Project Info:</h2>
