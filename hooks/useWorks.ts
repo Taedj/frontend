@@ -11,6 +11,9 @@ export interface PortfolioItem {
   service: ServiceItem;
   description: string;
   category: string;
+  technologies: string[];
+  project_url: string;
+  source_code_url: string;
 }
 
 const useWorks = () => {
