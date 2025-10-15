@@ -41,7 +41,7 @@ const JobModel = ({ title, category, images = [], description, technologies = []
           <p className="text-xl md:text-2xl text-gray-400 mb-4">{category}</p>
           <h2 className="text-2xl md:text-3xl font-semibold mb-2">Project Info:</h2>
           <p
-            className="text-lg md:text-xl leading-7 mb-4 whitespace-pre-wrap"
+            className="text-lg md:text-xl leading-7 mb-4"
             dangerouslySetInnerHTML={{ __html: linkify(description) }}
           />
           <ul className="list-disc list-inside mb-4">
