@@ -36,7 +36,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,7 +46,6 @@
   border-radius: 8px;
   padding: 20px;
   text-align: center;
-  pointer-events: none;
 }
 
 .masonry-item:hover .overlay {
@@ -59,13 +58,22 @@
 
 .overlay h3 {
   color: white;
-  font-size: 2rem;
-  line-height: 2.4rem;
-  margin-bottom: 10px;
-  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 2.8rem;
+  margin-bottom: 15px;
+  font-weight: 700;
 }
 
-.overlay p {
-  color: #e0e0e0;
-  font-size: 1.6rem;
+.overlay .view-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.overlay .view-button:hover {
+  background-color: #0056b3;
 }
