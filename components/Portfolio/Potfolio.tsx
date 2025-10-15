@@ -33,17 +33,7 @@ const Potfolio = ({ handleModalOpen }: Props) => {
   const [selectedWork, setSelectedWork] = useState<PortfolioItem | null>(null);
   const [visibleItems, setVisibleItems] = useState(6);
 
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-      clientLogger.info(`job page popup`);
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [open]);
+
 
   const selectedData =
     category === "All"
