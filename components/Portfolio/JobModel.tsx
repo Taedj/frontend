@@ -41,7 +41,13 @@ const JobModel = ({ title, category, images = [], description, technologies = []
           <p className="text-xl md:text-2xl text-gray-400 mb-4">{category}</p>
           <h2 className="text-2xl md:text-3xl font-semibold mb-2">Project Info:</h2>
           <div className="text-lg md:text-xl leading-7 mb-4">
-            <ReactMarkdown>{description}</ReactMarkdown>
+            <ReactMarkdown
+              components={{
+                a: ({node, ...props}) => <a style={{fontWeight: 'bold', color: 'blue'}} {...props} />
+              }}
+            >
+              {description}
+            </ReactMarkdown>
           </div>
           <ul className="list-disc list-inside mb-4">
             {technologies.map((tech, index) => (
