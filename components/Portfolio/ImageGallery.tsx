@@ -8,12 +8,12 @@ interface Props {
 }
 
 const ImageGallery = ({ images }: Props) => {
+  const [mainImage, setMainImage] = useState(images[0] || '');
+  const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+
   if (!images || images.length === 0) {
     return <div className="image-gallery-empty">No images to display.</div>;
   }
-
-  const [mainImage, setMainImage] = useState(images[0] || '');
-  const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
 
   const handleThumbnailClick = (image: string) => {
     setMainImage(image);
