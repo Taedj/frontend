@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import Image from "next/image";
 import Modal from "react-modal";
+import { motion } from "framer-motion";
 import { colors } from "../../constants/constants";
 import useWorks, { PortfolioItem } from "../../hooks/useWorks";
 import BackgroundText from "../BackgroundText/BackgroundText";
@@ -34,7 +35,6 @@ const Potfolio = ({ handleModalOpen }: Props) => {
   const [category, setCategory] = useState("All");
   const [open, setOpen] = useState(false);
   const [selectedWork, setSelectedWork] = useState<PortfolioItem | null>(null);
-  const [visibleItems, setVisibleItems] = useState(6);
 
   useEffect(() => {
     if (open) {
@@ -55,12 +55,6 @@ const Potfolio = ({ handleModalOpen }: Props) => {
       ? data
       : data?.filter((item) => item.service.category === category);
 
-  const visibleData = selectedData?.slice(0, visibleItems);
-
-  const loadMore = () => {
-    setVisibleItems((prev) => prev + 3);
-  };
-
   return (
     <div id="Portfolio" className="py-29 px-0 bg-bg-less-dark">
       <div className="max-w-[1224px] mx-auto w-full">
@@ -73,8 +67,14 @@ const Potfolio = ({ handleModalOpen }: Props) => {
             className="masonry-grid"
             columnClassName="masonry-grid_column"
           >
-            {visibleData?.map((work) => (
-              <div key={work.id} className="masonry-item">
+            {selectedData?.map((work, index) => (
+              <motion.div
+                key={work.id}
+                className="masonry-item"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
                 <Image
                   src={work.images[0].image}
                   width={500}
@@ -92,7 +92,7 @@ const Potfolio = ({ handleModalOpen }: Props) => {
                   <h3>{work.title}</h3>
                   <a className="view-button">View</a>
                 </div>
-              </div>
+              </motion.div>
             ))}
 
             {/* Modal preserved inside Masonry exactly like your original */}
@@ -138,13 +138,6 @@ const Potfolio = ({ handleModalOpen }: Props) => {
               )}
             </Modal>
           </Masonry>
-          {selectedData && visibleItems < selectedData.length && (
-            <div className="text-center mt-8">
-              <button onClick={loadMore} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Load More
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>
