@@ -50,8 +50,8 @@ export const sections = [
   "About-Me",
   "Portfolio",
   "Services",
+  "My-Resume",
   "Testimonials",
-  "Resume",
   "Contact",
 ];
 
