@@ -43,7 +43,9 @@ function App() {
         {isMobile && !modalOpen && <Navbar />}
         <Home />
         <About />
-        <Potfolio handleModalOpen={setModalOpen} />
+        <div id="Portfolio">
+          <Potfolio handleModalOpen={setModalOpen} />
+        </div>
         <div id="Services">
           <Services />
         </div>
