@@ -76,7 +76,7 @@ const Potfolio = ({ handleModalOpen }: Props) => {
                 transition={{ delay: index * 0.1 }}
               >
                 <Image
-                  src={work.images[0].image}
+                  src={work.images.length > 0 ? work.images[0].image : "/assets/placeholder.png"}
                   width={500}
                   height={300}
                   alt={`Masonry item ${work.id}`}
