@@ -43,9 +43,9 @@ function App() {
         {isMobile && !modalOpen && <Navbar />}
         <Home />
         <About />
+        <Potfolio handleModalOpen={setModalOpen} />
         <Services />
         <Summary />
-        <Potfolio handleModalOpen={setModalOpen} />
         <Testimonials />
         <Contact />
         <Footer />

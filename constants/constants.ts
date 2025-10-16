@@ -48,10 +48,10 @@ export const fontSettings = {
 export const sections = [
   "Home",
   "About-Me",
-  "What-I-Do",
-  "Resume",
   "Portfolio",
+  "Services",
   "Testimonials",
+  "Resume",
   "Contact",
 ];
 
