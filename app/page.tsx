@@ -44,8 +44,12 @@ function App() {
         <Home />
         <About />
         <Potfolio handleModalOpen={setModalOpen} />
-        <Services />
-        <Summary />
+        <div id="Services">
+          <Services />
+        </div>
+        <div id="Resume">
+          <Summary />
+        </div>
         <Testimonials />
         <Contact />
         <Footer />
