@@ -6,6 +6,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import clientLogger from "../lib/clientLogger";
+import KeepAlive from "../components/KeepAlive/KeepAlive";
 import "./globals.css";
 
 // export const metadata: Metadata = {
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <QueryClientProvider client={queryClient}>
       <html lang="en">
-        <body>{children}</body>
+        <body><KeepAlive />{children}</body>
       </html>
     </QueryClientProvider>
   );
