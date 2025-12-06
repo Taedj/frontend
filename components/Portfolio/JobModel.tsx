@@ -46,15 +46,6 @@ const JobModel = ({ title, category, images = [], videos = [], description, tech
             <p className="text-xl md:text-2xl text-gray-400">{category}</p>
           </div>
 
-          {videos && videos.length > 0 && (
-            <div className="mb-8 grid gap-4">
-              {videos.map((video, index) => (
-                <div key={index} className="w-full aspect-video rounded-lg overflow-hidden border border-gray-700">
-                  <ReactPlayer url={video} width="100%" height="100%" controls />
-                </div>
-              ))}
-            </div>
-          )}
 
           <div className="text-[20px] leading-loose mb-4 whitespace-pre-wrap">
             <ReactMarkdown
@@ -65,6 +56,16 @@ const JobModel = ({ title, category, images = [], videos = [], description, tech
               {description}
             </ReactMarkdown>
           </div>
+
+          {videos && videos.length > 0 && (
+            <div className="mb-8 grid gap-4">
+              {videos.map((video, index) => (
+                <div key={index} className="w-full aspect-video rounded-lg overflow-hidden border border-gray-700">
+                  <ReactPlayer url={video} width="100%" height="100%" controls />
+                </div>
+              ))}
+            </div>
+          )}
           <ul className="list-disc list-inside mb-4">
             {technologies.map((tech, index) => (
               <li key={index} className="text-lg md:text-xl">{tech}</li>
