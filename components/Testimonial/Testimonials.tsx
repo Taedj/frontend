@@ -1,10 +1,8 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import useSlidesCount from "../../hooks/useSlidesCount";
 import BackgroundText from "../BackgroundText/BackgroundText";
 import Carousel from "./Carousel";
 import TestimonialBox from "./TestimonialBox";
-import { API_URL } from "../../constants/constants";
 import { ReviewsClient } from "../../http";
 
 export interface Review {
