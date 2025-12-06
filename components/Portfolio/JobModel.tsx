@@ -38,8 +38,25 @@ const JobModel = ({ title, category, images = [], videos = [], description, tech
         <RxCross1 size={24} />
       </div>
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-2 sm:px-5 md:px-10 flex-grow">
-        <div className="w-full md:w-1/3 h-full flex">
+        <div className="w-full md:w-1/3 h-full flex flex-col gap-4 overflow-y-auto">
           <ImageGallery images={images} />
+          {videos && videos.length > 0 && (
+            <div className="grid gap-4 flex-shrink-0 mb-4">
+              <h3 className="text-xl font-semibold text-gray-300">Video Gallery</h3>
+              {videos.map((video, index) => (
+                <div key={index} className="w-full aspect-video rounded-lg overflow-hidden border border-gray-700">
+                  <ReactPlayer
+                    url={video}
+                    width="100%"
+                    height="100%"
+                    controls
+                    onError={(e: unknown) => console.error("ReactPlayer Error:", e)}
+                    onReady={() => console.log("ReactPlayer Ready")}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className="w-full md:w-2/3 mt-4 md:mt-0 px-2 sm:px-4 overflow-y-auto">
           <div className="mb-6">
@@ -58,22 +75,6 @@ const JobModel = ({ title, category, images = [], videos = [], description, tech
             </ReactMarkdown>
           </div>
 
-          {videos && videos.length > 0 && (
-            <div className="mb-8 grid gap-4">
-              {videos.map((video, index) => (
-                <div key={index} className="w-full aspect-video rounded-lg overflow-hidden border border-gray-700">
-                  <ReactPlayer
-                    url={video}
-                    width="100%"
-                    height="100%"
-                    controls
-                    onError={(e: unknown) => console.error("ReactPlayer Error:", e)}
-                    onReady={() => console.log("ReactPlayer Ready")}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
           <ul className="list-disc list-inside mb-4">
             {technologies.map((tech, index) => (
               <li key={index} className="text-lg md:text-xl">{tech}</li>
