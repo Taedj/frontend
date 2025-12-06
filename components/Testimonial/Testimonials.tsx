@@ -5,8 +5,9 @@ import BackgroundText from "../BackgroundText/BackgroundText";
 import Carousel from "./Carousel";
 import TestimonialBox from "./TestimonialBox";
 import { API_URL } from "../../constants/constants";
+import { ReviewsClient } from "../../http";
 
-interface Review {
+export interface Review {
   client_image: string;
   client_fullname: string;
   country: string;
@@ -18,7 +19,7 @@ const Testimonials = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const { slideToShow } = useSlidesCount();
   useEffect(() => {
-    axios.get(API_URL + "/home/reviews").then((res) => setReviews(res.data));
+    ReviewsClient.getAll("/reviews").then((data) => setReviews(data));
   }, []);
   return (
     <div

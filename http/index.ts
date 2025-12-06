@@ -7,6 +7,7 @@ import ExperiencesClient from "./ExperiencesService";
 import CategoriesClient from "./CategoriesService";
 import EmailClient from "./EmailService";
 import UserClient from "./userService";
+import ReviewsClient from "./ReviewsService";
 
 export interface APIError {
   status?: number;
@@ -26,4 +27,5 @@ export {
   CategoriesClient,
   EmailClient,
   UserClient,
+  ReviewsClient,
 };
