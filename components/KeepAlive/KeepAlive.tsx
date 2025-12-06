@@ -7,7 +7,7 @@ const KeepAlive = () => {
       fetch(`${API_URL}/home/ping/`)
         .then(res => {
           if (res.ok) {
-            console.log('Ping sent to keep backend alive.');
+            // console.log('Ping sent to keep backend alive.');
           } else {
             console.error('Failed to send ping to backend.');
           }

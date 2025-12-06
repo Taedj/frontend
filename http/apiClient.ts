@@ -14,9 +14,14 @@ class ApiClient<T> {
   }
 
   getAll = async function (relativePath: string) {
+    let url = this.endpoint + relativePath;
+    const [path, query] = url.split('?');
+    if (!path.endsWith('/')) {
+      url = path + '/' + (query ? `?${query}` : '');
+    }
     try {
       const response = await axiosInstance.get<T[]>(
-        this.endpoint + relativePath
+        url
       );
       return response.data;
     } catch (error) {
