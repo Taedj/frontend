@@ -3,7 +3,7 @@ import ImageGallery from "./ImageGallery";
 import "./JobModel.css";
 import ReactMarkdown from "react-markdown";
 import dynamic from "next/dynamic";
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false }) as any;
 
 interface Props {
   title: string;
