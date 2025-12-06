@@ -2,7 +2,8 @@ import { RxCross1 } from "react-icons/rx";
 import ImageGallery from "./ImageGallery";
 import "./JobModel.css";
 import ReactMarkdown from "react-markdown";
-import ReactPlayer from "react-player";
+import dynamic from "next/dynamic";
+const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 interface Props {
   title: string;
