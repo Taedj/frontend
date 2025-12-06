@@ -19,6 +19,7 @@ interface Props {
 }
 
 const JobModel = ({ title, category, images = [], videos = [], description, technologies = [], projectUrl, sourceCodeUrl, onClose }: Props) => {
+  console.log("JobModel Videos:", videos);
   return (
     <div
       className="
@@ -61,7 +62,14 @@ const JobModel = ({ title, category, images = [], videos = [], description, tech
             <div className="mb-8 grid gap-4">
               {videos.map((video, index) => (
                 <div key={index} className="w-full aspect-video rounded-lg overflow-hidden border border-gray-700">
-                  <ReactPlayer url={video} width="100%" height="100%" controls />
+                  <ReactPlayer
+                    url={video}
+                    width="100%"
+                    height="100%"
+                    controls
+                    onError={(e: any) => console.error("ReactPlayer Error:", e)}
+                    onReady={() => console.log("ReactPlayer Ready")}
+                  />
                 </div>
               ))}
             </div>
