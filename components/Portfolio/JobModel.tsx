@@ -67,7 +67,7 @@ const JobModel = ({ title, category, images = [], videos = [], description, tech
                     width="100%"
                     height="100%"
                     controls
-                    onError={(e: any) => console.error("ReactPlayer Error:", e)}
+                    onError={(e: unknown) => console.error("ReactPlayer Error:", e)}
                     onReady={() => console.log("ReactPlayer Ready")}
                   />
                 </div>
