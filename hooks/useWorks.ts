@@ -8,6 +8,7 @@ export interface PortfolioItem {
   id: number;
   title: string;
   images: { image: string }[];
+  videos: { video_url: string }[];
   service: ServiceItem;
   description: string;
   category: string;

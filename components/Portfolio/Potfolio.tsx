@@ -85,9 +85,9 @@ const Potfolio = ({ handleModalOpen }: Props) => {
 
                 />
                 <div className="overlay" onClick={() => {
-                    setOpen(true);
-                    handleModalOpen(true);
-                    setSelectedWork(work);
+                  setOpen(true);
+                  handleModalOpen(true);
+                  setSelectedWork(work);
                 }}>
                   <h3>{work.title}</h3>
                   <a className="view-button">View</a>
@@ -131,6 +131,7 @@ const Potfolio = ({ handleModalOpen }: Props) => {
                   category={selectedWork.service.category}
                   description={selectedWork.description}
                   images={selectedWork.images.map((img) => img.image)}
+                  videos={selectedWork.videos ? selectedWork.videos.map((vid) => vid.video_url) : []}
                   technologies={selectedWork.technologies}
                   projectUrl={selectedWork.project_url}
                   sourceCodeUrl={selectedWork.source_code_url}
