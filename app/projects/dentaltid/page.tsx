@@ -30,9 +30,7 @@ export default function ProjectPage() {
             <div className="inline-block px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-sm font-medium">
               active
             </div>
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-none">
-              Elevate Your Practice with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">${word}</span>
-            </h1>
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-none" dangerouslySetInnerHTML={{ __html: `Elevate Your Practice with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }} />
             <p className="text-xl md:text-2xl text-neutral-400 max-w-2xl leading-relaxed">
               A high-performance, offline-first management suite designed specifically for modern dental professionals.
             </p>
