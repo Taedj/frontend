@@ -48,7 +48,8 @@ export const fontSettings = {
 export const sections = [
   "Home",
   "About-Me",
-  "Portfolio",
+  "Taedj-Dev-Projects",
+  "My-Work",
   "Services",
   "Resume",
   "Testimonials",

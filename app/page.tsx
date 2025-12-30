@@ -13,6 +13,7 @@ import Testimonials from "../components/Testimonial/Testimonials";
 import useIsMobile from "../hooks/useIsMobile";
 import clientLogger from "../lib/clientLogger";
 import Header from "../components/Header/Header";
+import Projects from "../components/Projects/Projects";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -32,10 +33,9 @@ function App() {
       {/* Main content */}
       <main
         className={`
-          ${
-            !isMobile && !modalOpen
-              ? "lg:ml-sidebar lg:w-[calc(100%-theme(spacing.sidebar))]"
-              : "w-full"
+          ${!isMobile && !modalOpen
+            ? "lg:ml-sidebar lg:w-[calc(100%-theme(spacing.sidebar))]"
+            : "w-full"
           }
         `}
       >
@@ -43,7 +43,11 @@ function App() {
         {isMobile && !modalOpen && <Navbar />}
         <Home />
         <About />
-        <div id="Portfolio">
+        <About />
+        <div id="Taedj-Dev-Projects">
+          <Projects />
+        </div>
+        <div id="My-Work">
           <Potfolio handleModalOpen={setModalOpen} />
         </div>
         <div id="Services">
