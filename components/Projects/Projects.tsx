@@ -3,7 +3,6 @@ import Link from "next/link";
 import projectsData from "../../data/projects.json";
 import BackgroundText from "../BackgroundText/BackgroundText";
 import { MdArrowForward } from "react-icons/md";
-import { colors } from "../../constants/constants";
 
 const Projects = () => {
     return (
