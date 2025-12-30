@@ -34,12 +34,12 @@ export default function ProjectPage() {
             <p className="text-xl md:text-2xl text-neutral-400 max-w-2xl leading-relaxed">
               A high-performance, offline-first management suite designed specifically for modern dental professionals.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
               <button className="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-[#0E1116] font-bold rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20">
-                <FaDownload /> Download Now
+                <FaDownload /> Download for Windows
               </button>
               <button className="px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold rounded-xl transition-all flex items-center gap-2">
-                Learn More
+                Explore Features
               </button>
             </div>
           </div>
@@ -115,6 +115,48 @@ export default function ProjectPage() {
         </section>
     
         </div>
+
+        {/* Vision Section */}
+        
+          <section className="py-32 text-center">
+            <div className="max-w-3xl mx-auto px-4">
+              <div className="w-12 h-1 bg-emerald-500 mx-auto mb-8 rounded-full" />
+              <blockquote className="text-3xl md:text-4xl font-medium text-neutral-200 italic leading-snug">
+                "We believe software should feel invisible, allowing you to focus on what matters most: your patients."
+              </blockquote>
+            </div>
+          </section>
+        
+
+        {/* Tech Stack Section */}
+        
+          <section className="py-32">
+            <h2 className="text-3xl font-bold mb-12 text-center">The Tech Behind the Magic</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              
+        <div key="**Framework:** Flutter (Windows Desktop)" className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+          <p className="text-neutral-300 font-medium">**Framework:** Flutter (Windows Desktop)</p>
+        </div>
+    
+        <div key="**Backend:** Firebase (Firestore, Auth, Storage)" className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+          <p className="text-neutral-300 font-medium">**Backend:** Firebase (Firestore, Auth, Storage)</p>
+        </div>
+    
+        <div key="**Database:** SQLite (Offline-First sync)" className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+          <p className="text-neutral-300 font-medium">**Database:** SQLite (Offline-First sync)</p>
+        </div>
+    
+        <div key="**State:** Riverpod" className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+          <p className="text-neutral-300 font-medium">**State:** Riverpod</p>
+        </div>
+    
+        <div key="**UI:** Custom 3D Flip Cards & Framer-like animations" className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+          <p className="text-neutral-300 font-medium">**UI:** Custom 3D Flip Cards & Framer-like animations</p>
+        </div>
+    
+            </div>
+          </section>
+        
 
         {/* Final CTA */}
         <section className="py-40 text-center">
