@@ -60,7 +60,7 @@ export default function ProjectPage() {
         <section key={0} className="min-h-screen flex flex-col md:flex-row items-center justify-between py-24 gap-12">
           <div className="w-full md:w-1/2 space-y-6">
             <span className="text-emerald-500 font-mono text-sm tracking-widest uppercase">Chapter 01</span>
-            <h2 className="text-4xl font-bold text-white">The Unified Patient Hub</h2>
+            <h2 className="text-4xl font-bold text-white">The Unified Patient Hub</h2>
             <p className="text-xl text-neutral-400 leading-relaxed">Stop hunting for records. DentalTid brings medical history, treatment logs, and clinical alerts into a single, lightning-fast dashboard. It's your clinic's memory, organized perfectly.</p>
           </div>
           <div className="w-full md:w-1/2">
@@ -68,7 +68,7 @@ export default function ProjectPage() {
               
                 <img 
                   src={`/assets/projects/dentaltid/cover.png`} 
-                  alt="The Unified Patient Hub" 
+                  alt="The Unified Patient Hub" 
                   className="w-full h-full object-cover"
                 />
               
@@ -79,7 +79,7 @@ export default function ProjectPage() {
         <section key={1} className="min-h-screen flex flex-col md:flex-row items-center justify-between py-24 gap-12">
           <div className="w-full md:w-1/2 space-y-6">
             <span className="text-emerald-500 font-mono text-sm tracking-widest uppercase">Chapter 02</span>
-            <h2 className="text-4xl font-bold text-white">Precision Financial Intelligence</h2>
+            <h2 className="text-4xl font-bold text-white">Precision Financial Intelligence</h2>
             <p className="text-xl text-neutral-400 leading-relaxed">Real-time tracking of every treatment, expense, and payment. Generate professional financial reports in seconds and gain deep insights into your practice's growth without the complexity of traditional accounting software.</p>
           </div>
           <div className="w-full md:w-1/2">
@@ -87,7 +87,7 @@ export default function ProjectPage() {
               
                 <img 
                   src={`/assets/projects/dentaltid/feature1.png`} 
-                  alt="Precision Financial Intelligence" 
+                  alt="Precision Financial Intelligence" 
                   className="w-full h-full object-cover"
                 />
               
@@ -98,7 +98,7 @@ export default function ProjectPage() {
         <section key={2} className="min-h-screen flex flex-col md:flex-row items-center justify-between py-24 gap-12">
           <div className="w-full md:w-1/2 space-y-6">
             <span className="text-emerald-500 font-mono text-sm tracking-widest uppercase">Chapter 03</span>
-            <h2 className="text-4xl font-bold text-white">Resilience by Design (Offline First)</h2>
+            <h2 className="text-4xl font-bold text-white">Resilience by Design (Offline First)</h2>
             <p className="text-xl text-neutral-400 leading-relaxed">Your patient data belongs in your clinic, not just on the web. DentalTid works seamlessly offline, ensuring your practice never stops even if the internet does. Local backups and optional cloud sync provide ultimate peace of mind.</p>
           </div>
           <div className="w-full md:w-1/2">
@@ -106,7 +106,7 @@ export default function ProjectPage() {
               
                 <img 
                   src={`/assets/projects/dentaltid/feature2.png`} 
-                  alt="Resilience by Design (Offline First)" 
+                  alt="Resilience by Design (Offline First)" 
                   className="w-full h-full object-cover"
                 />
               
@@ -132,7 +132,7 @@ export default function ProjectPage() {
 
       {/* Footer Branding */}
       <footer className="py-20 border-t border-white/5 text-center text-neutral-600">
-         <p>© {new Date().getFullYear()} Taedj Dev. Powered by the Taedj Ecosystem.</p>
+         <p>© 2025 Taedj Dev. Powered by the Taedj Ecosystem.</p>
       </footer>
     </div>
   );
