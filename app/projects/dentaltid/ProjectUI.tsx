@@ -170,7 +170,7 @@ export default function ProjectUI() {
            </div>
            <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
              <img
-                 src={`/assets/projects/dentaltid/feature1.png`}
+                 src={`/assets/projects/dentaltid/feature1.gif`}
                  alt="Feature 1"
                  style={{
                    maxWidth: '100%',
