@@ -67,7 +67,7 @@ export default function ProjectPage() {
             <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative">
               
                 <img 
-                  src={`/assets/projects/dentaltid/cover.png`} 
+                  src={`/assets/projects/dentaltid/cover.gif`} 
                   alt="The Unified Patient Hub" 
                   className="w-full h-full object-cover"
                 />
