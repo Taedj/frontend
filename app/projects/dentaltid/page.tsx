@@ -8,8 +8,11 @@ export const metadata: Metadata = { title: 'DentalTid | Taedj Dev', description:
 
 export default function ProjectPage() {
   return (
-    <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden">
-      <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5" />
+    <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative">
+      
+      <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5 flex items-center px-10">
+        <div className="text-4xl font-black tracking-tighter text-white/90 underline decoration-emerald-500 decoration-4 underline-offset-8">Taedj Dev</div>
+      </div>
       <main className="relative z-10 w-full">
         <div className="max-w-[95%] mx-auto pt-40 pb-12">
           <Link href="/#Taedj-Dev-Projects" className="group inline-flex items-center gap-4 text-neutral-500 hover:text-white transition-all text-xl font-medium">
@@ -46,6 +49,7 @@ export default function ProjectPage() {
                 src="/assets/projects/DentalTid/cover.gif" 
                 alt="DentalTid Hero" 
                 style={{ 
+                  maxWidth: '100%',
                   transform: 'translateY(56px) scale(0.93)',
                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                 }}
