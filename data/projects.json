@@ -1,21 +1,11 @@
 [
   {
     "name": "DentalTid",
-    "slug": "DentalTid",
-    "category": "Management",
-    "brand": "Taedj Dev",
-    "status": "active",
-    "lastUpdated": "2025-12-31T22:46:44.404Z",
-    "description": "A high-performance, offline-first management suite designed specifically for modern dental professionals.",
-    "image": "/assets/projects/DentalTid/Card.png"
-  },
-  {
-    "name": "DentalTid",
     "slug": "dentaltid",
     "category": "Management",
     "brand": "Taedj Dev",
     "status": "active",
-    "lastUpdated": "2025-12-31T22:51:37.934Z",
+    "lastUpdated": "2025-12-31T22:52:15.413Z",
     "description": "A high-performance, offline-first management suite designed specifically for modern dental professionals.",
     "image": "/assets/projects/dentaltid/Card.png"
   }
