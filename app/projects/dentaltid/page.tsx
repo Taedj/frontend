@@ -46,7 +46,7 @@ export default function ProjectPage() {
                <div className="ml-10 h-9 px-8 bg-white/5 rounded-xl border border-white/5 flex-grow max-w-2xl hidden lg:flex text-sm text-neutral-500 items-center font-mono tracking-widest text-left">dentaltid.app/dashboard</div>
              </div>
              <img 
-                src="/assets/projects/DentalTid/cover.gif" 
+                src="/assets/projects/DentalTid/cover.png" 
                 alt="DentalTid Hero" 
                 style={{ 
                   maxWidth: '100%',
