@@ -299,7 +299,7 @@ export default function ProjectUI() {
 
             <footer className="py-32 border-t border-white/5 text-center">
                 <div className="mb-10 text-3xl font-black tracking-tighter text-white/20">TAEDJ ECOSYSTEM</div>
-                <p className="text-xl text-neutral-600 font-medium">© 2026 Taedj Dev. Finality through Precision.</p>
+                <p className="text-xl text-neutral-600 font-medium">© 2025 Taedj Dev. Finality through Precision.</p>
             </footer>
         </div>
     );
