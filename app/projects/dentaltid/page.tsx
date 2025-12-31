@@ -25,7 +25,6 @@ export default function ProjectPage() {
 
         <section className="pt-20 pb-20 text-center w-full px-6">
           <div className="max-w-[95%] mx-auto space-y-12">
-            <div className="inline-block px-8 py-3 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-lg font-bold tracking-[0.2em] uppercase">active</div>
             <h1 style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: '96px' }} 
                 className="font-black tracking-tighter leading-[0.85] text-white" 
                 dangerouslySetInnerHTML={{ __html: `Elevate Your Practice with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }} />
@@ -63,7 +62,6 @@ export default function ProjectPage() {
           
         <section key={0} style={{ paddingTop: '177px', paddingBottom: '177px' }} className="space-y-20">
           <div className="max-w-6xl mx-auto text-center space-y-10">
-            <span className="text-emerald-500 font-mono text-lg tracking-[0.3em] uppercase bg-emerald-500/10 px-6 py-3 rounded-full border border-emerald-500/20">Chapter 01</span>
             <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">The Unified Patient Hub</h2>
             <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Stop hunting for records. DentalTid brings medical history, treatment logs, and clinical alerts into a single, lightning-fast dashboard. It's your clinic's memory, organized perfectly.</p>
           </div>
@@ -91,7 +89,6 @@ export default function ProjectPage() {
         </section>
         <section key={1} style={{ paddingTop: '177px', paddingBottom: '177px' }} className="space-y-20">
           <div className="max-w-6xl mx-auto text-center space-y-10">
-            <span className="text-emerald-500 font-mono text-lg tracking-[0.3em] uppercase bg-emerald-500/10 px-6 py-3 rounded-full border border-emerald-500/20">Chapter 02</span>
             <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Precision Financial Intelligence</h2>
             <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Real-time tracking of every treatment, expense, and payment. Generate professional financial reports in seconds and gain deep insights into your practice's growth without the complexity of traditional accounting software.</p>
           </div>
@@ -119,7 +116,6 @@ export default function ProjectPage() {
         </section>
         <section key={2} style={{ paddingTop: '177px', paddingBottom: '177px' }} className="space-y-20">
           <div className="max-w-6xl mx-auto text-center space-y-10">
-            <span className="text-emerald-500 font-mono text-lg tracking-[0.3em] uppercase bg-emerald-500/10 px-6 py-3 rounded-full border border-emerald-500/20">Chapter 03</span>
             <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Resilience by Design (Offline First)</h2>
             <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Your patient data belongs in your clinic, not just on the web. DentalTid works seamlessly offline, ensuring your practice never stops even if the internet does. Local backups and optional cloud sync provide ultimate peace of mind.</p>
           </div>
