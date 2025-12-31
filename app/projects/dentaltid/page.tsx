@@ -84,7 +84,7 @@ export default function ProjectPage() {
                </div>
               
                 <img 
-                  src={`/assets/projects/dentaltid/${c.image}`} 
+                  src={`/assets/projects/dentaltid/cover.gif`} 
                   alt="The Unified Patient Hub" 
                   className="w-full h-full object-cover pt-8 transition-all duration-700 group-hover/chapter:scale-[1.01]"
                 />
@@ -110,7 +110,7 @@ export default function ProjectPage() {
                </div>
               
                 <img 
-                  src={`/assets/projects/dentaltid/${c.image}`} 
+                  src={`/assets/projects/dentaltid/feature1.png`} 
                   alt="Precision Financial Intelligence" 
                   className="w-full h-full object-cover pt-8 transition-all duration-700 group-hover/chapter:scale-[1.01]"
                 />
@@ -136,7 +136,7 @@ export default function ProjectPage() {
                </div>
               
                 <img 
-                  src={`/assets/projects/dentaltid/${c.image}`} 
+                  src={`/assets/projects/dentaltid/feature2.png`} 
                   alt="Resilience by Design (Offline First)" 
                   className="w-full h-full object-cover pt-8 transition-all duration-700 group-hover/chapter:scale-[1.01]"
                 />
