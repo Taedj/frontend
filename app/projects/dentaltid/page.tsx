@@ -2,7 +2,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { FaArrowLeft, FaDownload, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaArrowLeft, FaDownload } from 'react-icons/fa';
 
 export const metadata: Metadata = {
   title: 'DentalTid | Taedj Dev',
