@@ -76,7 +76,7 @@ export default function ProjectPage() {
                </div>
               <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
                 <img 
-                    src={`/assets/projects/DentalTid/cover.gif`} 
+                    src={`/assets/projects/DentalTid/feature1.png`} 
                     alt="The Unified Patient Hub" 
                     style={{ 
                       maxWidth: '100%', 
@@ -104,7 +104,7 @@ export default function ProjectPage() {
                </div>
               <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
                 <img 
-                    src={`/assets/projects/DentalTid/feature1.png`} 
+                    src={`/assets/projects/DentalTid/feature2.png`} 
                     alt="Precision Financial Intelligence" 
                     style={{ 
                       maxWidth: '90%', 
@@ -132,7 +132,7 @@ export default function ProjectPage() {
                </div>
               <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
                 <img 
-                    src={`/assets/projects/DentalTid/cover.png`} 
+                    src={`/assets/projects/DentalTid/feature3.png`} 
                     alt="Resilience by Design (Offline First)" 
                     style={{ 
                       maxWidth: '100%', 
