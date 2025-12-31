@@ -7,9 +7,11 @@ import { MdArrowForward } from "react-icons/md";
 import "./Projects.css";
 
 const Projects = () => {
-    // If we only have a few projects, duplicate them for the marquee effect.
-    // We filter unique slug for the "logic" but for marquee we need repetition.
-    const displayData = [...projectsData, ...projectsData, ...projectsData, ...projectsData];
+    // Only animate if we have enough projects to warrant a marquee
+    const shouldAnimate = projectsData.length >= 4;
+    const displayData = shouldAnimate
+        ? [...projectsData, ...projectsData, ...projectsData]
+        : projectsData;
 
     return (
         <section id="Taedj-Dev-Projects" className="py-24 px-6 md:px-12 bg-bg-dark overflow-hidden">
@@ -43,7 +45,7 @@ const Projects = () => {
 
                 {/* Marquee Container */}
                 <div className="relative w-screen left-1/2 -ml-[50vw]">
-                    <div className="flex animate-scroll hover:pause gap-12 px-12">
+                    <div className={`flex ${shouldAnimate ? 'animate-scroll' : 'justify-center flex-wrap'} hover:pause gap-12 px-12`}>
                         {displayData.map((project, index) => (
                             <Link
                                 key={`${project.slug}-${index}`}
