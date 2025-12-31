@@ -46,7 +46,7 @@ export default function ProjectPage() {
              </div>
              <img 
                 src="/assets/projects/dentaltid/cover.png" 
-                alt="DentalTid Hero" 
+                alt="dentaltid Hero" 
                 style={{ 
                   maxWidth: '100%',
                   transform: 'translateY(56px) scale(0.93)',
