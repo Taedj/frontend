@@ -44,10 +44,16 @@ export default function ProjectPage() {
             </div>
           </div>
           
-          <div className="flex-1 w-full max-w-2xl">
-            <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/10 shadow-3xl bg-neutral-800">
+          <div className="flex-1 w-full max-w-4xl mx-auto md:mx-0">
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-3xl bg-neutral-800 group/hero">
+               {/* Browser Decorator */}
+               <div className="absolute top-0 left-0 right-0 h-8 bg-white/5 border-b border-white/10 flex items-center px-4 gap-1.5 z-20">
+                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
+               </div>
                
-                 <img src="/assets/projects/dentaltid/cover.gif" alt="DentalTid Hero" className="w-full h-full object-cover" />
+                 <img src="/assets/projects/dentaltid/cover.gif" alt="DentalTid Hero" className="w-full h-full object-cover pt-8 transition-transform duration-700 group-hover/hero:scale-105" />
                
             </div>
           </div>
@@ -64,12 +70,18 @@ export default function ProjectPage() {
             <p className="text-xl text-neutral-400 leading-relaxed">Stop hunting for records. DentalTid brings medical history, treatment logs, and clinical alerts into a single, lightning-fast dashboard. It's your clinic's memory, organized perfectly.</p>
           </div>
           <div className="w-full md:w-1/2">
-            <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative">
+            <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative group/img">
+               {/* Browser Decorator */}
+               <div className="absolute top-0 left-0 right-0 h-6 bg-white/5 border-b border-white/10 flex items-center px-3 gap-1 z-20">
+                 <div className="w-2 h-2 rounded-full bg-white/10" />
+                 <div className="w-2 h-2 rounded-full bg-white/10" />
+                 <div className="w-2 h-2 rounded-full bg-white/10" />
+               </div>
               
                 <img 
                   src={`/assets/projects/dentaltid/cover.gif`} 
                   alt="The Unified Patient Hub" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover pt-6 transition-transform duration-500 group-hover/img:scale-105"
                 />
               
             </div>
@@ -83,12 +95,18 @@ export default function ProjectPage() {
             <p className="text-xl text-neutral-400 leading-relaxed">Real-time tracking of every treatment, expense, and payment. Generate professional financial reports in seconds and gain deep insights into your practice's growth without the complexity of traditional accounting software.</p>
           </div>
           <div className="w-full md:w-1/2">
-            <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative">
+            <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative group/img">
+               {/* Browser Decorator */}
+               <div className="absolute top-0 left-0 right-0 h-6 bg-white/5 border-b border-white/10 flex items-center px-3 gap-1 z-20">
+                 <div className="w-2 h-2 rounded-full bg-white/10" />
+                 <div className="w-2 h-2 rounded-full bg-white/10" />
+                 <div className="w-2 h-2 rounded-full bg-white/10" />
+               </div>
               
                 <img 
                   src={`/assets/projects/dentaltid/feature1.png`} 
                   alt="Precision Financial Intelligence" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover pt-6 transition-transform duration-500 group-hover/img:scale-105"
                 />
               
             </div>
@@ -102,12 +120,18 @@ export default function ProjectPage() {
             <p className="text-xl text-neutral-400 leading-relaxed">Your patient data belongs in your clinic, not just on the web. DentalTid works seamlessly offline, ensuring your practice never stops even if the internet does. Local backups and optional cloud sync provide ultimate peace of mind.</p>
           </div>
           <div className="w-full md:w-1/2">
-            <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative">
+            <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative group/img">
+               {/* Browser Decorator */}
+               <div className="absolute top-0 left-0 right-0 h-6 bg-white/5 border-b border-white/10 flex items-center px-3 gap-1 z-20">
+                 <div className="w-2 h-2 rounded-full bg-white/10" />
+                 <div className="w-2 h-2 rounded-full bg-white/10" />
+                 <div className="w-2 h-2 rounded-full bg-white/10" />
+               </div>
               
                 <img 
                   src={`/assets/projects/dentaltid/feature2.png`} 
                   alt="Resilience by Design (Offline First)" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover pt-6 transition-transform duration-500 group-hover/img:scale-105"
                 />
               
             </div>
