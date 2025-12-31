@@ -7,11 +7,25 @@ import { MdArrowForward } from "react-icons/md";
 import "./Projects.css";
 
 const Projects = () => {
-    // Only animate if we have enough projects to warrant a marquee
-    const shouldAnimate = projectsData.length >= 4;
-    const displayData = shouldAnimate
-        ? [...projectsData, ...projectsData, ...projectsData]
-        : projectsData;
+    // Re-enable animation as requested by user
+    const shouldAnimate = projectsData.length > 0;
+
+    // To make a single project look better in a marquee, we add a "Coming Soon" placeholder
+    // if there's only one project, to avoid seeing the same card 4 times in a row.
+    let baseData = [...projectsData];
+    if (baseData.length === 1) {
+        baseData.push({
+            name: "More Coming Soon",
+            slug: "coming-soon",
+            category: "Future",
+            brand: "Taedj Dev",
+            status: "planning",
+            description: "We are constantly working on new innovative solutions. Stay tuned for the next breakthrough in the Taedj ecosystem.",
+            image: "" // This will trigger the gradient placeholder
+        } as any);
+    }
+
+    const displayData = [...baseData, ...baseData, ...baseData, ...baseData];
 
     return (
         <section id="Taedj-Dev-Projects" className="py-24 px-6 md:px-12 bg-bg-dark overflow-hidden">
