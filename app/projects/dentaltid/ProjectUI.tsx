@@ -149,7 +149,7 @@ export default function ProjectUI() {
                             <div className="w-5 h-5 rounded-full bg-green-500/40" />
                             <div className="ml-10 h-9 px-8 bg-white/5 rounded-xl border border-white/5 flex-grow max-w-2xl hidden lg:flex text-sm text-neutral-500 items-center font-mono tracking-widest text-left">{PROJECT_CONFIG.slug}.app/dashboard</div>
                         </div>
-                        <img src="/assets/projects/dentaltid/cover.gif" alt="dentaltid Hero" style={{ maxWidth: '100%', transform: 'translateY(0px) scale(1)', transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)' }} className="w-full h-full object-contain pt-16 transition-all duration-1000 group-hover/hero:scale-[1.01]" />
+                        <video src="/assets/projects/dentaltid/cover.mp4" autoPlay muted loop playsInline controls onClick={(e) => e.currentTarget.muted = !e.currentTarget.muted} style={{ width: '1280px', height: '720px', maxWidth: '100%', transform: 'translateY(0px) scale(1)', transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)' }} className="object-cover pt-16 transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer" />
                     </div>
                 </section>
 
