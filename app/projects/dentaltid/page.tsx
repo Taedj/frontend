@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { FaArrowLeft, FaDownload, FaRocket } from 'react-icons/fa';
 
-export const metadata: Metadata = { title: 'DentalTid | Taedj Dev', description: 'A high-performance, offline-first management suite designed specifically for modern dental professionals.' };
+export const metadata: Metadata = { title: 'DentalTid | Taedj Dev', description: 'A high-performance offline-first management suite designed specifically for modern dental professionals.' };
 
 export default function ProjectPage() {
   return (
@@ -28,7 +28,7 @@ export default function ProjectPage() {
             <h1 style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: '96px' }} 
                 className="font-black tracking-tighter leading-[0.85] text-white" 
                 dangerouslySetInnerHTML={{ __html: `Elevate Your Practice with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }} />
-            <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">A high-performance, offline-first management suite designed specifically for modern dental professionals.</p>
+            <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">A high-performance offline-first management suite designed specifically for modern dental professionals.</p>
             <div className="flex flex-wrap gap-8 pt-10 justify-center">
               <Link href="https://google.com" style={{ padding: '32px 64px', fontSize: '35px', borderRadius: '38px' }} className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black rounded-[2rem] transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95">
                 <FaDownload /> Download for Windows
@@ -63,7 +63,7 @@ export default function ProjectPage() {
         <section key={0} style={{ paddingTop: '177px', paddingBottom: '177px' }} className="space-y-20">
           <div className="max-w-6xl mx-auto text-center space-y-10">
             <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">The Unified Patient Hub</h2>
-            <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Stop hunting for records. DentalTid brings medical history, treatment logs, and clinical alerts into a single, lightning-fast dashboard. It's your clinic's memory, organized perfectly.</p>
+            <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Stop hunting for records. DentalTid brings medical history treatment logs and clinical alerts into a single lightning-fast dashboard. It's your clinic's memory organized perfectly.</p>
           </div>
           <div className="relative group/chapter w-full px-4 md:px-0">
             <div style={{ borderRadius: '38px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
@@ -90,7 +90,7 @@ export default function ProjectPage() {
         <section key={1} style={{ paddingTop: '177px', paddingBottom: '177px' }} className="space-y-20">
           <div className="max-w-6xl mx-auto text-center space-y-10">
             <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Precision Financial Intelligence</h2>
-            <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Real-time tracking of every treatment, expense, and payment. Generate professional financial reports in seconds and gain deep insights into your practice's growth without the complexity of traditional accounting software.</p>
+            <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Real-time tracking of every treatment expense and payment. Generate professional financial reports in seconds and gain deep insights into your practice's growth.</p>
           </div>
           <div className="relative group/chapter w-full px-4 md:px-0">
             <div style={{ borderRadius: '38px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
@@ -104,8 +104,8 @@ export default function ProjectPage() {
                     src={`/assets/projects/dentaltid/feature2.png`} 
                     alt="Precision Financial Intelligence" 
                     style={{ 
-                      maxWidth: '90%', 
-                      transform: 'translateY(-10px) scale(1.05)',
+                      maxWidth: '100%', 
+                      transform: 'translateY(0px) scale(1)',
                       transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                     className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]" 
@@ -117,7 +117,7 @@ export default function ProjectPage() {
         <section key={2} style={{ paddingTop: '177px', paddingBottom: '177px' }} className="space-y-20">
           <div className="max-w-6xl mx-auto text-center space-y-10">
             <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Resilience by Design (Offline First)</h2>
-            <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Your patient data belongs in your clinic, not just on the web. DentalTid works seamlessly offline, ensuring your practice never stops even if the internet does. Local backups and optional cloud sync provide ultimate peace of mind.</p>
+            <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Your patient data belongs in your clinic not just on the web. DentalTid works seamlessly offline ensuring your practice never stops even if the internet does.</p>
           </div>
           <div className="relative group/chapter w-full px-4 md:px-0">
             <div style={{ borderRadius: '38px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
@@ -132,7 +132,7 @@ export default function ProjectPage() {
                     alt="Resilience by Design (Offline First)" 
                     style={{ 
                       maxWidth: '100%', 
-                      transform: 'translateY(10px) scale(1)',
+                      transform: 'translateY(0px) scale(1)',
                       transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                     className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]" 
@@ -143,7 +143,7 @@ export default function ProjectPage() {
         </section>
         </div>
 
-        <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"We believe software should feel invisible, allowing you to focus on what matters most: your patients."</blockquote></div></section>
+        <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"Precision is the heartbeat of modern dentistry."</blockquote></div></section>
         <section className="py-60 text-center px-6">
           <div style={{ borderRadius: '76px' }} className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group">
              <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
