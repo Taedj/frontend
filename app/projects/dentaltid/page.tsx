@@ -25,16 +25,16 @@ export default function ProjectPage() {
         </div>
 
         {/* Hero Section */}
-        <section className="py-20 text-center md:text-left flex flex-col md:flex-row items-center gap-16">
-          <div className="flex-1 space-y-8">
+        <section className="pt-20 pb-12 text-center max-w-5xl mx-auto">
+          <div className="space-y-8">
             <div className="inline-block px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-sm font-medium">
               active
             </div>
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-none" dangerouslySetInnerHTML={{ __html: `Elevate Your Practice with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }} />
-            <p className="text-xl md:text-2xl text-neutral-400 max-w-2xl leading-relaxed">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight" dangerouslySetInnerHTML={{ __html: `Elevate Your Practice with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }} />
+            <p className="text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
               A high-performance, offline-first management suite designed specifically for modern dental professionals.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
+            <div className="flex flex-wrap gap-4 pt-4 justify-center">
               <button className="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-[#0E1116] font-bold rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20">
                 <FaDownload /> Download for Windows
               </button>
@@ -43,19 +43,23 @@ export default function ProjectPage() {
               </button>
             </div>
           </div>
-          
-          <div className="flex-1 w-full max-w-4xl mx-auto md:mx-0">
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-3xl bg-neutral-800 group/hero">
-               {/* Browser Decorator */}
-               <div className="absolute top-0 left-0 right-0 h-8 bg-white/5 border-b border-white/10 flex items-center px-4 gap-1.5 z-20">
-                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
-                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
-                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
+        </section>
+
+        {/* Hero Visual - Large Desktop View */}
+        <section className="pb-24">
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(16,185,129,0.1)] bg-neutral-800 group/hero max-w-6xl mx-auto">
+             {/* Browser Decorator */}
+             <div className="absolute top-0 left-0 right-0 h-10 bg-[#1A1D23] border-b border-white/10 flex items-center px-5 gap-2 z-20">
+               <div className="w-3.5 h-3.5 rounded-full bg-red-500/40" />
+               <div className="w-3.5 h-3.5 rounded-full bg-yellow-500/40" />
+               <div className="w-3.5 h-3.5 rounded-full bg-green-500/40" />
+               <div className="ml-4 h-6 px-4 bg-white/5 rounded-md border border-white/5 flex-grow max-w-md hidden sm:block text-[10px] text-neutral-600 flex items-center">
+                 dentaltid.app
                </div>
-               
-                 <img src="/assets/projects/dentaltid/cover.gif" alt="DentalTid Hero" className="w-full h-full object-cover pt-8 transition-transform duration-700 group-hover/hero:scale-105" />
-               
-            </div>
+             </div>
+             
+               <img src="/assets/projects/dentaltid/cover.gif" alt="DentalTid Hero" className="w-full h-full object-cover pt-10 transition-transform duration-1000 group-hover/hero:scale-[1.02]" />
+             
           </div>
         </section>
 
@@ -63,75 +67,78 @@ export default function ProjectPage() {
         <div className="py-32">
           <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-32" />
           
-        <section key={0} className="min-h-screen flex flex-col md:flex-row items-center justify-between py-24 gap-12">
-          <div className="w-full md:w-1/2 space-y-6">
-            <span className="text-emerald-500 font-mono text-sm tracking-widest uppercase">Chapter 01</span>
-            <h2 className="text-4xl font-bold text-white">The Unified Patient Hub</h2>
+        <section key={0} className="py-20 space-y-12">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <span className="text-emerald-500 font-mono text-xs tracking-widest uppercase bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Chapter 01</span>
+            <h2 className="text-4xl font-bold text-white tracking-tight">The Unified Patient Hub</h2>
             <p className="text-xl text-neutral-400 leading-relaxed">Stop hunting for records. DentalTid brings medical history, treatment logs, and clinical alerts into a single, lightning-fast dashboard. It's your clinic's memory, organized perfectly.</p>
           </div>
-          <div className="w-full md:w-1/2">
-            <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative group/img">
+          
+          <div className="relative group/chapter">
+            <div className="aspect-video bg-neutral-800 rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative">
                {/* Browser Decorator */}
-               <div className="absolute top-0 left-0 right-0 h-6 bg-white/5 border-b border-white/10 flex items-center px-3 gap-1 z-20">
-                 <div className="w-2 h-2 rounded-full bg-white/10" />
-                 <div className="w-2 h-2 rounded-full bg-white/10" />
-                 <div className="w-2 h-2 rounded-full bg-white/10" />
+               <div className="absolute top-0 left-0 right-0 h-8 bg-[#1A1D23] border-b border-white/10 flex items-center px-4 gap-1.5 z-20">
+                 <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
                </div>
               
                 <img 
-                  src={`/assets/projects/dentaltid/cover.gif`} 
+                  src={`/assets/projects/dentaltid/${c.image}`} 
                   alt="The Unified Patient Hub" 
-                  className="w-full h-full object-cover pt-6 transition-transform duration-500 group-hover/img:scale-105"
+                  className="w-full h-full object-cover pt-8 transition-all duration-700 group-hover/chapter:scale-[1.01]"
                 />
               
             </div>
           </div>
         </section>
     
-        <section key={1} className="min-h-screen flex flex-col md:flex-row items-center justify-between py-24 gap-12">
-          <div className="w-full md:w-1/2 space-y-6">
-            <span className="text-emerald-500 font-mono text-sm tracking-widest uppercase">Chapter 02</span>
-            <h2 className="text-4xl font-bold text-white">Precision Financial Intelligence</h2>
+        <section key={1} className="py-20 space-y-12">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <span className="text-emerald-500 font-mono text-xs tracking-widest uppercase bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Chapter 02</span>
+            <h2 className="text-4xl font-bold text-white tracking-tight">Precision Financial Intelligence</h2>
             <p className="text-xl text-neutral-400 leading-relaxed">Real-time tracking of every treatment, expense, and payment. Generate professional financial reports in seconds and gain deep insights into your practice's growth without the complexity of traditional accounting software.</p>
           </div>
-          <div className="w-full md:w-1/2">
-            <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative group/img">
+          
+          <div className="relative group/chapter">
+            <div className="aspect-video bg-neutral-800 rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative">
                {/* Browser Decorator */}
-               <div className="absolute top-0 left-0 right-0 h-6 bg-white/5 border-b border-white/10 flex items-center px-3 gap-1 z-20">
-                 <div className="w-2 h-2 rounded-full bg-white/10" />
-                 <div className="w-2 h-2 rounded-full bg-white/10" />
-                 <div className="w-2 h-2 rounded-full bg-white/10" />
+               <div className="absolute top-0 left-0 right-0 h-8 bg-[#1A1D23] border-b border-white/10 flex items-center px-4 gap-1.5 z-20">
+                 <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
                </div>
               
                 <img 
-                  src={`/assets/projects/dentaltid/feature1.png`} 
+                  src={`/assets/projects/dentaltid/${c.image}`} 
                   alt="Precision Financial Intelligence" 
-                  className="w-full h-full object-cover pt-6 transition-transform duration-500 group-hover/img:scale-105"
+                  className="w-full h-full object-cover pt-8 transition-all duration-700 group-hover/chapter:scale-[1.01]"
                 />
               
             </div>
           </div>
         </section>
     
-        <section key={2} className="min-h-screen flex flex-col md:flex-row items-center justify-between py-24 gap-12">
-          <div className="w-full md:w-1/2 space-y-6">
-            <span className="text-emerald-500 font-mono text-sm tracking-widest uppercase">Chapter 03</span>
-            <h2 className="text-4xl font-bold text-white">Resilience by Design (Offline First)</h2>
+        <section key={2} className="py-20 space-y-12">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <span className="text-emerald-500 font-mono text-xs tracking-widest uppercase bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Chapter 03</span>
+            <h2 className="text-4xl font-bold text-white tracking-tight">Resilience by Design (Offline First)</h2>
             <p className="text-xl text-neutral-400 leading-relaxed">Your patient data belongs in your clinic, not just on the web. DentalTid works seamlessly offline, ensuring your practice never stops even if the internet does. Local backups and optional cloud sync provide ultimate peace of mind.</p>
           </div>
-          <div className="w-full md:w-1/2">
-            <div className="aspect-video bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden shadow-2xl relative group/img">
+          
+          <div className="relative group/chapter">
+            <div className="aspect-video bg-neutral-800 rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative">
                {/* Browser Decorator */}
-               <div className="absolute top-0 left-0 right-0 h-6 bg-white/5 border-b border-white/10 flex items-center px-3 gap-1 z-20">
-                 <div className="w-2 h-2 rounded-full bg-white/10" />
-                 <div className="w-2 h-2 rounded-full bg-white/10" />
-                 <div className="w-2 h-2 rounded-full bg-white/10" />
+               <div className="absolute top-0 left-0 right-0 h-8 bg-[#1A1D23] border-b border-white/10 flex items-center px-4 gap-1.5 z-20">
+                 <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
                </div>
               
                 <img 
-                  src={`/assets/projects/dentaltid/feature2.png`} 
+                  src={`/assets/projects/dentaltid/${c.image}`} 
                   alt="Resilience by Design (Offline First)" 
-                  className="w-full h-full object-cover pt-6 transition-transform duration-500 group-hover/img:scale-105"
+                  className="w-full h-full object-cover pt-8 transition-all duration-700 group-hover/chapter:scale-[1.01]"
                 />
               
             </div>
