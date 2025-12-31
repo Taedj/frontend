@@ -115,25 +115,33 @@ export default function ProjectUI() {
                 <section className="pt-20 pb-20 text-center w-full px-6">
                     <div className="max-w-[95%] mx-auto space-y-12">
                         <h1
-                            style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: `${STYLES.heroTitleSize}px` }}
-                            className="font-black tracking-tighter leading-[0.85] text-white"
+                            style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: `clamp(3rem, 8vw, ${STYLES.heroTitleSize}px)` }}
+                            className="font-black tracking-tighter leading-[0.9] text-white"
                         >
                              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>
                         </h1>
-                        <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">Your trusted dental companion</p>
+                        <p className="text-xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium px-4">Your trusted dental companion</p>
 
-                        <div className="flex flex-wrap gap-8 pt-10 justify-center">
+                        <div className="flex flex-col md:flex-row flex-wrap gap-4 md:gap-8 pt-10 justify-center items-center px-6">
                             <Link
                                 href="#"
-                                style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
-                                className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black rounded-[2rem] transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95"
+                                style={{ 
+                                    padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`, 
+                                    fontSize: `clamp(16px, 4vw, ${STYLES.buttonTextSize}px)`, 
+                                    borderRadius: `${STYLES.borderRadius}px` 
+                                }}
+                                className="w-full md:w-auto bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black transition-all flex items-center justify-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95"
                             >
-                                <FaDownload /> Download Now
+                                <FaDownload className="text-lg md:text-2xl" /> Download Now
                             </Link>
                             <Link
                                 href="#"
-                                style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
-                                className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black rounded-[2rem] transition-all flex items-center gap-4 hover:scale-105 active:scale-95"
+                                style={{ 
+                                    padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`, 
+                                    fontSize: `clamp(16px, 4vw, ${STYLES.buttonTextSize}px)`, 
+                                    borderRadius: `${STYLES.borderRadius}px` 
+                                }}
+                                className="w-full md:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black transition-all flex items-center justify-center gap-4 hover:scale-105 active:scale-95"
                             >
                                 Learn More
                             </Link>
@@ -141,12 +149,12 @@ export default function ProjectUI() {
                     </div>
                 </section>
 
-                <section className="pb-40 w-full px-4 md:px-10">
+                <section className="pb-20 md:pb-40 w-full px-4 md:px-10">
                     <div style={{ borderRadius: `${STYLES.borderRadius}px` }} className="relative aspect-video overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(16,185,129,0.1)] bg-[#0A0C10] group/hero w-full mx-auto flex items-center justify-center">
-                        <div className="absolute top-0 left-0 right-0 h-16 bg-[#14171C] border-b border-white/5 flex items-center px-10 gap-3 z-20">
-                            <div className="w-5 h-5 rounded-full bg-red-500/40" />
-                            <div className="w-5 h-5 rounded-full bg-yellow-500/40" />
-                            <div className="w-5 h-5 rounded-full bg-green-500/40" />
+                        <div className="absolute top-0 left-0 right-0 h-10 md:h-16 bg-[#14171C] border-b border-white/5 flex items-center px-4 md:px-10 gap-2 md:gap-3 z-20">
+                            <div className="w-3 h-3 md:w-5 md:h-5 rounded-full bg-red-500/40" />
+                            <div className="w-3 h-3 md:w-5 md:h-5 rounded-full bg-yellow-500/40" />
+                            <div className="w-3 h-3 md:w-5 md:h-5 rounded-full bg-green-500/40" />
                             <div className="ml-10 h-9 px-8 bg-white/5 rounded-xl border border-white/5 flex-grow max-w-2xl hidden lg:flex text-sm text-neutral-500 items-center font-mono tracking-widest text-left">{PROJECT_CONFIG.slug}.app/dashboard</div>
                         </div>
                         <video src="/assets/projects/dentaltid/cover.mp4" autoPlay muted loop playsInline controls onClick={(e) => e.currentTarget.muted = !e.currentTarget.muted} style={{ width: '1280px', height: '720px', maxWidth: '100%', transform: 'translateY(0px) scale(1)', transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)' }} className="object-cover pt-16 transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer" />
@@ -281,17 +289,21 @@ export default function ProjectUI() {
                     </section>
                 )}
 
-                <section className="py-60 text-center px-6">
-                    <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: `${STYLES.borderRadius * 2}px` }}>
+                <section className="py-20 md:py-60 text-center px-4 md:px-6">
+                    <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-8 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: `${STYLES.borderRadius * 2}px` }}>
                         <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                        <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">Get Started Today</h2>
-                        <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">Join the future of dental practice management.</p>
+                        <h2 className="text-5xl md:text-[10rem] font-black mb-6 md:mb-12 tracking-tighter leading-none relative z-10" style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}>Get Started Today</h2>
+                        <p className="text-xl md:text-4xl text-neutral-400 mb-10 md:mb-20 max-w-4xl mx-auto leading-tight font-medium relative z-10">Join the future of dental practice management.</p>
                         <Link
                             href="/projects/dentaltid/register"
-                            style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
-                            className="relative z-10 bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]"
+                            style={{ 
+                                padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`, 
+                                fontSize: `clamp(20px, 4vw, ${STYLES.buttonTextSize}px)`, 
+                                borderRadius: `${STYLES.borderRadius}px` 
+                            }}
+                            className="relative z-10 bg-white text-black font-black rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center justify-center gap-4 md:gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)] w-full md:w-auto"
                         >
-                            <FaRocket size={40} /> Get Started
+                            <FaRocket className="text-2xl md:text-4xl" /> Get Started
                         </Link>
                     </div>
                 </section>
