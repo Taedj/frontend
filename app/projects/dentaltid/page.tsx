@@ -46,7 +46,7 @@ export default function ProjectPage() {
                 src="/assets/projects/DentalTid/cover.gif" 
                 alt="DentalTid Hero" 
                 style={{ 
-                  transform: `translateY(${styles.heroImgOffsetY}px) scale(${styles.heroImgScale / 100})`,
+                  transform: 'translateY(56px) scale(0.93)',
                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                 }}
                 className="w-full h-full object-contain pt-16 transition-all duration-1000 group-hover/hero:scale-[1.01]" 
@@ -76,7 +76,7 @@ export default function ProjectPage() {
                     alt="The Unified Patient Hub" 
                     style={{ 
                       maxWidth: '100%', 
-                      transform: `translateY(${c.styles.imgOffsetY}px) scale(${c.styles.imgScale / 100})`,
+                      transform: 'translateY(0px) scale(1)',
                       transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                     className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]" 
@@ -104,7 +104,7 @@ export default function ProjectPage() {
                     alt="Precision Financial Intelligence" 
                     style={{ 
                       maxWidth: '90%', 
-                      transform: `translateY(${c.styles.imgOffsetY}px) scale(${c.styles.imgScale / 100})`,
+                      transform: 'translateY(-10px) scale(1.05)',
                       transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                     className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]" 
@@ -132,7 +132,7 @@ export default function ProjectPage() {
                     alt="Resilience by Design (Offline First)" 
                     style={{ 
                       maxWidth: '100%', 
-                      transform: `translateY(${c.styles.imgOffsetY}px) scale(${c.styles.imgScale / 100})`,
+                      transform: 'translateY(10px) scale(1)',
                       transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                     className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]" 
