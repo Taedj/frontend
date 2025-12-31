@@ -47,7 +47,7 @@ export default function ProjectPage() {
           <div className="flex-1 w-full max-w-2xl">
             <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/10 shadow-3xl bg-neutral-800">
                
-                 <img src="/assets/projects/dentaltid/cover.png" alt="DentalTid Hero" className="w-full h-full object-cover" />
+                 <img src="/assets/projects/dentaltid/cover.gif" alt="DentalTid Hero" className="w-full h-full object-cover" />
                
             </div>
           </div>
