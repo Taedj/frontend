@@ -28,10 +28,10 @@ export default function ProjectPage() {
                 dangerouslySetInnerHTML={{ __html: `Elevate Your Practice with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }} />
             <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">A high-performance, offline-first management suite designed specifically for modern dental professionals.</p>
             <div className="flex flex-wrap gap-8 pt-10 justify-center">
-              <Link href="https://google.com" style={{ padding: '32px 64px', fontSize: '36px', borderRadius: '38px' }} className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black rounded-[2rem] transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95">
+              <Link href="https://google.com" style={{ padding: '32px 64px', fontSize: '42px', borderRadius: '38px' }} className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black rounded-[2rem] transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95">
                 <FaDownload /> Download for Windows
               </Link>
-              <Link href="#features" style={{ padding: '32px 64px', fontSize: '36px', borderRadius: '38px' }} className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black rounded-[2rem] transition-all flex items-center gap-4 hover:scale-105 active:scale-95">Explore Features</Link>
+              <Link href="#features" style={{ padding: '32px 64px', fontSize: '42px', borderRadius: '38px' }} className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black rounded-[2rem] transition-all flex items-center gap-4 hover:scale-105 active:scale-95">Explore Features</Link>
             </div>
           </div>
         </section>
@@ -149,7 +149,7 @@ export default function ProjectPage() {
              <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
              <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">Ready to Transform Your Clinic?</h2>
              <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">Join hundreds of dental professionals who have already upgraded their workflow with DentalTid.</p>
-             <Link href="https://taedj.dev/dentaltid/buy" style={{ padding: '32px 64px', fontSize: '36px', borderRadius: '38px' }} className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]">
+             <Link href="https://taedj.dev/dentaltid/buy" style={{ padding: '32px 64px', fontSize: '42px', borderRadius: '38px' }} className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]">
                <FaRocket size={40} /> Get DentalTid Now
              </Link>
           </div>
