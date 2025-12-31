@@ -18,5 +18,15 @@
     "lastUpdated": "2025-12-31T21:23:11.379Z",
     "description": "A high-performance, offline-first management suite designed specifically for modern dental professionals.",
     "image": "/assets/projects/DentalT!id/cover.gif"
+  },
+  {
+    "name": "DentalTid",
+    "slug": "DentalTid",
+    "category": "Management",
+    "brand": "Taedj Dev",
+    "status": "active",
+    "lastUpdated": "2025-12-31T21:25:09.966Z",
+    "description": "A high-performance, offline-first management suite designed specifically for modern dental professionals.",
+    "image": "/assets/projects/DentalTid/cover.gif"
   }
 ]
