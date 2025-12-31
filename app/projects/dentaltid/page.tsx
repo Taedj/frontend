@@ -132,7 +132,7 @@ export default function ProjectPage() {
                </div>
               <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
                 <img 
-                    src={`/assets/projects/DentalTid/feature2.png`} 
+                    src={`/assets/projects/DentalTid/cover.png`} 
                     alt="Resilience by Design (Offline First)" 
                     style={{ 
                       maxWidth: '100%', 
