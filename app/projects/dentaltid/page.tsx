@@ -143,7 +143,7 @@ export default function ProjectPage() {
         </section>
         </div>
 
-        <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"${visionCaption}"</blockquote></div></section>
+        <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"We believe software should feel invisible, allowing you to focus on what matters most: your patients."</blockquote></div></section>
         <section className="py-60 text-center px-6">
           <div style={{ borderRadius: '76px' }} className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group">
              <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
