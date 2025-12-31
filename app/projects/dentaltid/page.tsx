@@ -26,7 +26,7 @@ export default function ProjectPage() {
         <section className="pt-20 pb-20 text-center w-full px-6">
           <div className="max-w-[95%] mx-auto space-y-12">
             <div className="inline-block px-8 py-3 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-lg font-bold tracking-[0.2em] uppercase">active</div>
-            <h1 style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: '144px' }} 
+            <h1 style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: '96px' }} 
                 className="font-black tracking-tighter leading-[0.85] text-white" 
                 dangerouslySetInnerHTML={{ __html: `Elevate Your Practice with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }} />
             <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">A high-performance, offline-first management suite designed specifically for modern dental professionals.</p>
