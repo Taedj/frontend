@@ -125,10 +125,10 @@ export default function ProjectUI() {
                         <div className="flex flex-col md:flex-row flex-wrap gap-4 md:gap-8 pt-10 justify-center items-center px-6">
                             <Link
                                 href="#"
-                                style={{ 
-                                    padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`, 
-                                    fontSize: `clamp(16px, 4vw, ${STYLES.buttonTextSize}px)`, 
-                                    borderRadius: `${STYLES.borderRadius}px` 
+                                style={{
+                                    padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`,
+                                    fontSize: `clamp(16px, 4vw, ${STYLES.buttonTextSize}px)`,
+                                    borderRadius: `${STYLES.borderRadius}px`
                                 }}
                                 className="w-full md:w-auto bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black transition-all flex items-center justify-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95"
                             >
@@ -136,10 +136,10 @@ export default function ProjectUI() {
                             </Link>
                             <Link
                                 href="#"
-                                style={{ 
-                                    padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`, 
-                                    fontSize: `clamp(16px, 4vw, ${STYLES.buttonTextSize}px)`, 
-                                    borderRadius: `${STYLES.borderRadius}px` 
+                                style={{
+                                    padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`,
+                                    fontSize: `clamp(16px, 4vw, ${STYLES.buttonTextSize}px)`,
+                                    borderRadius: `${STYLES.borderRadius}px`
                                 }}
                                 className="w-full md:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black transition-all flex items-center justify-center gap-4 hover:scale-105 active:scale-95"
                             >
@@ -151,13 +151,8 @@ export default function ProjectUI() {
 
                 <section className="pb-20 md:pb-40 w-full px-4 md:px-10">
                     <div style={{ borderRadius: `${STYLES.borderRadius}px` }} className="relative aspect-video overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(16,185,129,0.1)] bg-[#0A0C10] group/hero w-full mx-auto flex items-center justify-center">
-                        <div className="absolute top-0 left-0 right-0 h-10 md:h-16 bg-[#14171C] border-b border-white/5 flex items-center px-4 md:px-10 gap-2 md:gap-3 z-20">
-                            <div className="w-3 h-3 md:w-5 md:h-5 rounded-full bg-red-500/40" />
-                            <div className="w-3 h-3 md:w-5 md:h-5 rounded-full bg-yellow-500/40" />
-                            <div className="w-3 h-3 md:w-5 md:h-5 rounded-full bg-green-500/40" />
-                            <div className="ml-10 h-9 px-8 bg-white/5 rounded-xl border border-white/5 flex-grow max-w-2xl hidden lg:flex text-sm text-neutral-500 items-center font-mono tracking-widest text-left">{PROJECT_CONFIG.slug}.app/dashboard</div>
-                        </div>
-                        <video src="/assets/projects/dentaltid/cover.mp4" autoPlay muted loop playsInline controls onClick={(e) => e.currentTarget.muted = !e.currentTarget.muted} style={{ width: '1366px', height: '768px', maxWidth: '100%', transform: 'translateY(0px) scale(1)', transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)' }} className="object-cover pt-16 transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer" />
+
+                        <video src="/assets/projects/dentaltid/cover.mp4" autoPlay muted loop playsInline controls onClick={(e) => e.currentTarget.muted = !e.currentTarget.muted} style={{ width: '1366px', height: '768px', maxWidth: '100%', transform: 'translateY(0px) scale(1)', transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)' }} className="object-cover transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer" />
                     </div>
                 </section>
 
@@ -167,17 +162,65 @@ export default function ProjectUI() {
     <section key={0} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
         <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 1</h2>
-        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto"></p>
+        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 1</p>
       </div>
       <div className="relative group/chapter w-full px-4 md:px-0">
         <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
-           <div className="absolute top-0 left-0 right-0 h-14 bg-[#14171C] border-b border-white/5 flex items-center px-8 gap-3 z-20">
-             <div className="w-4 h-4 rounded-full bg-white/5" />
-             <div className="w-4 h-4 rounded-full bg-white/5" />
-             <div className="w-4 h-4 rounded-full bg-white/5" />
+           <div className="w-full h-full flex items-center justify-center overflow-hidden">
+             <img
+                 src={`/assets/projects/dentaltid/feature1.gif`}
+                 alt="Feature 1"
+                 style={{
+                   maxWidth: '100%',
+                   transform: 'translateY(0px) scale(1)',
+                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                 }}
+                 className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
+               />
            </div>
-           <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
-             <div className="w-full h-full flex items-center justify-center text-neutral-800 italic text-3xl font-light">Visual Coming Soon</div>
+        </div>
+      </div>
+    </section>
+    <section key={1} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+      <div className="max-w-6xl mx-auto text-center space-y-10">
+        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 2</h2>
+        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 2</p>
+      </div>
+      <div className="relative group/chapter w-full px-4 md:px-0">
+        <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
+           <div className="w-full h-full flex items-center justify-center overflow-hidden">
+             <img
+                 src={`/assets/projects/dentaltid/feature2.png`}
+                 alt="Feature 2"
+                 style={{
+                   maxWidth: '100%',
+                   transform: 'translateY(0px) scale(1)',
+                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                 }}
+                 className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
+               />
+           </div>
+        </div>
+      </div>
+    </section>
+    <section key={2} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+      <div className="max-w-6xl mx-auto text-center space-y-10">
+        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 3</h2>
+        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 3</p>
+      </div>
+      <div className="relative group/chapter w-full px-4 md:px-0">
+        <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
+           <div className="w-full h-full flex items-center justify-center overflow-hidden">
+             <img
+                 src={`/assets/projects/dentaltid/feature3.png`}
+                 alt="Feature 3"
+                 style={{
+                   maxWidth: '100%',
+                   transform: 'translateY(0px) scale(1)',
+                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                 }}
+                 className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
+               />
            </div>
         </div>
       </div>
@@ -233,10 +276,10 @@ export default function ProjectUI() {
                         <p className="text-xl md:text-4xl text-neutral-400 mb-10 md:mb-20 max-w-4xl mx-auto leading-tight font-medium relative z-10">Join the future of dental practice management.</p>
                         <Link
                             href="#"
-                            style={{ 
-                                padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`, 
-                                fontSize: `clamp(20px, 4vw, ${STYLES.buttonTextSize}px)`, 
-                                borderRadius: `${STYLES.borderRadius}px` 
+                            style={{
+                                padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`,
+                                fontSize: `clamp(20px, 4vw, ${STYLES.buttonTextSize}px)`,
+                                borderRadius: `${STYLES.borderRadius}px`
                             }}
                             className="relative z-10 bg-white text-black font-black rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center justify-center gap-4 md:gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)] w-full md:w-auto"
                         >
