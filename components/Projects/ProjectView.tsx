@@ -15,7 +15,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
         const tier = planName.toLowerCase().includes('crown') ? 'crown' : (planName.toLowerCase().includes('premium') ? 'premium' : null);
         if (!tier) return 'Free';
 
-        const p = remotePricing ? remotePricing[currency] : null;
+        const p = remotePricing ? remotePricing[currency] as any : null;
         if (p && p.plans && p.plans[tier]) {
             const val = p.plans[tier][duration];
             const symbol = p.symbol || '';
