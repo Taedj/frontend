@@ -6,6 +6,16 @@ import Link from 'next/link';
 import { FaArrowLeft, FaDownload, FaRocket } from 'react-icons/fa';
 import { ProjectDetails } from '@/lib/github';
 
+interface CurrencyConfig {
+    symbol: string;
+    position: 'prefix' | 'suffix';
+    plans: Record<string, {
+        monthly: string;
+        yearly: string;
+        lifetime: string;
+    }>;
+}
+
 export default function ProjectView({ data }: { data: ProjectDetails }) {
     const { config, hero, chapters, vision, finalCta, styles, pricing, remotePricing } = data;
     const [currency, setCurrency] = useState('DZD');
@@ -15,7 +25,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
         const tier = planName.toLowerCase().includes('crown') ? 'crown' : (planName.toLowerCase().includes('premium') ? 'premium' : null);
         if (!tier) return 'Free';
 
-        const p = remotePricing ? remotePricing[currency] as any : null;
+        const p = remotePricing ? (remotePricing[currency] as unknown as CurrencyConfig) : null;
         if (p && p.plans && p.plans[tier]) {
             const val = p.plans[tier][duration];
             const symbol = p.symbol || '';
