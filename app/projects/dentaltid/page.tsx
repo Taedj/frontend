@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { FaArrowLeft, FaDownload, FaRocket } from 'react-icons/fa';
 
 export const metadata: Metadata = {
-    title: 'DentalTid | Taedj Dev',
-    description: 'Your trusted dental companion'
+    title: '{{META_TITLE}}',
+    description: '{{META_DESCRIPTION}}'
 };
 
 const PRICING_DATA = {{ PRICING_DATA_JSON }};
@@ -49,18 +49,18 @@ export default function ProjectPage() {
                 </div>
                 <section className="pt-20 pb-20 text-center w-full px-6">
                     <div className="max-w-[95%] mx-auto space-y-12">
-                        <h1 style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: '120px' }} className="font-black tracking-tighter leading-[0.85] text-white" dangerouslySetInnerHTML={{ __html: ` <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }} />
+                        <h1 style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: '{{STYLE_HERO_TITLE_SIZE}}px' }} className="font-black tracking-tighter leading-[0.85] text-white" dangerouslySetInnerHTML={{ __html: `{{HERO_TITLE_HTML}}` }} />
                         <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">{{ HERO_SUBTITLE }}</p>
                         <div className="flex flex-wrap gap-8 pt-10 justify-center">
-                            <Link href="#" style={{ padding: '32px 64px', fontSize: '32px', borderRadius: '32px' }} className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black rounded-[2rem] transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95">
+                            <Link href="{{CTA_PRIMARY_LINK}}" style={{ padding: '{{STYLE_BTN_PAD_Y}}px {{STYLE_BTN_PAD_X}}px', fontSize: '{{STYLE_BTN_TEXT_SIZE}}px', borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black rounded-[2rem] transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95">
                                 <FaDownload /> {{ CTA_PRIMARY_LABEL }}
                             </Link>
-                            <Link href="#" style={{ padding: '32px 64px', fontSize: '32px', borderRadius: '32px' }} className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black rounded-[2rem] transition-all flex items-center gap-4 hover:scale-105 active:scale-95">{{ CTA_SECONDARY_LABEL }}</Link>
+                            <Link href="{{CTA_SECONDARY_LINK}}" style={{ padding: '{{STYLE_BTN_PAD_Y}}px {{STYLE_BTN_PAD_X}}px', fontSize: '{{STYLE_BTN_TEXT_SIZE}}px', borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black rounded-[2rem] transition-all flex items-center gap-4 hover:scale-105 active:scale-95">{{ CTA_SECONDARY_LABEL }}</Link>
                         </div>
                     </div>
                 </section>
                 <section className="pb-40 w-full px-4 md:px-10">
-                    <div style={{ borderRadius: '32px' }} className="relative aspect-video overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(16,185,129,0.1)] bg-[#0A0C10] group/hero w-full mx-auto flex items-center justify-center">
+                    <div style={{ borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="relative aspect-video overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(16,185,129,0.1)] bg-[#0A0C10] group/hero w-full mx-auto flex items-center justify-center">
                         <div className="absolute top-0 left-0 right-0 h-16 bg-[#14171C] border-b border-white/5 flex items-center px-10 gap-3 z-20">
                             <div className="w-5 h-5 rounded-full bg-red-500/40" />
                             <div className="w-5 h-5 rounded-full bg-yellow-500/40" />
@@ -97,7 +97,7 @@ export default function ProjectPage() {
                         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
                             {/* @ts-ignore */}
                             {PLAN_STRUCTURE.map((plan: any, i: number) => (
-                                <div key={i} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
+                                <div key={i} style={{ borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
                                     <h3 className="text-3xl font-bold text-white mb-2">{plan.name}</h3>
                                     <p className="text-emerald-400 font-mono text-sm mb-6">{plan.subtitle || ''}</p>
@@ -106,7 +106,7 @@ export default function ProjectPage() {
                                         {/* @ts-ignore */}
                                         {plan.features.map((f: string, fi: number) => <li key={fi} className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
                                     </ul>
-                                    <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
+                                    <Link href="{{CTA_PRIMARY_LINK}}" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
                                 </div>
                             ))}
                         </div>
@@ -116,11 +116,11 @@ export default function ProjectPage() {
         </div>
         { { VISION_SECTION_HTML } }
     <section className="py-60 text-center px-6">
-        <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: '64px' }}>
+        <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: '{{STYLE_BORDER_RADIUS_2X}}px' }}>
             <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">{{ FINAL_CTA_TITLE }}</h2>
             <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">{{ FINAL_CTA_SUBTITLE }}</p>
-            <Link href="#" style={{ padding: '32px 64px', fontSize: '32px', borderRadius: '32px' }} className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]">
+            <Link href="{{FINAL_CTA_BUTTON_LINK}}" style={{ padding: '{{STYLE_BTN_PAD_Y}}px {{STYLE_BTN_PAD_X}}px', fontSize: '{{STYLE_BTN_TEXT_SIZE}}px', borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]">
                 <FaRocket size={40} /> {{ FINAL_CTA_BUTTON_LABEL }}
             </Link>
         </div>
