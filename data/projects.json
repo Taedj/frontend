@@ -5,8 +5,10 @@
     "category": "Management",
     "brand": "Taedj Dev",
     "status": "active",
-    "lastUpdated": "2026-01-01T03:55:37.717Z",
+    "lastUpdated": "2026-01-01T03:56:39.417Z",
     "description": "Your trusted dental companion",
-    "image": "/assets/projects/dentaltid/card.png"
+    "image": "/assets/projects/dentaltid/card.png",
+    "thumbnail": "/assets/projects/dentaltid/card.png",
+    "imageUrl": "/assets/projects/dentaltid/card.png"
   }
 ]

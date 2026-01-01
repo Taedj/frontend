@@ -43,7 +43,6 @@ function App() {
         {isMobile && !modalOpen && <Navbar />}
         <Home />
         <About />
-        <About />
         <div id="Taedj-Dev-Projects">
           <Projects />
         </div>
