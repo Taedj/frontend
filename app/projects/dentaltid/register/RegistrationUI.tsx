@@ -101,7 +101,7 @@ export default function RegistrationUI() {
             
 
             <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5 flex items-center px-10">
-                <img src="/assets/projects/dentaltid/logo.png" className="h-12 w-auto object-contain" />
+                <div className="text-4xl font-black tracking-tighter text-white/90 underline decoration-emerald-500 decoration-4 underline-offset-8">Taedj Dev</div>
             </div>
 
             <main className="relative z-10 w-full flex-grow flex items-center justify-center pt-32 pb-20 px-4">

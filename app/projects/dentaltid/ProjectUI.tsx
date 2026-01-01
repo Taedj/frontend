@@ -45,7 +45,7 @@ interface StylesConfig {
 // Data injected by sync script
 const PRICING_DATA: Record<string, CurrencyConfig> = {"DZD":{"symbol":"DZD","position":"suffix","plans":{"premium":{"monthly":"2,000","yearly":"20,000","lifetime":"60,000"},"crown":{"monthly":"4,000","yearly":"40,000","lifetime":"100,000"}}},"USD":{"symbol":"$","position":"prefix","plans":{"premium":{"monthly":"15","yearly":"150","lifetime":"450"},"crown":{"monthly":"30","yearly":"300","lifetime":"900"}}},"EUR":{"symbol":"€","position":"suffix","plans":{"premium":{"monthly":"14","yearly":"140","lifetime":"420"},"crown":{"monthly":"28","yearly":"280","lifetime":"840"}}}};
 const PLAN_STRUCTURE: PlanStructureItem[] = [{"name":"Trial","features":["Max 100 Patients","Max 100 Appointments","Local Backup Only","All Features Unlocked"],"price":"Free","subtitle":"For Evaluation (30 Days)"},{"name":"Premium","features":["Unlimited Patients & Appointments","Cloud Sync & Restore","Secure Local Backup","Whatsapp Reminders","Standard Support"],"price":"2,000 DZD /mo","subtitle":"For Standard Clinics"},{"name":"CROWN","features":["Everything in Premium","Advanced Analytics Tab","Digital Prescriptions","Priority Support","Future AI Features"],"price":"4,000 DZD /mo","subtitle":"For Power Users"}];
-const STYLES: StylesConfig = {"heroTitleSize":120,"buttonPaddingX":64,"buttonPaddingY":32,"buttonTextSize":32,"sectionSpacing":50,"borderRadius":32,"brandLogo":"logo.png","heroBackground":"","heroImgWidth":100,"heroImgOffsetY":0,"heroImgScale":100,"heroVideoWidth":1366,"heroVideoHeight":768};
+const STYLES: StylesConfig = {"heroTitleSize":120,"buttonPaddingX":64,"buttonPaddingY":32,"buttonTextSize":32,"sectionSpacing":160,"borderRadius":32,"brandLogo":"","heroBackground":"","heroImgWidth":100,"heroImgOffsetY":0,"heroImgScale":100,"heroVideoWidth":1366,"heroVideoHeight":768};
 const PROJECT_CONFIG = {
     name: 'DentalTid | Taedj Dev',
     slug: 'dentaltid',
@@ -99,7 +99,7 @@ export default function ProjectUI() {
             
 
             <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5 flex items-center px-10">
-                <img src="/assets/projects/dentaltid/logo.png" className="h-12 w-auto object-contain" />
+                <div className="text-4xl font-black tracking-tighter text-white/90 underline decoration-emerald-500 decoration-4 underline-offset-8">Taedj Dev</div>
             </div>
 
             <main className="relative z-10 w-full">
@@ -164,10 +164,10 @@ export default function ProjectUI() {
                 <div className="py-40 max-w-[95%] mx-auto text-left">
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-40" />
                     
-    <section key={0} style={{ paddingTop: '50px', paddingBottom: '50px' }} className="space-y-20">
+    <section key={0} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
         <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 1</h2>
-        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 1</p>
+        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto"></p>
       </div>
       <div className="relative group/chapter w-full px-4 md:px-0">
         <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
@@ -177,70 +177,7 @@ export default function ProjectUI() {
              <div className="w-4 h-4 rounded-full bg-white/5" />
            </div>
            <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
-             <img
-                 src={`/assets/projects/dentaltid/feature1.gif`}
-                 alt="Feature 1"
-                 style={{
-                   maxWidth: '100%',
-                   transform: 'translateY(0px) scale(1)',
-                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
-                 }}
-                 className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
-               />
-           </div>
-        </div>
-      </div>
-    </section>
-    <section key={1} style={{ paddingTop: '50px', paddingBottom: '50px' }} className="space-y-20">
-      <div className="max-w-6xl mx-auto text-center space-y-10">
-        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 2</h2>
-        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 2</p>
-      </div>
-      <div className="relative group/chapter w-full px-4 md:px-0">
-        <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
-           <div className="absolute top-0 left-0 right-0 h-14 bg-[#14171C] border-b border-white/5 flex items-center px-8 gap-3 z-20">
-             <div className="w-4 h-4 rounded-full bg-white/5" />
-             <div className="w-4 h-4 rounded-full bg-white/5" />
-             <div className="w-4 h-4 rounded-full bg-white/5" />
-           </div>
-           <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
-             <img
-                 src={`/assets/projects/dentaltid/feature2.png`}
-                 alt="Feature 2"
-                 style={{
-                   maxWidth: '100%',
-                   transform: 'translateY(0px) scale(1)',
-                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
-                 }}
-                 className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
-               />
-           </div>
-        </div>
-      </div>
-    </section>
-    <section key={2} style={{ paddingTop: '50px', paddingBottom: '50px' }} className="space-y-20">
-      <div className="max-w-6xl mx-auto text-center space-y-10">
-        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 3</h2>
-        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 3</p>
-      </div>
-      <div className="relative group/chapter w-full px-4 md:px-0">
-        <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
-           <div className="absolute top-0 left-0 right-0 h-14 bg-[#14171C] border-b border-white/5 flex items-center px-8 gap-3 z-20">
-             <div className="w-4 h-4 rounded-full bg-white/5" />
-             <div className="w-4 h-4 rounded-full bg-white/5" />
-             <div className="w-4 h-4 rounded-full bg-white/5" />
-           </div>
-           <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
-             <img
-                 src={`/assets/projects/dentaltid/feature3.png`}
-                 alt="Feature 3"
-                 style={{
-                   maxWidth: '100%',
-                   transform: 'translateY(0px) scale(1)',
-                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
-                 }}
-                 className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
-               />
+             <div className="w-full h-full flex items-center justify-center text-neutral-800 italic text-3xl font-light">Visual Coming Soon</div>
            </div>
         </div>
       </div>
@@ -295,7 +232,7 @@ export default function ProjectUI() {
                         <h2 className="text-5xl md:text-[10rem] font-black mb-6 md:mb-12 tracking-tighter leading-none relative z-10" style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}>Get Started Today</h2>
                         <p className="text-xl md:text-4xl text-neutral-400 mb-10 md:mb-20 max-w-4xl mx-auto leading-tight font-medium relative z-10">Join the future of dental practice management.</p>
                         <Link
-                            href="/projects/dentaltid/register"
+                            href="#"
                             style={{ 
                                 padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`, 
                                 fontSize: `clamp(20px, 4vw, ${STYLES.buttonTextSize}px)`, 
