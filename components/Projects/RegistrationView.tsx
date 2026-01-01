@@ -50,9 +50,10 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
 
             // 3. Success State
             setIsRegistered(true);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Registration Error:", err);
-            setError(err.message || "An unexpected error occurred. Please try again.");
+            const errorMessage = err instanceof Error ? err.message : "An unexpected error occurred. Please try again.";
+            setError(errorMessage);
         } finally {
             setIsLoading(false);
         }
