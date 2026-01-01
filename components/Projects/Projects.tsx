@@ -1,6 +1,6 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import projectsData from "../../data/projects.json";
 import BackgroundText from "../BackgroundText/BackgroundText";
 import { MdArrowForward } from "react-icons/md";
 import "./Projects.css";
@@ -18,6 +18,32 @@ interface Project {
 }
 
 const Projects = () => {
+    const [projectsData, setProjectsData] = useState<Project[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('/api/projects')
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    setProjectsData(data);
+                }
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Failed to fetch projects:", err);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return (
+            <section id="Taedj-Dev-Projects" className="py-24 px-6 md:px-12 bg-[#0B0D11] overflow-hidden min-h-[400px] flex items-center justify-center">
+                <div className="animate-pulse text-emerald-500 font-bold">Discovering Ecosystem...</div>
+            </section>
+        );
+    }
+
     const hasProjects = projectsData && projectsData.length > 0;
     const baseData: Project[] = hasProjects ? [...projectsData] as Project[] : [];
 

@@ -1,13 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import projectsData from '../../data/projects.json';
+import { getProjects } from '@/lib/github';
 
 export const metadata = {
     title: 'Taedj Dev - Projects Hub',
     description: 'Explore the ecosystem of projects by Taedj Dev.',
 };
 
-export default function ProjectsHub() {
+export default async function ProjectsHub() {
+    const projectsData = await getProjects();
     return (
         <div className="min-h-screen bg-neutral-900 text-white font-sans selection:bg-emerald-500 selection:text-white">
             {/* Navigation Bar */}

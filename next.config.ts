@@ -13,6 +13,11 @@ const nextConfig = {
         pathname: "/storage/v1/object/**",
       },
       {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        pathname: "/**",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
         port: "8000",
