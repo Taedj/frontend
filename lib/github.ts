@@ -212,16 +212,18 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 function extractValue(content: string, key: string, sectionName: string): string {
   const lines = content.split('\n');
   let inSection = !sectionName;
-  const cleanKey = key.replace(/\*\*/g, '').replace(/:$/, '').trim();
+  const cleanKey = key.replace(/\*/g, '').replace(/:$/, '').trim().toLowerCase();
 
   for (const line of lines) {
-    if (sectionName && line.startsWith('## ') && line.includes(sectionName)) inSection = true;
+    if (sectionName && line.startsWith('## ') && line.toLowerCase().includes(sectionName.toLowerCase())) inSection = true;
     else if (sectionName && line.startsWith('## ') && inSection) inSection = false;
     
     if (inSection) {
-      const cleanLine = line.replace(/\*\*/g, '').trim();
-      if (cleanLine.startsWith(cleanKey)) {
-        return cleanLine.split(':')[1].trim();
+      const cleanLine = line.replace(/\*/g, '').trim();
+      if (cleanLine.toLowerCase().startsWith(cleanKey)) {
+        const parts = line.split(':');
+        parts.shift(); // remove the key
+        return parts.join(':').replace(/\*/g, '').trim();
       }
     }
   }
