@@ -221,12 +221,14 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                     <ul className="space-y-4 mb-10 flex-grow">
                                         {plan.features.map((f, fi) => <li key={fi} className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
                                     </ul>
-                                    <button
-                                        onClick={() => handleSelectPlan(plan.name)}
-                                        className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10"
-                                    >
-                                        Select Plan
-                                    </button>
+                                    {!plan.name.toLowerCase().includes('trial') && (
+                                        <button
+                                            onClick={() => handleSelectPlan(plan.name)}
+                                            className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10"
+                                        >
+                                            Select Plan
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                         </div>
