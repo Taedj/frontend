@@ -18,10 +18,9 @@ export default function ProjectPage() {
     const getPrice = (planName: string) => {
         const tier = planName.toLowerCase().includes('crown') ? 'crown' : (planName.toLowerCase().includes('premium') ? 'premium' : null);
         if (!tier) return 'Free';
-        // @ts-ignore
-        if (PRICING_DATA[currency] && PRICING_DATA[currency].plans && PRICING_DATA[currency].plans[tier]) {
-            // @ts-ignore
-            const p = PRICING_DATA[currency];
+
+        const p = PRICING_DATA[currency];
+        if (p && p.plans && p.plans[tier]) {
             const val = p.plans[tier][duration];
             const symbol = p.symbol || '';
             const position = p.position || 'suffix';
@@ -164,13 +163,14 @@ export default function ProjectPage() {
         </section>
                 </div>
 
+                <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"Precision is the heartbeat of modern dentistry."</blockquote></div></section>
+
                 {PLAN_STRUCTURE && PLAN_STRUCTURE.length > 0 && (
                     <section className="py-20 w-full px-6 text-center">
                         <h2 className="text-5xl md:text-7xl font-black text-white mb-10 tracking-tighter">Choose Your Plan</h2>
 
                         <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-20">
                             <div className="flex bg-white/5 rounded-full p-2 border border-white/10">
-                                {/* @ts-ignore */}
                                 {Object.keys(PRICING_DATA).map(c => (
                                     <button key={c} onClick={() => setCurrency(c)} className={`px-6 py-2 rounded-full font-bold transition-all ${currency === c ? 'bg-emerald-500 text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}>{c}</button>
                                 ))}
@@ -184,7 +184,6 @@ export default function ProjectPage() {
                         </div>
 
                         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {/* @ts-ignore */}
                             {PLAN_STRUCTURE.map((plan: any, i: number) => (
                                 <div key={i} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
@@ -192,7 +191,6 @@ export default function ProjectPage() {
                                     <p className="text-emerald-400 font-mono text-sm mb-6">{plan.subtitle || ''}</p>
                                     <div className="text-4xl font-black text-white mb-8 transition-all min-h-[3rem]">{getPrice(plan.name)}</div>
                                     <ul className="space-y-4 mb-10 flex-grow">
-                                        {/* @ts-ignore */}
                                         {plan.features.map((f: string, fi: number) => <li key={fi} className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
                                     </ul>
                                     <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
@@ -202,23 +200,21 @@ export default function ProjectPage() {
                     </section>
                 )}
 
+                <section className="py-60 text-center px-6">
+                    <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: '64px' }}>
+                        <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                        <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">Get Started Today</h2>
+                        <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">Join the future of dental practice management.</p>
+                        <Link href="#" style={{ padding: '32px 64px', fontSize: '32px', borderRadius: '32px' }} className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]">
+                            <FaRocket size={40} /> Get Started
+                        </Link>
+                    </div>
+                </section>
+            </main>
+            <footer className="py-32 border-t border-white/5 text-center">
+                <div className="mb-10 text-3xl font-black tracking-tighter text-white/20">TAEDJ ECOSYSTEM</div>
+                <p className="text-xl text-neutral-600 font-medium">© 2026 Taedj Dev. Finality through Precision.</p>
+            </footer>
         </div>
-        { { VISION_SECTION_HTML } }
-    <section className="py-60 text-center px-6">
-        <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: '64px' }}>
-            <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-            <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">Get Started Today</h2>
-            <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">Join the future of dental practice management.</p>
-            <Link href="#" style={{ padding: '32px 64px', fontSize: '32px', borderRadius: '32px' }} className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]">
-                <FaRocket size={40} /> Get Started
-            </Link>
-        </div>
-    </section>
-      </main >
-        <footer className="py-32 border-t border-white/5 text-center">
-            <div className="mb-10 text-3xl font-black tracking-tighter text-white/20">TAEDJ ECOSYSTEM</div>
-            <p className="text-xl text-neutral-600 font-medium">© 2026 Taedj Dev. Finality through Precision.</p>
-        </footer>
-    </div >
-  );
+    );
 }
