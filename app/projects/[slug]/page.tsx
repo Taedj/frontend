@@ -1,6 +1,6 @@
 
 import { getProjectBySlug } from '@/lib/github';
-import ProjectView from '@/components/projects/ProjectView';
+import ProjectView from '@/components/Projects/ProjectView';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
