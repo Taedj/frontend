@@ -77,7 +77,7 @@ export default function ProjectUI() {
 
     const handleSelectPlan = (planName: string) => {
         if (planName.toLowerCase().includes('trial')) {
-            window.location.href = "https://www.dropbox.com/scl/fi/shr54fc5j8lukcd3huz5h/DentalT-d_x64_setup.exe?rlkey=vmq60in2skpkqele52nxk4xnw&st=81jzep2g&dl=1";
+            window.location.href = "#";
             return;
         }
 
@@ -124,7 +124,7 @@ export default function ProjectUI() {
 
                         <div className="flex flex-col md:flex-row flex-wrap gap-4 md:gap-8 pt-10 justify-center items-center px-6">
                             <Link
-                                href="https://www.dropbox.com/scl/fi/shr54fc5j8lukcd3huz5h/DentalT-d_x64_setup.exe?rlkey=vmq60in2skpkqele52nxk4xnw&st=81jzep2g&dl=1"
+                                href="#"
                                 style={{
                                     padding: `clamp(16px, 4vw, ${STYLES.buttonPaddingY}px) clamp(32px, 5vw, ${STYLES.buttonPaddingX}px)`,
                                     fontSize: `clamp(16px, 4vw, ${STYLES.buttonTextSize}px)`,
