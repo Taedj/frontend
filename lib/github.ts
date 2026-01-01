@@ -1,5 +1,3 @@
-
-
 const GITHUB_USERNAME = 'Taedj';
 const DEFAULT_BRANCH = 'main';
 const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}`;
@@ -69,13 +67,17 @@ export interface ProjectDetails {
   };
   styles: ProjectStyles;
   pricing: PricingPlan[];
-  remotePricing?: Record<string, any>;
+  remotePricing?: Record<string, unknown>;
 }
 
 interface GitHubRepo {
   name: string;
   description: string | null;
   updated_at: string;
+}
+
+interface GistPricingResponse {
+  pricing: Record<string, unknown>;
 }
 
 /**
@@ -155,7 +157,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 
     const config = await configRes.json() as ProjectConfig;
     const mdContent = await mdRes.text();
-    const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() as { pricing: Record<string, any> } : null;
+    const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() as GistPricingResponse : null;
 
     // Build the full project object
     const heroImage = `${BASE_RAW_URL}/${slug}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/screenshots/cover.mp4`; // Default to cover.mp4
