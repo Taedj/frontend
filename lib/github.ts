@@ -116,9 +116,21 @@ export async function getProjects() {
           // Extract basic info from MD for the card
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
           
-          // Use the branch that worked for the image
+          // Determine the branch
           const branch = configRes.url.includes('/master/') ? 'master' : 'main';
-          const cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`;
+
+          // Try to find the best card image (checking for case sensitivity)
+          let cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`;
+          
+          // Check if Card.png exists if card.png fails (Simulated by the browser/Vercel)
+          // For now, we will provide a fallback logic in the URL or standardized naming
+          // Better: We can check which one exists or just use the one from the MD if we want
+          
+          // Let's standardize to try both in the UI or fix the fetcher
+          const cardRes = await fetch(`${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`, { method: 'HEAD' });
+          if (!cardRes.ok) {
+            cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/Card.png`;
+          }
 
           return {
             name: config.name || repo.name,
