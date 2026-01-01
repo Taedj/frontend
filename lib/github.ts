@@ -229,24 +229,24 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 function extractValue(content: string, key: string, sectionName: string): string {
   const lines = content.split('\n');
   let inSection = !sectionName;
-  const cleanKey = key.replace(/\*/g, '').replace(/:$/, '').trim().toLowerCase();
+  const targetKey = key.replace(/\*/g, '').replace(/:$/, '').toLowerCase().trim();
 
   for (const line of lines) {
-    const trimmedLine = line.trim();
-    if (sectionName && trimmedLine.startsWith('## ') && trimmedLine.toLowerCase().includes(sectionName.toLowerCase())) {
+    const trimmed = line.trim();
+    if (sectionName && trimmed.startsWith('## ') && trimmed.toLowerCase().includes(sectionName.toLowerCase())) {
       inSection = true;
       continue;
     }
-    if (inSection && trimmedLine.startsWith('## ') && !trimmedLine.toLowerCase().includes(sectionName.toLowerCase())) {
+    if (inSection && trimmed.startsWith('## ') && !trimmed.toLowerCase().includes(sectionName.toLowerCase())) {
       inSection = false;
     }
-    
+
     if (inSection) {
-      const cleanLine = trimmedLine.replace(/\*/g, '').trim();
-      if (cleanLine.toLowerCase().startsWith(cleanKey)) {
-        const parts = cleanLine.split(':');
-        parts.shift(); // remove the key
-        return parts.join(':').trim();
+      const cleanLine = trimmed.replace(/\*/g, '');
+      const lowerLine = cleanLine.toLowerCase();
+      // Look for the key followed by a colon
+      if (lowerLine.includes(targetKey + ':')) {
+        return cleanLine.substring(lowerLine.indexOf(':') + 1).trim();
       }
     }
   }
