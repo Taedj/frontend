@@ -247,22 +247,43 @@ export default function ProjectUI() {
                             </div>
                         </div>
 
-                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
                             {PLAN_STRUCTURE.map((plan, i) => (
-                                <div key={i} style={{ borderRadius: `${STYLES.borderRadius}px` }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
-                                    <h3 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tighter">{plan.name}</h3>
-                                    <p className="text-emerald-400 font-mono text-lg mb-8 uppercase tracking-widest">{plan.subtitle || ''}</p>
-                                    <div className="text-6xl md:text-7xl font-black text-white mb-10 transition-all min-h-[4rem]">{getPrice(plan.name)}</div>
-                                    <ul className="space-y-6 mb-12 flex-grow">
-                                        {plan.features.map((f, fi) => <li key={fi} className="flex items-start gap-4 text-neutral-300 text-xl font-medium"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
-                                    </ul>
-                                    <button
-                                        onClick={() => handleSelectPlan(plan.name)}
-                                        className="w-full py-6 md:py-8 rounded-2xl bg-white/5 hover:bg-emerald-500 hover:text-[#080A0E] text-white text-2xl font-black transition-all text-center border border-white/10 hover:scale-[1.02] active:scale-95 shadow-xl hover:shadow-emerald-500/20"
-                                    >
-                                        Select Plan
-                                    </button>
+                                <div key={i} style={{ borderRadius: `${STYLES.borderRadius}px` }} className="bg-[#0A0C10] border border-white/5 p-12 md:p-16 flex flex-col items-center text-center group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden shadow-2xl">
+                                    <div className="absolute top-0 right-0 p-40 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all duration-1000" />
+
+                                    <div className="relative z-10 w-full">
+                                        <h3 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tighter uppercase">{plan.name}</h3>
+                                        <div className="h-1 w-20 bg-emerald-500/50 mx-auto mb-6 rounded-full group-hover:w-32 transition-all duration-700" />
+                                        <p className="text-emerald-400 font-mono text-lg mb-10 uppercase tracking-[0.3em] font-bold">{plan.subtitle || ''}</p>
+
+                                        <div className="flex flex-col items-center mb-12">
+                                            <div className="text-7xl md:text-8xl font-black text-white leading-none tracking-tighter transition-all group-hover:scale-110 duration-700">
+                                                {getPrice(plan.name, false)}
+                                            </div>
+                                            {plan.name.toLowerCase().indexOf('trial') === -1 && plan.name.toLowerCase().indexOf('free') === -1 && (
+                                                <div className="text-neutral-500 font-mono text-sm mt-4 uppercase tracking-[0.2em] font-bold">
+                                                    {duration === 'lifetime' ? 'Lifetime Access' : (duration === 'monthly' ? 'Billed Monthly' : 'Billed Yearly')}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <ul className="space-y-6 mb-16 text-left inline-block">
+                                            {plan.features.map((f, fi) => (
+                                                <li key={fi} className="flex items-center gap-4 text-neutral-300 text-xl font-medium">
+                                                    <div className="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 text-sm">✔</div>
+                                                    {f}
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                        <button
+                                            onClick={() => handleSelectPlan(plan.name)}
+                                            className="w-full py-8 md:py-10 rounded-[2rem] bg-white/5 hover:bg-emerald-500 hover:text-[#080A0E] text-white text-3xl font-black transition-all text-center border border-white/10 hover:scale-[1.05] active:scale-95 shadow-2xl hover:shadow-emerald-500/40 relative overflow-hidden group/btn"
+                                        >
+                                            <span className="relative z-10">Select {plan.name}</span>
+                                        </button>
+                                    </div>
                                 </div>
                             ))}
                         </div>
