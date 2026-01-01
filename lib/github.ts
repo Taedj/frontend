@@ -1,5 +1,4 @@
 const GITHUB_USERNAME = 'Taedj';
-const DEFAULT_BRANCH = 'main';
 const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}`;
 
 export interface ProjectConfig {
@@ -80,6 +79,20 @@ interface GistPricingResponse {
   pricing: Record<string, unknown>;
 }
 
+async function fetchFromGitHub(repoName: string, path: string) {
+  const branches = ['main', 'master'];
+  for (const branch of branches) {
+    const url = `${BASE_RAW_URL}/${repoName}/${branch}/${path}`;
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (res.ok) return res;
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
+
 /**
  * Fetches all projects that have a CONTROL_WEBSITE folder
  */
@@ -92,24 +105,20 @@ export async function getProjects() {
 
     // 2. Check each repo for the config file
     const projectPromises = repos.map(async (repo: GitHubRepo) => {
-      const configUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/product.config.json`;
-      const mdUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/WEBSITE.md`;
-
       try {
-        const [configRes, mdRes] = await Promise.all([
-          fetch(configUrl, { cache: 'no-store' }),
-          fetch(mdUrl, { cache: 'no-store' })
-        ]);
+        const configRes = await fetchFromGitHub(repo.name, 'CONTROL_WEBSITE/product.config.json');
+        const mdRes = await fetchFromGitHub(repo.name, 'CONTROL_WEBSITE/WEBSITE.md');
 
-        if (configRes.ok && mdRes.ok) {
+        if (configRes && mdRes) {
           const config = await configRes.json() as ProjectConfig;
           const mdContent = await mdRes.text();
           
           // Extract basic info from MD for the card
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
           
-          // Determine the card image (standardized to card.png or cover.png)
-          const cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/screenshots/card.png`;
+          // Use the branch that worked for the image
+          const branch = configRes.url.includes('/master/') ? 'master' : 'main';
+          const cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`;
 
           return {
             name: config.name || repo.name,
@@ -142,25 +151,21 @@ export async function getProjects() {
  * Fetches full details for a single project
  */
 export async function getProjectBySlug(slug: string): Promise<ProjectDetails | null> {
-  const configUrl = `${BASE_RAW_URL}/${slug}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/product.config.json`;
-  const mdUrl = `${BASE_RAW_URL}/${slug}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/WEBSITE.md`;
-  const gistUrl = 'https://gist.githubusercontent.com/Taedj/9bf1dae53f37681b9c13dab8cde8472f/raw/config.json';
-
   try {
-    const [configRes, mdRes, gistRes] = await Promise.all([
-      fetch(configUrl, { cache: 'no-store' }),
-      fetch(mdUrl, { cache: 'no-store' }),
-      fetch(gistUrl, { cache: 'no-store' }).catch(() => null)
-    ]);
+    const configRes = await fetchFromGitHub(slug, 'CONTROL_WEBSITE/product.config.json');
+    const mdRes = await fetchFromGitHub(slug, 'CONTROL_WEBSITE/WEBSITE.md');
+    const gistUrl = 'https://gist.githubusercontent.com/Taedj/9bf1dae53f37681b9c13dab8cde8472f/raw/config.json';
 
-    if (!configRes.ok || !mdRes.ok) return null;
+    if (!configRes || !mdRes) return null;
 
     const config = await configRes.json() as ProjectConfig;
     const mdContent = await mdRes.text();
+    
+    const gistRes = await fetch(gistUrl, { cache: 'no-store' }).catch(() => null);
     const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() as GistPricingResponse : null;
 
-    // Build the full project object
-    const heroImage = `${BASE_RAW_URL}/${slug}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/screenshots/cover.mp4`; // Default to cover.mp4
+    const branch = configRes.url.includes('/master/') ? 'master' : 'main';
+    const heroImage = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/screenshots/cover.mp4`; 
     
     const details: ProjectDetails = {
       config: { ...config, slug },
@@ -173,7 +178,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         ctaSecondaryLink: extractValue(mdContent, 'CTA Secondary Link:', 'Hero Section') || '#',
         image: heroImage
       },
-      chapters: parseChapters(mdContent, slug),
+      chapters: parseChapters(mdContent, slug, branch),
       vision: extractValue(mdContent, 'Caption:', 'Demo & Vision'),
       finalCta: {
         title: extractValue(mdContent, 'Title:', 'Final CTA'),
@@ -212,7 +217,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 function extractValue(content: string, key: string, sectionName: string): string {
   const lines = content.split('\n');
   let inSection = !sectionName;
-  const cleanKey = key.replace(/\*\*/g, '').replace(/:$/, '').trim().toLowerCase();
+  const cleanKey = key.replace(/\*/g, '').replace(/:$/, '').trim().toLowerCase();
 
   for (const line of lines) {
     const trimmedLine = line.trim();
@@ -225,11 +230,11 @@ function extractValue(content: string, key: string, sectionName: string): string
     }
     
     if (inSection) {
-      const cleanLine = trimmedLine.replace(/\*\*/g, '').trim();
+      const cleanLine = trimmedLine.replace(/\*/g, '').trim();
       if (cleanLine.toLowerCase().startsWith(cleanKey)) {
-        const parts = line.split(':');
+        const parts = cleanLine.split(':');
         parts.shift(); // remove the key
-        return parts.join(':').replace(/\*\*/g, '').trim();
+        return parts.join(':').trim();
       }
     }
   }
@@ -237,7 +242,7 @@ function extractValue(content: string, key: string, sectionName: string): string
 }
 
 // Helper: Parse Chapters
-function parseChapters(content: string, slug: string): Chapter[] {
+function parseChapters(content: string, slug: string, branch: string): Chapter[] {
   const chapters: Chapter[] = [];
   const lines = content.split('\n');
   let current: Chapter | null = null;
@@ -262,15 +267,20 @@ function parseChapters(content: string, slug: string): Chapter[] {
         styles: { imgWidth: 100, imgOffsetY: 0, imgScale: 100 }
       };
     } else if (inSection && current) {
-      const cleanLine = trimmedLine.replace(/\*\*/g, '').trim();
-      if (cleanLine.toLowerCase().startsWith('description:')) current.description = cleanLine.split(':')[1].trim();
-      else if (cleanLine.toLowerCase().startsWith('visual hint:')) {
-        const fileName = cleanLine.split(':')[1].trim();
-        current.image = `${BASE_RAW_URL}/${slug}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/screenshots/${fileName}`;
+      const cleanLine = trimmedLine.replace(/\*/g, '').trim();
+      const lowerLine = cleanLine.toLowerCase();
+      if (lowerLine.startsWith('description:')) {
+        current.description = cleanLine.split(':').slice(1).join(':').trim();
+      } else if (lowerLine.startsWith('visual hint:')) {
+        const fileName = cleanLine.split(':').slice(1).join(':').trim();
+        current.image = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/screenshots/${fileName}`;
+      } else if (lowerLine.startsWith('img width:')) {
+        current.styles.imgWidth = parseInt(cleanLine.split(':')[1].trim()) || 100;
+      } else if (lowerLine.startsWith('img offset y:')) {
+        current.styles.imgOffsetY = parseInt(cleanLine.split(':')[1].trim()) || 0;
+      } else if (lowerLine.startsWith('img scale:')) {
+        current.styles.imgScale = parseInt(cleanLine.split(':')[1].trim()) || 100;
       }
-      else if (cleanLine.toLowerCase().startsWith('img width:')) current.styles.imgWidth = parseInt(cleanLine.split(':')[1].trim()) || 100;
-      else if (cleanLine.toLowerCase().startsWith('img offset y:')) current.styles.imgOffsetY = parseInt(cleanLine.split(':')[1].trim()) || 0;
-      else if (cleanLine.toLowerCase().startsWith('img scale:')) current.styles.imgScale = parseInt(cleanLine.split(':')[1].trim()) || 100;
     }
   }
   if (current) chapters.push(current);
@@ -293,12 +303,22 @@ function parsePricing(content: string): PricingPlan[] {
     
     if (inPricing && trimmedLine.toLowerCase().startsWith('### plan:')) {
       if (current) plans.push(current);
-      current = { name: trimmedLine.split(':')[1]?.trim() || trimmedLine.replace(/### Plan:/i, '').trim(), subtitle: '', price: '', features: [] };
+      current = { 
+        name: trimmedLine.split(':')[1]?.trim() || trimmedLine.replace(/### Plan:/i, '').trim(), 
+        subtitle: '', 
+        price: '', 
+        features: [] 
+      };
     } else if (inPricing && current) {
-      const cleanLine = trimmedLine.replace(/\*\*/g, '').trim();
-      if (cleanLine.toLowerCase().startsWith('price:')) current.price = cleanLine.split(':')[1].trim();
-      else if (cleanLine.toLowerCase().startsWith('subtitle:')) current.subtitle = cleanLine.split(':')[1].trim();
-      else if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) current.features.push(trimmedLine.substring(2).trim());
+      const cleanLine = trimmedLine.replace(/\*/g, '').trim();
+      const lowerLine = cleanLine.toLowerCase();
+      if (lowerLine.startsWith('price:')) {
+        current.price = cleanLine.split(':').slice(1).join(':').trim();
+      } else if (lowerLine.startsWith('subtitle:')) {
+        current.subtitle = cleanLine.split(':').slice(1).join(':').trim();
+      } else if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
+        current.features.push(trimmedLine.substring(2).trim());
+      }
     }
   }
   if (current) plans.push(current);
