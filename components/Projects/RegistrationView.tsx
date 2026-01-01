@@ -83,7 +83,7 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
             };
 
             // 3. Save to Firestore following exact App Path and Security Rules
-            // App path: users/{userId}/profile/info
+            // Fixed: New users start with Trial plan.
             await setDoc(doc(db, "users", user.uid, "profile", "info"), userProfileData);
 
             setIsRegistered(true);
