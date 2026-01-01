@@ -138,6 +138,47 @@ export default function ProjectPage() {
           </div>
         </section>
         </div>
+        
+        <section className="py-20 w-full px-6 text-center">
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-20 tracking-tighter">Choose Your Plan</h2>
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+              <div key={0} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
+                <h3 className="text-3xl font-bold text-white mb-2">Trial</h3>
+                <p className="text-emerald-400 font-mono text-sm mb-6">For Evaluation (30 Days)</p>
+                <div className="text-4xl font-black text-white mb-8">Free</div>
+                <ul className="space-y-4 mb-10 flex-grow">
+                  <li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Max 100 Patients</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Max 100 Appointments</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Local Backup Only</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> All Features Unlocked</li>
+                </ul>
+                <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
+              </div>
+            
+              <div key={1} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
+                <h3 className="text-3xl font-bold text-white mb-2">Premium</h3>
+                <p className="text-emerald-400 font-mono text-sm mb-6">For Standard Clinics</p>
+                <div className="text-4xl font-black text-white mb-8">2,000 DZD /mo</div>
+                <ul className="space-y-4 mb-10 flex-grow">
+                  <li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Unlimited Patients & Appointments</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Cloud Sync & Restore</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Secure Local Backup</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Whatsapp Reminders</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Standard Support</li>
+                </ul>
+                <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
+              </div>
+            
+              <div key={2} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
+                <h3 className="text-3xl font-bold text-white mb-2">CROWN</h3>
+                <p className="text-emerald-400 font-mono text-sm mb-6">For Power Users</p>
+                <div className="text-4xl font-black text-white mb-8">4,000 DZD /mo</div>
+                <ul className="space-y-4 mb-10 flex-grow">
+                  <li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Everything in Premium</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Advanced Analytics Tab</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Digital Prescriptions</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Priority Support</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Future AI Features</li>
+                </ul>
+                <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
+              </div>
+            
+          </div>
+        </section>
+        </div>
         <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"Precision is the heartbeat of modern dentistry."</blockquote></div></section>
         <section className="py-60 text-center px-6">
           <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: '64px' }}>
