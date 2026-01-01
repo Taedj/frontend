@@ -39,7 +39,7 @@ export default function DashboardUI() {
 
                 <div className="space-y-6">
                     <button
-                        onClick={() => window.open('https://www.tidjanizitouni.com/download', '_blank')}
+                        onClick={() => window.open('#', '_blank')}
                         className="w-full py-5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black text-xl transition-all shadow-[0_10px_40px_rgba(16,185,129,0.3)] hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-4"
                     >
                         <FaWindows size={28} /> Download for Windows
