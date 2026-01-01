@@ -45,7 +45,7 @@ interface StylesConfig {
 // Data injected by sync script
 const PRICING_DATA: Record<string, CurrencyConfig> = {"DZD":{"symbol":"DZD","position":"suffix","plans":{"premium":{"monthly":"2,000","yearly":"20,000","lifetime":"60,000"},"crown":{"monthly":"4,000","yearly":"40,000","lifetime":"100,000"}}},"USD":{"symbol":"$","position":"prefix","plans":{"premium":{"monthly":"15","yearly":"150","lifetime":"450"},"crown":{"monthly":"30","yearly":"300","lifetime":"900"}}},"EUR":{"symbol":"€","position":"suffix","plans":{"premium":{"monthly":"14","yearly":"140","lifetime":"420"},"crown":{"monthly":"28","yearly":"280","lifetime":"840"}}}};
 const PLAN_STRUCTURE: PlanStructureItem[] = [{"name":"Trial","features":["Max 100 Patients","Max 100 Appointments","Local Backup Only","All Features Unlocked"],"price":"Free","subtitle":"For Evaluation (30 Days)"},{"name":"Premium","features":["Unlimited Patients & Appointments","Cloud Sync & Restore","Secure Local Backup","Whatsapp Reminders","Standard Support"],"price":"2,000 DZD /mo","subtitle":"For Standard Clinics"},{"name":"CROWN","features":["Everything in Premium","Advanced Analytics Tab","Digital Prescriptions","Priority Support","Future AI Features"],"price":"4,000 DZD /mo","subtitle":"For Power Users"}];
-const STYLES: StylesConfig = {"heroTitleSize":120,"buttonPaddingX":64,"buttonPaddingY":32,"buttonTextSize":32,"sectionSpacing":160,"borderRadius":32,"brandLogo":"logo.png","heroBackground":"","heroImgWidth":100,"heroImgOffsetY":0,"heroImgScale":100,"heroVideoWidth":1280,"heroVideoHeight":720};
+const STYLES: StylesConfig = {"heroTitleSize":120,"buttonPaddingX":64,"buttonPaddingY":32,"buttonTextSize":32,"sectionSpacing":160,"borderRadius":32,"brandLogo":"logo.png","heroBackground":"","heroImgWidth":100,"heroImgOffsetY":0,"heroImgScale":100,"heroVideoWidth":1366,"heroVideoHeight":768};
 const PROJECT_CONFIG = {
     name: 'DentalTid | Taedj Dev',
     slug: 'dentaltid',
@@ -157,7 +157,7 @@ export default function ProjectUI() {
                             <div className="w-3 h-3 md:w-5 md:h-5 rounded-full bg-green-500/40" />
                             <div className="ml-10 h-9 px-8 bg-white/5 rounded-xl border border-white/5 flex-grow max-w-2xl hidden lg:flex text-sm text-neutral-500 items-center font-mono tracking-widest text-left">{PROJECT_CONFIG.slug}.app/dashboard</div>
                         </div>
-                        <video src="/assets/projects/dentaltid/cover.mp4" autoPlay muted loop playsInline controls onClick={(e) => e.currentTarget.muted = !e.currentTarget.muted} style={{ width: '1280px', height: '720px', maxWidth: '100%', transform: 'translateY(0px) scale(1)', transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)' }} className="object-cover pt-16 transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer" />
+                        <video src="/assets/projects/dentaltid/cover.mp4" autoPlay muted loop playsInline controls onClick={(e) => e.currentTarget.muted = !e.currentTarget.muted} style={{ width: '1366px', height: '768px', maxWidth: '100%', transform: 'translateY(0px) scale(1)', transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)' }} className="object-cover pt-16 transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer" />
                     </div>
                 </section>
 
@@ -311,7 +311,7 @@ export default function ProjectUI() {
 
             <footer className="py-32 border-t border-white/5 text-center">
                 <div className="mb-10 text-3xl font-black tracking-tighter text-white/20">TAEDJ ECOSYSTEM</div>
-                <p className="text-xl text-neutral-600 font-medium">© 2025 Taedj Dev. Finality through Precision.</p>
+                <p className="text-xl text-neutral-600 font-medium">© 2026 Taedj Dev. Finality through Precision.</p>
             </footer>
         </div>
     );
