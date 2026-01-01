@@ -1,3 +1,5 @@
+
+
 const GITHUB_USERNAME = 'Taedj';
 const DEFAULT_BRANCH = 'main';
 const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}`;
@@ -67,7 +69,7 @@ export interface ProjectDetails {
   };
   styles: ProjectStyles;
   pricing: PricingPlan[];
-  remotePricing?: Record<string, unknown>;
+  remotePricing?: Record<string, any>;
 }
 
 interface GitHubRepo {
@@ -77,7 +79,7 @@ interface GitHubRepo {
 }
 
 interface GistPricingResponse {
-  pricing: Record<string, unknown>;
+  pricing: Record<string, any>;
 }
 
 /**
@@ -106,7 +108,7 @@ export async function getProjects() {
           const mdContent = await mdRes.text();
           
           // Extract basic info from MD for the card
-          const subtitle = extractValue(mdContent, '**Subtitle:**', 'Hero Section');
+          const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
           
           // Determine the card image (standardized to card.png or cover.png)
           const cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/screenshots/card.png`;
@@ -165,21 +167,21 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
     const details: ProjectDetails = {
       config: { ...config, slug },
       hero: {
-        title: extractValue(mdContent, '**Title:**', 'Hero Section'),
-        subtitle: extractValue(mdContent, '**Subtitle:**', 'Hero Section'),
-        ctaPrimaryLabel: extractValue(mdContent, '**CTA Primary Label:**', 'Hero Section') || 'Download Now',
-        ctaPrimaryLink: extractValue(mdContent, '**CTA Primary Link:**', 'Hero Section') || '#',
-        ctaSecondaryLabel: extractValue(mdContent, '**CTA Secondary Label:**', 'Hero Section') || 'Learn More',
-        ctaSecondaryLink: extractValue(mdContent, '**CTA Secondary Link:**', 'Hero Section') || '#',
+        title: extractValue(mdContent, 'Title:', 'Hero Section'),
+        subtitle: extractValue(mdContent, 'Subtitle:', 'Hero Section'),
+        ctaPrimaryLabel: extractValue(mdContent, 'CTA Primary Label:', 'Hero Section') || 'Download Now',
+        ctaPrimaryLink: extractValue(mdContent, 'CTA Primary Link:', 'Hero Section') || '#',
+        ctaSecondaryLabel: extractValue(mdContent, 'CTA Secondary Label:', 'Hero Section') || 'Learn More',
+        ctaSecondaryLink: extractValue(mdContent, 'CTA Secondary Link:', 'Hero Section') || '#',
         image: heroImage
       },
       chapters: parseChapters(mdContent, slug),
-      vision: extractValue(mdContent, '**Caption:**', 'Demo & Vision'),
+      vision: extractValue(mdContent, 'Caption:', 'Demo & Vision'),
       finalCta: {
-        title: extractValue(mdContent, '**Title:**', 'Final CTA'),
-        subtitle: extractValue(mdContent, '**Subtitle:**', 'Final CTA'),
-        buttonLabel: extractValue(mdContent, '**Button Label:**', 'Final CTA') || 'Get Started',
-        buttonLink: extractValue(mdContent, '**Button Link:**', 'Final CTA') || '#'
+        title: extractValue(mdContent, 'Title:', 'Final CTA'),
+        subtitle: extractValue(mdContent, 'Subtitle:', 'Final CTA'),
+        buttonLabel: extractValue(mdContent, 'Button Label:', 'Final CTA') || 'Get Started',
+        buttonLink: extractValue(mdContent, 'Button Link:', 'Final CTA') || '#'
       },
       styles: {
         heroTitleSize: parseInt(extractValue(mdContent, 'Hero Title Size:', 'UI & Styling')) || 120,
@@ -212,18 +214,24 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 function extractValue(content: string, key: string, sectionName: string): string {
   const lines = content.split('\n');
   let inSection = !sectionName;
-  const cleanKey = key.replace(/\*/g, '').replace(/:$/, '').trim().toLowerCase();
+  const cleanKey = key.replace(/\*\*/g, '').replace(/:$/, '').trim().toLowerCase();
 
   for (const line of lines) {
-    if (sectionName && line.startsWith('## ') && line.toLowerCase().includes(sectionName.toLowerCase())) inSection = true;
-    else if (sectionName && line.startsWith('## ') && inSection) inSection = false;
+    const trimmedLine = line.trim();
+    if (sectionName && trimmedLine.startsWith('## ') && trimmedLine.toLowerCase().includes(sectionName.toLowerCase())) {
+      inSection = true;
+      continue;
+    }
+    if (inSection && trimmedLine.startsWith('## ') && !trimmedLine.toLowerCase().includes(sectionName.toLowerCase())) {
+      inSection = false;
+    }
     
     if (inSection) {
-      const cleanLine = line.replace(/\*/g, '').trim();
+      const cleanLine = trimmedLine.replace(/\*\*/g, '').trim();
       if (cleanLine.toLowerCase().startsWith(cleanKey)) {
         const parts = line.split(':');
         parts.shift(); // remove the key
-        return parts.join(':').replace(/\*/g, '').trim();
+        return parts.join(':').replace(/\*\*/g, '').trim();
       }
     }
   }
@@ -238,26 +246,33 @@ function parseChapters(content: string, slug: string): Chapter[] {
   let inSection = false;
 
   for (const line of lines) {
-    if (line.startsWith('## Feature Chapters')) inSection = true;
-    else if (inSection && line.startsWith('## ') && !line.includes('Feature Chapters')) inSection = false;
+    const trimmedLine = line.trim();
+    if (trimmedLine.startsWith('## Feature Chapters')) {
+      inSection = true;
+      continue;
+    }
+    if (inSection && trimmedLine.startsWith('## ') && !trimmedLine.toLowerCase().includes('feature chapters')) {
+      inSection = false;
+    }
 
-    if (inSection && line.startsWith('### Chapter')) {
+    if (inSection && trimmedLine.startsWith('### Chapter')) {
       if (current) chapters.push(current);
       current = {
-        title: line.split(': ')[1] || line.replace('### Chapter ', '').trim(),
+        title: trimmedLine.split(':')[1]?.trim() || trimmedLine.replace('### Chapter ', '').trim(),
         description: '',
         image: '',
         styles: { imgWidth: 100, imgOffsetY: 0, imgScale: 100 }
       };
     } else if (inSection && current) {
-      if (line.includes('**Description:**')) current.description = line.split('**Description:**')[1].trim();
-      else if (line.includes('**Visual Hint:**')) {
-        const fileName = line.split('**Visual Hint:**')[1].trim();
+      const cleanLine = trimmedLine.replace(/\*\*/g, '').trim();
+      if (cleanLine.toLowerCase().startsWith('description:')) current.description = cleanLine.split(':')[1].trim();
+      else if (cleanLine.toLowerCase().startsWith('visual hint:')) {
+        const fileName = cleanLine.split(':')[1].trim();
         current.image = `${BASE_RAW_URL}/${slug}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/screenshots/${fileName}`;
       }
-      else if (line.includes('**Img Width:**')) current.styles.imgWidth = parseInt(line.split('**Img Width:**')[1].trim()) || 100;
-      else if (line.includes('**Img Offset Y:**')) current.styles.imgOffsetY = parseInt(line.split('**Img Offset Y:**')[1].trim()) || 0;
-      else if (line.includes('**Img Scale:**')) current.styles.imgScale = parseInt(line.split('**Img Scale:**')[1].trim()) || 100;
+      else if (cleanLine.toLowerCase().startsWith('img width:')) current.styles.imgWidth = parseInt(cleanLine.split(':')[1].trim()) || 100;
+      else if (cleanLine.toLowerCase().startsWith('img offset y:')) current.styles.imgOffsetY = parseInt(cleanLine.split(':')[1].trim()) || 0;
+      else if (cleanLine.toLowerCase().startsWith('img scale:')) current.styles.imgScale = parseInt(cleanLine.split(':')[1].trim()) || 100;
     }
   }
   if (current) chapters.push(current);
@@ -271,15 +286,21 @@ function parsePricing(content: string): PricingPlan[] {
   let inPricing = false;
   let current: PricingPlan | null = null;
   for (const line of lines) {
-    if (line.startsWith('## Pricing')) inPricing = true;
-    else if (inPricing && line.startsWith('## ')) inPricing = false;
-    if (inPricing && line.startsWith('### Plan: ')) {
+    const trimmedLine = line.trim();
+    if (trimmedLine.startsWith('## Pricing')) {
+      inPricing = true;
+      continue;
+    }
+    if (inPricing && trimmedLine.startsWith('## ')) inPricing = false;
+    
+    if (inPricing && trimmedLine.toLowerCase().startsWith('### plan:')) {
       if (current) plans.push(current);
-      current = { name: line.replace('### Plan: ', '').trim(), subtitle: '', price: '', features: [] };
+      current = { name: trimmedLine.split(':')[1]?.trim() || trimmedLine.replace(/### Plan:/i, '').trim(), subtitle: '', price: '', features: [] };
     } else if (inPricing && current) {
-      if (line.startsWith('**Price:**')) current.price = line.split('**Price:**')[1].trim();
-      else if (line.startsWith('**Subtitle:**')) current.subtitle = line.split('**Subtitle:**')[1].trim();
-      else if (line.startsWith('- ') || line.startsWith('* ')) current.features.push(line.substring(2).trim());
+      const cleanLine = trimmedLine.replace(/\*\*/g, '').trim();
+      if (cleanLine.toLowerCase().startsWith('price:')) current.price = cleanLine.split(':')[1].trim();
+      else if (cleanLine.toLowerCase().startsWith('subtitle:')) current.subtitle = cleanLine.split(':')[1].trim();
+      else if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) current.features.push(trimmedLine.substring(2).trim());
     }
   }
   if (current) plans.push(current);
