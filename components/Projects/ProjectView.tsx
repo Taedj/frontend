@@ -127,12 +127,24 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                 playsInline 
                                 controls 
                                 onClick={(e) => e.currentTarget.muted = !e.currentTarget.muted} 
-                                className="object-cover w-full h-full transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer" 
+                                style={{ 
+                                    width: styles.heroVideoWidth ? `${styles.heroVideoWidth}px` : '100%',
+                                    height: styles.heroVideoHeight ? `${styles.heroVideoHeight}px` : 'auto',
+                                    maxWidth: `${styles.heroImgWidth}%`,
+                                    transform: `translateY(${styles.heroImgOffsetY}px) scale(${styles.heroImgScale / 100})`,
+                                    transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                                }}
+                                className="object-cover transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer" 
                             />
                         ) : (
                             <img 
                                 src={hero.image} 
                                 alt={config.name} 
+                                style={{ 
+                                    maxWidth: `${styles.heroImgWidth}%`,
+                                    transform: `translateY(${styles.heroImgOffsetY}px) scale(${styles.heroImgScale / 100})`,
+                                    transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                                }}
                                 className="w-full h-full object-contain transition-all duration-1000 group-hover/hero:scale-[1.01]" 
                             />
                         )}
@@ -224,7 +236,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                 <section className="py-20 md:py-60 text-center px-4 md:px-6">
                     <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-8 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: `${styles.borderRadius * 2}px` }}>
                         <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                        <h2 className="text-5xl md:text-[10rem] font-black mb-6 md:mb-12 tracking-tighter leading-none relative z-10" style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}>{finalCta.title}</h2>
+                        <h2 className="text-5xl md:text-[10rem] font-black mb-6 md:mb-12 tracking-tighter leading-none relative z-10" style={{ fontSize: `clamp(3rem, 10vw, ${styles.finalCtaTitleSize}px)` }}>{finalCta.title}</h2>
                         <p className="text-xl md:text-4xl text-neutral-400 mb-10 md:mb-20 max-w-4xl mx-auto leading-tight font-medium relative z-10">{finalCta.subtitle}</p>
                         <Link
                             href={finalCta.buttonLink}

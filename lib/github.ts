@@ -59,22 +59,21 @@ export interface ProjectDetails {
 export async function getProjects() {
   try {
     // 1. Fetch repositories from GitHub API
-    const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`);
+    const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`, { cache: 'no-store' });
     if (!reposRes.ok) return [];
     const repos = await reposRes.json();
 
     const projects = [];
 
     // 2. Check each repo for the config file
-    // We do this in parallel to be fast
     const projectPromises = repos.map(async (repo: any) => {
       const configUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/product.config.json`;
       const mdUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/WEBSITE.md`;
 
       try {
         const [configRes, mdRes] = await Promise.all([
-          fetch(configUrl),
-          fetch(mdUrl)
+          fetch(configUrl, { cache: 'no-store' }),
+          fetch(mdUrl, { cache: 'no-store' })
         ]);
 
         if (configRes.ok && mdRes.ok) {
@@ -124,9 +123,9 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 
   try {
     const [configRes, mdRes, gistRes] = await Promise.all([
-      fetch(configUrl),
-      fetch(mdUrl),
-      fetch(gistUrl).catch(() => null)
+      fetch(configUrl, { cache: 'no-store' }),
+      fetch(mdUrl, { cache: 'no-store' }),
+      fetch(gistUrl, { cache: 'no-store' }).catch(() => null)
     ]);
 
     if (!configRes.ok || !mdRes.ok) return null;
@@ -158,17 +157,20 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         buttonLink: extractValue(mdContent, '**Button Link:**', 'Final CTA') || '#'
       },
       styles: {
-        heroTitleSize: parseInt(extractValue(mdContent, '**Hero Title Size:**', 'UI & Styling')) || 120,
-        buttonPaddingX: parseInt(extractValue(mdContent, '**Button Padding X:**', 'UI & Styling')) || 64,
-        buttonPaddingY: parseInt(extractValue(mdContent, '**Button Padding Y:**', 'UI & Styling')) || 32,
-        buttonTextSize: parseInt(extractValue(mdContent, '**Button Text Size:**', 'UI & Styling')) || 32,
-        sectionSpacing: parseInt(extractValue(mdContent, '**Section Spacing:**', 'UI & Styling')) || 160,
-        borderRadius: parseInt(extractValue(mdContent, '**Border Radius:**', 'UI & Styling')) || 32,
-        brandLogo: extractValue(mdContent, '**Brand Logo:**', 'UI & Styling'),
-        heroBackground: extractValue(mdContent, '**Hero Background:**', 'UI & Styling'),
-        heroImgWidth: parseInt(extractValue(mdContent, '**Hero Img Width:**', 'UI & Styling')) || 100,
-        heroImgOffsetY: parseInt(extractValue(mdContent, '**Hero Img Offset Y:**', 'UI & Styling')) || 0,
-        heroImgScale: parseInt(extractValue(mdContent, '**Hero Img Scale:**', 'UI & Styling')) || 100,
+        heroTitleSize: parseInt(extractValue(mdContent, 'Hero Title Size:', 'UI & Styling')) || 120,
+        finalCtaTitleSize: parseInt(extractValue(mdContent, 'Final CTA Title Size:', 'UI & Styling')) || 160,
+        buttonPaddingX: parseInt(extractValue(mdContent, 'Button Padding X:', 'UI & Styling')) || 64,
+        buttonPaddingY: parseInt(extractValue(mdContent, 'Button Padding Y:', 'UI & Styling')) || 32,
+        buttonTextSize: parseInt(extractValue(mdContent, 'Button Text Size:', 'UI & Styling')) || 32,
+        sectionSpacing: parseInt(extractValue(mdContent, 'Section Spacing:', 'UI & Styling')) || 160,
+        borderRadius: parseInt(extractValue(mdContent, 'Border Radius:', 'UI & Styling')) || 32,
+        brandLogo: extractValue(mdContent, 'Brand Logo:', 'UI & Styling'),
+        heroBackground: extractValue(mdContent, 'Hero Background:', 'UI & Styling'),
+        heroImgWidth: parseInt(extractValue(mdContent, 'Hero Img Width:', 'UI & Styling')) || 100,
+        heroImgOffsetY: parseInt(extractValue(mdContent, 'Hero Img Offset Y:', 'UI & Styling')) || 0,
+        heroImgScale: parseInt(extractValue(mdContent, 'Hero Img Scale:', 'UI & Styling')) || 100,
+        heroVideoWidth: parseInt(extractValue(mdContent, 'Hero Video Width (px):', 'UI & Styling')) || 0,
+        heroVideoHeight: parseInt(extractValue(mdContent, 'Hero Video Height (px):', 'UI & Styling')) || 0,
       },
       pricing: parsePricing(mdContent),
       remotePricing: remotePricing?.pricing
@@ -181,14 +183,22 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
   }
 }
 
-// Helper: Extract value from MD
+// Helper: Extract value from MD (Flexible for both **Key:** and Key:)
 function extractValue(content: string, key: string, sectionName: string): string {
   const lines = content.split('\n');
   let inSection = !sectionName;
+  const cleanKey = key.replace(/\*/g, '').replace(/:$/, '').trim();
+
   for (const line of lines) {
     if (sectionName && line.startsWith('## ') && line.includes(sectionName)) inSection = true;
     else if (sectionName && line.startsWith('## ') && inSection) inSection = false;
-    if (inSection && line.includes(key)) return line.split(key)[1].trim();
+    
+    if (inSection) {
+      const cleanLine = line.replace(/\*/g, '').trim();
+      if (cleanLine.startsWith(cleanKey)) {
+        return cleanLine.split(':')[1].trim();
+      }
+    }
   }
   return '';
 }
