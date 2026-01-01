@@ -285,7 +285,7 @@ export default function ProjectUI() {
                         <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">Get Started Today</h2>
                         <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">Join the future of dental practice management.</p>
                         <Link
-                            href="#"
+                            href="** /projects/dentaltid/register"
                             style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
                             className="relative z-10 bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]"
                         >
