@@ -161,7 +161,7 @@ export default function ProjectUI() {
                     
     <section key={0} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
-        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">*The Unified DentalT!D Dashboard*</h2>
+        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">The Unified DentalT!D Dashboard</h2>
         <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">The Command Center of Your Clinic. Embrace total clarity with a high-fidelity hub that consolidates patient records, clinical alerts, and Today's Appointments into a single, lightning-fast view. Experience zero-latency navigation and professional-grade organization designed to keep your practice moving, whether you're online or off.</p>
       </div>
       <div className="relative group/chapter w-full px-4 md:px-0">
@@ -169,7 +169,7 @@ export default function ProjectUI() {
            <div className="w-full h-full flex items-center justify-center overflow-hidden">
              <img
                  src={`/assets/projects/dentaltid/feature1.gif`}
-                 alt="*The Unified DentalT!D Dashboard*"
+                 alt="The Unified DentalT!D Dashboard"
                  style={{
                    maxWidth: '100%',
                    transform: 'translateY(0px) scale(1)',
@@ -183,7 +183,7 @@ export default function ProjectUI() {
     </section>
     <section key={1} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
-        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">*The Multi-Dimensional Practice Suite*</h2>
+        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">The Multi-Dimensional Practice Suite</h2>
         <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Effortlessly pivot between every facet of your clinic with a single click. From comprehensive Patient records and dynamic Appointment scheduling to real-time Inventory logistics and granular Financial auditing experience a fluid, integrated workspace that brings your entire studio into one seamless flow*</p>
       </div>
       <div className="relative group/chapter w-full px-4 md:px-0">
@@ -191,7 +191,7 @@ export default function ProjectUI() {
            <div className="w-full h-full flex items-center justify-center overflow-hidden">
              <img
                  src={`/assets/projects/dentaltid/feature2.png`}
-                 alt="*The Multi-Dimensional Practice Suite*"
+                 alt="The Multi-Dimensional Practice Suite"
                  style={{
                    maxWidth: '100%',
                    transform: 'translateY(0px) scale(1)',
@@ -205,7 +205,7 @@ export default function ProjectUI() {
     </section>
     <section key={2} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
-        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">*The High-Fidelity Clinical Network*</h2>
+        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">The High-Fidelity Clinical Network</h2>
         <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Master the complexities of modern care with advanced prescription editing and integrated medical imaging. DentalTid bridges the gap between your staff by connecting receptionists, assistants, and dentists to a single, high performance local database for real time teamwork. Bolstered by a dual-shield data strategy featuring instant local backups and secure cloud redundancy your clinic stays synchronized, resilient, and always ready.</p>
       </div>
       <div className="relative group/chapter w-full px-4 md:px-0">
@@ -213,7 +213,7 @@ export default function ProjectUI() {
            <div className="w-full h-full flex items-center justify-center overflow-hidden">
              <img
                  src={`/assets/projects/dentaltid/feature3.png`}
-                 alt="*The High-Fidelity Clinical Network*"
+                 alt="The High-Fidelity Clinical Network"
                  style={{
                    maxWidth: '100%',
                    transform: 'translateY(0px) scale(1)',
