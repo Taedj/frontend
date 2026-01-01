@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: 'Your trusted dental companion'
 };
 
-const PRICING_DATA = {};
+const PRICING_DATA = {"DZD":{"symbol":"DZD","position":"suffix","plans":{"premium":{"monthly":"2,000","yearly":"20,000","lifetime":"60,000"},"crown":{"monthly":"4,000","yearly":"40,000","lifetime":"100,000"}}},"USD":{"symbol":"$","position":"prefix","plans":{"premium":{"monthly":"15","yearly":"150","lifetime":"450"},"crown":{"monthly":"30","yearly":"300","lifetime":"900"}}},"EUR":{"symbol":"€","position":"suffix","plans":{"premium":{"monthly":"14","yearly":"140","lifetime":"420"},"crown":{"monthly":"28","yearly":"280","lifetime":"840"}}}};
 const PLAN_STRUCTURE = [{"name":"Trial","features":["Max 100 Patients","Max 100 Appointments","Local Backup Only","All Features Unlocked"],"price":"Free","subtitle":"For Evaluation (30 Days)"},{"name":"Premium","features":["Unlimited Patients & Appointments","Cloud Sync & Restore","Secure Local Backup","Whatsapp Reminders","Standard Support"],"price":"2,000 DZD /mo","subtitle":"For Standard Clinics"},{"name":"CROWN","features":["Everything in Premium","Advanced Analytics Tab","Digital Prescriptions","Priority Support","Future AI Features"],"price":"4,000 DZD /mo","subtitle":"For Power Users"}];
 
 export default function ProjectPage() {
