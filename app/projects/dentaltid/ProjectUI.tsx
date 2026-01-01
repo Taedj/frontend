@@ -251,15 +251,15 @@ export default function ProjectUI() {
                             {PLAN_STRUCTURE.map((plan, i) => (
                                 <div key={i} style={{ borderRadius: `${STYLES.borderRadius}px` }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
-                                    <h3 className="text-3xl font-bold text-white mb-2">{plan.name}</h3>
-                                    <p className="text-emerald-400 font-mono text-sm mb-6">{plan.subtitle || ''}</p>
-                                    <div className="text-4xl font-black text-white mb-8 transition-all min-h-[3rem]">{getPrice(plan.name)}</div>
-                                    <ul className="space-y-4 mb-10 flex-grow">
-                                        {plan.features.map((f, fi) => <li key={fi} className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
+                                    <h3 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tighter">{plan.name}</h3>
+                                    <p className="text-emerald-400 font-mono text-lg mb-8 uppercase tracking-widest">{plan.subtitle || ''}</p>
+                                    <div className="text-6xl md:text-7xl font-black text-white mb-10 transition-all min-h-[4rem]">{getPrice(plan.name)}</div>
+                                    <ul className="space-y-6 mb-12 flex-grow">
+                                        {plan.features.map((f, fi) => <li key={fi} className="flex items-start gap-4 text-neutral-300 text-xl font-medium"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
                                     </ul>
                                     <button
                                         onClick={() => handleSelectPlan(plan.name)}
-                                        className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10"
+                                        className="w-full py-6 md:py-8 rounded-2xl bg-white/5 hover:bg-emerald-500 hover:text-[#080A0E] text-white text-2xl font-black transition-all text-center border border-white/10 hover:scale-[1.02] active:scale-95 shadow-xl hover:shadow-emerald-500/20"
                                     >
                                         Select Plan
                                     </button>
