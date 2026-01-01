@@ -80,7 +80,8 @@ interface GistPricingResponse {
 }
 
 async function fetchFromGitHub(repoName: string, path: string) {
-  const branches = ['main', 'master'];
+  // We prioritize master since that's what you're using for dentaltid
+  const branches = ['master', 'main'];
   for (const branch of branches) {
     const url = `${BASE_RAW_URL}/${repoName}/${branch}/${path}`;
     try {
@@ -98,12 +99,10 @@ async function fetchFromGitHub(repoName: string, path: string) {
  */
 export async function getProjects() {
   try {
-    // 1. Fetch repositories from GitHub API
     const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`, { cache: 'no-store' });
     if (!reposRes.ok) return [];
     const repos = await reposRes.json() as GitHubRepo[];
 
-    // 2. Check each repo for the config file
     const projectPromises = repos.map(async (repo: GitHubRepo) => {
       try {
         const configRes = await fetchFromGitHub(repo.name, 'CONTROL_WEBSITE/product.config.json');
@@ -112,25 +111,9 @@ export async function getProjects() {
         if (configRes && mdRes) {
           const config = await configRes.json() as ProjectConfig;
           const mdContent = await mdRes.text();
-          
-          // Extract basic info from MD for the card
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
-          
-          // Determine the branch
           const branch = configRes.url.includes('/master/') ? 'master' : 'main';
-
-          // Try to find the best card image (checking for case sensitivity)
-          let cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`;
-          
-          // Check if Card.png exists if card.png fails (Simulated by the browser/Vercel)
-          // For now, we will provide a fallback logic in the URL or standardized naming
-          // Better: We can check which one exists or just use the one from the MD if we want
-          
-          // Let's standardize to try both in the UI or fix the fetcher
-          const cardRes = await fetch(`${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`, { method: 'HEAD' });
-          if (!cardRes.ok) {
-            cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/Card.png`;
-          }
+          const cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`;
 
           return {
             name: config.name || repo.name,
@@ -159,9 +142,6 @@ export async function getProjects() {
   }
 }
 
-/**
- * Fetches full details for a single project
- */
 export async function getProjectBySlug(slug: string): Promise<ProjectDetails | null> {
   try {
     const configRes = await fetchFromGitHub(slug, 'CONTROL_WEBSITE/product.config.json');
@@ -177,9 +157,11 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
     const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() as GistPricingResponse : null;
 
     const branch = configRes.url.includes('/master/') ? 'master' : 'main';
+    
+    // Check for cover.mp4, fallback to cover.png
     const heroImage = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/screenshots/cover.mp4`; 
     
-    const details: ProjectDetails = {
+    return {
       config: { ...config, slug },
       hero: {
         title: extractValue(mdContent, 'Title:', 'Hero Section'),
@@ -217,19 +199,16 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
       pricing: parsePricing(mdContent),
       remotePricing: remotePricingResponse?.pricing
     };
-
-    return details;
   } catch (error) {
     console.error(`Error fetching project ${slug}:`, error);
     return null;
   }
 }
 
-// Helper: Extract value from MD (Flexible for both **Key:** and Key:)
 function extractValue(content: string, key: string, sectionName: string): string {
   const lines = content.split('\n');
   let inSection = !sectionName;
-  const targetKey = key.replace(/\*/g, '').replace(/:$/, '').toLowerCase().trim();
+  const targetKey = key.replace(/\*\*/g, '').replace(/:$/, '').toLowerCase().trim();
 
   for (const line of lines) {
     const trimmed = line.trim();
@@ -242,18 +221,18 @@ function extractValue(content: string, key: string, sectionName: string): string
     }
 
     if (inSection) {
-      const cleanLine = trimmed.replace(/\*/g, '');
+      const cleanLine = trimmed.replace(/\*\*/g, '');
       const lowerLine = cleanLine.toLowerCase();
-      // Look for the key followed by a colon
       if (lowerLine.includes(targetKey + ':')) {
-        return cleanLine.substring(lowerLine.indexOf(':') + 1).trim();
+        // We take everything after the FIRST occurrence of the key + colon
+        const index = lowerLine.indexOf(targetKey + ':');
+        return cleanLine.substring(index + targetKey.length + 1).trim();
       }
     }
   }
   return '';
 }
 
-// Helper: Parse Chapters
 function parseChapters(content: string, slug: string, branch: string): Chapter[] {
   const chapters: Chapter[] = [];
   const lines = content.split('\n');
@@ -261,76 +240,52 @@ function parseChapters(content: string, slug: string, branch: string): Chapter[]
   let inSection = false;
 
   for (const line of lines) {
-    const trimmedLine = line.trim();
-    if (trimmedLine.startsWith('## Feature Chapters')) {
-      inSection = true;
-      continue;
-    }
-    if (inSection && trimmedLine.startsWith('## ') && !trimmedLine.toLowerCase().includes('feature chapters')) {
-      inSection = false;
-    }
+    const trimmed = line.trim();
+    if (trimmed.startsWith('## Feature Chapters')) { inSection = true; continue; }
+    if (inSection && trimmed.startsWith('## ') && !trimmed.toLowerCase().includes('feature chapters')) inSection = false;
 
-    if (inSection && trimmedLine.startsWith('### Chapter')) {
+    if (inSection && trimmed.startsWith('### Chapter')) {
       if (current) chapters.push(current);
       current = {
-        title: trimmedLine.split(':')[1]?.trim() || trimmedLine.replace('### Chapter ', '').trim(),
-        description: '',
-        image: '',
-        styles: { imgWidth: 100, imgOffsetY: 0, imgScale: 100 }
+        title: trimmed.split(':')[1]?.trim() || trimmed.replace('### Chapter ', '').trim(),
+        description: '', image: '', styles: { imgWidth: 100, imgOffsetY: 0, imgScale: 100 }
       };
     } else if (inSection && current) {
-      const cleanLine = trimmedLine.replace(/\*/g, '').trim();
+      const cleanLine = trimmed.replace(/\*\*/g, '');
       const lowerLine = cleanLine.toLowerCase();
-      if (lowerLine.startsWith('description:')) {
-        current.description = cleanLine.split(':').slice(1).join(':').trim();
-      } else if (lowerLine.startsWith('visual hint:')) {
-        const fileName = cleanLine.split(':').slice(1).join(':').trim();
+      if (lowerLine.startsWith('description:')) current.description = cleanLine.substring(12).trim();
+      else if (lowerLine.startsWith('visual hint:')) {
+        const fileName = cleanLine.substring(12).trim();
         current.image = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/screenshots/${fileName}`;
-      } else if (lowerLine.startsWith('img width:')) {
-        current.styles.imgWidth = parseInt(cleanLine.split(':')[1].trim()) || 100;
-      } else if (lowerLine.startsWith('img offset y:')) {
-        current.styles.imgOffsetY = parseInt(cleanLine.split(':')[1].trim()) || 0;
-      } else if (lowerLine.startsWith('img scale:')) {
-        current.styles.imgScale = parseInt(cleanLine.split(':')[1].trim()) || 100;
       }
+      else if (lowerLine.startsWith('img width:')) current.styles.imgWidth = parseInt(cleanLine.substring(10).trim()) || 100;
+      else if (lowerLine.startsWith('img offset y:')) current.styles.imgOffsetY = parseInt(cleanLine.substring(13).trim()) || 0;
+      else if (lowerLine.startsWith('img scale:')) current.styles.imgScale = parseInt(cleanLine.substring(10).trim()) || 100;
     }
   }
   if (current) chapters.push(current);
   return chapters;
 }
 
-// Helper: Parse Pricing
 function parsePricing(content: string): PricingPlan[] {
   const plans: PricingPlan[] = [];
   const lines = content.split('\n');
   let inPricing = false;
   let current: PricingPlan | null = null;
   for (const line of lines) {
-    const trimmedLine = line.trim();
-    if (trimmedLine.startsWith('## Pricing')) {
-      inPricing = true;
-      continue;
-    }
-    if (inPricing && trimmedLine.startsWith('## ')) inPricing = false;
+    const trimmed = line.trim();
+    if (trimmed.startsWith('## Pricing')) { inPricing = true; continue; }
+    if (inPricing && trimmed.startsWith('## ')) inPricing = false;
     
-    if (inPricing && trimmedLine.toLowerCase().startsWith('### plan:')) {
+    if (inPricing && trimmed.toLowerCase().startsWith('### plan:')) {
       if (current) plans.push(current);
-      current = { 
-        name: trimmedLine.split(':')[1]?.trim() || trimmedLine.replace(/### Plan:/i, '').trim(), 
-        subtitle: '', 
-        price: '', 
-        features: [] 
-      };
+      current = { name: trimmed.split(':')[1]?.trim() || trimmed.replace(/### Plan:/i, '').trim(), subtitle: '', price: '', features: [] };
     } else if (inPricing && current) {
-      const cleanLine = trimmedLine.replace(/\*/g, '').trim();
+      const cleanLine = trimmed.replace(/\*\*/g, '');
       const lowerLine = cleanLine.toLowerCase();
-      if (lowerLine.startsWith('price:')) {
-        current.price = cleanLine.split(':').slice(1).join(':').trim();
-      } else if (lowerLine.startsWith('subtitle:')) {
-        current.subtitle = cleanLine.split(':').slice(1).join(':').trim();
-      } else if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
-        current.features.push(trimmedLine.substring(2).trim());
-      }
+      if (lowerLine.startsWith('price:')) current.price = cleanLine.substring(6).trim();
+      else if (lowerLine.startsWith('subtitle:')) current.subtitle = cleanLine.substring(9).trim();
+      else if (trimmed.startsWith('- ') || trimmedLine.startsWith('* ')) current.features.push(trimmed.substring(2).trim());
     }
   }
   if (current) plans.push(current);
