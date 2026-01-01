@@ -33,7 +33,11 @@ interface StylesConfig {
     buttonTextSize: number;
     borderRadius: number;
     sectionSpacing: number;
-    borderRadius2X?: number;
+    brandLogo: string;
+    heroBackground: string;
+    heroImgWidth: number;
+    heroImgOffsetY: number;
+    heroImgScale: number;
 }
 
 // Data injected by sync script
