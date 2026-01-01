@@ -1,3 +1,5 @@
+
+
 const GITHUB_USERNAME = 'Taedj';
 const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}`;
 
@@ -67,31 +69,34 @@ export interface ProjectDetails {
   styles: ProjectStyles;
   pricing: PricingPlan[];
   remotePricing?: Record<string, unknown>;
+  debug?: {
+    branch: string;
+    repoName: string;
+  };
 }
 
 interface GitHubRepo {
   name: string;
   description: string | null;
   updated_at: string;
+  default_branch: string;
 }
 
 interface GistPricingResponse {
   pricing: Record<string, unknown>;
 }
 
-async function fetchFromGitHub(repoName: string, path: string) {
-  // We prioritize master since that's what you're using for dentaltid
-  const branches = ['master', 'main'];
-  for (const branch of branches) {
-    const url = `${BASE_RAW_URL}/${repoName}/${branch}/${path}`;
-    try {
-      const res = await fetch(url, { cache: 'no-store' });
-      if (res.ok) return res;
-    } catch {
-      continue;
-    }
+/**
+ * Helper to fetch repo info to get the correct default branch
+ */
+async function getRepoInfo(repoName: string): Promise<GitHubRepo | null> {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}`, { cache: 'no-store' });
+    if (!res.ok) return null;
+    return await res.json() as GitHubRepo;
+  } catch {
+    return null;
   }
-  return null;
 }
 
 /**
@@ -105,14 +110,19 @@ export async function getProjects() {
 
     const projectPromises = repos.map(async (repo: GitHubRepo) => {
       try {
-        const configRes = await fetchFromGitHub(repo.name, 'CONTROL_WEBSITE/product.config.json');
-        const mdRes = await fetchFromGitHub(repo.name, 'CONTROL_WEBSITE/WEBSITE.md');
+        const branch = repo.default_branch || 'main';
+        const configUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/product.config.json`;
+        const mdUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/WEBSITE.md`;
 
-        if (configRes && mdRes) {
+        const [configRes, mdRes] = await Promise.all([
+          fetch(configUrl, { cache: 'no-store' }),
+          fetch(mdUrl, { cache: 'no-store' })
+        ]);
+
+        if (configRes.ok && mdRes.ok) {
           const config = await configRes.json() as ProjectConfig;
           const mdContent = await mdRes.text();
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
-          const branch = configRes.url.includes('/master/') ? 'master' : 'main';
           const cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`;
 
           return {
@@ -144,20 +154,26 @@ export async function getProjects() {
 
 export async function getProjectBySlug(slug: string): Promise<ProjectDetails | null> {
   try {
-    const configRes = await fetchFromGitHub(slug, 'CONTROL_WEBSITE/product.config.json');
-    const mdRes = await fetchFromGitHub(slug, 'CONTROL_WEBSITE/WEBSITE.md');
+    const repoInfo = await getRepoInfo(slug);
+    if (!repoInfo) return null;
+
+    const branch = repoInfo.default_branch || 'main';
+    const configUrl = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/product.config.json`;
+    const mdUrl = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/WEBSITE.md`;
     const gistUrl = 'https://gist.githubusercontent.com/Taedj/9bf1dae53f37681b9c13dab8cde8472f/raw/config.json';
 
-    if (!configRes || !mdRes) return null;
+    const [configRes, mdRes, gistRes] = await Promise.all([
+      fetch(configUrl, { cache: 'no-store' }),
+      fetch(mdUrl, { cache: 'no-store' }),
+      fetch(gistUrl, { cache: 'no-store' }).catch(() => null)
+    ]);
+
+    if (!configRes.ok || !mdRes.ok) return null;
 
     const config = await configRes.json() as ProjectConfig;
     const mdContent = await mdRes.text();
-    
-    const gistRes = await fetch(gistUrl, { cache: 'no-store' }).catch(() => null);
     const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() as GistPricingResponse : null;
 
-    const branch = configRes.url.includes('/master/') ? 'master' : 'main';
-    
     // Check for cover.mp4, fallback to cover.png
     const heroImage = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/screenshots/cover.mp4`; 
     
@@ -197,7 +213,11 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         heroVideoHeight: parseInt(extractValue(mdContent, 'Hero Video Height (px):', 'UI & Styling')) || 0,
       },
       pricing: parsePricing(mdContent),
-      remotePricing: remotePricingResponse?.pricing
+      remotePricing: remotePricingResponse?.pricing,
+      debug: {
+        branch,
+        repoName: slug
+      }
     };
   } catch (error) {
     console.error(`Error fetching project ${slug}:`, error);
@@ -208,7 +228,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 function extractValue(content: string, key: string, sectionName: string): string {
   const lines = content.split('\n');
   let inSection = !sectionName;
-  const targetKey = key.replace(/\*\*/g, '').replace(/:$/, '').toLowerCase().trim();
+  const targetKey = key.replace(/\*/g, '').replace(/:$/, '').toLowerCase().trim();
 
   for (const line of lines) {
     const trimmed = line.trim();
@@ -221,10 +241,9 @@ function extractValue(content: string, key: string, sectionName: string): string
     }
 
     if (inSection) {
-      const cleanLine = trimmed.replace(/\*\*/g, '');
+      const cleanLine = trimmed.replace(/\*/g, '');
       const lowerLine = cleanLine.toLowerCase();
       if (lowerLine.includes(targetKey + ':')) {
-        // We take everything after the FIRST occurrence of the key + colon
         const index = lowerLine.indexOf(targetKey + ':');
         return cleanLine.substring(index + targetKey.length + 1).trim();
       }
@@ -251,7 +270,7 @@ function parseChapters(content: string, slug: string, branch: string): Chapter[]
         description: '', image: '', styles: { imgWidth: 100, imgOffsetY: 0, imgScale: 100 }
       };
     } else if (inSection && current) {
-      const cleanLine = trimmed.replace(/\*\*/g, '');
+      const cleanLine = trimmed.replace(/\*/g, '');
       const lowerLine = cleanLine.toLowerCase();
       if (lowerLine.startsWith('description:')) current.description = cleanLine.substring(12).trim();
       else if (lowerLine.startsWith('visual hint:')) {
@@ -281,10 +300,10 @@ function parsePricing(content: string): PricingPlan[] {
       if (current) plans.push(current);
       current = { name: trimmed.split(':')[1]?.trim() || trimmed.replace(/### Plan:/i, '').trim(), subtitle: '', price: '', features: [] };
     } else if (inPricing && current) {
-      const cleanLine = trimmed.replace(/\*\*/g, '');
+      const cleanLine = trimmed.replace(/\*/g, '').trim();
       const lowerLine = cleanLine.toLowerCase();
-      if (lowerLine.startsWith('price:')) current.price = cleanLine.substring(6).trim();
-      else if (lowerLine.startsWith('subtitle:')) current.subtitle = cleanLine.substring(9).trim();
+      if (lowerLine.startsWith('price:')) current.price = cleanLine.split(':').slice(1).join(':').trim();
+      else if (lowerLine.startsWith('subtitle:')) current.subtitle = cleanLine.split(':').slice(1).join(':').trim();
       else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) current.features.push(trimmed.substring(2).trim());
     }
   }
