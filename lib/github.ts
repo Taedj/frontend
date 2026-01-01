@@ -29,6 +29,23 @@ export interface PricingPlan {
   features: string[];
 }
 
+export interface ProjectStyles {
+  heroTitleSize: number;
+  finalCtaTitleSize: number;
+  buttonPaddingX: number;
+  buttonPaddingY: number;
+  buttonTextSize: number;
+  sectionSpacing: number;
+  borderRadius: number;
+  brandLogo: string;
+  heroBackground: string;
+  heroImgWidth: number;
+  heroImgOffsetY: number;
+  heroImgScale: number;
+  heroVideoWidth: number;
+  heroVideoHeight: number;
+}
+
 export interface ProjectDetails {
   config: ProjectConfig;
   hero: {
@@ -48,9 +65,9 @@ export interface ProjectDetails {
     buttonLabel: string;
     buttonLink: string;
   };
-  styles: any;
+  styles: ProjectStyles;
   pricing: PricingPlan[];
-  remotePricing?: any;
+  remotePricing?: Record<string, any>;
 }
 
 /**
@@ -61,12 +78,10 @@ export async function getProjects() {
     // 1. Fetch repositories from GitHub API
     const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`, { cache: 'no-store' });
     if (!reposRes.ok) return [];
-    const repos = await reposRes.json();
-
-    const projects = [];
+    const repos = await reposRes.json() as any[];
 
     // 2. Check each repo for the config file
-    const projectPromises = repos.map(async (repo: any) => {
+    const projectPromises = repos.map(async (repo) => {
       const configUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/product.config.json`;
       const mdUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/WEBSITE.md`;
 
@@ -99,14 +114,14 @@ export async function getProjects() {
             lastUpdated: repo.updated_at
           };
         }
-      } catch (e) {
+      } catch {
         return null;
       }
       return null;
     });
 
     const results = await Promise.all(projectPromises);
-    return results.filter(p => p !== null);
+    return results.filter((p): p is NonNullable<typeof p> => p !== null);
   } catch (error) {
     console.error('Error fetching projects:', error);
     return [];
@@ -132,7 +147,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 
     const config = await configRes.json();
     const mdContent = await mdRes.text();
-    const remotePricing = gistRes && gistRes.ok ? await gistRes.json() : null;
+    const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() : null;
 
     // Build the full project object
     const heroImage = `${BASE_RAW_URL}/${slug}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/screenshots/cover.mp4`; // Default to cover.mp4
@@ -173,7 +188,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         heroVideoHeight: parseInt(extractValue(mdContent, 'Hero Video Height (px):', 'UI & Styling')) || 0,
       },
       pricing: parsePricing(mdContent),
-      remotePricing: remotePricing?.pricing
+      remotePricing: remotePricingResponse?.pricing
     };
 
     return details;
@@ -187,14 +202,14 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 function extractValue(content: string, key: string, sectionName: string): string {
   const lines = content.split('\n');
   let inSection = !sectionName;
-  const cleanKey = key.replace(/\*/g, '').replace(/:$/, '').trim();
+  const cleanKey = key.replace(/\*\*/g, '').replace(/:$/, '').trim();
 
   for (const line of lines) {
     if (sectionName && line.startsWith('## ') && line.includes(sectionName)) inSection = true;
     else if (sectionName && line.startsWith('## ') && inSection) inSection = false;
     
     if (inSection) {
-      const cleanLine = line.replace(/\*/g, '').trim();
+      const cleanLine = line.replace(/\*\*/g, '').trim();
       if (cleanLine.startsWith(cleanKey)) {
         return cleanLine.split(':')[1].trim();
       }
@@ -207,7 +222,7 @@ function extractValue(content: string, key: string, sectionName: string): string
 function parseChapters(content: string, slug: string): Chapter[] {
   const chapters: Chapter[] = [];
   const lines = content.split('\n');
-  let current: any = null;
+  let current: Chapter | null = null;
   let inSection = false;
 
   for (const line of lines) {
@@ -218,6 +233,8 @@ function parseChapters(content: string, slug: string): Chapter[] {
       if (current) chapters.push(current);
       current = {
         title: line.split(': ')[1] || line.replace('### Chapter ', '').trim(),
+        description: '',
+        image: '',
         styles: { imgWidth: 100, imgOffsetY: 0, imgScale: 100 }
       };
     } else if (inSection && current) {
@@ -240,13 +257,13 @@ function parsePricing(content: string): PricingPlan[] {
   const plans: PricingPlan[] = [];
   const lines = content.split('\n');
   let inPricing = false;
-  let current: any = null;
+  let current: PricingPlan | null = null;
   for (const line of lines) {
     if (line.startsWith('## Pricing')) inPricing = true;
     else if (inPricing && line.startsWith('## ')) inPricing = false;
     if (inPricing && line.startsWith('### Plan: ')) {
       if (current) plans.push(current);
-      current = { name: line.replace('### Plan: ', '').trim(), features: [] };
+      current = { name: line.replace('### Plan: ', '').trim(), subtitle: '', price: '', features: [] };
     } else if (inPricing && current) {
       if (line.startsWith('**Price:**')) current.price = line.split('**Price:**')[1].trim();
       else if (line.startsWith('**Subtitle:**')) current.subtitle = line.split('**Subtitle:**')[1].trim();
