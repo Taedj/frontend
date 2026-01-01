@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState } from 'react';
@@ -13,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 export default function RegistrationView({ data }: { data: ProjectDetails }) {
     const { config, hero } = data;
     
-    // Form fields
+    // State for all Windows App fields
     const [clinicName, setClinicName] = useState('');
     const [dentistName, setDentistName] = useState('');
     const [phone, setPhone] = useState('');
@@ -46,7 +45,6 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
             const user = userCredential.user;
 
             // 2. Prepare Data to match Flutter UserProfile Model exactly
-            // IMPORTANT: Dart's .toString() on Enums results in "EnumName.value"
             const now = new Date().toISOString();
             const licenseKey = uuidv4();
             const licenseExpiry = new Date();
@@ -68,12 +66,12 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
                 phoneNumber: phone,
                 medicalLicenseNumber: licenseNumber,
                 trialStartDate: now,
-                isPremium: 0, // MUST BE 0 or 1 for Flutter
+                isPremium: 0,
                 premiumExpiryDate: null,
                 cumulativePatients: 0,
                 cumulativeAppointments: 0,
                 cumulativeInventory: 0,
-                isManagedUser: 0, // MUST BE 0 or 1
+                isManagedUser: 0,
                 managedByDentistId: null,
                 role: "UserRole.dentist",
                 username: null,
@@ -84,11 +82,9 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
                 lastPrescriptionNumber: 0
             };
 
-            // 3. Save to Firestore (The app looks in 'settings' for Dentist profiles)
-            // I noticed in auth_screen.dart it uses _firebaseService.createUserProfile
-            // Usually this maps to a collection like 'settings' or 'users'. 
-            // Based on your app logs, 'settings' is the primary collection for profiles.
-            await setDoc(doc(db, "settings", user.uid), userProfileData);
+            // 3. Save to Firestore following exact App Path and Security Rules
+            // App path: users/{userId}/profile/info
+            await setDoc(doc(db, "users", user.uid, "profile", "info"), userProfileData);
 
             setIsRegistered(true);
         } catch (err: unknown) {
