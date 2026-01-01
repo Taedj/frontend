@@ -1,12 +1,33 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { FaArrowLeft, FaDownload, FaRocket } from 'react-icons/fa';
 
 export const metadata: Metadata = { title: 'DentalTid | Taedj Dev', description: 'Your trusted dental companion' };
 
+const PRICING_DATA = {};
+const PLAN_STRUCTURE = [{"name":"Trial","features":["Max 100 Patients","Max 100 Appointments","Local Backup Only","All Features Unlocked"],"price":"Free","subtitle":"For Evaluation (30 Days)"},{"name":"Premium","features":["Unlimited Patients & Appointments","Cloud Sync & Restore","Secure Local Backup","Whatsapp Reminders","Standard Support"],"price":"2,000 DZD /mo","subtitle":"For Standard Clinics"},{"name":"CROWN","features":["Everything in Premium","Advanced Analytics Tab","Digital Prescriptions","Priority Support","Future AI Features"],"price":"4,000 DZD /mo","subtitle":"For Power Users"}];
+
 export default function ProjectPage() {
+  const [currency, setCurrency] = useState('DZD');
+  const [duration, setDuration] = useState('yearly');
+
+  const getPrice = (planName) => {
+    const tier = planName.toLowerCase().includes('crown') ? 'crown' : (planName.toLowerCase().includes('premium') ? 'premium' : null);
+    if (!tier) return 'Free';
+    if (PRICING_DATA[currency] && PRICING_DATA[currency].plans && PRICING_DATA[currency].plans[tier]) {
+       const p = PRICING_DATA[currency];
+       const val = p.plans[tier][duration];
+       const symbol = p.symbol || '';
+       const position = p.position || 'suffix';
+       
+       let formatted = position === 'prefix' ? `${symbol}${val}` : `${val} ${symbol}`;
+       return formatted + (duration === 'lifetime' ? '' : (duration === 'monthly' ? ' /mo' : ' /yr'));
+    }
+    return 'N/A';
+  };
+
   return (
     <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative">
       
@@ -138,46 +159,40 @@ export default function ProjectPage() {
           </div>
         </section>
         </div>
-        
+        {PLAN_STRUCTURE && PLAN_STRUCTURE.length > 0 && (
         <section className="py-20 w-full px-6 text-center">
-          <h2 className="text-5xl md:text-7xl font-black text-white mb-20 tracking-tighter">Choose Your Plan</h2>
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-10 tracking-tighter">Choose Your Plan</h2>
+          
+          <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-20">
+             <div className="flex bg-white/5 rounded-full p-2 border border-white/10">
+                {Object.keys(PRICING_DATA).map(c => (
+                  <button key={c} onClick={() => setCurrency(c)} className={`px-6 py-2 rounded-full font-bold transition-all ${currency === c ? 'bg-emerald-500 text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}>{c}</button>
+                ))}
+             </div>
+             
+             <div className="flex bg-white/5 rounded-full p-2 border border-white/10">
+                {['monthly', 'yearly', 'lifetime'].map(d => (
+                  <button key={d} onClick={() => setDuration(d)} className={`px-6 py-2 rounded-full font-bold transition-all capitalize ${duration === d ? 'bg-white text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}>{d}</button>
+                ))}
+             </div>
+          </div>
+
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-              <div key={0} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
+            {PLAN_STRUCTURE.map((plan, i) => (
+              <div key={i} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
-                <h3 className="text-3xl font-bold text-white mb-2">Trial</h3>
-                <p className="text-emerald-400 font-mono text-sm mb-6">For Evaluation (30 Days)</p>
-                <div className="text-4xl font-black text-white mb-8">Free</div>
+                <h3 className="text-3xl font-bold text-white mb-2">{plan.name}</h3>
+                <p className="text-emerald-400 font-mono text-sm mb-6">{plan.subtitle || ''}</p>
+                <div className="text-4xl font-black text-white mb-8 transition-all min-h-[3rem]">{getPrice(plan.name)}</div>
                 <ul className="space-y-4 mb-10 flex-grow">
-                  <li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Max 100 Patients</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Max 100 Appointments</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Local Backup Only</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> All Features Unlocked</li>
+                  {plan.features.map((f, fi) => <li key={fi} className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
                 </ul>
                 <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
               </div>
-            
-              <div key={1} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
-                <h3 className="text-3xl font-bold text-white mb-2">Premium</h3>
-                <p className="text-emerald-400 font-mono text-sm mb-6">For Standard Clinics</p>
-                <div className="text-4xl font-black text-white mb-8">2,000 DZD /mo</div>
-                <ul className="space-y-4 mb-10 flex-grow">
-                  <li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Unlimited Patients & Appointments</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Cloud Sync & Restore</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Secure Local Backup</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Whatsapp Reminders</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Standard Support</li>
-                </ul>
-                <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
-              </div>
-            
-              <div key={2} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
-                <h3 className="text-3xl font-bold text-white mb-2">CROWN</h3>
-                <p className="text-emerald-400 font-mono text-sm mb-6">For Power Users</p>
-                <div className="text-4xl font-black text-white mb-8">4,000 DZD /mo</div>
-                <ul className="space-y-4 mb-10 flex-grow">
-                  <li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Everything in Premium</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Advanced Analytics Tab</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Digital Prescriptions</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Priority Support</li><li className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> Future AI Features</li>
-                </ul>
-                <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
-              </div>
-            
+            ))}
           </div>
         </section>
+        )}
         </div>
         <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"Precision is the heartbeat of modern dentistry."</blockquote></div></section>
         <section className="py-60 text-center px-6">
