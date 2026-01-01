@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 'use client';
 
 import React, { useState } from 'react';
@@ -99,7 +99,7 @@ export default function RegistrationUI() {
     return (
         <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative flex flex-col">
             {/* Background elements reused from landing */}
-            
+
 
             <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5 flex items-center px-10">
                 <img src="/assets/projects/dentaltid/logo.png" className="h-12 w-auto object-contain" />
