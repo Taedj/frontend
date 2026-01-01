@@ -1,27 +1,12 @@
-'use client';
-
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FaArrowLeft, FaUserMd, FaClinicMedical, FaMapMarkedAlt, FaLock, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaArrowLeft, FaUserMd, FaClinicMedical, FaLock, FaEnvelope } from 'react-icons/fa';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 // ASSUMPTION: You have a centralized firebase export. Adjust path if necessary.
 import { auth, db } from '../../../../lib/firebase';
 
-// Types injected
-interface StylesConfig {
-    heroTitleSize: number;
-    buttonPaddingX: number;
-    buttonPaddingY: number;
-    buttonTextSize: number;
-    borderRadius: number;
-    sectionSpacing: number;
-    brandLogo: string;
-    heroBackground: string;
-}
-
-const STYLES: StylesConfig = {"heroTitleSize":120,"buttonPaddingX":64,"buttonPaddingY":32,"buttonTextSize":32,"sectionSpacing":160,"borderRadius":32,"brandLogo":"logo.png","heroBackground":"","heroImgWidth":100,"heroImgOffsetY":0,"heroImgScale":100};
 const PROJECT_CONFIG = {
     name: 'DentalTid | Taedj Dev',
     slug: 'dentaltid',
@@ -96,9 +81,13 @@ export default function RegistrationUI() {
 
             // 3. Success -> Redirect
             router.push(`/projects/${PROJECT_CONFIG.slug}/dashboard`); // Or success page
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Registration Error: ", err);
-            setError(err.message || "Failed to register. Please try again.");
+            let errorMessage = "Failed to register. Please try again.";
+            if (err instanceof Error) {
+                errorMessage = err.message;
+            }
+            setError(errorMessage);
         } finally {
             setIsLoading(false);
         }
