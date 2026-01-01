@@ -56,7 +56,7 @@ export default function ProjectUI() {
     const [currency, setCurrency] = useState('DZD');
     const [duration, setDuration] = useState<'monthly' | 'yearly' | 'lifetime'>('yearly');
 
-    const getPrice = (planName: string) => {
+    const getPrice = (planName: string, includeDuration: boolean = true) => {
         const tier = planName.toLowerCase().includes('crown') ? 'crown' : (planName.toLowerCase().includes('premium') ? 'premium' : null);
         if (!tier) return 'Free';
 
@@ -67,6 +67,7 @@ export default function ProjectUI() {
             const position = p.position || 'suffix';
 
             const formatted = position === 'prefix' ? `${symbol}${val}` : `${val} ${symbol}`;
+            if (!includeDuration) return formatted;
             return formatted + (duration === 'lifetime' ? '' : (duration === 'monthly' ? ' /mo' : ' /yr'));
         }
         return 'N/A';
@@ -78,7 +79,8 @@ export default function ProjectUI() {
             return;
         }
 
-        const message = `Hello ${PROJECT_CONFIG.brand}, I would like to upgrade to the ${planName} plan (${duration}) for ${PROJECT_CONFIG.name}. (Currency: ${currency})`;
+        const price = getPrice(planName, false);
+        const message = `Hello ${PROJECT_CONFIG.brand}, I would like to upgrade to the ${planName} plan (${duration}) for ${PROJECT_CONFIG.name} for ${price}. (Currency: ${currency})`;
         const encodedMessage = encodeURIComponent(message);
 
         // Prefer WhatsApp if available, otherwise Email
