@@ -46,7 +46,7 @@ interface StylesConfig {
 // Data injected by sync script
 const PRICING_DATA: Record<string, CurrencyConfig> = {"DZD":{"symbol":"DZD","position":"suffix","plans":{"premium":{"monthly":"2,000","yearly":"20,000","lifetime":"60,000"},"crown":{"monthly":"4,000","yearly":"40,000","lifetime":"100,000"}}},"USD":{"symbol":"$","position":"prefix","plans":{"premium":{"monthly":"15","yearly":"150","lifetime":"450"},"crown":{"monthly":"30","yearly":"300","lifetime":"900"}}},"EUR":{"symbol":"€","position":"suffix","plans":{"premium":{"monthly":"14","yearly":"140","lifetime":"420"},"crown":{"monthly":"28","yearly":"280","lifetime":"840"}}}};
 const PLAN_STRUCTURE: PlanStructureItem[] = [{"name":"Trial","features":["Max 100 Patients","Max 100 Appointments","Local Backup Only","All Features Unlocked"],"price":"Free","subtitle":"For Evaluation (30 Days)"},{"name":"Premium","features":["Unlimited Patients & Appointments","Cloud Sync & Restore","Secure Local Backup","Whatsapp Reminders","Standard Support"],"price":"2,000 DZD /mo","subtitle":"For Standard Clinics"},{"name":"CROWN","features":["Everything in Premium","Advanced Analytics Tab","Digital Prescriptions","Priority Support","Future AI Features"],"price":"4,000 DZD /mo","subtitle":"For Power Users"}];
-const STYLES: StylesConfig = {"heroTitleSize":120,"buttonPaddingX":64,"buttonPaddingY":32,"buttonTextSize":32,"sectionSpacing":160,"borderRadius":32,"brandLogo":"","heroBackground":"","heroImgWidth":100,"heroImgOffsetY":0,"heroImgScale":100,"heroVideoWidth":1366,"heroVideoHeight":768};
+const STYLES: StylesConfig = {"heroTitleSize":120,"buttonPaddingX":64,"buttonPaddingY":32,"buttonTextSize":32,"sectionSpacing":20,"borderRadius":32,"brandLogo":"logo.png","heroBackground":"","heroImgWidth":100,"heroImgOffsetY":0,"heroImgScale":100,"heroVideoWidth":1366,"heroVideoHeight":768};
 const PROJECT_CONFIG = {
     name: 'DentalTid | Taedj Dev',
     slug: 'dentaltid',
@@ -100,7 +100,7 @@ export default function ProjectUI() {
             
 
             <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5 flex items-center px-10">
-                <div className="text-4xl font-black tracking-tighter text-white/90 underline decoration-emerald-500 decoration-4 underline-offset-8">Taedj Dev</div>
+                <img src="/assets/projects/dentaltid/logo.png" className="h-12 w-auto object-contain" />
             </div>
 
             <main className="relative z-10 w-full">
@@ -160,7 +160,7 @@ export default function ProjectUI() {
                 <div className="py-40 max-w-[95%] mx-auto text-left">
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-40" />
                     
-    <section key={0} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+    <section key={0} style={{ paddingTop: '20px', paddingBottom: '20px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
         <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">The Unified DentalT!D Dashboard</h2>
         <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">The Command Center of Your Clinic. Embrace total clarity with a high-fidelity hub that consolidates patient records, clinical alerts, and Today's Appointments into a single, lightning-fast view. Experience zero-latency navigation and professional-grade organization designed to keep your practice moving, whether you're online or off.</p>
@@ -182,7 +182,7 @@ export default function ProjectUI() {
         </div>
       </div>
     </section>
-    <section key={1} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+    <section key={1} style={{ paddingTop: '20px', paddingBottom: '20px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
         <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">The Multi-Dimensional Practice Suite</h2>
         <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Effortlessly pivot between every facet of your clinic with a single click. From comprehensive Patient records and dynamic Appointment scheduling to real-time Inventory logistics and granular Financial auditing experience a fluid, integrated workspace that brings your entire studio into one seamless flow*</p>
@@ -204,7 +204,7 @@ export default function ProjectUI() {
         </div>
       </div>
     </section>
-    <section key={2} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+    <section key={2} style={{ paddingTop: '20px', paddingBottom: '20px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
         <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">The High-Fidelity Clinical Network</h2>
         <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Master the complexities of modern care with advanced prescription editing and integrated medical imaging. DentalTid bridges the gap between your staff by connecting receptionists, assistants, and dentists to a single, high performance local database for real time teamwork. Bolstered by a dual-shield data strategy featuring instant local backups and secure cloud redundancy your clinic stays synchronized, resilient, and always ready.</p>
