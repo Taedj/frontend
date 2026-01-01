@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState } from 'react';
@@ -7,7 +6,8 @@ import { FaClinicMedical, FaUserMd, FaPhone, FaEnvelope, FaLock, FaEye, FaEyeSla
 import { ProjectDetails } from '@/lib/github';
 import { auth, db } from '@/lib/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function RegistrationView({ data }: { data: ProjectDetails }) {
     const { config, hero } = data;
@@ -40,27 +40,53 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
         setError('');
 
         try {
+            // 1. Create Firebase Auth User
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            await setDoc(doc(db, "users", user.uid), {
+            // 2. Prepare Data to match Flutter UserProfile Model exactly
+            const now = new Date().toISOString();
+            const licenseKey = uuidv4();
+            const licenseExpiry = new Date();
+            licenseExpiry.setFullYear(licenseExpiry.getFullYear() + 100); // 100 years like in app
+
+            // FIELD MAPPING FOR FLUTTER COMPATIBILITY
+            const userProfileData = {
                 uid: user.uid,
                 email: email,
+                licenseKey: licenseKey,
+                plan: "SubscriptionPlan.trial", // EXACT STRING ENUM
+                status: "SubscriptionStatus.active", // EXACT STRING ENUM
+                licenseExpiry: licenseExpiry.toISOString(),
+                createdAt: now,
+                lastLogin: now,
+                lastSync: now,
                 clinicName: clinicName,
                 dentistName: dentistName,
+                fullName: dentistName, // Map dentistName to fullName too
                 phoneNumber: phone,
                 medicalLicenseNumber: licenseNumber,
+                trialStartDate: now,
+                isPremium: 0, // App expects 0/1 for bools
+                premiumExpiryDate: null,
+                cumulativePatients: 0,
+                cumulativeAppointments: 0,
+                cumulativeInventory: 0,
+                isManagedUser: 0, // App expects 0/1
+                managedByDentistId: null,
+                role: "UserRole.dentist", // EXACT STRING ENUM
+                username: null,
+                pin: null,
                 province: province,
                 country: country,
                 clinicAddress: address,
-                role: 'dentist',
-                project: config.slug,
-                createdAt: serverTimestamp(),
-                status: 'active',
-                isPremium: false,
-                trialStartDate: serverTimestamp()
-            });
+                lastPrescriptionNumber: 0
+            };
 
+            // 3. Save to Firestore (Collection 'users')
+            await setDoc(doc(db, "users", user.uid), userProfileData);
+
+            // 4. Success
             setIsRegistered(true);
         } catch (err: unknown) {
             console.error("Registration Error:", err);
@@ -73,8 +99,8 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
 
     if (isRegistered) {
         return (
-            <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 flex flex-col items-center justify-center p-6">
-                <div className="max-w-2xl w-full bg-[#0A0C10] border border-emerald-500/20 p-12 md:p-20 rounded-[3rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] text-center space-y-10 relative overflow-hidden">
+            <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 flex flex-col items-center justify-center p-6 text-center">
+                <div className="max-w-2xl w-full bg-[#0A0C10] border border-emerald-500/20 p-12 md:p-20 rounded-[3rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] space-y-10 relative overflow-hidden">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent" />
                     <div className="w-24 h-24 bg-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(16,185,129,0.4)] animate-bounce"><FaCheckCircle size={40} className="text-[#080A0E]" /></div>
                     <div className="space-y-4">
@@ -111,7 +137,6 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
                         {error && (<div className="mb-10 bg-red-500/10 border border-red-500/20 text-red-500 px-8 py-5 rounded-2xl font-bold text-sm">{error}</div>)}
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 relative z-10">
-                            {/* Email & Password (Primary) */}
                             <div className="space-y-2 md:col-span-2 border-b border-white/5 pb-8 mb-4">
                                 <label className="text-xs font-black text-emerald-500 uppercase tracking-[0.3em] ml-1">Account Credentials</label>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
@@ -127,7 +152,6 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
                                 </div>
                             </div>
 
-                            {/* Clinic & Dentist Info */}
                             <div className="space-y-6">
                                 <label className="text-xs font-black text-neutral-500 uppercase tracking-[0.3em] ml-1">Professional Identity</label>
                                 <div className="relative group/input">
@@ -144,7 +168,6 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
                                 </div>
                             </div>
 
-                            {/* Legal & Location Info */}
                             <div className="space-y-6">
                                 <label className="text-xs font-black text-neutral-500 uppercase tracking-[0.3em] ml-1">Location & Licensing</label>
                                 <div className="relative group/input">
