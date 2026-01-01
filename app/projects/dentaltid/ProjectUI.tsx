@@ -72,7 +72,7 @@ export default function ProjectUI() {
 
     return (
         <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative">
-            {{ HERO_BACKGROUND_ELEMENT }}
+            
 
             <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5 flex items-center px-10">
                 <img src="/assets/projects/dentaltid/logo.png" className="h-12 w-auto object-contain" />
@@ -93,22 +93,23 @@ export default function ProjectUI() {
                         <h1
                             style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: `${STYLES.heroTitleSize}px` }}
                             className="font-black tracking-tighter leading-[0.85] text-white"
-                            dangerouslySetInnerHTML={{ __html: ` <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }}
-                        />
+                        >
+                             <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>
+                        </h1>
                         <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">Your trusted dental companion</p>
 
                         <div className="flex flex-wrap gap-8 pt-10 justify-center">
                             <Link
                                 href="#"
                                 style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
-                                className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95"
+                                className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black rounded-[2rem] transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95"
                             >
                                 <FaDownload /> Download Now
                             </Link>
                             <Link
                                 href="#"
                                 style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
-                                className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black transition-all flex items-center gap-4 hover:scale-105 active:scale-95"
+                                className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black rounded-[2rem] transition-all flex items-center gap-4 hover:scale-105 active:scale-95"
                             >
                                 Learn More
                             </Link>
@@ -130,7 +131,7 @@ export default function ProjectUI() {
 
                 <div className="py-40 max-w-[95%] mx-auto text-left">
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-40" />
-                    <div dangerouslySetInnerHTML={{ __html: `
+                    
     <section key={0} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
         <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 1</h2>
@@ -211,10 +212,10 @@ export default function ProjectUI() {
            </div>
         </div>
       </div>
-    </section>` }} />
+    </section>
                 </div>
 
-                <div dangerouslySetInnerHTML={{ __html: `<section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"Precision is the heartbeat of modern dentistry."</blockquote></div></section>` }} />
+                <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"Precision is the heartbeat of modern dentistry."</blockquote></div></section>
 
                 {PLAN_STRUCTURE && PLAN_STRUCTURE.length > 0 && (
                     <section className="py-20 w-full px-6 text-center">
