@@ -283,9 +283,9 @@ function parsePricing(content: string): PricingPlan[] {
     } else if (inPricing && current) {
       const cleanLine = trimmed.replace(/\*\*/g, '');
       const lowerLine = cleanLine.toLowerCase();
-      if (lowerLine.startsWith('price:')) current.price = cleanLine.substring(6).trim();
+      else if (lowerLine.startsWith('price:')) current.price = cleanLine.substring(6).trim();
       else if (lowerLine.startsWith('subtitle:')) current.subtitle = cleanLine.substring(9).trim();
-      else if (trimmed.startsWith('- ') || trimmedLine.startsWith('* ')) current.features.push(trimmed.substring(2).trim());
+      else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) current.features.push(trimmed.substring(2).trim());
     }
   }
   if (current) plans.push(current);
