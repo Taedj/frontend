@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState } from 'react';
@@ -12,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 export default function RegistrationView({ data }: { data: ProjectDetails }) {
     const { config, hero } = data;
     
-    // State for all Windows App fields
+    // Form fields
     const [clinicName, setClinicName] = useState('');
     const [dentistName, setDentistName] = useState('');
     const [phone, setPhone] = useState('');
@@ -45,36 +46,36 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
             const user = userCredential.user;
 
             // 2. Prepare Data to match Flutter UserProfile Model exactly
+            // IMPORTANT: Dart's .toString() on Enums results in "EnumName.value"
             const now = new Date().toISOString();
             const licenseKey = uuidv4();
             const licenseExpiry = new Date();
-            licenseExpiry.setFullYear(licenseExpiry.getFullYear() + 100); // 100 years like in app
+            licenseExpiry.setFullYear(licenseExpiry.getFullYear() + 100); 
 
-            // FIELD MAPPING FOR FLUTTER COMPATIBILITY
             const userProfileData = {
                 uid: user.uid,
                 email: email,
                 licenseKey: licenseKey,
-                plan: "SubscriptionPlan.trial", // EXACT STRING ENUM
-                status: "SubscriptionStatus.active", // EXACT STRING ENUM
+                plan: "SubscriptionPlan.trial",
+                status: "SubscriptionStatus.active",
                 licenseExpiry: licenseExpiry.toISOString(),
                 createdAt: now,
                 lastLogin: now,
                 lastSync: now,
                 clinicName: clinicName,
                 dentistName: dentistName,
-                fullName: dentistName, // Map dentistName to fullName too
+                fullName: dentistName,
                 phoneNumber: phone,
                 medicalLicenseNumber: licenseNumber,
                 trialStartDate: now,
-                isPremium: 0, // App expects 0/1 for bools
+                isPremium: 0, // MUST BE 0 or 1 for Flutter
                 premiumExpiryDate: null,
                 cumulativePatients: 0,
                 cumulativeAppointments: 0,
                 cumulativeInventory: 0,
-                isManagedUser: 0, // App expects 0/1
+                isManagedUser: 0, // MUST BE 0 or 1
                 managedByDentistId: null,
-                role: "UserRole.dentist", // EXACT STRING ENUM
+                role: "UserRole.dentist",
                 username: null,
                 pin: null,
                 province: province,
@@ -83,14 +84,16 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
                 lastPrescriptionNumber: 0
             };
 
-            // 3. Save to Firestore (Collection 'users')
-            await setDoc(doc(db, "users", user.uid), userProfileData);
+            // 3. Save to Firestore (The app looks in 'settings' for Dentist profiles)
+            // I noticed in auth_screen.dart it uses _firebaseService.createUserProfile
+            // Usually this maps to a collection like 'settings' or 'users'. 
+            // Based on your app logs, 'settings' is the primary collection for profiles.
+            await setDoc(doc(db, "settings", user.uid), userProfileData);
 
-            // 4. Success
             setIsRegistered(true);
         } catch (err: unknown) {
             console.error("Registration Error:", err);
-            const errorMessage = err instanceof Error ? err.message : "An unexpected error occurred. Please try again.";
+            const errorMessage = err instanceof Error ? err.message : "An unexpected error occurred.";
             setError(errorMessage);
         } finally {
             setIsLoading(false);
@@ -105,12 +108,11 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
                     <div className="w-24 h-24 bg-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(16,185,129,0.4)] animate-bounce"><FaCheckCircle size={40} className="text-[#080A0E]" /></div>
                     <div className="space-y-4">
                         <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase italic text-white">ONBOARDING <span className="text-emerald-500">SUCCESS</span></h1>
-                        <p className="text-xl text-neutral-400 font-medium">Dr. <span className="text-white font-bold">{dentistName}</span>, your professional profile is now live.</p>
+                        <p className="text-xl text-neutral-400 font-medium">Your professional profile is now live.</p>
                     </div>
                     <div className="pt-10 space-y-6">
-                        <p className="text-emerald-500 font-black uppercase tracking-[0.3em] text-sm italic">Immediate Action Required</p>
-                        <Link href={hero.ctaPrimaryLink} className="w-full bg-white text-black font-black py-6 rounded-2xl hover:scale-105 active:scale-95 transition-all text-2xl flex items-center justify-center gap-4 shadow-[0_30px_100px_rgba(255,255,255,0.1)]"><FaDownload /> Download Workspace</Link>
-                        <p className="text-neutral-500 text-sm">Log in to the Windows App using your credentials to begin.</p>
+                        <Link href={hero.ctaPrimaryLink} className="w-full bg-white text-black font-black py-6 rounded-2xl hover:scale-105 active:scale-95 transition-all text-2xl flex items-center justify-center gap-4 shadow-[0_30px_100px_rgba(255,255,255,0.1)]"><FaDownload /> Download App</Link>
+                        <p className="text-neutral-500 text-sm">Log in to the Windows App using your email and password.</p>
                     </div>
                     <div className="pt-10 border-t border-white/5"><Link href={`/projects/${config.slug}`} className="text-neutral-400 hover:text-white transition-all font-bold italic underline decoration-emerald-500/30 underline-offset-8">Return to Portal</Link></div>
                 </div>
