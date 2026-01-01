@@ -212,7 +212,7 @@ export default function ProjectUI() {
         <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
            <div className="w-full h-full flex items-center justify-center overflow-hidden">
              <img
-                 src={`/assets/projects/dentaltid/feature3.png`}
+                 src={`/assets/projects/dentaltid/feature3.gif`}
                  alt="The High-Fidelity Clinical Network"
                  style={{
                    maxWidth: '100%',
