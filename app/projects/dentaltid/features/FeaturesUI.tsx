@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaArrowLeft, FaGlobe, FaCogs, FaUserMd, FaPrescriptionBottleAlt, FaShieldAlt, FaNetworkWired, FaChartLine, FaBoxOpen } from 'react-icons/fa';
+import { FaArrowLeft, FaUserMd, FaPrescriptionBottleAlt, FaShieldAlt, FaNetworkWired, FaChartLine } from 'react-icons/fa';
 
 const PROJECT_CONFIG = {
     name: 'DentalTid | Taedj Dev',
