@@ -287,7 +287,7 @@ export default function ProjectUI() {
                         <Link
                             href="#"
                             style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
-                            className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]"
+                            className="relative z-10 bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]"
                         >
                             <FaRocket size={40} /> Get Started
                         </Link>
