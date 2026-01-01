@@ -47,7 +47,9 @@ const STYLES: StylesConfig = {"heroTitleSize":120,"buttonPaddingX":64,"buttonPad
 const PROJECT_CONFIG = {
     name: 'DentalTid | Taedj Dev',
     slug: 'dentaltid',
-    brand: 'Taedj Dev'
+    brand: 'Taedj Dev',
+    email: 'zitounitidjani@gmail.com',
+    phone: '+213657293332'
 };
 
 export default function ProjectUI() {
@@ -68,6 +70,24 @@ export default function ProjectUI() {
             return formatted + (duration === 'lifetime' ? '' : (duration === 'monthly' ? ' /mo' : ' /yr'));
         }
         return 'N/A';
+    };
+
+    const handleSelectPlan = (planName: string) => {
+        if (planName.toLowerCase().includes('trial')) {
+            window.location.href = "#";
+            return;
+        }
+
+        const message = `Hello ${PROJECT_CONFIG.brand}, I would like to upgrade to the ${planName} plan (${duration}) for ${PROJECT_CONFIG.name}. (Currency: ${currency})`;
+        const encodedMessage = encodeURIComponent(message);
+
+        // Prefer WhatsApp if available, otherwise Email
+        if (PROJECT_CONFIG.phone) {
+            const phone = PROJECT_CONFIG.phone.replace(/[\s+]/g, '');
+            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
+        } else {
+            window.location.href = `mailto:${PROJECT_CONFIG.email}?subject=Plan Upgrade: ${planName}&body=${encodedMessage}`;
+        }
     };
 
     return (
@@ -245,7 +265,12 @@ export default function ProjectUI() {
                                     <ul className="space-y-4 mb-10 flex-grow">
                                         {plan.features.map((f, fi) => <li key={fi} className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
                                     </ul>
-                                    <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
+                                    <button
+                                        onClick={() => handleSelectPlan(plan.name)}
+                                        className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10"
+                                    >
+                                        Select Plan
+                                    </button>
                                 </div>
                             ))}
                         </div>
