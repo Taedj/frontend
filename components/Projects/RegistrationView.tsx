@@ -1,15 +1,16 @@
+
 'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaArrowLeft, FaClinicMedical, FaUserMd, FaPhone, FaEnvelope, FaLock, FaEye, FaEyeSlash, FaCheckCircle, FaDownload, FaIdCard, FaMapMarkerAlt, FaGlobe, FaMap } from 'react-icons/fa';
+import { FaClinicMedical, FaUserMd, FaPhone, FaEnvelope, FaLock, FaEye, FaEyeSlash, FaCheckCircle, FaDownload, FaIdCard, FaMapMarkerAlt, FaGlobe, FaMap } from 'react-icons/fa';
 import { ProjectDetails } from '@/lib/github';
 import { auth, db } from '@/lib/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function RegistrationView({ data }: { data: ProjectDetails }) {
-    const { config, styles, hero } = data;
+    const { config, hero } = data;
     
     // State for all Windows App fields
     const [clinicName, setClinicName] = useState('');
