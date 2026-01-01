@@ -7,7 +7,7 @@ import { FaArrowLeft, FaUserMd, FaClinicMedical, FaMapMarkedAlt, FaLock, FaEnvel
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 // ASSUMPTION: You have a centralized firebase export. Adjust path if necessary.
-import { auth, db } from '@/lib/firebase';
+import { auth, db } from '../../../../lib/firebase';
 
 // Types injected
 interface StylesConfig {
