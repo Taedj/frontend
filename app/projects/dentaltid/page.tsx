@@ -159,6 +159,7 @@ export default function ProjectPage() {
           </div>
         </section>
         </div>
+        
         {PLAN_STRUCTURE && PLAN_STRUCTURE.length > 0 && (
         <section className="py-20 w-full px-6 text-center">
           <h2 className="text-5xl md:text-7xl font-black text-white mb-10 tracking-tighter">Choose Your Plan</h2>
@@ -166,13 +167,25 @@ export default function ProjectPage() {
           <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-20">
              <div className="flex bg-white/5 rounded-full p-2 border border-white/10">
                 {Object.keys(PRICING_DATA).map(c => (
-                  <button key={c} onClick={() => setCurrency(c)} className={`px-6 py-2 rounded-full font-bold transition-all ${currency === c ? 'bg-emerald-500 text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}>{c}</button>
+                  <button 
+                    key={c}
+                    onClick={() => setCurrency(c)}
+                    className={`px-6 py-2 rounded-full font-bold transition-all ${currency === c ? 'bg-emerald-500 text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}
+                  >
+                    {c}
+                  </button>
                 ))}
              </div>
              
              <div className="flex bg-white/5 rounded-full p-2 border border-white/10">
                 {['monthly', 'yearly', 'lifetime'].map(d => (
-                  <button key={d} onClick={() => setDuration(d)} className={`px-6 py-2 rounded-full font-bold transition-all capitalize ${duration === d ? 'bg-white text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}>{d}</button>
+                  <button 
+                    key={d}
+                    onClick={() => setDuration(d)}
+                    className={`px-6 py-2 rounded-full font-bold transition-all capitalize ${duration === d ? 'bg-white text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}
+                  >
+                    {d}
+                  </button>
                 ))}
              </div>
           </div>
@@ -193,6 +206,7 @@ export default function ProjectPage() {
           </div>
         </section>
         )}
+
         </div>
         <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"Precision is the heartbeat of modern dentistry."</blockquote></div></section>
         <section className="py-60 text-center px-6">
