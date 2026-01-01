@@ -79,13 +79,25 @@ const Projects = () => {
                                 {/* Project Image / Visual */}
                                 <div className="h-64 bg-black relative overflow-hidden">
                                     {project.image ? (
+                                    project.image.match(/\.(mp4|webm)$/i) ? (
+                                        <video
+                                            src={project.image}
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            className="object-cover w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                        />
+                                    ) : (
                                         <Image
                                             src={project.image}
                                             alt={project.name}
                                             fill
                                             className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                            unoptimized={project.image.endsWith(".gif")}
                                         />
-                                    ) : (
+                                    )
+                                ) : (
                                         <div className="absolute inset-0 bg-gradient-to-br from-bg-less-dark to-black flex items-center justify-center">
                                             <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center text-4xl font-bold text-white shadow-2xl">
                                                 {project.name.substring(0, 1)}
