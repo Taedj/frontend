@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { FaArrowLeft, FaDownload, FaRocket } from 'react-icons/fa';
 
 export const metadata: Metadata = {
-    title: '{{META_TITLE}}',
-    description: '{{META_DESCRIPTION}}'
+    title: 'DentalTid | Taedj Dev',
+    description: 'Your trusted dental companion'
 };
 
-const PRICING_DATA = {{ PRICING_DATA_JSON }};
-const PLAN_STRUCTURE = {{ PLAN_STRUCTURE_JSON }};
+const PRICING_DATA = {};
+const PLAN_STRUCTURE = [{"name":"Trial","features":["Max 100 Patients","Max 100 Appointments","Local Backup Only","All Features Unlocked"],"price":"Free","subtitle":"For Evaluation (30 Days)"},{"name":"Premium","features":["Unlimited Patients & Appointments","Cloud Sync & Restore","Secure Local Backup","Whatsapp Reminders","Standard Support"],"price":"2,000 DZD /mo","subtitle":"For Standard Clinics"},{"name":"CROWN","features":["Everything in Premium","Advanced Analytics Tab","Digital Prescriptions","Priority Support","Future AI Features"],"price":"4,000 DZD /mo","subtitle":"For Power Users"}];
 
 export default function ProjectPage() {
     const [currency, setCurrency] = useState('DZD');
@@ -34,9 +34,9 @@ export default function ProjectPage() {
 
     return (
         <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative">
-            {{ HERO_BACKGROUND_ELEMENT }}
+            
             <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5 flex items-center px-10">
-                {{ BRAND_LOGO_ELEMENT }}
+                <div className="text-4xl font-black tracking-tighter text-white/90 underline decoration-emerald-500 decoration-4 underline-offset-8">Taedj Dev</div>
             </div>
             <main className="relative z-10 w-full">
                 <div className="max-w-[95%] mx-auto pt-40 pb-12">
@@ -49,30 +49,119 @@ export default function ProjectPage() {
                 </div>
                 <section className="pt-20 pb-20 text-center w-full px-6">
                     <div className="max-w-[95%] mx-auto space-y-12">
-                        <h1 style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: '{{STYLE_HERO_TITLE_SIZE}}px' }} className="font-black tracking-tighter leading-[0.85] text-white" dangerouslySetInnerHTML={{ __html: `{{HERO_TITLE_HTML}}` }} />
-                        <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">{{ HERO_SUBTITLE }}</p>
+                        <h1 style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: '120px' }} className="font-black tracking-tighter leading-[0.85] text-white" dangerouslySetInnerHTML={{ __html: ` <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }} />
+                        <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">Your trusted dental companion</p>
                         <div className="flex flex-wrap gap-8 pt-10 justify-center">
-                            <Link href="{{CTA_PRIMARY_LINK}}" style={{ padding: '{{STYLE_BTN_PAD_Y}}px {{STYLE_BTN_PAD_X}}px', fontSize: '{{STYLE_BTN_TEXT_SIZE}}px', borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black rounded-[2rem] transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95">
-                                <FaDownload /> {{ CTA_PRIMARY_LABEL }}
+                            <Link href="#" style={{ padding: '32px 64px', fontSize: '32px', borderRadius: '32px' }} className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black rounded-[2rem] transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95">
+                                <FaDownload /> Download Now
                             </Link>
-                            <Link href="{{CTA_SECONDARY_LINK}}" style={{ padding: '{{STYLE_BTN_PAD_Y}}px {{STYLE_BTN_PAD_X}}px', fontSize: '{{STYLE_BTN_TEXT_SIZE}}px', borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black rounded-[2rem] transition-all flex items-center gap-4 hover:scale-105 active:scale-95">{{ CTA_SECONDARY_LABEL }}</Link>
+                            <Link href="#" style={{ padding: '32px 64px', fontSize: '32px', borderRadius: '32px' }} className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black rounded-[2rem] transition-all flex items-center gap-4 hover:scale-105 active:scale-95">Learn More</Link>
                         </div>
                     </div>
                 </section>
                 <section className="pb-40 w-full px-4 md:px-10">
-                    <div style={{ borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="relative aspect-video overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(16,185,129,0.1)] bg-[#0A0C10] group/hero w-full mx-auto flex items-center justify-center">
+                    <div style={{ borderRadius: '32px' }} className="relative aspect-video overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(16,185,129,0.1)] bg-[#0A0C10] group/hero w-full mx-auto flex items-center justify-center">
                         <div className="absolute top-0 left-0 right-0 h-16 bg-[#14171C] border-b border-white/5 flex items-center px-10 gap-3 z-20">
                             <div className="w-5 h-5 rounded-full bg-red-500/40" />
                             <div className="w-5 h-5 rounded-full bg-yellow-500/40" />
                             <div className="w-5 h-5 rounded-full bg-green-500/40" />
-                            <div className="ml-10 h-9 px-8 bg-white/5 rounded-xl border border-white/5 flex-grow max-w-2xl hidden lg:flex text-sm text-neutral-500 items-center font-mono tracking-widest text-left">{{ SLUG }}.app/dashboard</div>
+                            <div className="ml-10 h-9 px-8 bg-white/5 rounded-xl border border-white/5 flex-grow max-w-2xl hidden lg:flex text-sm text-neutral-500 items-center font-mono tracking-widest text-left">dentaltid.app/dashboard</div>
                         </div>
-                        {{ HERO_IMAGE_ELEMENT }}
+                        <img
+               src="/assets/projects/dentaltid/cover.gif"
+               alt="dentaltid Hero"
+               style={{
+                 maxWidth: '100%',
+                 transform: 'translateY(0px) scale(1)',
+                 transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+               }}
+               className="w-full h-full object-contain pt-16 transition-all duration-1000 group-hover/hero:scale-[1.01]" />
                     </div>
                 </section>
                 <div className="py-40 max-w-[95%] mx-auto text-left">
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-40" />
-                    {{ CHAPTERS_HTML }}
+                    
+        <section key={0} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+          <div className="max-w-6xl mx-auto text-center space-y-10">
+            <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 1</h2>
+            <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 1</p>
+          </div>
+          <div className="relative group/chapter w-full px-4 md:px-0">
+            <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
+               <div className="absolute top-0 left-0 right-0 h-14 bg-[#14171C] border-b border-white/5 flex items-center px-8 gap-3 z-20">
+                 <div className="w-4 h-4 rounded-full bg-white/5" />
+                 <div className="w-4 h-4 rounded-full bg-white/5" />
+                 <div className="w-4 h-4 rounded-full bg-white/5" />
+               </div>
+               <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
+                 <img
+                     src={`/assets/projects/dentaltid/feature1.png`}
+                     alt="Feature 1"
+                     style={{
+                       maxWidth: '100%',
+                       transform: 'translateY(0px) scale(1)',
+                       transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                     }}
+                     className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
+                   />
+               </div>
+            </div>
+          </div>
+        </section>
+        <section key={1} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+          <div className="max-w-6xl mx-auto text-center space-y-10">
+            <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 2</h2>
+            <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 2</p>
+          </div>
+          <div className="relative group/chapter w-full px-4 md:px-0">
+            <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
+               <div className="absolute top-0 left-0 right-0 h-14 bg-[#14171C] border-b border-white/5 flex items-center px-8 gap-3 z-20">
+                 <div className="w-4 h-4 rounded-full bg-white/5" />
+                 <div className="w-4 h-4 rounded-full bg-white/5" />
+                 <div className="w-4 h-4 rounded-full bg-white/5" />
+               </div>
+               <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
+                 <img
+                     src={`/assets/projects/dentaltid/feature2.png`}
+                     alt="Feature 2"
+                     style={{
+                       maxWidth: '100%',
+                       transform: 'translateY(0px) scale(1)',
+                       transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                     }}
+                     className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
+                   />
+               </div>
+            </div>
+          </div>
+        </section>
+        <section key={2} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+          <div className="max-w-6xl mx-auto text-center space-y-10">
+            <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 3</h2>
+            <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 3</p>
+          </div>
+          <div className="relative group/chapter w-full px-4 md:px-0">
+            <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
+               <div className="absolute top-0 left-0 right-0 h-14 bg-[#14171C] border-b border-white/5 flex items-center px-8 gap-3 z-20">
+                 <div className="w-4 h-4 rounded-full bg-white/5" />
+                 <div className="w-4 h-4 rounded-full bg-white/5" />
+                 <div className="w-4 h-4 rounded-full bg-white/5" />
+               </div>
+               <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
+                 <img
+                     src={`/assets/projects/dentaltid/feature3.png`}
+                     alt="Feature 3"
+                     style={{
+                       maxWidth: '100%',
+                       transform: 'translateY(0px) scale(1)',
+                       transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                     }}
+                     className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
+                   />
+               </div>
+            </div>
+          </div>
+        </section>
                 </div>
 
                 {PLAN_STRUCTURE && PLAN_STRUCTURE.length > 0 && (
@@ -97,7 +186,7 @@ export default function ProjectPage() {
                         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
                             {/* @ts-ignore */}
                             {PLAN_STRUCTURE.map((plan: any, i: number) => (
-                                <div key={i} style={{ borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
+                                <div key={i} style={{ borderRadius: '32px' }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
                                     <h3 className="text-3xl font-bold text-white mb-2">{plan.name}</h3>
                                     <p className="text-emerald-400 font-mono text-sm mb-6">{plan.subtitle || ''}</p>
@@ -106,7 +195,7 @@ export default function ProjectPage() {
                                         {/* @ts-ignore */}
                                         {plan.features.map((f: string, fi: number) => <li key={fi} className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
                                     </ul>
-                                    <Link href="{{CTA_PRIMARY_LINK}}" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
+                                    <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
                                 </div>
                             ))}
                         </div>
@@ -116,19 +205,19 @@ export default function ProjectPage() {
         </div>
         { { VISION_SECTION_HTML } }
     <section className="py-60 text-center px-6">
-        <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: '{{STYLE_BORDER_RADIUS_2X}}px' }}>
+        <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: '64px' }}>
             <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-            <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">{{ FINAL_CTA_TITLE }}</h2>
-            <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">{{ FINAL_CTA_SUBTITLE }}</p>
-            <Link href="{{FINAL_CTA_BUTTON_LINK}}" style={{ padding: '{{STYLE_BTN_PAD_Y}}px {{STYLE_BTN_PAD_X}}px', fontSize: '{{STYLE_BTN_TEXT_SIZE}}px', borderRadius: '{{STYLE_BORDER_RADIUS}}px' }} className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]">
-                <FaRocket size={40} /> {{ FINAL_CTA_BUTTON_LABEL }}
+            <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">Get Started Today</h2>
+            <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">Join the future of dental practice management.</p>
+            <Link href="#" style={{ padding: '32px 64px', fontSize: '32px', borderRadius: '32px' }} className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]">
+                <FaRocket size={40} /> Get Started
             </Link>
         </div>
     </section>
       </main >
         <footer className="py-32 border-t border-white/5 text-center">
             <div className="mb-10 text-3xl font-black tracking-tighter text-white/20">TAEDJ ECOSYSTEM</div>
-            <p className="text-xl text-neutral-600 font-medium">© {{ YEAR }} {{ BRAND_NAME }}. Finality through Precision.</p>
+            <p className="text-xl text-neutral-600 font-medium">© 2026 Taedj Dev. Finality through Precision.</p>
         </footer>
     </div >
   );
