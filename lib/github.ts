@@ -1,5 +1,3 @@
-
-
 const GITHUB_USERNAME = 'Taedj';
 const DEFAULT_BRANCH = 'main';
 const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}`;
@@ -69,7 +67,7 @@ export interface ProjectDetails {
   };
   styles: ProjectStyles;
   pricing: PricingPlan[];
-  remotePricing?: Record<string, any>;
+  remotePricing?: Record<string, unknown>;
 }
 
 interface GitHubRepo {
@@ -79,7 +77,7 @@ interface GitHubRepo {
 }
 
 interface GistPricingResponse {
-  pricing: Record<string, any>;
+  pricing: Record<string, unknown>;
 }
 
 /**
