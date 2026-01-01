@@ -1,3 +1,5 @@
+
+
 const GITHUB_USERNAME = 'Taedj';
 const DEFAULT_BRANCH = 'main';
 const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}`;
@@ -70,6 +72,12 @@ export interface ProjectDetails {
   remotePricing?: Record<string, any>;
 }
 
+interface GitHubRepo {
+  name: string;
+  description: string | null;
+  updated_at: string;
+}
+
 /**
  * Fetches all projects that have a CONTROL_WEBSITE folder
  */
@@ -78,10 +86,10 @@ export async function getProjects() {
     // 1. Fetch repositories from GitHub API
     const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`, { cache: 'no-store' });
     if (!reposRes.ok) return [];
-    const repos = await reposRes.json() as any[];
+    const repos = await reposRes.json() as GitHubRepo[];
 
     // 2. Check each repo for the config file
-    const projectPromises = repos.map(async (repo) => {
+    const projectPromises = repos.map(async (repo: GitHubRepo) => {
       const configUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/product.config.json`;
       const mdUrl = `${BASE_RAW_URL}/${repo.name}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/WEBSITE.md`;
 
@@ -92,7 +100,7 @@ export async function getProjects() {
         ]);
 
         if (configRes.ok && mdRes.ok) {
-          const config = await configRes.json();
+          const config = await configRes.json() as ProjectConfig;
           const mdContent = await mdRes.text();
           
           // Extract basic info from MD for the card
@@ -145,9 +153,9 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 
     if (!configRes.ok || !mdRes.ok) return null;
 
-    const config = await configRes.json();
+    const config = await configRes.json() as ProjectConfig;
     const mdContent = await mdRes.text();
-    const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() : null;
+    const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() as { pricing: Record<string, any> } : null;
 
     // Build the full project object
     const heroImage = `${BASE_RAW_URL}/${slug}/${DEFAULT_BRANCH}/CONTROL_WEBSITE/screenshots/cover.mp4`; // Default to cover.mp4
