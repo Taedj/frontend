@@ -6,8 +6,44 @@ import { FaArrowLeft, FaClinicMedical, FaUserMd, FaPhone, FaEnvelope, FaLock, Fa
 import { ProjectDetails } from '@/lib/github';
 
 export default function RegistrationView({ data }: { data: ProjectDetails }) {
-    const { config, styles } = data;
+    const { config, styles, hero } = data;
     const [showPassword, setShowPassword] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(false);
+
+    if (isRegistered) {
+        return (
+            <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 flex flex-col items-center justify-center p-6">
+                <div className="max-w-2xl w-full bg-[#0A0C10] border border-emerald-500/20 p-12 md:p-20 rounded-[3rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] text-center space-y-10 relative overflow-hidden">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent" />
+                    
+                    <div className="w-24 h-24 bg-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(16,185,129,0.4)] animate-bounce">
+                        <FaClinicMedical size={40} className="text-[#080A0E]" />
+                    </div>
+
+                    <div className="space-y-4">
+                        <h1 className="text-4xl md:text-6xl font-black tracking-tighter">REGISTRATION <span className="text-emerald-500">COMPLETE</span></h1>
+                        <p className="text-xl text-neutral-400 font-medium">Your clinic has been successfully onboarded to the {config.name} ecosystem.</p>
+                    </div>
+
+                    <div className="pt-10 space-y-6">
+                        <p className="text-emerald-500 font-black uppercase tracking-[0.3em] text-sm">Next Step: Install Workspace</p>
+                        <Link 
+                            href={hero.ctaPrimaryLink}
+                            className="w-full bg-white text-black font-black py-6 rounded-2xl hover:scale-105 active:scale-95 transition-all text-2xl flex items-center justify-center gap-4 shadow-[0_30px_100px_rgba(255,255,255,0.1)]"
+                        >
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" className="w-8 h-8" alt="Windows" />
+                            Download for Windows
+                        </Link>
+                        <p className="text-neutral-500 text-sm">Version 2.0.1 • Windows 10/11 x64</p>
+                    </div>
+
+                    <div className="pt-10 border-t border-white/5">
+                        <Link href={`/projects/${config.slug}/dashboard`} className="text-neutral-400 hover:text-white transition-all font-bold">Go to Web Dashboard →</Link>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative flex flex-col">
@@ -99,7 +135,10 @@ export default function RegistrationView({ data }: { data: ProjectDetails }) {
                         </div>
 
                         <div className="pt-4 space-y-6 relative z-10">
-                            <button className="w-full bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black py-6 rounded-[1.5rem] hover:scale-[1.02] active:scale-[0.98] transition-all text-xl shadow-[0_20px_60px_rgba(16,185,129,0.2)]">
+                            <button 
+                                onClick={() => setIsRegistered(true)}
+                                className="w-full bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black py-6 rounded-[1.5rem] hover:scale-[1.02] active:scale-[0.98] transition-all text-xl shadow-[0_20px_60px_rgba(16,185,129,0.2)]"
+                            >
                                 REGISTER CLINIC
                             </button>
 
