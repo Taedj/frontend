@@ -161,15 +161,15 @@ export default function ProjectUI() {
                     
     <section key={0} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
       <div className="max-w-6xl mx-auto text-center space-y-10">
-        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 1</h2>
-        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 1</p>
+        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">The Unified Dental Dashboard</h2>
+        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">The Command Center of Your Clinic. Embrace total clarity with a high-fidelity hub that consolidates patient records, clinical alerts, and financial intelligence into a single, lightning-fast view. Experience zero-latency navigation and professional-grade organization designed to keep your practice moving, whether you're online or off.</p>
       </div>
       <div className="relative group/chapter w-full px-4 md:px-0">
         <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
            <div className="w-full h-full flex items-center justify-center overflow-hidden">
              <img
                  src={`/assets/projects/dentaltid/feature1.gif`}
-                 alt="Feature 1"
+                 alt="The Unified Dental Dashboard"
                  style={{
                    maxWidth: '100%',
                    transform: 'translateY(0px) scale(1)',
