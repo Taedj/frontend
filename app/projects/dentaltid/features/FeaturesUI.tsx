@@ -19,58 +19,72 @@ const CONTENT = {
         back: 'Back to Overview',
         sections: [
             {
-                title: 'The Unified Dashboard',
+                title: 'Intelligent Dashboard',
                 icon: <FaChartLine />,
-                description: 'The command center of your clinic. Real-time insights into today\'s appointments, critical inventory alerts, and patient flow management.',
+                description: 'The Command Center of your clinic. Designed for zero-latency awareness and proactive management.',
                 details: [
-                    'Live appointment tracking with status indicators.',
-                    'Dynamic KPI cards for patients and inventory.',
-                    'Low-stock and expiring item automated alerts.',
-                    'Emergency patient prioritizing system.'
-                ]
-            },
-            {
-                title: 'Staff Collaboration (LAN Sync)',
-                icon: <FaNetworkWired />,
-                description: 'Seamless teamwork without boundaries. Connect multiple devices over your local network without requiring an active internet connection.',
-                details: [
-                    'Dentist-Host and Staff-Client architecture.',
-                    'Instant data synchronization across the clinic.',
-                    'Role-based access control (Dentist, Assistant, Receptionist).',
-                    'Zero-latency local database performance.'
-                ]
-            },
-            {
-                title: 'Advanced Medical Prescriptions',
-                icon: <FaPrescriptionBottleAlt />,
-                description: 'Professional prescription management with a focus on precision and efficiency.',
-                details: [
-                    'Multilingual prescription generation (EN, FR, AR).',
-                    'Customizable layout with logo and background transparency.',
-                    'QR code integration for digital verification.',
-                    'Medicine preset system for instant list creation.'
+                    'Dynamic 3D KPI Cards for real-time status visibility.',
+                    'Integrated Broadcast Banner for system-wide announcements.',
+                    'Live appointment flow tracking with status indicators.',
+                    'Clinic-wide "Smooth Running" diagnostic indicators.',
+                    'High-fidelity live clock and localized date tracking.'
                 ]
             },
             {
                 title: 'Clinical Practice Suite',
                 icon: <FaUserMd />,
-                description: 'A multi-dimensional approach to patient and clinic management.',
+                description: 'Beyond records: a multi-dimensional approach to patient care and practice logistics.',
                 details: [
-                    'Comprehensive patient health history tracking.',
-                    'Integrated dental imaging and X-ray gallery.',
-                    'Automated financial auditing and transaction history.',
-                    'Smart inventory logistics with supplier management.'
+                    'Patient Blacklist & Severity prioritizing system.',
+                    'Granular health alerts and chronic condition tracking.',
+                    'Visit-by-visit treatment history with diagnosis logs.',
+                    'Integrated Imaging Gallery for intraoral and extraoral X-rays.',
+                    'NanoPix Live Sync: Automatic bi-directional image import/export.'
                 ]
             },
             {
-                title: 'Security & Redundancy',
-                icon: <FaShieldAlt />,
-                description: 'Your data is your most valuable asset. We protect it with military-grade standards.',
+                title: 'Advanced Medical Prescriptions',
+                icon: <FaPrescriptionBottleAlt />,
+                description: 'Professional-grade documentation with zero redundant data and extreme customizability.',
                 details: [
-                    'Offline-first architecture for total data privacy.',
-                    'Optional secure cloud synchronization.',
-                    'Automated local encrypted backups.',
-                    'SQLCipher integration for database-level protection.'
+                    'Multilingual generation (EN, FR, AR) with native font support.',
+                    'Precision Posology: Automated formatting for dosage and route.',
+                    'Layout Studio: Adjustable background transparency and custom logos.',
+                    'Medicine Preset Engine for instant complex list creation.',
+                    'Digital Verification: Dynamic QR code integration on every print.'
+                ]
+            },
+            {
+                title: 'Enterprise Staff Collaboration',
+                icon: <FaNetworkWired />,
+                description: 'A 100% Local LAN architecture ensuring data privacy and instant clinic-wide synchronization.',
+                details: [
+                    'Zero-Latency Sync: No internet required for clinic-wide data flow.',
+                    'Dentist-Host / Staff-Client hierarchical architecture.',
+                    'Role-Based Security: Specialized views for Assistants and Receptionists.',
+                    'Real-time staff connection monitoring and server diagnostics.'
+                ]
+            },
+            {
+                title: 'Automated Logistics & Finance',
+                icon: <FaShieldAlt />,
+                description: 'Remove the administrative burden with automated auditing and inventory intelligence.',
+                details: [
+                    'Smart Inventory: Automated low-stock and expiration threshold alerts.',
+                    'Financial Auditing: Full transaction history with audit event logging.',
+                    'Recurring Charges: Automated tracking for Rent, Salaries, and Utilities.',
+                    'Daily & Weekly Financial Summaries with pro-rated expense tracking.'
+                ]
+            },
+            {
+                title: 'Security & Data Redundancy',
+                icon: <FaShieldAlt />,
+                description: 'Military-grade data protection tailored for medical privacy standards.',
+                details: [
+                    'Offline-First: Your database stays on your machine, always.',
+                    'SQLCipher Integration: Encrypted-at-rest local database.',
+                    'Dual-Shield Redundancy: Automated local backups + secure Cloud Sync.',
+                    'Device-level blocking and secure activation key validation.'
                 ]
             }
         ],
@@ -82,58 +96,72 @@ const CONTENT = {
         back: 'Retour à la vue d\'ensemble',
         sections: [
             {
-                title: 'Le Tableau de Bord Unifié',
+                title: 'Tableau de Bord Intelligent',
                 icon: <FaChartLine />,
-                description: 'Le centre de commandement de votre clinique. Aperçu en temps réel des rendez-vous du jour, alertes d\'inventaire critiques et gestion du flux de patients.',
+                description: 'Le centre de commandement de votre clinique. Conçu pour une réactivité totale et une gestion proactive.',
                 details: [
-                    'Suivi des rendez-vous en direct avec indicateurs de statut.',
-                    'Cartes KPI dynamiques pour les patients et l\'inventaire.',
-                    'Alertes automatiques pour le stock faible et les articles expirants.',
-                    'Système de priorisation des patients d\'urgence.'
-                ]
-            },
-            {
-                title: 'Collaboration du Personnel (Sync LAN)',
-                icon: <FaNetworkWired />,
-                description: 'Travail d\'équipe fluide sans frontières. Connectez plusieurs appareils via votre réseau local sans nécessiter de connexion internet active.',
-                details: [
-                    'Architecture Dentiste-Hôte et Personnel-Client.',
-                    'Synchronisation instantanée des données dans toute la clinique.',
-                    'Contrôle d\'accès basé sur les rôles (Dentiste, Assistant, Réceptionniste).',
-                    'Performance de base de données locale sans latence.'
-                ]
-            },
-            {
-                title: 'Ordonnances Médicales Avancées',
-                icon: <FaPrescriptionBottleAlt />,
-                description: 'Gestion professionnelle des ordonnances avec un accent sur la précision et l\'efficacité.',
-                details: [
-                    'Génération d\'ordonnances multilingues (EN, FR, AR).',
-                    'Mise en page personnalisable avec logo et transparence de l\'arrière-plan.',
-                    'Intégration de codes QR pour la vérification numérique.',
-                    'Système de préréglages de médicaments pour une création de liste instantanée.'
+                    'Cartes KPI 3D dynamiques pour une visibilité d\'état en temps réel.',
+                    'Bannière de diffusion intégrée pour les annonces du système.',
+                    'Suivi du flux de rendez-vous en direct avec indicateurs de statut.',
+                    'Indicateurs de diagnostic "Smooth Running" pour toute la clinique.',
+                    'Horloge haute fidélité et suivi de date localisé.'
                 ]
             },
             {
                 title: 'Suite de Pratique Clinique',
                 icon: <FaUserMd />,
-                description: 'Une approche multidimensionnelle de la gestion des patients et de la clinique.',
+                description: 'Au-delà des dossiers : une approche multidimensionnelle des soins aux patients et de la logistique.',
                 details: [
-                    'Suivi complet de l\'historique de santé des patients.',
-                    'Galerie d\'imagerie dentaire et de radiographies intégrée.',
-                    'Audit financier automatisé et historique des transactions.',
-                    'Logistique d\'inventaire intelligente avec gestion des fournisseurs.'
+                    'Système de liste noire et de priorité de sévérité des patients.',
+                    'Alertes de santé granulaires et suivi des maladies chroniques.',
+                    'Historique des traitements visite par visite avec journaux de diagnostic.',
+                    'Galerie d\'imagerie intégrée pour les radiographies intraorales et extraorales.',
+                    'NanoPix Live Sync : Import/export automatique d\'images bidirectionnel.'
                 ]
             },
             {
-                title: 'Sécurité et Redondance',
-                icon: <FaShieldAlt />,
-                description: 'Vos données sont votre atout le plus précieux. Nous les protégeons avec des normes de classe militaire.',
+                title: 'Ordonnances Médicales Avancées',
+                icon: <FaPrescriptionBottleAlt />,
+                description: 'Documentation de qualité professionnelle avec zéro redondance et personnalisation extrême.',
                 details: [
-                    'Architecture Offline-first pour une confidentialité totale des données.',
-                    'Synchronisation cloud sécurisée optionnelle.',
-                    'Sauvegardes locales cryptées automatisées.',
-                    'Intégration SQLCipher pour la protection au niveau de la base de données.'
+                    'Génération multilingue (EN, FR, AR) avec support de polices natives.',
+                    'Posologie de précision : Formatage automatique du dosage et de la voie.',
+                    'Studio de mise en page : Transparence ajustable et logos personnalisés.',
+                    'Moteur de préréglages de médicaments pour création instantanée.',
+                    'Vérification numérique : Intégration de code QR dynamique sur chaque impression.'
+                ]
+            },
+            {
+                title: 'Collaboration d\'Équipe Entreprise',
+                icon: <FaNetworkWired />,
+                description: 'Une architecture LAN 100% locale garantissant la confidentialité des données et une synchro instantanée.',
+                details: [
+                    'Synchronisation sans latence : Aucun internet requis pour le flux de données.',
+                    'Architecture hiérarchique Dentiste-Hôte / Personnel-Client.',
+                    'Sécurité par rôle : Vues spécialisées pour Assistantes et Réceptionnistes.',
+                    'Surveillance des connexions du personnel et diagnostics du serveur.'
+                ]
+            },
+            {
+                title: 'Logistique et Finance Automatisées',
+                icon: <FaShieldAlt />,
+                description: 'Éliminez la charge administrative avec l\'audit automatique et l\'intelligence d\'inventaire.',
+                details: [
+                    'Inventaire intelligent : Alertes automatiques de stock faible et d\'expiration.',
+                    'Audit financier : Historique complet avec journalisation des événements.',
+                    'Charges récurrentes : Suivi automatique du loyer, des salaires et des charges.',
+                    'Résumés financiers quotidiens et hebdomadaires avec suivi pro-rata.'
+                ]
+            },
+            {
+                title: 'Sécurité et Redondance des Données',
+                icon: <FaShieldAlt />,
+                description: 'Protection des données de classe militaire adaptée aux normes de confidentialité médicale.',
+                details: [
+                    'Offline-First : Votre base de données reste sur votre machine, toujours.',
+                    'Intégration SQLCipher : Base de données locale cryptée au repos.',
+                    'Redondance Dual-Shield : Sauvegardes locales + Cloud Sync sécurisé.',
+                    'Blocage au niveau de l\'appareil et validation par clé d\'activation.'
                 ]
             }
         ],
@@ -145,58 +173,72 @@ const CONTENT = {
         back: 'العودة للملف الشخصي',
         sections: [
             {
-                title: 'لوحة التحكم الموحدة',
+                title: 'لوحة التحكم الذكية',
                 icon: <FaChartLine />,
-                description: 'مركز القيادة لعيادتك. رؤى فورية لمواعيد اليوم، تنبيهات المخزون الحرجة، وإدارة تدفق المرضى.',
+                description: 'مركز القيادة لعيادتك. مصمم للاستجابة الفورية والإدارة الاستباقية.',
                 details: [
-                    'تتبع المواعيد المباشر مع مؤشرات الحالة.',
-                    'بطاقات KPI ديناميكية للمرضى والمخزون.',
-                    'تنبيهات تلقائية لنقص المخزون والأصناف منتهية الصلاحية.',
-                    'نظام تحديد أولويات مرضى الطوارئ.'
-                ]
-            },
-            {
-                title: 'تعاون الطاقم (مزامنة الشبكة المحلية)',
-                icon: <FaNetworkWired />,
-                description: 'عمل جماعي سلس بدون حدود. ربط أجهزة متعددة عبر شبكتك المحلية دون الحاجة لاتصال إنترنت نشط.',
-                details: [
-                    'بنية الطبيب (المضيف) والطاقم (العميل).',
-                    'مزامنة فورية للبيانات في جميع أنحاء العيادة.',
-                    'التحكم في الوصول بناءً على الأدوار (طبيب، مساعد، موظف استقبال).',
-                    'أداء قاعدة بيانات محلية بدون تأخير.'
-                ]
-            },
-            {
-                title: 'الوصفات الطبية المتقدمة',
-                icon: <FaPrescriptionBottleAlt />,
-                description: 'إدارة احترافية للوصفات الطبية مع التركيز على الدقة والكفاءة.',
-                details: [
-                    'إنشاء وصفات طبية متعددة اللغات (EN, FR, AR).',
-                    'تنسيق قابل للتخصيص مع الشعار وشفافية الخلفية.',
-                    'تكامل رمز QR للتحقق الرقمي.',
-                    'نظام مسبق لضبط الأدوية لإنشاء القوائم فوراً.'
+                    'بطاقات KPI ثلاثية الأبعاد لدقة المتابعة الفورية.',
+                    'شريط تنبيهات متكامل لإعلانات النظام والعيادة.',
+                    'تتبع حي لتدفق المواعيد مع مؤشرات الحالة.',
+                    'مؤشرات تشخيصية لضمان عمل العيادة بسلاسة.',
+                    'ساعة عالية الدقة وتتبع التاريخ المحلي.'
                 ]
             },
             {
                 title: 'جناح الممارسة السريرية',
                 icon: <FaUserMd />,
-                description: 'نهج متعدد الأبعاد لإدارة المرضى والعيادة.',
+                description: 'أكثر من مجرد سجلات: نهج متعدد الأبعاد لرعاية المرضى ولوجستيات العيادة.',
                 details: [
-                    'تتبع شامل لتاريخ صحة المريض.',
-                    'معرض متكامل للتصوير السني والأشعة.',
-                    'تدقيق مالي مؤتمت وسجل المعاملات.',
-                    'لوجستيات مخزون ذكية مع إدارة الموردين.'
+                    'نظام القائمة السوداء وتحديد أولويات خطورة الحالة.',
+                    'تنبيهات صحية دقيقة وتتبع الحالات المزمنة.',
+                    'سجل العلاج لكل زيارة مع مذكرات التشخيص.',
+                    'معرض صور متكامل للأشعة السنية الداخلية والخارجية.',
+                    'مزامنة نانوبيكس الحية: استيراد وتصدير الصور آلياً.'
                 ]
             },
             {
-                title: 'الأمن والاحتياط',
-                icon: <FaShieldAlt />,
-                description: 'بياناتك هي أغلى أصولك. نحن نحميها بمعايير عسكرية.',
+                title: 'الوصفات الطبية المتقدمة',
+                icon: <FaPrescriptionBottleAlt />,
+                description: 'وثائق احترافية مع دقة متناهية وقابلية تخصيص كاملة.',
                 details: [
-                    'بنية تركز على العمل المحلي لخصوصية تامة للبيانات.',
-                    'مزامنة سحابية آمنة اختيارية.',
-                    'نسخ احتياطي محلي مشفر ومؤتمت.',
-                    'تكامل SQLCipher لحماية قاعدة البيانات.'
+                    'إنشاء متعدد اللغات (EN, FR, AR) مع دعم الخطوط الأصلية.',
+                    'دقة الجرعات: تنسيق تلقائي للكمية وطريقة الاستخدام.',
+                    'استوديو التنسيق: شفافية خلفية قابلة للتعديل وشعارات مخصصة.',
+                    'محرك ضبط الأدوية المسبق للإنشاء الفوري للقوائم المعقدة.',
+                    'التحقق الرقمي: تكامل رمز QR ديناميكي في كل طباعة.'
+                ]
+            },
+            {
+                title: 'تعاون الطاقم المتكامل',
+                icon: <FaNetworkWired />,
+                description: 'بنية تحتية محلية 100% تضمن خصوصية البيانات والمزامنة الفورية.',
+                details: [
+                    'مزامنة فورية: لا حاجة للإنترنت لتدفق بيانات العيادة.',
+                    'بنية الطبيب (المضيف) والطاقم (العميل) الهرمية.',
+                    'أمان مبني على الأدوار: واجهات مخصصة للمساعدين وموظفي الاستقبال.',
+                    'مراقبة حية لاتصال الطاقم وتشخيصات الخادم.'
+                ]
+            },
+            {
+                title: 'اللوجستيات والمالية المؤتمتة',
+                icon: <FaShieldAlt />,
+                description: 'إزالة العبء الإداري مع التدقيق الآلي وذكاء المخزون.',
+                details: [
+                    'المخزون الذكي: تنبيهات آلية لنقص المخزون وانتهاء الصلاحية.',
+                    'التدقيق المالي: سجل معاملات كامل مع توثيق الأحداث.',
+                    'المصاريف المتكررة: تتبع آلي للإيجار، الرواتب، والمرافق.',
+                    'ملخصات مالية يومية وأسبوعية مع تتبع النفقات النسبية.'
+                ]
+            },
+            {
+                title: 'الأمن واحتياط البيانات',
+                icon: <FaShieldAlt />,
+                description: 'حماية بيانات بمعايير عسكرية مصممة لخصوصية السجلات الطبية.',
+                details: [
+                    'الأولوية للمحلي: قاعدة بياناتك تبقى في جهازك دائماً.',
+                    'تكامل SQLCipher: تشفير قاعدة البيانات المحلية بالكامل.',
+                    'الاحتياط المزدوج: نسخ احتياطي محلي آلي + مزامنة سحابية آمنة.',
+                    'حظر الأجهزة غير المصرح بها والتحقق من مفاتيح التفعيل.'
                 ]
             }
         ],
@@ -210,7 +252,7 @@ export default function FeaturesUI() {
     const t = CONTENT[lang];
 
     return (
-        <div className={`min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative flex flex-col ${isAr ? 'rtl' : 'ltr'}`} dir={isAr ? 'rtl' : 'ltr'}> 
+        <div className={`min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative flex flex-col ${isAr ? 'rtl' : 'ltr'}`} dir={isAr ? 'rtl' : 'ltr'} > 
             
             {/* Language Switcher */}
             <div className={`fixed top-8 z-50 flex bg-[#0A0C10]/80 backdrop-blur-xl border border-white/10 rounded-full p-1 shadow-2xl ${isAr ? 'left-8' : 'right-8'}`}>
@@ -235,11 +277,11 @@ export default function FeaturesUI() {
                         <span>{t.back}</span>
                     </Link>
 
-                    <header className="mb-32 space-y-6">
+                    <header className="mb-32 space-y-6 text-center md:text-left">
                         <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-none bg-gradient-to-r from-white via-white to-white/40 bg-clip-text text-transparent">
                             {t.title}
                         </h1>
-                        <p className="text-xl md:text-3xl text-neutral-400 font-medium max-w-3xl">
+                        <p className="text-xl md:text-3xl text-neutral-400 font-medium max-w-3xl mx-auto md:mx-0">
                             {t.subtitle}
                         </p>
                     </header>
