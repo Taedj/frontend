@@ -4,43 +4,51 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaArrowLeft, FaDownload, FaRocket } from 'react-icons/fa';
 
-interface ProjectUIProps {
-    PRICING_DATA: any;
-    PLAN_STRUCTURE: any;
-    PROJECT_CONFIG: any;
-    HERO_BACKGROUND: string;
-    BRAND_LOGO_ELEMENT: React.ReactNode;
-    HERO_TITLE_HTML: string;
-    HERO_SUBTITLE: string;
-    HERO_IMAGE_ELEMENT: React.ReactNode;
-    CHAPTERS_HTML: string;
-    VISION_SECTION_HTML: string;
-    CTA_PRIMARY: { link: string; label: string };
-    CTA_SECONDARY: { link: string; label: string };
-    FINAL_CTA: { title: string; subtitle: string; label: string; link: string };
-    STYLES: any;
-    YEAR: number;
+// Types and Interfaces
+interface PricingPlan {
+    monthly: string;
+    yearly: string;
+    lifetime: string;
 }
 
-export default function ProjectUI({
-    PRICING_DATA,
-    PLAN_STRUCTURE,
-    PROJECT_CONFIG,
-    HERO_BACKGROUND,
-    BRAND_LOGO_ELEMENT,
-    HERO_TITLE_HTML,
-    HERO_SUBTITLE,
-    HERO_IMAGE_ELEMENT,
-    CHAPTERS_HTML,
-    VISION_SECTION_HTML,
-    CTA_PRIMARY,
-    CTA_SECONDARY,
-    FINAL_CTA,
-    STYLES,
-    YEAR
-}: ProjectUIProps) {
+interface CurrencyConfig {
+    symbol: string;
+    position: 'prefix' | 'suffix';
+    plans: {
+        [key: string]: PricingPlan;
+    };
+}
+
+interface PlanStructureItem {
+    name: string;
+    subtitle?: string;
+    price: string;
+    features: string[];
+}
+
+interface StylesConfig {
+    heroTitleSize: number;
+    buttonPaddingX: number;
+    buttonPaddingY: number;
+    buttonTextSize: number;
+    borderRadius: number;
+    sectionSpacing: number;
+    borderRadius2X?: number;
+}
+
+// Data injected by sync script
+const PRICING_DATA: Record<string, CurrencyConfig> = {"DZD":{"symbol":"DZD","position":"suffix","plans":{"premium":{"monthly":"2,000","yearly":"20,000","lifetime":"60,000"},"crown":{"monthly":"4,000","yearly":"40,000","lifetime":"100,000"}}},"USD":{"symbol":"$","position":"prefix","plans":{"premium":{"monthly":"15","yearly":"150","lifetime":"450"},"crown":{"monthly":"30","yearly":"300","lifetime":"900"}}},"EUR":{"symbol":"€","position":"suffix","plans":{"premium":{"monthly":"14","yearly":"140","lifetime":"420"},"crown":{"monthly":"28","yearly":"280","lifetime":"840"}}}};
+const PLAN_STRUCTURE: PlanStructureItem[] = [{"name":"Trial","features":["Max 100 Patients","Max 100 Appointments","Local Backup Only","All Features Unlocked"],"price":"Free","subtitle":"For Evaluation (30 Days)"},{"name":"Premium","features":["Unlimited Patients & Appointments","Cloud Sync & Restore","Secure Local Backup","Whatsapp Reminders","Standard Support"],"price":"2,000 DZD /mo","subtitle":"For Standard Clinics"},{"name":"CROWN","features":["Everything in Premium","Advanced Analytics Tab","Digital Prescriptions","Priority Support","Future AI Features"],"price":"4,000 DZD /mo","subtitle":"For Power Users"}];
+const STYLES: StylesConfig = {"heroTitleSize":120,"buttonPaddingX":64,"buttonPaddingY":32,"buttonTextSize":32,"sectionSpacing":160,"borderRadius":32,"brandLogo":"logo.png","heroBackground":"","heroImgWidth":100,"heroImgOffsetY":0,"heroImgScale":100};
+const PROJECT_CONFIG = {
+    name: 'DentalTid | Taedj Dev',
+    slug: 'dentaltid',
+    brand: 'Taedj Dev'
+};
+
+export default function ProjectUI() {
     const [currency, setCurrency] = useState('DZD');
-    const [duration, setDuration] = useState('yearly');
+    const [duration, setDuration] = useState<'monthly' | 'yearly' | 'lifetime'>('yearly');
 
     const getPrice = (planName: string) => {
         const tier = planName.toLowerCase().includes('crown') ? 'crown' : (planName.toLowerCase().includes('premium') ? 'premium' : null);
@@ -52,7 +60,7 @@ export default function ProjectUI({
             const symbol = p.symbol || '';
             const position = p.position || 'suffix';
 
-            let formatted = position === 'prefix' ? `${symbol}${val}` : `${val} ${symbol}`;
+            const formatted = position === 'prefix' ? `${symbol}${val}` : `${val} ${symbol}`;
             return formatted + (duration === 'lifetime' ? '' : (duration === 'monthly' ? ' /mo' : ' /yr'));
         }
         return 'N/A';
@@ -60,14 +68,10 @@ export default function ProjectUI({
 
     return (
         <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative">
-            {HERO_BACKGROUND && (
-                <div className="fixed inset-0 z-0 opacity-20">
-                    <img src={HERO_BACKGROUND} className="w-full h-full object-cover" />
-                </div>
-            )}
+            {{ HERO_BACKGROUND_ELEMENT }}
 
             <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5 flex items-center px-10">
-                {BRAND_LOGO_ELEMENT}
+                <img src="/assets/projects/dentaltid/logo.png" className="h-12 w-auto object-contain" />
             </div>
 
             <main className="relative z-10 w-full">
@@ -85,24 +89,24 @@ export default function ProjectUI({
                         <h1
                             style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: `${STYLES.heroTitleSize}px` }}
                             className="font-black tracking-tighter leading-[0.85] text-white"
-                            dangerouslySetInnerHTML={{ __html: HERO_TITLE_HTML }}
+                            dangerouslySetInnerHTML={{ __html: ` <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">DentalTid</span>` }}
                         />
-                        <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">{HERO_SUBTITLE}</p>
+                        <p className="text-3xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium">Your trusted dental companion</p>
 
                         <div className="flex flex-wrap gap-8 pt-10 justify-center">
                             <Link
-                                href={CTA_PRIMARY.link}
+                                href="#"
                                 style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
                                 className="bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black transition-all flex items-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95"
                             >
-                                <FaDownload /> {CTA_PRIMARY.label}
+                                <FaDownload /> Download Now
                             </Link>
                             <Link
-                                href={CTA_SECONDARY.link}
+                                href="#"
                                 style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
                                 className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black transition-all flex items-center gap-4 hover:scale-105 active:scale-95"
                             >
-                                {CTA_SECONDARY.label}
+                                Learn More
                             </Link>
                         </div>
                     </div>
@@ -116,16 +120,97 @@ export default function ProjectUI({
                             <div className="w-5 h-5 rounded-full bg-green-500/40" />
                             <div className="ml-10 h-9 px-8 bg-white/5 rounded-xl border border-white/5 flex-grow max-w-2xl hidden lg:flex text-sm text-neutral-500 items-center font-mono tracking-widest text-left">{PROJECT_CONFIG.slug}.app/dashboard</div>
                         </div>
-                        {HERO_IMAGE_ELEMENT}
+                        <img src="/assets/projects/dentaltid/cover.gif" alt="dentaltid Hero" style={{ maxWidth: '100%', transform: 'translateY(0px) scale(1)', transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)' }} className="w-full h-full object-contain pt-16 transition-all duration-1000 group-hover/hero:scale-[1.01]" />
                     </div>
                 </section>
 
                 <div className="py-40 max-w-[95%] mx-auto text-left">
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-40" />
-                    <div dangerouslySetInnerHTML={{ __html: CHAPTERS_HTML }} />
+                    <div dangerouslySetInnerHTML={{ __html: `
+    <section key={0} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+      <div className="max-w-6xl mx-auto text-center space-y-10">
+        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 1</h2>
+        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 1</p>
+      </div>
+      <div className="relative group/chapter w-full px-4 md:px-0">
+        <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
+           <div className="absolute top-0 left-0 right-0 h-14 bg-[#14171C] border-b border-white/5 flex items-center px-8 gap-3 z-20">
+             <div className="w-4 h-4 rounded-full bg-white/5" />
+             <div className="w-4 h-4 rounded-full bg-white/5" />
+             <div className="w-4 h-4 rounded-full bg-white/5" />
+           </div>
+           <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
+             <img
+                 src={`/assets/projects/dentaltid/feature1.png`}
+                 alt="Feature 1"
+                 style={{
+                   maxWidth: '100%',
+                   transform: 'translateY(0px) scale(1)',
+                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                 }}
+                 className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
+               />
+           </div>
+        </div>
+      </div>
+    </section>
+    <section key={1} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+      <div className="max-w-6xl mx-auto text-center space-y-10">
+        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 2</h2>
+        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 2</p>
+      </div>
+      <div className="relative group/chapter w-full px-4 md:px-0">
+        <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
+           <div className="absolute top-0 left-0 right-0 h-14 bg-[#14171C] border-b border-white/5 flex items-center px-8 gap-3 z-20">
+             <div className="w-4 h-4 rounded-full bg-white/5" />
+             <div className="w-4 h-4 rounded-full bg-white/5" />
+             <div className="w-4 h-4 rounded-full bg-white/5" />
+           </div>
+           <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
+             <img
+                 src={`/assets/projects/dentaltid/feature2.png`}
+                 alt="Feature 2"
+                 style={{
+                   maxWidth: '100%',
+                   transform: 'translateY(0px) scale(1)',
+                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                 }}
+                 className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
+               />
+           </div>
+        </div>
+      </div>
+    </section>
+    <section key={2} style={{ paddingTop: '160px', paddingBottom: '160px' }} className="space-y-20">
+      <div className="max-w-6xl mx-auto text-center space-y-10">
+        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">Feature 3</h2>
+        <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">Description for Chapter 3</p>
+      </div>
+      <div className="relative group/chapter w-full px-4 md:px-0">
+        <div style={{ borderRadius: '32px' }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
+           <div className="absolute top-0 left-0 right-0 h-14 bg-[#14171C] border-b border-white/5 flex items-center px-8 gap-3 z-20">
+             <div className="w-4 h-4 rounded-full bg-white/5" />
+             <div className="w-4 h-4 rounded-full bg-white/5" />
+             <div className="w-4 h-4 rounded-full bg-white/5" />
+           </div>
+           <div className="w-full h-full flex items-center justify-center overflow-hidden pt-14">
+             <img
+                 src={`/assets/projects/dentaltid/feature3.png`}
+                 alt="Feature 3"
+                 style={{
+                   maxWidth: '100%',
+                   transform: 'translateY(0px) scale(1)',
+                   transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
+                 }}
+                 className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
+               />
+           </div>
+        </div>
+      </div>
+    </section>` }} />
                 </div>
 
-                <div dangerouslySetInnerHTML={{ __html: VISION_SECTION_HTML }} />
+                <div dangerouslySetInnerHTML={{ __html: `<section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"><div className="max-w-6xl mx-auto"><div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" /><blockquote className="text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight">"Precision is the heartbeat of modern dentistry."</blockquote></div></section>` }} />
 
                 {PLAN_STRUCTURE && PLAN_STRUCTURE.length > 0 && (
                     <section className="py-20 w-full px-6 text-center">
@@ -139,23 +224,23 @@ export default function ProjectUI({
                             </div>
 
                             <div className="flex bg-white/5 rounded-full p-2 border border-white/10">
-                                {['monthly', 'yearly', 'lifetime'].map(d => (
+                                {(['monthly', 'yearly', 'lifetime'] as const).map(d => (
                                     <button key={d} onClick={() => setDuration(d)} className={`px-6 py-2 rounded-full font-bold transition-all capitalize ${duration === d ? 'bg-white text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}>{d}</button>
                                 ))}
                             </div>
                         </div>
 
                         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {PLAN_STRUCTURE.map((plan: any, i: number) => (
+                            {PLAN_STRUCTURE.map((plan, i) => (
                                 <div key={i} style={{ borderRadius: `${STYLES.borderRadius}px` }} className="bg-[#0A0C10] border border-white/5 p-10 flex flex-col text-left group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all" />
                                     <h3 className="text-3xl font-bold text-white mb-2">{plan.name}</h3>
                                     <p className="text-emerald-400 font-mono text-sm mb-6">{plan.subtitle || ''}</p>
                                     <div className="text-4xl font-black text-white mb-8 transition-all min-h-[3rem]">{getPrice(plan.name)}</div>
                                     <ul className="space-y-4 mb-10 flex-grow">
-                                        {plan.features.map((f: string, fi: number) => <li key={fi} className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
+                                        {plan.features.map((f, fi) => <li key={fi} className="flex items-start gap-3 text-neutral-400"><span className="text-emerald-500 mt-1">✔</span> {f}</li>)}
                                     </ul>
-                                    <Link href={CTA_PRIMARY.link} className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
+                                    <Link href="#" className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10">Select Plan</Link>
                                 </div>
                             ))}
                         </div>
@@ -165,14 +250,14 @@ export default function ProjectUI({
                 <section className="py-60 text-center px-6">
                     <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-24 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: `${STYLES.borderRadius * 2}px` }}>
                         <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                        <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">{FINAL_CTA.title}</h2>
-                        <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">{FINAL_CTA.subtitle}</p>
+                        <h2 className="text-6xl md:text-[10rem] font-black mb-12 tracking-tighter leading-none">Get Started Today</h2>
+                        <p className="text-3xl md:text-4xl text-neutral-400 mb-20 max-w-4xl mx-auto leading-tight font-medium">Join the future of dental practice management.</p>
                         <Link
-                            href={FINAL_CTA.link}
+                            href="#"
                             style={{ padding: `${STYLES.buttonPaddingY}px ${STYLES.buttonPaddingX}px`, fontSize: `${STYLES.buttonTextSize}px`, borderRadius: `${STYLES.borderRadius}px` }}
                             className="bg-white text-black font-black text-4xl rounded-[2.5rem] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)]"
                         >
-                            <FaRocket size={40} /> {FINAL_CTA.label}
+                            <FaRocket size={40} /> Get Started
                         </Link>
                     </div>
                 </section>
@@ -180,7 +265,7 @@ export default function ProjectUI({
 
             <footer className="py-32 border-t border-white/5 text-center">
                 <div className="mb-10 text-3xl font-black tracking-tighter text-white/20">TAEDJ ECOSYSTEM</div>
-                <p className="text-xl text-neutral-600 font-medium">© {YEAR} {PROJECT_CONFIG.brand}. Finality through Precision.</p>
+                <p className="text-xl text-neutral-600 font-medium">© 2026 Taedj Dev. Finality through Precision.</p>
             </footer>
         </div>
     );
