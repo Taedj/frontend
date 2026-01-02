@@ -166,7 +166,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                 );
                             })()}
                         </h1>
-                        <p className="text-lg md:text-3xl text-neutral-400 max-w-5xl mx-auto leading-relaxed font-medium px-4">{tHero.subtitle}</p>
+                        <p className="text-lg md:text-3xl text-neutral-400 max-w-5xl mx-auto leading-relaxed font-medium px-4" style={{ fontSize: `clamp(1.125rem, 2.5vw, ${styles.heroSubtitleSize * (styles.fontScale / 100)}px)` }}>{tHero.subtitle}</p>
 
                         <div className={`flex flex-col md:flex-row flex-wrap gap-4 md:gap-8 pt-10 justify-center items-center px-6 ${isRtl ? 'md:flex-row-reverse' : ''}`}>
                             <Link
@@ -238,8 +238,8 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                         return (
                             <section key={i} style={{ paddingTop: `${styles.sectionSpacing / 10}px`, paddingBottom: `${styles.sectionSpacing / 10}px` }} className="space-y-12 md:space-y-20">
                                 <div className="max-w-6xl mx-auto text-center space-y-6 md:space-y-10">
-                                    <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-tight px-4" style={{ fontSize: `clamp(2rem, 5vw, ${5 * (styles.fontScale / 100)}rem)` }}>{tChapter.title}</h2>
-                                    <p className="text-xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto px-4" style={{ fontSize: `clamp(1.25rem, 2vw, ${1.875 * (styles.fontScale / 100)}rem)` }}>{tChapter.description}</p>
+                                    <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-tight px-4" style={{ fontSize: `clamp(2rem, 5vw, ${styles.chapterTitleSize * (styles.fontScale / 100)}px)` }}>{tChapter.title}</h2>
+                                    <p className="text-xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto px-4" style={{ fontSize: `clamp(1.25rem, 2vw, ${styles.chapterDescSize * (styles.fontScale / 100)}px)` }}>{tChapter.description}</p>
                                 </div>
                                 <div className="relative group/chapter w-full px-4 md:px-0">
                                     <div style={{ borderRadius: `${styles.borderRadius}px` }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
@@ -306,7 +306,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                 return (
                                     <div key={i} style={{ borderRadius: `${styles.borderRadius}px` }} className={`bg-[#0A0C10] border border-white/5 p-8 md:p-10 flex flex-col group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden ${isRtl ? 'text-right' : 'text-left'}`}>
                                         <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all opacity-50" />
-                                        <h3 className="text-3xl font-bold text-white mb-2" style={{ fontSize: `clamp(1.5rem, 3vw, ${1.875 * (styles.fontScale / 100)}rem)` }}>{tPlan.name}</h3>
+                                        <h3 className="text-3xl font-bold text-white mb-2" style={{ fontSize: `clamp(1.5rem, 3vw, ${styles.pricingNameSize * (styles.fontScale / 100)}px)` }}>{tPlan.name}</h3>
                                         <p className="text-emerald-400 font-mono text-sm mb-6 uppercase tracking-widest">{tPlan.subtitle || ''}</p>
                                         <div className="text-4xl font-black text-white mb-8 transition-all min-h-[3rem]">{getPrice(plan.name)}</div>
                                         <ul className="space-y-4 mb-10 flex-grow">
@@ -356,6 +356,6 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                 <div className="mb-10 text-3xl font-black tracking-tighter text-white/20">{ui.ecosystem}</div>
                 <p className="text-xl text-neutral-600 font-medium">© {new Date().getFullYear()} {config.brand}. {ui.finality}</p>
             </footer>
-        </div>
+        </div >
     );
 }

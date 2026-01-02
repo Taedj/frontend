@@ -64,6 +64,12 @@ export interface ProjectStyles {
   heroVideoWidth: number;
   heroVideoHeight: number;
   fontScale: number;
+  heroSubtitleSize: number;
+  chapterTitleSize: number;
+  chapterDescSize: number;
+  pricingNameSize: number;
+  reportTitleSize: number;
+  reportTextSize: number;
 }
 
 export interface ProjectDetails {
@@ -398,6 +404,12 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         heroVideoWidth: parseInt(extractValue(enContent, 'Hero Video Width (px):', 'UI & Styling')) || 0,
         heroVideoHeight: parseInt(extractValue(enContent, 'Hero Video Height (px):', 'UI & Styling')) || 0,
         fontScale: parseInt(extractValue(enContent, 'Font Scale:', 'UI & Styling')) || 100,
+        heroSubtitleSize: parseInt(extractValue(enContent, 'Hero Subtitle Size:', 'UI & Styling')) || 32,
+        chapterTitleSize: parseInt(extractValue(enContent, 'Chapter Title Size:', 'UI & Styling')) || 72,
+        chapterDescSize: parseInt(extractValue(enContent, 'Chapter Desc Size:', 'UI & Styling')) || 30,
+        pricingNameSize: parseInt(extractValue(enContent, 'Pricing Name Size:', 'UI & Styling')) || 30,
+        reportTitleSize: parseInt(extractValue(enContent, 'Report Title Size:', 'UI & Styling')) || 96,
+        reportTextSize: parseInt(extractValue(enContent, 'Report Text Size:', 'UI & Styling')) || 20,
       },
       pricing: enPricing,
       remotePricing: remotePricingResponse?.pricing,
