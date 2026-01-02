@@ -156,6 +156,9 @@ export async function getProjects() {
       ? `https://api.github.com/user/repos?per_page=100&sort=updated&type=owner`
       : `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`;
 
+    console.log(`[GITHUB] Using Token: ${GITHUB_TOKEN ? 'YES' : 'NO'}`);
+    console.log(`[GITHUB] URL: ${url}`);
+
     const reposRes = await fetch(url, {
       headers: HEADERS,
       cache: 'no-store'
@@ -166,6 +169,7 @@ export async function getProjects() {
       return [];
     }
     const repos = await reposRes.json() as GitHubRepo[];
+    console.log(`[GITHUB] Found ${repos.length} repositories`);
 
     const projectPromises = repos.map(async (repo: GitHubRepo) => {
       try {
@@ -177,6 +181,7 @@ export async function getProjects() {
         ]);
 
         if (configData.ok && mdData.ok) {
+          console.log(`[GITHUB] Found valid project: ${repo.name}`);
           const config = JSON.parse(configData.content) as ProjectConfig;
           const mdContent = mdData.content;
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');

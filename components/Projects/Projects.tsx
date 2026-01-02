@@ -79,7 +79,7 @@ const Projects = () => {
                                 Explore our professional solutions.
                             </p>
                             <span className="text-[10px] text-emerald-500/30 uppercase tracking-widest bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10">
-                                Ver: {buildTime}
+                                Ver: {buildTime} | Projects: {projectsData.length}
                             </span>
                         </div>
                     </div>
