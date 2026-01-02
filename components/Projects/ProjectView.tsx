@@ -146,7 +146,10 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                 <section className="pt-20 pb-20 text-center w-full px-6">
                     <div className="max-w-[95%] mx-auto space-y-12">
                         <h1
-                            style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: `clamp(2.5rem, 6vw, ${styles.heroTitleSize}px)` }}
+                            style={{
+                                filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))',
+                                fontSize: `clamp(2.5rem, 6vw, ${styles.heroTitleSize * (styles.fontScale / 100)}px)`
+                            }}
                             className="font-black tracking-tighter leading-[1.1] text-white"
                         >
                             {(() => {

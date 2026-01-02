@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 type Language = 'en' | 'ar' | 'fr';
 
 export default function FeaturesView({ data }: { data: ProjectDetails }) {
-    const { config, report, chapters } = data;
+    const { config, report, chapters, styles } = data;
     const [lang, setLang] = useState<Language>('en');
 
     const isRtl = lang === 'ar';
@@ -121,7 +121,7 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
                                         </span>
                                     </div>
 
-                                    <h1 style={{ fontSize: `clamp(2.5rem, 5vw, 6rem)` }} className="font-black tracking-tighter uppercase italic text-white leading-[0.9]">
+                                    <h1 style={{ fontSize: `clamp(2.5rem, 5vw, ${6 * (styles.fontScale / 100)}rem)` }} className="font-black tracking-tighter uppercase italic text-white leading-[0.9]">
                                         {ui.reportTitle}
                                     </h1>
 
@@ -145,7 +145,7 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
                                         >
                                             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[80px] group-hover:bg-emerald-500/10 transition-colors" />
 
-                                            <div className="relative z-10 prose prose-invert prose-xl max-w-none prose-h1:text-4xl prose-h1:font-black prose-h1:uppercase prose-h1:tracking-tighter prose-h1:text-emerald-500 prose-h1:mb-8 prose-h1:leading-tight prose-h2:text-2xl prose-h2:text-white prose-h2:font-bold prose-h2:mb-6 prose-h2:opacity-80 prose-p:text-neutral-400 prose-p:text-xl prose-p:leading-relaxed prose-p:font-light prose-li:text-neutral-300 prose-li:text-lg prose-li:mb-2 prose-strong:text-emerald-400 prose-strong:font-bold">
+                                            <div style={{ fontSize: `${styles.fontScale}%` }} className="relative z-10 prose prose-invert prose-xl max-w-none prose-h1:text-4xl prose-h1:font-black prose-h1:uppercase prose-h1:tracking-tighter prose-h1:text-emerald-500 prose-h1:mb-8 prose-h1:leading-tight prose-h2:text-2xl prose-h2:text-white prose-h2:font-bold prose-h2:mb-6 prose-h2:opacity-80 prose-p:text-neutral-400 prose-p:text-xl prose-p:leading-relaxed prose-p:font-light prose-li:text-neutral-300 prose-li:text-lg prose-li:mb-2 prose-strong:text-emerald-400 prose-strong:font-bold">
 
                                                 <ReactMarkdown>{section}</ReactMarkdown>
                                             </div>

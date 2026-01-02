@@ -63,6 +63,7 @@ export interface ProjectStyles {
   heroImgScale: number;
   heroVideoWidth: number;
   heroVideoHeight: number;
+  fontScale: number;
 }
 
 export interface ProjectDetails {
@@ -396,6 +397,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         heroImgScale: parseInt(extractValue(enContent, 'Hero Img Scale:', 'UI & Styling')) || 100,
         heroVideoWidth: parseInt(extractValue(enContent, 'Hero Video Width (px):', 'UI & Styling')) || 0,
         heroVideoHeight: parseInt(extractValue(enContent, 'Hero Video Height (px):', 'UI & Styling')) || 0,
+        fontScale: parseInt(extractValue(enContent, 'Font Scale:', 'UI & Styling')) || 100,
       },
       pricing: enPricing,
       remotePricing: remotePricingResponse?.pricing,
