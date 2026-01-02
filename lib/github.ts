@@ -123,7 +123,15 @@ export async function getProjects() {
           const config = await configRes.json() as ProjectConfig;
           const mdContent = await mdRes.text();
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
-          const cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`;
+          // Use the branch that worked for the image
+          const branch = configRes.url.includes('/master/') ? 'master' : 'main';
+          
+          // Detect correct casing for card.png vs Card.png
+          let cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`;
+          const cardTest = await fetch(cardImageUrl, { method: 'HEAD', cache: 'no-store' });
+          if (!cardTest.ok) {
+            cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/Card.png`;
+          }
 
           return {
             name: config.name || repo.name,
