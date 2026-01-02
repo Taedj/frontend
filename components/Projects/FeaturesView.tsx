@@ -16,13 +16,45 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
 
     const isRtl = lang === 'ar';
 
+    // UI Translations
+    const ui = {
+        en: {
+            digitalProject: 'Digital Project',
+            manualTitle: 'Interactive Project Manual',
+            reportTitle: 'Comprehensive Feature Report',
+            intro: `Discover how ${config.name} redefines possibilities. This manual explores the core benefits and technical capabilities that sets this project apart.`,
+            legacyWarning: 'Warning: This project uses legacy view. Please update REPORT.md for full manual experience.',
+            getStarted: 'Get Started Now',
+            footer: 'Building the future of digital ecosystems through intelligent engineering.'
+        },
+        ar: {
+            digitalProject: 'المشروع الرقمي',
+            manualTitle: 'دليل المستخدم التفاعلي',
+            reportTitle: 'تقرير الإمكانيات الشامل',
+            intro: `اكتشف كيف يغير ${config.name} قواعد اللعبة. هذا التقرير يوضح الفوائد والقدرات التقنية التي تميز هذا المشروع.`,
+            legacyWarning: 'تحذير: هذا المشروع يستخدم نظام العرض القديم. يرجى تحديث REPORT.md للاستفادة من الدليل التفاعلي.',
+            getStarted: 'ابدأ الاستخدام الآن',
+            footer: 'بناء مستقبل المنظومات الرقمية من خلال الهندسة الذكية.'
+        },
+        fr: {
+            digitalProject: 'Projet Numérique',
+            manualTitle: 'Manuel de Projet Interactif',
+            reportTitle: 'Rapport Complet des Fonctionnalités',
+            intro: `Découvrez comment ${config.name} redéfinit les possibilités. Ce manuel explore les avantages fondamentaux et les capacités techniques qui distinguent ce projet.`,
+            legacyWarning: 'Attention : Ce projet utilise une vue héritée. Veuillez mettre à jour REPORT.md pour une expérience complète.',
+            getStarted: 'Commencer Maintenant',
+            footer: 'Construire l\'avenir des écosystèmes numériques grâce à une ingénierie intelligente.'
+        }
+    }[lang];
+
     // Fallback if no report is present
     const hasReport = report && (report.en || report.ar || report.fr);
     const rawContent = hasReport ? report[lang] : '';
+    // If specific lang content is missing, fallback to English
+    const contentToRender = rawContent || (report?.en || '');
 
     // Split content into cards based on "# " (h1 equivalent in markdown)
-    // We assume the [EN] tag was stripped in github.ts, leaving the rest.
-    const sections = rawContent
+    const sections = contentToRender
         .split(/(?=\n# )|(?=^# )/g)
         .map(s => s.trim())
         .filter(s => s.length > 0);
@@ -30,23 +62,25 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
     return (
         <div className={`min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden flex flex-col ${isRtl ? 'font-arabic' : ''}`} dir={isRtl ? 'rtl' : 'ltr'}>
             {/* Premium Header */}
-            <div className="fixed top-0 left-0 right-0 h-28 bg-[#080A0E]/80 backdrop-blur-2xl z-50 border-b border-white/5 flex items-center justify-between px-6 md:px-12">
-                <Link href={`/projects/${config.slug}`} className="group flex items-center gap-6">
-                    <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:border-emerald-500 group-hover:text-black transition-all duration-500 shadow-lg shadow-emerald-500/0 group-hover:shadow-emerald-500/20">
-                        <FaArrowLeft className={isRtl ? 'rotate-180 text-xl' : 'text-xl'} />
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="font-black tracking-[0.3em] uppercase text-[10px] text-emerald-500 mb-1">
-                            {isRtl ? 'المشروع الرقمي' : 'Digital Project'}
-                        </span>
-                        <span className="font-bold text-xl tracking-tight group-hover:text-emerald-400 transition-colors uppercase">
-                            {config.name}
-                        </span>
-                    </div>
-                </Link>
+            <div className={`fixed top-0 left-0 right-0 h-28 bg-[#080A0E]/80 backdrop-blur-2xl z-50 border-b border-white/5 flex items-center justify-between px-6 md:px-12 ${isRtl ? 'flex-row-reverse' : ''}`}>
+                <div role="none" className="flex items-center gap-6">
+                    <Link href={`/projects/${config.slug}`} className="group flex items-center gap-6">
+                        <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:border-emerald-500 group-hover:text-black transition-all duration-500 shadow-lg shadow-emerald-500/0 group-hover:shadow-emerald-500/20">
+                            <FaArrowLeft className={isRtl ? 'rotate-180 text-xl' : 'text-xl'} />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="font-black tracking-[0.3em] uppercase text-[10px] text-emerald-500 mb-1">
+                                {ui.digitalProject}
+                            </span>
+                            <span className="font-bold text-xl tracking-tight group-hover:text-emerald-400 transition-colors uppercase">
+                                {config.name}
+                            </span>
+                        </div>
+                    </Link>
+                </div>
 
                 {/* Language Switcher */}
-                <div className="flex items-center gap-2 bg-white/5 p-2 rounded-2xl border border-white/5 backdrop-blur-md">
+                <div dir="ltr" className="flex items-center gap-2 bg-white/5 p-2 rounded-2xl border border-white/5 backdrop-blur-md">
                     {(['en', 'fr', 'ar'] as Language[]).map((l) => (
                         <button
                             key={l}
@@ -83,18 +117,16 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
                                     <div className="inline-flex items-center gap-4 bg-emerald-500/10 border border-emerald-500/20 px-6 py-2 rounded-full">
                                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                                         <span className="text-emerald-500 font-black uppercase tracking-widest text-xs">
-                                            {isRtl ? 'دليل المستخدم التفاعلي' : 'Interactive Project Manual'}
+                                            {ui.manualTitle}
                                         </span>
                                     </div>
 
                                     <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase italic text-white leading-[0.9]">
-                                        {isRtl ? 'تقرير الإمكانيات الشامل' : 'Comprehensive Feature Report'}
+                                        {ui.reportTitle}
                                     </h1>
 
                                     <p className="text-2xl md:text-3xl text-neutral-400 font-light leading-relaxed">
-                                        {isRtl
-                                            ? `اكتشف كيف يغير ${config.name} قواعد اللعبة. هذا التقرير يوضح الفوائد والقدرات التقنية التي تميز هذا المشروع.`
-                                            : `Discover how ${config.name} redefines possibilities. This manual explores the core benefits and technical capabilities that sets this project apart.`}
+                                        {ui.intro}
                                     </p>
                                 </div>
                             </div>
@@ -109,7 +141,7 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
                                             whileInView={{ opacity: 1, y: 0 }}
                                             viewport={{ once: true }}
                                             transition={{ delay: idx * 0.1, duration: 0.8 }}
-                                            className="group bg-[#0A0C10] border border-white/5 p-12 md:p-16 rounded-[2.5rem] hover:border-emerald-500/20 hover:bg-[#0D1117] transition-all duration-500 flex flex-col relative overflow-hidden"
+                                            className={`group bg-[#0A0C10] border border-white/5 p-12 md:p-16 rounded-[2.5rem] hover:border-emerald-500/20 hover:bg-[#0D1117] transition-all duration-500 flex flex-col relative overflow-hidden ${isRtl ? 'text-right' : 'text-left'}`}
                                         >
                                             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[80px] group-hover:bg-emerald-500/10 transition-colors" />
 
@@ -138,9 +170,7 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
                                     {/* Legacy Warning */}
                                     <div className="md:col-span-2 p-12 bg-red-500/5 border border-red-500/10 rounded-[2.5rem] text-center">
                                         <p className="text-red-400/60 font-medium italic text-lg uppercase tracking-widest">
-                                            {isRtl
-                                                ? 'تحذير: هذا المشروع يستخدم نظام العرض القديم. يرجى تحديث REPORT.md للاستفادة من الدليل التفاعلي.'
-                                                : 'Warning: This project uses legacy view. Please update REPORT.md for full manual experience.'}
+                                            {ui.legacyWarning}
                                         </p>
                                     </div>
                                 </div>
@@ -155,14 +185,14 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
                 <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-16">
                     <div className="space-y-4 text-center md:text-left">
                         <h4 className="text-white font-black uppercase tracking-[0.4em] text-sm opacity-50">{data.config.brand}</h4>
-                        <p className="text-neutral-500 text-lg max-w-md">© {new Date().getFullYear()} Building the future of digital ecosystems through intelligent engineering.</p>
+                        <p className="text-neutral-500 text-lg max-w-md">© {new Date().getFullYear()} {ui.footer}</p>
                     </div>
 
                     <Link
                         href={`/projects/${config.slug}`}
                         className="group relative flex items-center gap-8 bg-emerald-500 text-[#080A0E] px-16 py-8 rounded-full font-black text-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_20px_60px_rgba(16,185,129,0.2)]"
                     >
-                        {isRtl ? 'ابدأ الاستخدام الآن' : 'Get Started Now'}
+                        {ui.getStarted}
                         <div className={`w-12 h-12 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors`}>
                             <FaChevronRight className={`transition-transform duration-500 ${isRtl ? 'rotate-180 group-hover:-translate-x-2' : 'group-hover:translate-x-2'}`} />
                         </div>
