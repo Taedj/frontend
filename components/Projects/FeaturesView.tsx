@@ -62,14 +62,14 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
                             className="space-y-16"
                         >
                             {hasReport ? (
-                                <article className="prose prose-invert prose-2xl max-w-none 
+                                <article className={`prose prose-invert prose-2xl max-w-none 
                                     prose-headings:font-black prose-headings:tracking-tighter prose-headings:uppercase 
                                     prose-h1:text-7xl prose-h1:text-emerald-500 prose-h1:italic
                                     prose-h2:text-4xl prose-h2:text-white prose-h2:border-b prose-h2:border-white/5 prose-h2:pb-4
                                     prose-p:text-neutral-400 prose-p:leading-relaxed prose-p:font-light
                                     prose-strong:text-emerald-400 prose-strong:font-bold
                                     prose-li:text-neutral-300
-                                ">
+                                `}>
                                     <ReactMarkdown>{content}</ReactMarkdown>
                                 </article>
                             ) : (
