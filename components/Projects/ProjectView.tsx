@@ -56,13 +56,13 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
         <div className="min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative">
             {styles.heroBackground && (
                 <div className="fixed inset-0 z-0 opacity-20">
-                    <img src={styles.heroBackground.startsWith('http') ? styles.heroBackground : `https://raw.githubusercontent.com/Taedj/${config.slug}/main/CONTROL_WEBSITE/screenshots/${styles.heroBackground}`} className="w-full h-full object-cover" alt="" />
+                    <img src={styles.heroBackground} className="w-full h-full object-cover" alt="" />
                 </div>
             )}
 
             <div className="fixed top-0 left-0 right-0 h-24 bg-[#080A0E]/90 backdrop-blur-2xl z-40 border-b border-white/5 flex items-center px-10">
                 {styles.brandLogo ? (
-                    <img src={styles.brandLogo.startsWith('http') ? styles.brandLogo : `https://raw.githubusercontent.com/Taedj/${config.slug}/main/CONTROL_WEBSITE/screenshots/${styles.brandLogo}`} className="h-12 w-auto object-contain" />
+                    <img src={styles.brandLogo} className="h-12 w-auto object-contain" />
                 ) : (
                     <div className="text-4xl font-black tracking-tighter text-white/90 underline decoration-emerald-500 decoration-4 underline-offset-8">{config.brand}</div>
                 )}
@@ -129,33 +129,33 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                 <section className="pb-20 md:pb-40 w-full px-4 md:px-10">
                     <div style={{ borderRadius: `${styles.borderRadius}px` }} className="relative aspect-video overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(16,185,129,0.1)] bg-[#0A0C10] group/hero w-full mx-auto flex items-center justify-center">
                         {hero.image.match(/\.(mp4|webm)$/i) ? (
-                            <video 
-                                src={hero.image} 
-                                autoPlay 
-                                muted 
-                                loop 
-                                playsInline 
-                                controls 
-                                onClick={(e) => e.currentTarget.muted = !e.currentTarget.muted} 
-                                style={{ 
+                            <video
+                                src={hero.image}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                controls
+                                onClick={(e) => e.currentTarget.muted = !e.currentTarget.muted}
+                                style={{
                                     width: styles.heroVideoWidth ? `${styles.heroVideoWidth}px` : '100%',
                                     height: styles.heroVideoHeight ? `${styles.heroVideoHeight}px` : 'auto',
                                     maxWidth: `${styles.heroImgWidth}%`,
                                     transform: `translateY(${styles.heroImgOffsetY}px) scale(${styles.heroImgScale / 100})`,
                                     transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                                 }}
-                                className="object-cover transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer" 
+                                className="object-cover transition-all duration-1000 group-hover/hero:scale-[1.01] cursor-pointer"
                             />
                         ) : (
-                            <img 
-                                src={hero.image} 
-                                alt={config.name} 
-                                style={{ 
+                            <img
+                                src={hero.image}
+                                alt={config.name}
+                                style={{
                                     maxWidth: `${styles.heroImgWidth}%`,
                                     transform: `translateY(${styles.heroImgOffsetY}px) scale(${styles.heroImgScale / 100})`,
                                     transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                                 }}
-                                className="w-full h-full object-contain transition-all duration-1000 group-hover/hero:scale-[1.01]" 
+                                className="w-full h-full object-contain transition-all duration-1000 group-hover/hero:scale-[1.01]"
                             />
                         )}
                     </div>
@@ -163,9 +163,9 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
 
                 <div className="py-40 max-w-[95%] mx-auto text-left">
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-40" />
-                    
+
                     {chapters.map((c, i) => (
-                        <section key={i} style={{ paddingTop: `${styles.sectionSpacing/10}px`, paddingBottom: `${styles.sectionSpacing/10}px` }} className="space-y-20">
+                        <section key={i} style={{ paddingTop: `${styles.sectionSpacing / 10}px`, paddingBottom: `${styles.sectionSpacing / 10}px` }} className="space-y-20">
                             <div className="max-w-6xl mx-auto text-center space-y-10">
                                 <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">{c.title}</h2>
                                 <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">{c.description}</p>

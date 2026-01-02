@@ -259,7 +259,22 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         : getRawAssetUrl(slug, `CONTROL_WEBSITE/screenshots/${path}`, branch);
     };
 
-    const heroImage = getAssetUrl('cover.mp4');
+    // Detect hero image/video
+    let heroAsset = 'cover.mp4';
+    const heroCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${slug}/contents/CONTROL_WEBSITE/screenshots/cover.mp4?ref=${branch}`, {
+      method: 'HEAD',
+      headers: HEADERS,
+      cache: 'no-store'
+    });
+
+    if (!heroCheck.ok) {
+      heroAsset = 'cover.png';
+    }
+
+    const heroImage = getAssetUrl(heroAsset);
+
+    const logo = extractValue(mdContent, 'Brand Logo:', 'UI & Styling');
+    const background = extractValue(mdContent, 'Hero Background:', 'UI & Styling');
 
     return {
       config: { ...config, slug },
@@ -288,8 +303,8 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         buttonTextSize: parseInt(extractValue(mdContent, 'Button Text Size:', 'UI & Styling')) || 32,
         sectionSpacing: parseInt(extractValue(mdContent, 'Section Spacing:', 'UI & Styling')) || 160,
         borderRadius: parseInt(extractValue(mdContent, 'Border Radius:', 'UI & Styling')) || 32,
-        brandLogo: extractValue(mdContent, 'Brand Logo:', 'UI & Styling'),
-        heroBackground: extractValue(mdContent, 'Hero Background:', 'UI & Styling'),
+        brandLogo: logo ? getAssetUrl(logo) : '',
+        heroBackground: background ? getAssetUrl(background) : '',
         heroImgWidth: parseInt(extractValue(mdContent, 'Hero Img Width:', 'UI & Styling')) || 100,
         heroImgOffsetY: parseInt(extractValue(mdContent, 'Hero Img Offset Y:', 'UI & Styling')) || 0,
         heroImgScale: parseInt(extractValue(mdContent, 'Hero Img Scale:', 'UI & Styling')) || 100,
