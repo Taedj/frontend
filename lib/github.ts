@@ -31,6 +31,10 @@ export interface Chapter {
     imgOffsetY: number;
     imgScale: number;
   };
+  translations?: {
+    ar?: { title: string; description: string };
+    fr?: { title: string; description: string };
+  };
 }
 
 export interface PricingPlan {
@@ -38,6 +42,10 @@ export interface PricingPlan {
   subtitle: string;
   price: string;
   features: string[];
+  translations?: {
+    ar?: { name: string; subtitle: string; price: string; features: string[] };
+    fr?: { name: string; subtitle: string; price: string; features: string[] };
+  };
 }
 
 export interface ProjectStyles {
@@ -67,15 +75,26 @@ export interface ProjectDetails {
     ctaSecondaryLabel: string;
     ctaSecondaryLink: string;
     image: string;
+    translations?: {
+      ar?: { title: string; subtitle: string; ctaPrimaryLabel: string; ctaSecondaryLabel: string };
+      fr?: { title: string; subtitle: string; ctaPrimaryLabel: string; ctaSecondaryLabel: string };
+    };
   };
   chapters: Chapter[];
-
   vision: string;
+  visionTranslations?: {
+    ar?: string;
+    fr?: string;
+  };
   finalCta: {
     title: string;
     subtitle: string;
     buttonLabel: string;
     buttonLink: string;
+    translations?: {
+      ar?: { title: string; subtitle: string; buttonLabel: string };
+      fr?: { title: string; subtitle: string; buttonLabel: string };
+    };
   };
   styles: ProjectStyles;
   pricing: PricingPlan[];
@@ -237,6 +256,45 @@ export async function getProjects() {
   }
 }
 
+/**
+ * Splits content by language tags [EN], [AR], [FR]
+ */
+function splitByLanguage(content: string): Record<string, string> {
+  const languages: Record<string, string> = {};
+  const tags = ['[EN]', '[AR]', '[FR]'];
+
+  // If no tags found, assume entire content is English
+  if (!tags.some(tag => content.includes(tag))) {
+    languages.en = content;
+    return languages;
+  }
+
+  let currentLang = '';
+  let currentContent: string[] = [];
+
+  const lines = content.split('\n');
+  for (const line of lines) {
+    const trimmed = line.trim();
+    const tagMatch = tags.find(tag => trimmed.includes(tag));
+
+    if (tagMatch) {
+      if (currentLang) {
+        languages[currentLang] = currentContent.join('\n').trim();
+      }
+      currentLang = tagMatch.replace('[', '').replace(']', '').toLowerCase();
+      currentContent = [];
+    } else if (currentLang) {
+      currentContent.push(line);
+    }
+  }
+
+  if (currentLang) {
+    languages[currentLang] = currentContent.join('\n').trim();
+  }
+
+  return languages;
+}
+
 export async function getProjectBySlug(slug: string): Promise<ProjectDetails | null> {
   try {
     const repoInfo = await getRepoInfo(slug);
@@ -258,6 +316,12 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
     const mdContent = mdData.content;
     const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() as GistPricingResponse : null;
 
+    // Localized blocks
+    const localizedBlocks = splitByLanguage(mdContent);
+    const enContent = localizedBlocks.en || mdContent;
+    const arContent = localizedBlocks.ar;
+    const frContent = localizedBlocks.fr;
+
     // Asset logic for private repos
     const getAssetUrl = (path: string) => {
       return repoInfo.private
@@ -278,53 +342,113 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
     }
 
     const heroImage = getAssetUrl(heroAsset);
+    const logo = extractValue(enContent, 'Brand Logo:', 'UI & Styling');
+    const background = extractValue(enContent, 'Hero Background:', 'UI & Styling');
 
-    const logo = extractValue(mdContent, 'Brand Logo:', 'UI & Styling');
-    const background = extractValue(mdContent, 'Hero Background:', 'UI & Styling');
+    const heroParse = (content: string) => ({
+      title: extractValue(content, 'Title:', 'Hero Section'),
+      subtitle: extractValue(content, 'Subtitle:', 'Hero Section'),
+      ctaPrimaryLabel: extractValue(content, 'CTA Primary Label:', 'Hero Section') || 'Download Now',
+      ctaSecondaryLabel: extractValue(content, 'CTA Secondary Label:', 'Hero Section') || 'Learn More',
+    });
 
-    return {
+    const finalCtaParse = (content: string) => ({
+      title: extractValue(content, 'Title:', 'Final CTA'),
+      subtitle: extractValue(content, 'Subtitle:', 'Final CTA'),
+      buttonLabel: extractValue(content, 'Button Label:', 'Final CTA') || 'Get Started',
+    });
+
+    const enHero = heroParse(enContent);
+    const enChapters = parseChapters(enContent, slug, branch, repoInfo.private);
+    const enVision = extractValue(enContent, 'Caption:', 'Demo & Vision');
+    const enFinalCta = finalCtaParse(enContent);
+    const enPricing = parsePricing(enContent);
+
+    const details: ProjectDetails = {
       config: { ...config, slug },
       hero: {
-        title: extractValue(mdContent, 'Title:', 'Hero Section'),
-        subtitle: extractValue(mdContent, 'Subtitle:', 'Hero Section'),
-        ctaPrimaryLabel: extractValue(mdContent, 'CTA Primary Label:', 'Hero Section') || 'Download Now',
-        ctaPrimaryLink: extractValue(mdContent, 'CTA Primary Link:', 'Hero Section') || '#',
-        ctaSecondaryLabel: extractValue(mdContent, 'CTA Secondary Label:', 'Hero Section') || 'Learn More',
-        ctaSecondaryLink: extractValue(mdContent, 'CTA Secondary Link:', 'Hero Section') || '#',
-        image: heroImage
+        ...enHero,
+        ctaPrimaryLink: extractValue(enContent, 'CTA Primary Link:', 'Hero Section') || '#',
+        ctaSecondaryLink: extractValue(enContent, 'CTA Secondary Link:', 'Hero Section') || '#',
+        image: heroImage,
+        translations: {}
       },
-      chapters: parseChapters(mdContent, slug, branch, repoInfo.private),
-      vision: extractValue(mdContent, 'Caption:', 'Demo & Vision'),
+      chapters: enChapters,
+      vision: enVision,
+      visionTranslations: {},
       finalCta: {
-        title: extractValue(mdContent, 'Title:', 'Final CTA'),
-        subtitle: extractValue(mdContent, 'Subtitle:', 'Final CTA'),
-        buttonLabel: extractValue(mdContent, 'Button Label:', 'Final CTA') || 'Get Started',
-        buttonLink: extractValue(mdContent, 'Button Link:', 'Final CTA') || '#'
+        ...enFinalCta,
+        buttonLink: extractValue(enContent, 'Button Link:', 'Final CTA') || '#',
+        translations: {}
       },
       styles: {
-        heroTitleSize: parseInt(extractValue(mdContent, 'Hero Title Size:', 'UI & Styling')) || 120,
-        finalCtaTitleSize: parseInt(extractValue(mdContent, 'Final CTA Title Size:', 'UI & Styling')) || 160,
-        buttonPaddingX: parseInt(extractValue(mdContent, 'Button Padding X:', 'UI & Styling')) || 64,
-        buttonPaddingY: parseInt(extractValue(mdContent, 'Button Padding Y:', 'UI & Styling')) || 32,
-        buttonTextSize: parseInt(extractValue(mdContent, 'Button Text Size:', 'UI & Styling')) || 32,
-        sectionSpacing: parseInt(extractValue(mdContent, 'Section Spacing:', 'UI & Styling')) || 160,
-        borderRadius: parseInt(extractValue(mdContent, 'Border Radius:', 'UI & Styling')) || 32,
+        heroTitleSize: parseInt(extractValue(enContent, 'Hero Title Size:', 'UI & Styling')) || 120,
+        finalCtaTitleSize: parseInt(extractValue(enContent, 'Final CTA Title Size:', 'UI & Styling')) || 160,
+        buttonPaddingX: parseInt(extractValue(enContent, 'Button Padding X:', 'UI & Styling')) || 64,
+        buttonPaddingY: parseInt(extractValue(enContent, 'Button Padding Y:', 'UI & Styling')) || 32,
+        buttonTextSize: parseInt(extractValue(enContent, 'Button Text Size:', 'UI & Styling')) || 32,
+        sectionSpacing: parseInt(extractValue(enContent, 'Section Spacing:', 'UI & Styling')) || 160,
+        borderRadius: parseInt(extractValue(enContent, 'Border Radius:', 'UI & Styling')) || 32,
         brandLogo: logo ? getAssetUrl(logo) : '',
         heroBackground: background ? getAssetUrl(background) : '',
-        heroImgWidth: parseInt(extractValue(mdContent, 'Hero Img Width:', 'UI & Styling')) || 100,
-        heroImgOffsetY: parseInt(extractValue(mdContent, 'Hero Img Offset Y:', 'UI & Styling')) || 0,
-        heroImgScale: parseInt(extractValue(mdContent, 'Hero Img Scale:', 'UI & Styling')) || 100,
-        heroVideoWidth: parseInt(extractValue(mdContent, 'Hero Video Width (px):', 'UI & Styling')) || 0,
-        heroVideoHeight: parseInt(extractValue(mdContent, 'Hero Video Height (px):', 'UI & Styling')) || 0,
+        heroImgWidth: parseInt(extractValue(enContent, 'Hero Img Width:', 'UI & Styling')) || 100,
+        heroImgOffsetY: parseInt(extractValue(enContent, 'Hero Img Offset Y:', 'UI & Styling')) || 0,
+        heroImgScale: parseInt(extractValue(enContent, 'Hero Img Scale:', 'UI & Styling')) || 100,
+        heroVideoWidth: parseInt(extractValue(enContent, 'Hero Video Width (px):', 'UI & Styling')) || 0,
+        heroVideoHeight: parseInt(extractValue(enContent, 'Hero Video Height (px):', 'UI & Styling')) || 0,
       },
-      pricing: parsePricing(mdContent),
+      pricing: enPricing,
       remotePricing: remotePricingResponse?.pricing,
       report: reportData.ok ? parseReport(reportData.content) : undefined,
-      debug: {
-        branch,
-        repoName: slug
-      }
     };
+
+    // Populate Arabic
+    if (arContent) {
+      if (details.hero.translations) details.hero.translations.ar = heroParse(arContent);
+      if (details.finalCta.translations) details.finalCta.translations.ar = finalCtaParse(arContent);
+      details.visionTranslations!.ar = extractValue(arContent, 'Caption:', 'Demo & Vision');
+
+      const arChapters = parseChapters(arContent, slug, branch, repoInfo.private);
+      details.chapters.forEach((c, i) => {
+        if (arChapters[i]) {
+          c.translations = c.translations || {};
+          c.translations.ar = { title: arChapters[i].title, description: arChapters[i].description };
+        }
+      });
+
+      const arPricing = parsePricing(arContent);
+      details.pricing.forEach((p, i) => {
+        if (arPricing[i]) {
+          p.translations = p.translations || {};
+          p.translations.ar = { ...arPricing[i] };
+        }
+      });
+    }
+
+    // Populate French
+    if (frContent) {
+      if (details.hero.translations) details.hero.translations.fr = heroParse(frContent);
+      if (details.finalCta.translations) details.finalCta.translations.fr = finalCtaParse(frContent);
+      details.visionTranslations!.fr = extractValue(frContent, 'Caption:', 'Demo & Vision');
+
+      const frChapters = parseChapters(frContent, slug, branch, repoInfo.private);
+      details.chapters.forEach((c, i) => {
+        if (frChapters[i]) {
+          c.translations = c.translations || {};
+          c.translations.fr = { title: frChapters[i].title, description: frChapters[i].description };
+        }
+      });
+
+      const frPricing = parsePricing(frContent);
+      details.pricing.forEach((p, i) => {
+        if (frPricing[i]) {
+          p.translations = p.translations || {};
+          p.translations.fr = { ...frPricing[i] };
+        }
+      });
+    }
+
+    return details;
   } catch (error) {
     console.error(`Error fetching project ${slug}:`, error);
     return null;
