@@ -108,12 +108,12 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
                             className="space-y-24"
                         >
                             {/* Page Intro Card */}
-                            <div className="relative group overflow-hidden bg-gradient-to-br from-[#0D1117] to-[#080A0E] border border-white/5 p-16 md:p-24 rounded-[3rem] shadow-2xl">
+                            <div className="relative group overflow-hidden bg-gradient-to-br from-[#0D1117] to-[#080A0E] border border-white/5 p-12 md:p-24 rounded-[3rem] shadow-2xl">
                                 <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 rotate-12">
                                     <FaBookOpen className="text-[12rem] text-emerald-500" />
                                 </div>
 
-                                <div className="relative z-10 space-y-8 max-w-4xl">
+                                <div className="relative z-10 space-y-8 max-w-5xl">
                                     <div className="inline-flex items-center gap-4 bg-emerald-500/10 border border-emerald-500/20 px-6 py-2 rounded-full">
                                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                                         <span className="text-emerald-500 font-black uppercase tracking-widest text-xs">
@@ -121,11 +121,11 @@ export default function FeaturesView({ data }: { data: ProjectDetails }) {
                                         </span>
                                     </div>
 
-                                    <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase italic text-white leading-[0.9]">
+                                    <h1 style={{ fontSize: `clamp(2.5rem, 5vw, 6rem)` }} className="font-black tracking-tighter uppercase italic text-white leading-[0.9]">
                                         {ui.reportTitle}
                                     </h1>
 
-                                    <p className="text-2xl md:text-3xl text-neutral-400 font-light leading-relaxed">
+                                    <p className="text-xl md:text-3xl text-neutral-400 font-light leading-relaxed">
                                         {ui.intro}
                                     </p>
                                 </div>
