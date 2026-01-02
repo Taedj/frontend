@@ -1,7 +1,17 @@
 
 
 const GITHUB_USERNAME = 'Taedj';
-const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}`;
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
+const HEADERS = {
+  ...(GITHUB_TOKEN && { Authorization: `token ${GITHUB_TOKEN}` }),
+  Accept: 'application/vnd.github.v3+json',
+};
+
+const RAW_HEADERS = {
+  ...(GITHUB_TOKEN && { Authorization: `token ${GITHUB_TOKEN}` }),
+  Accept: 'application/vnd.github.v3.raw',
+};
 
 export interface ProjectConfig {
   name: string;
@@ -59,6 +69,8 @@ export interface ProjectDetails {
     image: string;
   };
   chapters: Chapter[];
+  version: string; // Changed from vision to version or keep as vision if it was intended? Re-checking.
+  // Original had vision, but usually it's vision. I'll keep it as vision.
   vision: string;
   finalCta: {
     title: string;
@@ -80,6 +92,7 @@ interface GitHubRepo {
   description: string | null;
   updated_at: string;
   default_branch: string;
+  private: boolean;
 }
 
 interface GistPricingResponse {
@@ -87,11 +100,45 @@ interface GistPricingResponse {
 }
 
 /**
+ * Helper to fetch file content from GitHub API
+ */
+async function fetchGitHubFile(repo: string, path: string, branch: string = 'master'): Promise<{ content: string; ok: boolean; url: string }> {
+  const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${repo}/contents/${path}?ref=${branch}`;
+  try {
+    const res = await fetch(url, { 
+      headers: RAW_HEADERS,
+      cache: 'no-store' 
+    });
+    if (!res.ok) return { content: '', ok: false, url };
+    const content = await res.text();
+    return { content, ok: true, url };
+  } catch {
+    return { content: '', ok: false, url };
+  }
+}
+
+/**
+ * Helper to get raw URL for images (works for public, for private it needs token in URL or proxy)
+ * For now, we use the raw.githubusercontent.com with token if available, or just the URL.
+ * Note: raw.githubusercontent.com supports ?token=... but it's ephemeral. 
+ * Better to use the API and convert to base64 if private, but that's heavy.
+ * For this Hub, we'll assume images are accessible if the browser has access or use a proxy.
+ */
+function getRawAssetUrl(repo: string, path: string, branch: string = 'master'): string {
+  // If we have a token, we could technically proxy this, but for now we'll provide the standard raw URL.
+  // Private repo images will need the repo to be public OR a proxy implemented in the Next.js API.
+  return `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo}/${branch}/${path}`;
+}
+
+/**
  * Helper to fetch repo info to get the correct default branch
  */
 async function getRepoInfo(repoName: string): Promise<GitHubRepo | null> {
   try {
-    const res = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}`, { cache: 'no-store' });
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}`, { 
+      headers: HEADERS,
+      cache: 'no-store' 
+    });
     if (!res.ok) return null;
     return await res.json() as GitHubRepo;
   } catch {
@@ -104,34 +151,55 @@ async function getRepoInfo(repoName: string): Promise<GitHubRepo | null> {
  */
 export async function getProjects() {
   try {
-    const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`, { cache: 'no-store' });
-    if (!reposRes.ok) return [];
+    // If token is present, we use /user/repos to get all repos (including private). 
+    // Otherwise we use /users/Taedj/repos for public only.
+    const url = GITHUB_TOKEN 
+      ? `https://api.github.com/user/repos?per_page=100&sort=updated&type=owner`
+      : `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`;
+
+    const reposRes = await fetch(url, { 
+      headers: HEADERS,
+      cache: 'no-store' 
+    });
+    
+    if (!reposRes.ok) {
+      console.error('GitHub API error:', reposRes.status, await reposRes.text());
+      return [];
+    }
     const repos = await reposRes.json() as GitHubRepo[];
 
     const projectPromises = repos.map(async (repo: GitHubRepo) => {
       try {
-        const branch = repo.default_branch || 'main';
-        const configUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/product.config.json`;
-        const mdUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/WEBSITE.md`;
-
-        const [configRes, mdRes] = await Promise.all([
-          fetch(configUrl, { cache: 'no-store' }),
-          fetch(mdUrl, { cache: 'no-store' })
+        const branch = repo.default_branch || 'master';
+        
+        const [configData, mdData] = await Promise.all([
+          fetchGitHubFile(repo.name, 'CONTROL_WEBSITE/product.config.json', branch),
+          fetchGitHubFile(repo.name, 'CONTROL_WEBSITE/WEBSITE.md', branch)
         ]);
 
-        if (configRes.ok && mdRes.ok) {
-          const config = await configRes.json() as ProjectConfig;
-          const mdContent = await mdRes.text();
+        if (configData.ok && mdData.ok) {
+          const config = JSON.parse(configData.content) as ProjectConfig;
+          const mdContent = mdData.content;
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
-          // Use the branch that worked for the image
-          const branch = configRes.url.includes('/master/') ? 'master' : 'main';
           
           // Detect correct casing for card.png vs Card.png
-          let cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/card.png`;
-          const cardTest = await fetch(cardImageUrl, { method: 'HEAD', cache: 'no-store' });
-          if (!cardTest.ok) {
-            cardImageUrl = `${BASE_RAW_URL}/${repo.name}/${branch}/CONTROL_WEBSITE/screenshots/Card.png`;
+          // We use the API to check existence efficiently
+          let cardPath = 'CONTROL_WEBSITE/screenshots/card.png';
+          const cardCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/contents/${cardPath}?ref=${branch}`, {
+            method: 'HEAD',
+            headers: HEADERS,
+            cache: 'no-store'
+          });
+          
+          if (!cardCheck.ok) {
+            cardPath = 'CONTROL_WEBSITE/screenshots/Card.png';
           }
+
+          // Important: For private repos, raw.githubusercontent.com won't work in the browser.
+          // We'll need an image proxy route. For now, we'll return the URL.
+          const imageLink = repo.private 
+            ? `/api/projects/${repo.name}/image?path=${cardPath}&branch=${branch}`
+            : getRawAssetUrl(repo.name, cardPath, branch);
 
           return {
             name: config.name || repo.name,
@@ -140,13 +208,13 @@ export async function getProjects() {
             brand: config.brand || 'Taedj Dev',
             status: config.status || 'active',
             description: subtitle || repo.description || 'No description available',
-            image: cardImageUrl,
-            thumbnail: cardImageUrl,
-            imageUrl: cardImageUrl,
+            image: imageLink,
+            thumbnail: imageLink,
+            imageUrl: imageLink,
             lastUpdated: repo.updated_at
           };
         }
-      } catch {
+      } catch (err) {
         return null;
       }
       return null;
@@ -165,25 +233,29 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
     const repoInfo = await getRepoInfo(slug);
     if (!repoInfo) return null;
 
-    const branch = repoInfo.default_branch || 'main';
-    const configUrl = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/product.config.json`;
-    const mdUrl = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/WEBSITE.md`;
+    const branch = repoInfo.default_branch || 'master';
     const gistUrl = 'https://gist.githubusercontent.com/Taedj/9bf1dae53f37681b9c13dab8cde8472f/raw/config.json';
 
-    const [configRes, mdRes, gistRes] = await Promise.all([
-      fetch(configUrl, { cache: 'no-store' }),
-      fetch(mdUrl, { cache: 'no-store' }),
+    const [configData, mdData, gistRes] = await Promise.all([
+      fetchGitHubFile(slug, 'CONTROL_WEBSITE/product.config.json', branch),
+      fetchGitHubFile(slug, 'CONTROL_WEBSITE/WEBSITE.md', branch),
       fetch(gistUrl, { cache: 'no-store' }).catch(() => null)
     ]);
 
-    if (!configRes.ok || !mdRes.ok) return null;
+    if (!configData.ok || !mdData.ok) return null;
 
-    const config = await configRes.json() as ProjectConfig;
-    const mdContent = await mdRes.text();
+    const config = JSON.parse(configData.content) as ProjectConfig;
+    const mdContent = mdData.content;
     const remotePricingResponse = gistRes && gistRes.ok ? await gistRes.json() as GistPricingResponse : null;
 
-    // Check for cover.mp4, fallback to cover.png
-    const heroImage = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/screenshots/cover.mp4`; 
+    // Asset logic for private repos
+    const getAssetUrl = (path: string) => {
+      return repoInfo.private 
+        ? `/api/projects/${slug}/image?path=CONTROL_WEBSITE/screenshots/${path}&branch=${branch}`
+        : getRawAssetUrl(slug, `CONTROL_WEBSITE/screenshots/${path}`, branch);
+    };
+
+    const heroImage = getAssetUrl('cover.mp4'); 
     
     return {
       config: { ...config, slug },
@@ -196,7 +268,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         ctaSecondaryLink: extractValue(mdContent, 'CTA Secondary Link:', 'Hero Section') || '#',
         image: heroImage
       },
-      chapters: parseChapters(mdContent, slug, branch),
+      chapters: parseChapters(mdContent, slug, branch, repoInfo.private),
       vision: extractValue(mdContent, 'Caption:', 'Demo & Vision'),
       finalCta: {
         title: extractValue(mdContent, 'Title:', 'Final CTA'),
@@ -260,7 +332,7 @@ function extractValue(content: string, key: string, sectionName: string): string
   return '';
 }
 
-function parseChapters(content: string, slug: string, branch: string): Chapter[] {
+function parseChapters(content: string, slug: string, branch: string, isPrivate: boolean): Chapter[] {
   const chapters: Chapter[] = [];
   const lines = content.split('\n');
   let current: Chapter | null = null;
@@ -283,7 +355,9 @@ function parseChapters(content: string, slug: string, branch: string): Chapter[]
       if (lowerLine.startsWith('description:')) current.description = cleanLine.substring(12).trim();
       else if (lowerLine.startsWith('visual hint:')) {
         const fileName = cleanLine.substring(12).trim();
-        current.image = `${BASE_RAW_URL}/${slug}/${branch}/CONTROL_WEBSITE/screenshots/${fileName}`;
+        current.image = isPrivate 
+          ? `/api/projects/${slug}/image?path=CONTROL_WEBSITE/screenshots/${fileName}&branch=${branch}`
+          : getRawAssetUrl(slug, `CONTROL_WEBSITE/screenshots/${fileName}`, branch);
       }
       else if (lowerLine.startsWith('img width:')) current.styles.imgWidth = parseInt(cleanLine.substring(10).trim()) || 100;
       else if (lowerLine.startsWith('img offset y:')) current.styles.imgOffsetY = parseInt(cleanLine.substring(13).trim()) || 0;
