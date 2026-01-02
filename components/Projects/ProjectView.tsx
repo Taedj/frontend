@@ -62,7 +62,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
 
     const getPrice = (planName: string, includeDuration: boolean = true) => {
         const tier = planName.toLowerCase().includes('crown') ? 'crown' : (planName.toLowerCase().includes('premium') ? 'premium' : null);
-        if (!tier) return lang === 'ar' ? 'مجاني' : 'Free';
+        if (!tier) return { ar: 'مجاني', fr: 'Gratuit', en: 'Free' }[lang];
 
         const p = remotePricing ? (remotePricing[currency] as unknown as CurrencyConfig) : null;
         if (p && p.plans && p.plans[tier]) {
@@ -146,11 +146,12 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                 <section className="pt-20 pb-20 text-center w-full px-6">
                     <div className="max-w-[95%] mx-auto space-y-12">
                         <h1
-                            style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: `clamp(3rem, 8vw, ${styles.heroTitleSize}px)` }}
-                            className="font-black tracking-tighter leading-[0.9] text-white"
+                            style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))', fontSize: `clamp(2.5rem, 6vw, ${styles.heroTitleSize}px)` }}
+                            className="font-black tracking-tighter leading-[1.1] text-white"
                         >
                             {(() => {
-                                const words = (tHero.title || '').split(' ');
+                                const titleStr = tHero.title || '';
+                                const words = titleStr.split(' ');
                                 const lastWord = words.pop();
                                 return (
                                     <>
@@ -162,14 +163,14 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                 );
                             })()}
                         </h1>
-                        <p className="text-xl md:text-4xl text-neutral-400 max-w-5xl mx-auto leading-tight font-medium px-4">{tHero.subtitle}</p>
+                        <p className="text-lg md:text-3xl text-neutral-400 max-w-5xl mx-auto leading-relaxed font-medium px-4">{tHero.subtitle}</p>
 
                         <div className={`flex flex-col md:flex-row flex-wrap gap-4 md:gap-8 pt-10 justify-center items-center px-6 ${isRtl ? 'md:flex-row-reverse' : ''}`}>
                             <Link
                                 href={hero.ctaPrimaryLink}
                                 style={{
-                                    padding: `clamp(16px, 4vw, ${styles.buttonPaddingY}px) clamp(32px, 5vw, ${styles.buttonPaddingX}px)`,
-                                    fontSize: `clamp(16px, 4vw, ${styles.buttonTextSize}px)`,
+                                    padding: `clamp(12px, 3vw, ${styles.buttonPaddingY}px) clamp(24px, 4vw, ${styles.buttonPaddingX}px)`,
+                                    fontSize: `clamp(14px, 3vw, ${styles.buttonTextSize}px)`,
                                     borderRadius: `${styles.borderRadius}px`
                                 }}
                                 className="w-full md:w-auto bg-emerald-500 hover:bg-emerald-400 text-[#080A0E] font-black transition-all flex items-center justify-center gap-4 shadow-[0_20px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95"
@@ -179,8 +180,8 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                             <Link
                                 href={hero.ctaSecondaryLink}
                                 style={{
-                                    padding: `clamp(16px, 4vw, ${styles.buttonPaddingY}px) clamp(32px, 5vw, ${styles.buttonPaddingX}px)`,
-                                    fontSize: `clamp(16px, 4vw, ${styles.buttonTextSize}px)`,
+                                    padding: `clamp(12px, 3vw, ${styles.buttonPaddingY}px) clamp(24px, 4vw, ${styles.buttonPaddingX}px)`,
+                                    fontSize: `clamp(14px, 3vw, ${styles.buttonTextSize}px)`,
                                     borderRadius: `${styles.borderRadius}px`
                                 }}
                                 className="w-full md:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black transition-all flex items-center justify-center gap-4 hover:scale-105 active:scale-95"
@@ -226,16 +227,16 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                     </div>
                 </section>
 
-                <div className="py-40 max-w-[95%] mx-auto text-left">
-                    <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-40" />
+                <div className="py-20 md:py-40 max-w-[95%] mx-auto text-left">
+                    <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-20 md:mb-40" />
 
                     {chapters.map((c, i) => {
                         const tChapter = lang === 'en' ? c : (c.translations?.[lang] || c);
                         return (
-                            <section key={i} style={{ paddingTop: `${styles.sectionSpacing / 10}px`, paddingBottom: `${styles.sectionSpacing / 10}px` }} className="space-y-20">
-                                <div className="max-w-6xl mx-auto text-center space-y-10">
-                                    <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-tight">{tChapter.title}</h2>
-                                    <p className="text-2xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto">{tChapter.description}</p>
+                            <section key={i} style={{ paddingTop: `${styles.sectionSpacing / 10}px`, paddingBottom: `${styles.sectionSpacing / 10}px` }} className="space-y-12 md:space-y-20">
+                                <div className="max-w-6xl mx-auto text-center space-y-6 md:space-y-10">
+                                    <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-tight px-4">{tChapter.title}</h2>
+                                    <p className="text-xl md:text-3xl text-neutral-400 leading-relaxed max-w-4xl mx-auto px-4">{tChapter.description}</p>
                                 </div>
                                 <div className="relative group/chapter w-full px-4 md:px-0">
                                     <div style={{ borderRadius: `${styles.borderRadius}px` }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
@@ -252,7 +253,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                                     className="object-contain h-full transition-all duration-1000 group-hover/chapter:scale-[1.05]"
                                                 />
                                             ) : (
-                                                <div className="w-full h-full flex items-center justify-center text-neutral-800 italic text-3xl font-light">{ui.visualComing}</div>
+                                                <div className="w-full h-full flex items-center justify-center text-neutral-800 italic text-2xl md:text-3xl font-light">{ui.visualComing}</div>
                                             )}
                                         </div>
                                     </div>
@@ -263,17 +264,17 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                 </div>
 
                 {tVision && (
-                    <section className="py-60 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent">
+                    <section className="py-40 text-center w-full px-6 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent">
                         <div className="max-w-6xl mx-auto">
                             <div className="w-24 h-1.5 bg-emerald-500 mx-auto mb-16 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)]" />
-                            <blockquote className={`text-5xl md:text-7xl font-bold text-white italic leading-[1.1] tracking-tight ${isRtl ? 'font-arabic' : ''}`}>"{tVision}"</blockquote>
+                            <blockquote className={`text-4xl md:text-6xl font-bold text-white italic leading-[1.2] tracking-tight ${isRtl ? 'font-arabic' : ''}`}>"{tVision}"</blockquote>
                         </div>
                     </section>
                 )}
 
                 {pricing && pricing.length > 0 && (
                     <section className="py-20 w-full px-6 text-center">
-                        <h2 className="text-5xl md:text-7xl font-black text-white mb-10 tracking-tighter">{ui.choosePlan}</h2>
+                        <h2 className="text-4xl md:text-7xl font-black text-white mb-10 tracking-tighter">{ui.choosePlan}</h2>
 
                         <div className={`flex flex-col md:flex-row justify-center items-center gap-6 mb-20 ${isRtl ? 'flex-row-reverse' : ''}`} dir="ltr">
                             <div className="flex bg-white/5 rounded-full p-2 border border-white/10">
@@ -283,9 +284,16 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                             </div>
 
                             <div className="flex bg-white/5 rounded-full p-2 border border-white/10">
-                                {(['monthly', 'yearly', 'lifetime'] as const).map(d => (
-                                    <button key={d} onClick={() => setDuration(d)} className={`px-6 py-2 rounded-full font-bold transition-all capitalize ${duration === d ? 'bg-white text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}>{d}</button>
-                                ))}
+                                {(['monthly', 'yearly', 'lifetime'] as const).map(d => {
+                                    const labels = {
+                                        en: { monthly: 'Monthly', yearly: 'Yearly', lifetime: 'Lifetime' },
+                                        ar: { monthly: 'شهري', yearly: 'سنوي', lifetime: 'مدى الحياة' },
+                                        fr: { monthly: 'Mensuel', yearly: 'Annuel', lifetime: 'À vie' }
+                                    }[lang];
+                                    return (
+                                        <button key={d} onClick={() => setDuration(d)} className={`px-6 py-2 rounded-full font-bold transition-all capitalize ${duration === d ? 'bg-white text-black shadow-lg' : 'text-neutral-400 hover:text-white'}`}>{labels[d]}</button>
+                                    );
+                                })}
                             </div>
                         </div>
 
@@ -293,7 +301,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                             {pricing.map((plan, i) => {
                                 const tPlan = lang === 'en' ? plan : (plan.translations?.[lang] || plan);
                                 return (
-                                    <div key={i} style={{ borderRadius: `${styles.borderRadius}px` }} className={`bg-[#0A0C10] border border-white/5 p-10 flex flex-col group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden ${isRtl ? 'text-right' : 'text-left'}`}>
+                                    <div key={i} style={{ borderRadius: `${styles.borderRadius}px` }} className={`bg-[#0A0C10] border border-white/5 p-8 md:p-10 flex flex-col group hover:border-emerald-500/50 transition-all duration-500 relative overflow-hidden ${isRtl ? 'text-right' : 'text-left'}`}>
                                         <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all opacity-50" />
                                         <h3 className="text-3xl font-bold text-white mb-2">{tPlan.name}</h3>
                                         <p className="text-emerald-400 font-mono text-sm mb-6 uppercase tracking-widest">{tPlan.subtitle || ''}</p>
@@ -324,13 +332,13 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                 <section className="py-20 md:py-60 text-center px-4 md:px-6">
                     <div className="bg-gradient-to-br from-emerald-600/20 via-[#0A0C10] to-cyan-600/20 p-8 md:p-40 border border-white/5 shadow-2xl relative overflow-hidden group" style={{ borderRadius: `${styles.borderRadius * 2}px` }}>
                         <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                        <h2 className="text-5xl md:text-[10rem] font-black mb-6 md:mb-12 tracking-tighter leading-none relative z-10" style={{ fontSize: `clamp(3rem, 10vw, ${styles.finalCtaTitleSize}px)` }}>{tFinalCta.title}</h2>
-                        <p className="text-xl md:text-4xl text-neutral-400 mb-10 md:mb-20 max-w-4xl mx-auto leading-tight font-medium relative z-10">{tFinalCta.subtitle}</p>
+                        <h2 className="text-4xl md:text-[8rem] font-black mb-6 md:mb-12 tracking-tighter leading-none relative z-10" style={{ fontSize: `clamp(3rem, 8vw, ${styles.finalCtaTitleSize}px)` }}>{tFinalCta.title}</h2>
+                        <p className="text-xl md:text-3xl text-neutral-400 mb-10 md:mb-20 max-w-4xl mx-auto leading-tight font-medium relative z-10">{tFinalCta.subtitle}</p>
                         <Link
                             href={finalCta.buttonLink}
                             style={{
-                                padding: `clamp(16px, 4vw, ${styles.buttonPaddingY}px) clamp(32px, 5vw, ${styles.buttonPaddingX}px)`,
-                                fontSize: `clamp(20px, 4vw, ${styles.buttonTextSize}px)`,
+                                padding: `clamp(12px, 3vw, ${styles.buttonPaddingY}px) clamp(24px, 4vw, ${styles.buttonPaddingX}px)`,
+                                fontSize: `clamp(18px, 4vw, ${styles.buttonTextSize}px)`,
                                 borderRadius: `${styles.borderRadius}px`
                             }}
                             className="relative z-10 bg-white text-black font-black hover:scale-105 active:scale-95 transition-all inline-flex items-center justify-center gap-4 md:gap-6 shadow-[0_30px_100px_rgba(255,255,255,0.15)] w-full md:w-auto"
