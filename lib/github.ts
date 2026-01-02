@@ -69,8 +69,7 @@ export interface ProjectDetails {
     image: string;
   };
   chapters: Chapter[];
-  version: string; // Changed from vision to version or keep as vision if it was intended? Re-checking.
-  // Original had vision, but usually it's vision. I'll keep it as vision.
+
   vision: string;
   finalCta: {
     title: string;
@@ -105,9 +104,9 @@ interface GistPricingResponse {
 async function fetchGitHubFile(repo: string, path: string, branch: string = 'master'): Promise<{ content: string; ok: boolean; url: string }> {
   const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${repo}/contents/${path}?ref=${branch}`;
   try {
-    const res = await fetch(url, { 
+    const res = await fetch(url, {
       headers: RAW_HEADERS,
-      cache: 'no-store' 
+      cache: 'no-store'
     });
     if (!res.ok) return { content: '', ok: false, url };
     const content = await res.text();
@@ -135,9 +134,9 @@ function getRawAssetUrl(repo: string, path: string, branch: string = 'master'): 
  */
 async function getRepoInfo(repoName: string): Promise<GitHubRepo | null> {
   try {
-    const res = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}`, { 
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}`, {
       headers: HEADERS,
-      cache: 'no-store' 
+      cache: 'no-store'
     });
     if (!res.ok) return null;
     return await res.json() as GitHubRepo;
@@ -153,15 +152,15 @@ export async function getProjects() {
   try {
     // If token is present, we use /user/repos to get all repos (including private). 
     // Otherwise we use /users/Taedj/repos for public only.
-    const url = GITHUB_TOKEN 
+    const url = GITHUB_TOKEN
       ? `https://api.github.com/user/repos?per_page=100&sort=updated&type=owner`
       : `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`;
 
-    const reposRes = await fetch(url, { 
+    const reposRes = await fetch(url, {
       headers: HEADERS,
-      cache: 'no-store' 
+      cache: 'no-store'
     });
-    
+
     if (!reposRes.ok) {
       console.error('GitHub API error:', reposRes.status, await reposRes.text());
       return [];
@@ -171,7 +170,7 @@ export async function getProjects() {
     const projectPromises = repos.map(async (repo: GitHubRepo) => {
       try {
         const branch = repo.default_branch || 'master';
-        
+
         const [configData, mdData] = await Promise.all([
           fetchGitHubFile(repo.name, 'CONTROL_WEBSITE/product.config.json', branch),
           fetchGitHubFile(repo.name, 'CONTROL_WEBSITE/WEBSITE.md', branch)
@@ -181,7 +180,7 @@ export async function getProjects() {
           const config = JSON.parse(configData.content) as ProjectConfig;
           const mdContent = mdData.content;
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
-          
+
           // Detect correct casing for card.png vs Card.png
           // We use the API to check existence efficiently
           let cardPath = 'CONTROL_WEBSITE/screenshots/card.png';
@@ -190,14 +189,14 @@ export async function getProjects() {
             headers: HEADERS,
             cache: 'no-store'
           });
-          
+
           if (!cardCheck.ok) {
             cardPath = 'CONTROL_WEBSITE/screenshots/Card.png';
           }
 
           // Important: For private repos, raw.githubusercontent.com won't work in the browser.
           // We'll need an image proxy route. For now, we'll return the URL.
-          const imageLink = repo.private 
+          const imageLink = repo.private
             ? `/api/projects/${repo.name}/image?path=${cardPath}&branch=${branch}`
             : getRawAssetUrl(repo.name, cardPath, branch);
 
@@ -214,7 +213,7 @@ export async function getProjects() {
             lastUpdated: repo.updated_at
           };
         }
-      } catch (err) {
+      } catch {
         return null;
       }
       return null;
@@ -250,13 +249,13 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 
     // Asset logic for private repos
     const getAssetUrl = (path: string) => {
-      return repoInfo.private 
+      return repoInfo.private
         ? `/api/projects/${slug}/image?path=CONTROL_WEBSITE/screenshots/${path}&branch=${branch}`
         : getRawAssetUrl(slug, `CONTROL_WEBSITE/screenshots/${path}`, branch);
     };
 
-    const heroImage = getAssetUrl('cover.mp4'); 
-    
+    const heroImage = getAssetUrl('cover.mp4');
+
     return {
       config: { ...config, slug },
       hero: {
@@ -355,7 +354,7 @@ function parseChapters(content: string, slug: string, branch: string, isPrivate:
       if (lowerLine.startsWith('description:')) current.description = cleanLine.substring(12).trim();
       else if (lowerLine.startsWith('visual hint:')) {
         const fileName = cleanLine.substring(12).trim();
-        current.image = isPrivate 
+        current.image = isPrivate
           ? `/api/projects/${slug}/image?path=CONTROL_WEBSITE/screenshots/${fileName}&branch=${branch}`
           : getRawAssetUrl(slug, `CONTROL_WEBSITE/screenshots/${fileName}`, branch);
       }
@@ -377,7 +376,7 @@ function parsePricing(content: string): PricingPlan[] {
     const trimmed = line.trim();
     if (trimmed.startsWith('## Pricing')) { inPricing = true; continue; }
     if (inPricing && trimmed.startsWith('## ')) inPricing = false;
-    
+
     if (inPricing && trimmed.toLowerCase().startsWith('### plan:')) {
       if (current) plans.push(current);
       current = { name: trimmed.split(':')[1]?.trim() || trimmed.replace(/### Plan:/i, '').trim(), subtitle: '', price: '', features: [] };
