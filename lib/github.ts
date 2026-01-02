@@ -80,6 +80,11 @@ export interface ProjectDetails {
   styles: ProjectStyles;
   pricing: PricingPlan[];
   remotePricing?: Record<string, unknown>;
+  report?: {
+    en: string;
+    ar: string;
+    fr: string;
+  };
   debug?: {
     branch: string;
     repoName: string;
@@ -240,9 +245,10 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
     const branch = repoInfo.default_branch || 'master';
     const gistUrl = 'https://gist.githubusercontent.com/Taedj/9bf1dae53f37681b9c13dab8cde8472f/raw/config.json';
 
-    const [configData, mdData, gistRes] = await Promise.all([
+    const [configData, mdData, reportData, gistRes] = await Promise.all([
       fetchGitHubFile(slug, 'CONTROL_WEBSITE/product.config.json', branch),
       fetchGitHubFile(slug, 'CONTROL_WEBSITE/WEBSITE.md', branch),
+      fetchGitHubFile(slug, 'CONTROL_WEBSITE/REPORT.md', branch),
       fetch(gistUrl, { cache: 'no-store' }).catch(() => null)
     ]);
 
@@ -313,6 +319,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
       },
       pricing: parsePricing(mdContent),
       remotePricing: remotePricingResponse?.pricing,
+      report: reportData.ok ? parseReport(reportData.content) : undefined,
       debug: {
         branch,
         repoName: slug
@@ -410,4 +417,22 @@ function parsePricing(content: string): PricingPlan[] {
   }
   if (current) plans.push(current);
   return plans;
+}
+
+function parseReport(content: string) {
+  const sections = {
+    en: '',
+    ar: '',
+    fr: ''
+  };
+
+  const enMatch = content.match(/\[EN\]([\s\S]*?)(\[AR\]|\[FR\]|$)/i);
+  const arMatch = content.match(/\[AR\]([\s\S]*?)(\[EN\]|\[FR\]|$)/i);
+  const frMatch = content.match(/\[FR\]([\s\S]*?)(\[EN\]|\[AR\]|$)/i);
+
+  if (enMatch) sections.en = enMatch[1].trim();
+  if (arMatch) sections.ar = arMatch[1].trim();
+  if (frMatch) sections.fr = frMatch[1].trim();
+
+  return sections;
 }
