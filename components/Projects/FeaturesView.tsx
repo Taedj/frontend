@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaArrowLeft, FaGlobe, FaChevronRight } from 'react-icons/fa';
+import { FaArrowLeft, FaChevronRight } from 'react-icons/fa';
 import { ProjectDetails } from '@/lib/github';
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from 'framer-motion';
