@@ -476,11 +476,13 @@ function extractValue(content: string, key: string, sectionName: string): string
 
   for (const line of lines) {
     const trimmed = line.trim();
-    if (sectionName && trimmed.startsWith('## ') && trimmed.toLowerCase().includes(sectionName.toLowerCase())) {
+    const isHeader = trimmed.startsWith('##') || (trimmed.startsWith('[') && trimmed.endsWith(']'));
+
+    if (sectionName && isHeader && trimmed.toLowerCase().includes(sectionName.toLowerCase())) {
       inSection = true;
       continue;
     }
-    if (inSection && trimmed.startsWith('## ') && !trimmed.toLowerCase().includes(sectionName.toLowerCase())) {
+    if (inSection && isHeader && !trimmed.toLowerCase().includes(sectionName.toLowerCase())) {
       inSection = false;
     }
 
