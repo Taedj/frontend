@@ -220,9 +220,11 @@ export async function getProjects() {
           const mdContent = mdData.content;
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
 
-          // Detect correct casing for card.png vs Card.png
-          // We use the API to check existence efficiently
-          let cardPath = 'CONTROL_WEBSITE/screenshots/card.png';
+          // Detect thumbnail image from UI & Styling section
+          let cardImage = extractValue(mdContent, 'Card Image:', 'UI & Styling') || 'card.png';
+          let cardPath = `CONTROL_WEBSITE/screenshots/${cardImage}`;
+
+          // Validate existence for fallback casing or missing file
           const cardCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/contents/${cardPath}?ref=${branch}`, {
             method: 'HEAD',
             headers: HEADERS,
@@ -230,7 +232,14 @@ export async function getProjects() {
           });
 
           if (!cardCheck.ok) {
-            cardPath = 'CONTROL_WEBSITE/screenshots/Card.png';
+            // Fallback to standard names if specified file is missing
+            cardPath = 'CONTROL_WEBSITE/screenshots/card.png';
+            const fallbackCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/contents/${cardPath}?ref=${branch}`, {
+              method: 'HEAD',
+              headers: HEADERS,
+              cache: 'no-store'
+            });
+            if (!fallbackCheck.ok) cardPath = 'CONTROL_WEBSITE/screenshots/Card.png';
           }
 
           // Important: For private repos, raw.githubusercontent.com won't work in the browser.
@@ -341,7 +350,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
 
     // Detect hero image/video
     let heroAsset = extractValue(mdContent, 'Hero Image:', 'UI & Styling') || 'cover.mp4';
-    
+
     // Validate existence via API for private repo branch consistency
     const heroCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${slug}/contents/CONTROL_WEBSITE/screenshots/${heroAsset}?ref=${branch}`, {
       method: 'HEAD',
