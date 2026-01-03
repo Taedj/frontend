@@ -217,9 +217,9 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                     >
                         {styles.heroVideoLink ? (
                             <iframe
-                                src={`https://www.youtube.com/embed/${getYouTubeId(styles.heroVideoLink)}?autoplay=1&mute=1&controls=0&loop=1&playlist=${getYouTubeId(styles.heroVideoLink)}&playsinline=1`}
+                                src={`https://www.youtube.com/embed/${getYouTubeId(styles.heroVideoLink)}?autoplay=1&mute=1&controls=1&loop=1&playlist=${getYouTubeId(styles.heroVideoLink)}&playsinline=1`}
                                 title="Hero Video"
-                                className="w-full h-full object-cover pointer-events-none"
+                                className="w-full h-full object-cover"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             />
                         ) : hero.image.match(/\.(mp4|webm)$/i) ? (
@@ -271,9 +271,9 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                         <div className="w-full h-full flex items-center justify-center overflow-hidden">
                                             {c.videoLink ? (
                                                 <iframe
-                                                    src={`https://www.youtube.com/embed/${getYouTubeId(c.videoLink)}?autoplay=1&mute=1&controls=0&loop=1&playlist=${getYouTubeId(c.videoLink)}&playsinline=1`}
+                                                    src={`https://www.youtube.com/embed/${getYouTubeId(c.videoLink)}?autoplay=1&mute=1&controls=1&loop=1&playlist=${getYouTubeId(c.videoLink)}&playsinline=1`}
                                                     title={tChapter.title}
-                                                    className="w-full h-full object-cover pointer-events-none"
+                                                    className="w-full h-full object-cover"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                 />
                                             ) : c.image ? (
