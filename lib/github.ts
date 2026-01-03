@@ -70,6 +70,8 @@ export interface ProjectStyles {
   pricingNameSize: number;
   reportTitleSize: number;
   reportTextSize: number;
+  heroVideoLink?: string;
+  heroType?: 'mobile' | 'web' | 'desktop';
 }
 
 export interface ProjectDetails {
@@ -410,6 +412,8 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         pricingNameSize: parseInt(extractValue(mdContent, 'Pricing Name Size:', 'UI & Styling')) || 30,
         reportTitleSize: parseInt(extractValue(mdContent, 'Report Title Size:', 'UI & Styling')) || 96,
         reportTextSize: parseInt(extractValue(mdContent, 'Report Text Size:', 'UI & Styling')) || 20,
+        heroVideoLink: extractValue(mdContent, 'Hero Video Link:', 'UI & Styling'),
+        heroType: (extractValue(mdContent, 'Hero Type:', 'UI & Styling') as 'mobile' | 'web' | 'desktop') || 'desktop',
       },
       pricing: enPricing,
       remotePricing: remotePricingResponse?.pricing,

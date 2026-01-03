@@ -98,6 +98,12 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
         window.open(`https://wa.me/${phone.replace(/[\s+]/g, '')}?text=${encodedMessage}`, '_blank');
     };
 
+    const getYouTubeId = (url: string) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    };
+
     return (
         <div className={`min-h-screen bg-[#080A0E] text-white selection:bg-emerald-500/30 overflow-x-hidden relative ${isRtl ? 'font-arabic' : ''}`} dir={isRtl ? 'rtl' : 'ltr'}>
             <style jsx global>{`
@@ -196,8 +202,22 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                 </section>
 
                 <section className="pb-20 md:pb-40 w-full px-4 md:px-10">
-                    <div style={{ borderRadius: `${styles.borderRadius}px` }} className="relative aspect-video overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(16,185,129,0.1)] bg-[#0A0C10] group/hero w-full mx-auto flex items-center justify-center">
-                        {hero.image.match(/\.(mp4|webm)$/i) ? (
+                    <div
+                        style={{
+                            borderRadius: `${styles.borderRadius}px`,
+                            maxWidth: styles.heroType === 'mobile' ? '400px' : '100%',
+                            aspectRatio: styles.heroType === 'mobile' ? '9/19' : '16/9',
+                        }}
+                        className={`relative overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(16,185,129,0.1)] bg-[#0A0C10] group/hero w-full mx-auto flex items-center justify-center ${styles.heroType === 'mobile' ? '' : 'aspect-video'}`}
+                    >
+                        {styles.heroVideoLink ? (
+                            <iframe
+                                src={`https://www.youtube.com/embed/${getYouTubeId(styles.heroVideoLink)}?autoplay=1&mute=1&controls=0&loop=1&playlist=${getYouTubeId(styles.heroVideoLink)}&playsinline=1`}
+                                title="Hero Video"
+                                className="w-full h-full object-cover pointer-events-none"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            />
+                        ) : hero.image.match(/\.(mp4|webm)$/i) ? (
                             <video
                                 src={hero.image}
                                 autoPlay
