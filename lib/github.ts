@@ -340,14 +340,17 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
     };
 
     // Detect hero image/video
-    let heroAsset = 'cover.mp4';
-    const heroCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${slug}/contents/CONTROL_WEBSITE/screenshots/cover.mp4?ref=${branch}`, {
+    let heroAsset = extractValue(mdContent, 'Hero Image:', 'UI & Styling') || 'cover.mp4';
+    
+    // Validate existence via API for private repo branch consistency
+    const heroCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${slug}/contents/CONTROL_WEBSITE/screenshots/${heroAsset}?ref=${branch}`, {
       method: 'HEAD',
       headers: HEADERS,
       cache: 'no-store'
     });
 
-    if (!heroCheck.ok) {
+    if (!heroCheck.ok && !extractValue(mdContent, 'Hero Image:', 'UI & Styling')) {
+      // If Hero Image was not specified in MD and cover.mp4 failed, try cover.png
       heroAsset = 'cover.png';
     }
 

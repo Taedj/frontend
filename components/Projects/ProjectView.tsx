@@ -222,7 +222,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                 className="w-full h-full object-cover"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             />
-                        ) : hero.image.match(/\.(mp4|webm)$/i) ? (
+                        ) : hero.image.split('?')[0].match(/\.(mp4|webm)$/i) ? (
                             <video
                                 src={hero.image}
                                 autoPlay
