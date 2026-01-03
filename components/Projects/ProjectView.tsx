@@ -60,8 +60,8 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
         }
     }[lang];
 
-    const getPrice = (planName: string, includeDuration: boolean = true) => {
-        const tier = planName.toLowerCase().includes('crown') ? 'crown' : (planName.toLowerCase().includes('premium') ? 'premium' : null);
+    const getPrice = (planName: string, fallbackPrice?: string, includeDuration: boolean = true) => {
+        const tier = planName.toLowerCase().includes('pro') ? 'pro' : (planName.toLowerCase().includes('crown') ? 'crown' : (planName.toLowerCase().includes('premium') ? 'premium' : null));
         if (!tier) return { ar: 'مجاني', fr: 'Gratuit', en: 'Free' }[lang];
 
         const p = remotePricing ? (remotePricing[currency] as unknown as CurrencyConfig) : null;
@@ -81,7 +81,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
 
             return formatted + (duration === 'lifetime' ? '' : suffixes[duration]);
         }
-        return 'N/A';
+        return fallbackPrice || 'N/A';
     };
 
     const handleSelectPlan = (planName: string) => {
@@ -90,7 +90,12 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
             return;
         }
 
-        const price = getPrice(planName, false);
+        if (config.slug.toLowerCase().includes('ztap') && planName.toLowerCase().includes('pro')) {
+            window.open('https://play.google.com/store/apps/details?id=com.taedj.studenttrackerapp', '_blank');
+            return;
+        }
+
+        const price = getPrice(planName, undefined, false);
         const message = `Hello ${config.brand}, I would like to upgrade to the ${planName} plan (${duration}) for ${config.name} for ${price}. (Currency: ${currency})`;
         const encodedMessage = encodeURIComponent(message);
 
@@ -314,7 +319,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                             </div>
 
                             <div className="flex bg-white/5 rounded-full p-2 border border-white/10">
-                                {(['monthly', 'yearly', 'lifetime'] as const).map(d => {
+                                {(['monthly', 'yearly', 'lifetime'] as const).filter(d => !config.slug.toLowerCase().includes('ztap') || d !== 'lifetime').map(d => {
                                     const labels = {
                                         en: { monthly: 'Monthly', yearly: 'Yearly', lifetime: 'Lifetime' },
                                         ar: { monthly: 'شهري', yearly: 'سنوي', lifetime: 'مدى الحياة' },
@@ -335,7 +340,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                         <div className="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/20 transition-all opacity-50" />
                                         <h3 className="text-3xl font-bold text-white mb-2" style={{ fontSize: `clamp(${styles.pricingNameSize * 0.7}px, 3vw, ${styles.pricingNameSize * (styles.fontScale / 100)}px)` }}>{tPlan.name}</h3>
                                         <p className="text-emerald-400 font-mono text-sm mb-6 uppercase tracking-widest">{tPlan.subtitle || ''}</p>
-                                        <div className="text-4xl font-black text-white mb-8 transition-all min-h-[3rem]">{getPrice(plan.name)}</div>
+                                        <div className="text-4xl font-black text-white mb-8 transition-all min-h-[3rem]">{getPrice(plan.name, tPlan.price)}</div>
                                         <ul className="space-y-4 mb-10 flex-grow">
                                             {tPlan.features.map((f, fi) => (
                                                 <li key={fi} className={`flex items-start gap-3 text-neutral-400 ${isRtl ? 'flex-row-reverse' : ''}`}>
@@ -349,7 +354,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                                 onClick={() => handleSelectPlan(plan.name)}
                                                 className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10 relative z-10"
                                             >
-                                                {ui.selectPlan}
+                                                {config.slug.toLowerCase().includes('ztap') && plan.name.toLowerCase().includes('pro') ? (lang === 'ar' ? 'اشترك عبر التطبيق' : (lang === 'fr' ? 'S\'abonner via l\'app' : 'Subscribe via App')) : ui.selectPlan}
                                             </button>
                                         )}
                                     </div>
