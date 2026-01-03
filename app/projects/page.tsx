@@ -42,15 +42,27 @@ export default async function ProjectsHub() {
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-cyan-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                            <div className="relative z-10">
-                                <div className="flex items-start justify-between mb-8">
-                                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-2xl font-bold text-neutral-900 shadow-lg">
+                            <div className="h-56 mb-8 -mx-8 -mt-8 rounded-t-3xl overflow-hidden relative border-b border-white/5 bg-[#1a1f26]">
+                                {project.image ? (
+                                    <img
+                                        src={project.image}
+                                        alt={project.name}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-6xl font-bold text-neutral-900">
                                         {project.name.substring(0, 1)}
                                     </div>
-                                    <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-emerald-400">
+                                )}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                                <div className="absolute top-4 right-4 z-10">
+                                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-black uppercase tracking-widest text-emerald-400">
                                         {project.category}
                                     </span>
                                 </div>
+                            </div>
+
+                            <div className="relative z-10">
 
                                 <h3 className="text-2xl font-bold mb-3 group-hover:text-emerald-400 transition-colors">
                                     {project.name}
