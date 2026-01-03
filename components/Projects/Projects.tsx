@@ -107,22 +107,14 @@ const Projects = () => {
                                     className="flex-shrink-0 w-[500px] bg-[#161B22] rounded-3xl border border-white/5 overflow-hidden hover:border-emerald-500/40 transition-all duration-500 group cursor-pointer shadow-2xl"
                                 >
                                     {/* IMAGE AREA - Brighter background to show card is alive */}
-                                    <div className="h-64 bg-[#1a1f26] relative flex items-center justify-center p-12 overflow-hidden border-b border-white/5">
-
-                                        {/* Watermark Logo */}
-                                        <div className="absolute inset-0 flex items-center justify-center select-none z-0 opacity-20">
-                                            <span className="text-[140px] font-black text-white/5 uppercase">
-                                                {project.name.charAt(0)}
-                                            </span>
-                                        </div>
-
+                                    <div className="h-64 bg-[#1a1f26] relative overflow-hidden border-b border-white/5">
                                         {/* Logo Container */}
                                         {imgPath ? (
-                                            <div className="relative w-full h-full z-10 flex items-center justify-center">
+                                            <div className="relative w-full h-full z-10">
                                                 <img
                                                     src={imgPath}
                                                     alt={project.name}
-                                                    className="max-w-full max-h-full object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-110"
+                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                                     onError={(e) => {
                                                         // Fallback on visual error
                                                         (e.target as HTMLImageElement).style.opacity = '0.3';
@@ -131,13 +123,13 @@ const Projects = () => {
                                                 />
                                             </div>
                                         ) : (
-                                            <div className="z-10 w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center text-3xl font-bold text-white/20">
+                                            <div className="z-10 w-full h-full bg-white/5 flex items-center justify-center text-6xl font-bold text-white/20">
                                                 {project.name.charAt(0)}
                                             </div>
                                         )}
 
-                                        {/* Bottom Fade Mask */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-20"></div>
+                                        {/* Bottom Fade Mask - Slightly more subtle for full images */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none z-20"></div>
 
                                         {/* Badge */}
                                         <div className="absolute top-6 right-6 z-30">
