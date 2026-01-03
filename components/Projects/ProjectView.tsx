@@ -91,7 +91,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
         }
 
         if (config.slug.toLowerCase().includes('ztap') && planName.toLowerCase().includes('pro')) {
-            window.open('https://play.google.com/store/apps/details?id=com.taedj.studenttrackerapp', '_blank');
+            window.open('https://play.google.com/store/apps/details?id=com.ztap.studenttrackerapp', '_blank');
             return;
         }
 
@@ -349,7 +349,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                                 </li>
                                             ))}
                                         </ul>
-                                        {!plan.name.toLowerCase().includes('trial') && (
+                                        {!plan.name.toLowerCase().includes('trial') && !plan.name.toLowerCase().includes('free') && !plan.name.toLowerCase().includes('مجاني') && !plan.name.toLowerCase().includes('gratuit') && (
                                             <button
                                                 onClick={() => handleSelectPlan(plan.name)}
                                                 className="w-full py-4 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-white font-bold transition-all text-center border border-white/10 relative z-10"
