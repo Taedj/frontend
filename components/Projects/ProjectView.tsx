@@ -264,7 +264,14 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                                 <div className="relative group/chapter w-full px-4 md:px-0">
                                     <div style={{ borderRadius: `${styles.borderRadius}px` }} className="aspect-video bg-[#0A0C10] border border-white/5 overflow-hidden shadow-[0_0_150px_rgba(0,0,0,0.8)] relative w-full">
                                         <div className="w-full h-full flex items-center justify-center overflow-hidden">
-                                            {c.image ? (
+                                            {c.videoLink ? (
+                                                <iframe
+                                                    src={`https://www.youtube.com/embed/${getYouTubeId(c.videoLink)}?autoplay=1&mute=1&controls=0&loop=1&playlist=${getYouTubeId(c.videoLink)}&playsinline=1`}
+                                                    title={tChapter.title}
+                                                    className="w-full h-full object-cover pointer-events-none"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                />
+                                            ) : c.image ? (
                                                 <img
                                                     src={c.image}
                                                     alt={tChapter.title}

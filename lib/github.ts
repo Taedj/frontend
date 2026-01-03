@@ -35,6 +35,7 @@ export interface Chapter {
     ar?: { title: string; description: string };
     fr?: { title: string; description: string };
   };
+  videoLink?: string;
 }
 
 export interface PricingPlan {
@@ -532,6 +533,7 @@ function parseChapters(content: string, slug: string, branch: string, isPrivate:
       else if (lowerLine.startsWith('img width:')) current.styles.imgWidth = parseInt(cleanLine.substring(10).trim()) || 100;
       else if (lowerLine.startsWith('img offset y:')) current.styles.imgOffsetY = parseInt(cleanLine.substring(13).trim()) || 0;
       else if (lowerLine.startsWith('img scale:')) current.styles.imgScale = parseInt(cleanLine.substring(10).trim()) || 100;
+      else if (lowerLine.startsWith('video link:')) current.videoLink = cleanLine.substring(11).trim();
     }
   }
   if (current) chapters.push(current);
