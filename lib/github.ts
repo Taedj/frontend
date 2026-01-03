@@ -221,7 +221,7 @@ export async function getProjects() {
           const subtitle = extractValue(mdContent, 'Subtitle:', 'Hero Section');
 
           // Detect thumbnail image from UI & Styling section
-          let cardImage = extractValue(mdContent, 'Card Image:', 'UI & Styling') || 'card.png';
+          const cardImage = extractValue(mdContent, 'Card Image:', 'UI & Styling') || 'card.png';
           let cardPath = `CONTROL_WEBSITE/screenshots/${cardImage}`;
 
           // Validate existence for fallback casing or missing file
