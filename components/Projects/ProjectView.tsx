@@ -217,7 +217,7 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                     >
                         {styles.heroVideoLink ? (
                             <iframe
-                                src={`https://www.youtube.com/embed/${getYouTubeId(styles.heroVideoLink)}?autoplay=1&mute=1&controls=1&loop=1&playlist=${getYouTubeId(styles.heroVideoLink)}&playsinline=1`}
+                                src={`https://www.youtube.com/embed/${getYouTubeId(styles.heroVideoLink)}?autoplay=1&mute=0&controls=1&cc_load_policy=1&loop=1&playlist=${getYouTubeId(styles.heroVideoLink)}&playsinline=1`}
                                 title="Hero Video"
                                 className="w-full h-full object-cover"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
