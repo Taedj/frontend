@@ -348,22 +348,44 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         : getRawAssetUrl(slug, `CONTROL_WEBSITE/screenshots/${path}`, branch);
     };
 
-    // Detect hero image/video
-    let heroAsset = extractValue(mdContent, 'Hero Image:', 'UI & Styling') || 'cover.mp4';
+    const heroVideoLink = extractValue(mdContent, 'Hero Video Link:', 'UI & Styling');
+    let heroAsset = extractValue(mdContent, 'Hero Image:', 'UI & Styling');
+    let heroImage = '';
 
-    // Validate existence via API for private repo branch consistency
-    const heroCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${slug}/contents/CONTROL_WEBSITE/screenshots/${heroAsset}?ref=${branch}`, {
-      method: 'HEAD',
-      headers: HEADERS,
-      cache: 'no-store'
-    });
+    // Helper to get YouTube ID
+    const getYouTubeId = (url: string) => {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
+    };
 
-    if (!heroCheck.ok && !extractValue(mdContent, 'Hero Image:', 'UI & Styling')) {
-      // If Hero Image was not specified in MD and cover.mp4 failed, try cover.png
-      heroAsset = 'cover.png';
+    // Try to get YouTube thumbnail if link exists and no specific image set (or we want to prioritize it?)
+    // User request: "fetch cover from youtube direct link i set it in website.md"
+    // We'll prioritize custom image if set, otherwise fallback to YouTube thumb, then cover.mp4/png
+    if (heroVideoLink && !heroAsset) {
+      const videoId = getYouTubeId(heroVideoLink);
+      if (videoId) {
+        heroImage = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      }
     }
 
-    const heroImage = getAssetUrl(heroAsset);
+    if (!heroImage) {
+      heroAsset = heroAsset || 'cover.mp4';
+
+      // Validate existence via API for private repo branch consistency
+      const heroCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${slug}/contents/CONTROL_WEBSITE/screenshots/${heroAsset}?ref=${branch}`, {
+        method: 'HEAD',
+        headers: HEADERS,
+        cache: 'no-store'
+      });
+
+      if (!heroCheck.ok && !extractValue(mdContent, 'Hero Image:', 'UI & Styling')) {
+        // If Hero Image was not specified in MD and cover.mp4 failed, try cover.png
+        heroAsset = 'cover.png';
+      }
+      heroImage = getAssetUrl(heroAsset);
+    }
+
     const logo = extractValue(enContent, 'Brand Logo:', 'UI & Styling');
     const background = extractValue(enContent, 'Hero Background:', 'UI & Styling');
 
