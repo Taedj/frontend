@@ -104,10 +104,10 @@ const Projects = () => {
                                 <Link
                                     key={`${project.slug}-${index}`}
                                     href={`/projects/${project.slug}`}
-                                    className="flex-shrink-0 w-[500px] bg-[#161B22] rounded-3xl border border-white/5 overflow-hidden hover:border-emerald-500/40 transition-all duration-500 group cursor-pointer shadow-2xl"
+                                    className="flex-shrink-0 w-[350px] bg-[#161B22] rounded-3xl border border-white/5 overflow-hidden hover:border-emerald-500/40 transition-all duration-500 group cursor-pointer shadow-2xl"
                                 >
                                     {/* IMAGE AREA - Brighter background to show card is alive */}
-                                    <div className="h-64 bg-[#1a1f26] relative overflow-hidden border-b border-white/5">
+                                    <div className="h-48 bg-[#1a1f26] relative overflow-hidden border-b border-white/5">
                                         {/* Logo Container */}
                                         {imgPath ? (
                                             <div className="relative w-full h-full z-10">
@@ -145,8 +145,8 @@ const Projects = () => {
                                     </div>
 
                                     {/* Details */}
-                                    <div className="p-10 bg-[#161B22] relative z-20 border-t border-white/5">
-                                        <h3 className="text-3xl font-extrabold text-white mb-4 group-hover:text-emerald-400 transition-colors">
+                                    <div className="p-6 bg-[#161B22] relative z-20 border-t border-white/5">
+                                        <h3 className="text-2xl font-extrabold text-white mb-4 group-hover:text-emerald-400 transition-colors">
                                             {project.name}
                                         </h3>
                                         <p className="text-gray-400 text-lg leading-relaxed mb-8 line-clamp-3 h-[5.4rem]">
