@@ -22,6 +22,13 @@ const breakpointColumnsObj = {
   700: 1, // 1 column at 700px
 };
 
+const smallCardsBreakpointColumnsObj = {
+  default: 4, // 4 columns by default (smaller cards)
+  1100: 3, // 3 columns at 1100px
+  700: 2, // 2 columns at 700px
+  500: 1, // 1 column at 500px
+};
+
 export interface ServiceItem {
   category: string;
 }
@@ -63,7 +70,7 @@ const Potfolio = ({ handleModalOpen }: Props) => {
         {/* Responsive padding wrapper (keeps same DOM structure) */}
         <div className="py-0 px-6 sm:px-10 md:px-12 lg:px-20">
           <Masonry
-            breakpointCols={breakpointColumnsObj}
+            breakpointCols={category === "Taedj Dev Projects" ? smallCardsBreakpointColumnsObj : breakpointColumnsObj}
             className="masonry-grid"
             columnClassName="masonry-grid_column"
           >
