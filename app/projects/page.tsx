@@ -7,6 +7,8 @@ export const metadata = {
     description: 'Explore the ecosystem of projects by Taedj Dev.',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProjectsHub() {
     const projectsData = await getProjects();
     return (
