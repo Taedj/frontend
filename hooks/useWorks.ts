@@ -22,7 +22,6 @@ const useWorks = () => {
     queryKey: ["works"],
     queryFn: async () => await WorksClient.getAll("/works"),
     staleTime: 24 * 60 * 60 * 1000, // 1 day,
-    placeholderData: [],
   });
 };
 
