@@ -30,7 +30,7 @@ interface Props {
 }
 
 const Potfolio = ({ handleModalOpen }: Props) => {
-  const { data } = useWorks();
+  const { data, isLoading } = useWorks();
   const [category, setCategory] = useState("All");
   const [open, setOpen] = useState(false);
   const [selectedWork, setSelectedWork] = useState<PortfolioItem | null>(null);
@@ -47,12 +47,13 @@ const Potfolio = ({ handleModalOpen }: Props) => {
     };
   }, [open]);
 
-
-
   const selectedData =
     category === "All"
       ? data
       : data?.filter((item) => item.service.category === category);
+
+  // Array of varied heights to simulate a masonry layout for the skeletons
+  const skeletonHeights = ["h-[220px]", "h-[340px]", "h-[280px]", "h-[300px]", "h-[240px]", "h-[320px]"];
 
   return (
     <div id="Portfolio" className="py-29 px-0 bg-bg-less-dark">
@@ -66,33 +67,41 @@ const Potfolio = ({ handleModalOpen }: Props) => {
             className="masonry-grid"
             columnClassName="masonry-grid_column"
           >
-            {selectedData?.map((work, index) => (
-              <motion.div
-                key={work.id}
-                className="masonry-item"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Image
-                  src={work.images.length > 0 ? work.images[0].image : "/assets/placeholder.png"}
-                  width={500}
-                  height={300}
-                  alt={`Masonry item ${work.id}`}
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-
+            {isLoading ? (
+              skeletonHeights.map((heightClass, index) => (
+                <div
+                  key={`skeleton-${index}`}
+                  className={`portfolio-skeleton ${heightClass}`}
                 />
-                <div className="overlay" onClick={() => {
-                  setOpen(true);
-                  handleModalOpen(true);
-                  setSelectedWork(work);
-                }}>
-                  <h3>{work.title}</h3>
-                  <a className="view-button">View</a>
-                </div>
-              </motion.div>
-            ))}
+              ))
+            ) : (
+              selectedData?.map((work, index) => (
+                <motion.div
+                  key={work.id}
+                  className="masonry-item"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Image
+                    src={work.images.length > 0 ? work.images[0].image : "/assets/placeholder.png"}
+                    width={500}
+                    height={300}
+                    alt={`Masonry item ${work.id}`}
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                  <div className="overlay" onClick={() => {
+                    setOpen(true);
+                    handleModalOpen(true);
+                    setSelectedWork(work);
+                  }}>
+                    <h3>{work.title}</h3>
+                    <a className="view-button">View</a>
+                  </div>
+                </motion.div>
+              ))
+            )}
 
             {/* Modal preserved inside Masonry exactly like your original */}
             <Modal
