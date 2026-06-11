@@ -41,12 +41,11 @@ export default function RootLayout({
     <QueryClientProvider client={queryClient}>
       <html lang="en">
         <head>
-          <Script
+          <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1648844307965772"
             crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
+          ></script>
         </head>
         <body><KeepAlive />{children}</body>
       </html>
