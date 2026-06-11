@@ -4,10 +4,6 @@ import { FiExternalLink, FiGithub } from "react-icons/fi";
 import ImageGallery from "./ImageGallery";
 import "./JobModel.css";
 import ReactMarkdown from "react-markdown";
-import dynamic from "next/dynamic";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false }) as any;
 
 interface Props {
   title: string;
@@ -35,6 +31,48 @@ const isDirectVideoFile = (url: string) => {
     pathPart.endsWith(".mov") ||
     pathPart.endsWith(".m4v")
   );
+};
+
+/**
+ * Converts YouTube/Vimeo share URLs into embeddable iframe URLs.
+ * Returns null if URL is not a recognized platform.
+ */
+const getEmbedUrl = (url: string): string | null => {
+  if (!url) return null;
+  try {
+    const urlObj = new URL(url);
+    const host = urlObj.hostname.replace("www.", "");
+
+    // YouTube: youtube.com/watch?v=ID, youtu.be/ID, youtube.com/shorts/ID, youtube.com/embed/ID
+    if (host === "youtube.com" || host === "youtu.be" || host === "m.youtube.com") {
+      let videoId: string | null = null;
+
+      if (host === "youtu.be") {
+        videoId = urlObj.pathname.slice(1).split("/")[0];
+      } else if (urlObj.pathname.startsWith("/watch")) {
+        videoId = urlObj.searchParams.get("v");
+      } else if (urlObj.pathname.startsWith("/shorts/")) {
+        videoId = urlObj.pathname.split("/shorts/")[1]?.split("/")[0];
+      } else if (urlObj.pathname.startsWith("/embed/")) {
+        return url; // already an embed URL
+      }
+
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+      }
+    }
+
+    // Vimeo: vimeo.com/ID
+    if (host === "vimeo.com") {
+      const vimeoId = urlObj.pathname.slice(1).split("/")[0];
+      if (vimeoId && /^\d+$/.test(vimeoId)) {
+        return `https://player.vimeo.com/video/${vimeoId}`;
+      }
+    }
+  } catch {
+    // invalid URL, fall through
+  }
+  return null;
 };
 const JobModel = ({
   title,
@@ -144,15 +182,22 @@ const JobModel = ({
                         preload="metadata"
                         playsInline
                       />
+                    ) : getEmbedUrl(video) ? (
+                      <iframe
+                        src={getEmbedUrl(video)!}
+                        title={`${title} - Video ${index + 1}`}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        style={{ border: "none" }}
+                      />
                     ) : (
-                      <ReactPlayer
-                        url={video}
-                        width="100%"
-                        height="100%"
+                      <video
+                        src={video}
                         controls
-                        playsinline
-                        onError={(e: unknown) => console.error("ReactPlayer Error:", e)}
-                        onReady={() => console.log("ReactPlayer Ready")}
+                        className="w-full h-full object-contain"
+                        preload="metadata"
+                        playsInline
                       />
                     )}
                   </div>
