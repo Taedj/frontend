@@ -21,6 +21,21 @@ interface Props {
   onClose: () => void;
 }
 
+const isDirectVideoFile = (url: string) => {
+  if (!url) return false;
+  const lowerUrl = url.toLowerCase();
+  if (lowerUrl.includes("/storage/v1/object/") || lowerUrl.includes("/media/")) {
+    return true;
+  }
+  const pathPart = url.split("?")[0].toLowerCase();
+  return (
+    pathPart.endsWith(".mp4") ||
+    pathPart.endsWith(".webm") ||
+    pathPart.endsWith(".ogg") ||
+    pathPart.endsWith(".mov") ||
+    pathPart.endsWith(".m4v")
+  );
+};
 const JobModel = ({
   title,
   category,
@@ -121,14 +136,25 @@ const JobModel = ({
                       border border-white/10 bg-black/30 shadow-inner
                     "
                   >
-                    <ReactPlayer
-                      url={video}
-                      width="100%"
-                      height="100%"
-                      controls
-                      onError={(e: unknown) => console.error("ReactPlayer Error:", e)}
-                      onReady={() => console.log("ReactPlayer Ready")}
-                    />
+                    {isDirectVideoFile(video) ? (
+                      <video
+                        src={video}
+                        controls
+                        className="w-full h-full object-contain"
+                        preload="metadata"
+                        playsInline
+                      />
+                    ) : (
+                      <ReactPlayer
+                        url={video}
+                        width="100%"
+                        height="100%"
+                        controls
+                        playsinline
+                        onError={(e: unknown) => console.error("ReactPlayer Error:", e)}
+                        onReady={() => console.log("ReactPlayer Ready")}
+                      />
+                    )}
                   </div>
                 ))}
               </div>
