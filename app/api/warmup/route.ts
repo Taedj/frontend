@@ -50,7 +50,7 @@ export async function GET() {
   console.log(`[warmup] Fetched all data in ${elapsed}ms`);
 
   return NextResponse.json(
-    { data: payload, fetchedAt: new Date().toISOString(), elapsed },
+    { data: payload, fetchedAt: new Date().toISOString(), elapsed, backendUrl: BACKEND_URL },
     {
       headers: {
         // Cache on Vercel edge for 10 minutes, serve stale while revalidating
