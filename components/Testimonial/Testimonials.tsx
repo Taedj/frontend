@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import useSlidesCount from "../../hooks/useSlidesCount";
 import BackgroundText from "../BackgroundText/BackgroundText";
 import Carousel from "./Carousel";
@@ -14,11 +14,13 @@ export interface Review {
 }
 
 const Testimonials = () => {
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const { data: reviews = [] } = useQuery<Review[]>({
+    queryKey: ["reviews"],
+    queryFn: () => ReviewsClient.getAll("/reviews"),
+    staleTime: 24 * 60 * 60 * 1000, // 1 day
+    placeholderData: [],
+  });
   const { slideToShow } = useSlidesCount();
-  useEffect(() => {
-    ReviewsClient.getAll("/reviews").then((data) => setReviews(data));
-  }, []);
   return (
     <div
       id="Testimonials"

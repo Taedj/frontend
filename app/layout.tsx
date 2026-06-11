@@ -6,7 +6,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import clientLogger from "../lib/clientLogger";
-import KeepAlive from "../components/KeepAlive/KeepAlive";
+import { PortfolioDataProvider } from "../components/PortfolioDataProvider";
 import "./globals.css";
 
 
@@ -47,7 +47,7 @@ export default function RootLayout({
             crossOrigin="anonymous"
           ></script>
         </head>
-        <body><KeepAlive />{children}</body>
+        <body><PortfolioDataProvider>{children}</PortfolioDataProvider></body>
       </html>
     </QueryClientProvider>
   );
