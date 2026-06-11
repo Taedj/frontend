@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
+import { FiExternalLink, FiGithub } from "react-icons/fi";
 import ImageGallery from "./ImageGallery";
 import "./JobModel.css";
 import ReactMarkdown from "react-markdown";
 import dynamic from "next/dynamic";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false }) as any;
 
@@ -18,73 +21,215 @@ interface Props {
   onClose: () => void;
 }
 
-const JobModel = ({ title, category, images = [], videos = [], description, technologies = [], projectUrl, sourceCodeUrl, onClose }: Props) => {
-  console.log("JobModel Videos:", videos);
+const JobModel = ({
+  title,
+  category,
+  images = [],
+  videos = [],
+  description,
+  technologies = [],
+  projectUrl,
+  sourceCodeUrl,
+  onClose,
+}: Props) => {
+  const [activeMediaTab, setActiveMediaTab] = useState<"photos" | "videos">("photos");
+  const hasVideos = videos && videos.length > 0;
+
   return (
     <div
       className="
-            w-[95vw] sm:w-[90vw] md:w-[85vw] lg:w-[80vw] 
-            max-w-[90rem] 
-            h-[95vh] 
-            p-4 sm:p-6 md:p-8 
-            rounded-lg 
-            bg-job-model 
-            text-cell-description 
-            mx-auto 
-            flex flex-col
-        "
+        relative
+        w-[92vw] sm:w-[88vw] md:w-[85vw] lg:w-[80vw] 
+        max-w-[85rem] 
+        h-[90vh] md:h-[80vh] lg:h-[75vh] 
+        p-5 sm:p-6 md:p-8 
+        rounded-2xl 
+        bg-job-model 
+        text-cell-description 
+        mx-auto 
+        flex flex-col
+        shadow-2xl
+        border border-white/5
+        overflow-y-auto md:overflow-hidden
+      "
     >
-      <div className="flex justify-end mb-4" onClick={onClose}>
-        <RxCross1 size={24} />
-      </div>
-      <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-2 sm:px-5 md:px-10 flex-grow">
-        <div className="w-full md:w-1/3 h-full flex flex-col gap-2 overflow-y-auto">
-          <div className="flex-shrink-0">
-            <ImageGallery images={images} />
-          </div>
-          {videos && videos.length > 0 && (
-            <div className="grid gap-4 flex-shrink-0 mt-2">
-              <h3 className="text-xl font-semibold text-gray-300">Video Gallery</h3>
-              {videos.map((video, index) => (
-                <div key={index} className="w-full aspect-video rounded-lg overflow-hidden border border-gray-700">
-                  <ReactPlayer
-                    url={video}
-                    width="100%"
-                    height="100%"
-                    controls
-                    onError={(e: unknown) => console.error("ReactPlayer Error:", e)}
-                    onReady={() => console.log("ReactPlayer Ready")}
-                  />
-                </div>
-              ))}
+      {/* Floating Close Button */}
+      <button
+        onClick={onClose}
+        className="
+          absolute top-4 right-4 z-50 
+          p-2.5 rounded-full 
+          bg-black/30 hover:bg-primary/20 
+          text-cell-description hover:text-primary 
+          border border-white/10 hover:border-primary/30
+          transition-all duration-300 
+          focus:outline-none shadow-lg backdrop-blur-sm
+          cursor-pointer
+        "
+        aria-label="Close details"
+      >
+        <RxCross1 size={18} />
+      </button>
+
+      {/* Main Grid Layout */}
+      <div className="flex flex-col md:flex-row gap-6 md:gap-8 flex-grow md:h-[calc(100%-1rem)] mt-2">
+        {/* Left Column: Media (Gallery & Videos) */}
+        <div className="w-full md:w-[45%] h-auto md:h-full flex flex-col overflow-visible md:overflow-y-auto pr-0 md:pr-2">
+          {/* Media Tab Selector */}
+          {hasVideos && (
+            <div className="flex gap-2 p-1 bg-black/20 border border-white/5 rounded-xl mb-4 w-fit">
+              <button
+                onClick={() => setActiveMediaTab("photos")}
+                className={`
+                  px-4 py-2 text-xs md:text-sm font-semibold rounded-lg transition-all duration-300 cursor-pointer
+                  ${
+                    activeMediaTab === "photos"
+                      ? "bg-primary text-white shadow-md"
+                      : "text-gray-400 hover:text-gray-200"
+                  }
+                `}
+              >
+                Photos ({images.length})
+              </button>
+              <button
+                onClick={() => setActiveMediaTab("videos")}
+                className={`
+                  px-4 py-2 text-xs md:text-sm font-semibold rounded-lg transition-all duration-300 cursor-pointer
+                  ${
+                    activeMediaTab === "videos"
+                      ? "bg-primary text-white shadow-md"
+                      : "text-gray-400 hover:text-gray-200"
+                  }
+                `}
+              >
+                Videos ({videos.length})
+              </button>
             </div>
           )}
+
+          {/* Media Content */}
+          <div className="flex-grow">
+            {activeMediaTab === "photos" || !hasVideos ? (
+              <ImageGallery images={images} />
+            ) : (
+              <div className="grid gap-5">
+                {videos.map((video, index) => (
+                  <div
+                    key={index}
+                    className="
+                      w-full aspect-video rounded-xl overflow-hidden 
+                      border border-white/10 bg-black/30 shadow-inner
+                    "
+                  >
+                    <ReactPlayer
+                      url={video}
+                      width="100%"
+                      height="100%"
+                      controls
+                      onError={(e: unknown) => console.error("ReactPlayer Error:", e)}
+                      onReady={() => console.log("ReactPlayer Ready")}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-        <div className="w-full md:w-2/3 mt-4 md:mt-0 px-2 sm:px-4 overflow-y-auto">
-          <div className="mb-6">
-            <h1 className="text-[25px] font-semibold mb-2">{title}</h1>
-            <p className="text-xl md:text-2xl text-gray-400">{category}</p>
+
+        {/* Right Column: Project details */}
+        <div className="w-full md:w-[55%] h-auto md:h-full flex flex-col justify-between overflow-visible md:overflow-y-auto pl-0 md:pl-2">
+          <div>
+            {/* Header info */}
+            <div className="mb-6 pr-10 md:pr-0">
+              <span className="inline-block px-3 py-1 text-xs font-bold tracking-wider uppercase rounded bg-primary/10 text-primary border border-primary/20 mb-3">
+                {category}
+              </span>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                {title}
+              </h1>
+            </div>
+
+            {/* Description */}
+            <div className="mb-6">
+              <h2 className="text-base sm:text-lg font-bold text-white mb-2 tracking-wide uppercase text-xs opacity-80">
+                Project Overview
+              </h2>
+              <div className="text-sm sm:text-base leading-relaxed text-gray-300/90 whitespace-pre-wrap">
+                <ReactMarkdown
+                  components={{
+                    a: ({ ...props }) => (
+                      <a
+                        className="text-primary hover:text-hover-primary underline font-semibold transition-colors duration-200"
+                        target="_blank"
+                        rel="noreferrer"
+                        {...props}
+                      />
+                    ),
+                  }}
+                >
+                  {description}
+                </ReactMarkdown>
+              </div>
+            </div>
+
+            {/* Technologies */}
+            {technologies.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-base sm:text-lg font-bold text-white mb-3 tracking-wide uppercase text-xs opacity-80">
+                  Technologies Used
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {technologies.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="
+                        px-3 py-1 text-xs md:text-sm font-medium rounded-full 
+                        bg-primary/5 text-primary border border-primary/20 
+                        transition-all duration-300 hover:bg-primary/10
+                      "
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-
-          <div className="text-[20px] leading-loose mb-4 whitespace-pre-wrap">
-            <ReactMarkdown
-              components={{
-                a: ({ ...props }) => <a style={{ fontWeight: 'bold', color: 'red', backgroundColor: 'yellow' }} {...props} />
-              }}
-            >
-              {description}
-            </ReactMarkdown>
-          </div>
-
-          <ul className="list-disc list-inside mb-4">
-            {technologies.map((tech, index) => (
-              <li key={index} className="text-lg md:text-xl">{tech}</li>
-            ))}
-          </ul>
-          <div className="flex gap-4">
-            {projectUrl && <a href={projectUrl} target="_blank" rel="noreferrer" className="text-red-500 bg-yellow-300 hover:underline">Live Demo</a>}
-            {sourceCodeUrl && <a href={sourceCodeUrl} target="_blank" rel="noreferrer" className="text-red-500 bg-yellow-300 hover:underline">Source Code</a>}
+          {/* Action buttons */}
+          <div className="flex flex-wrap gap-4 pt-4 border-t border-white/5 mt-auto">
+            {projectUrl && (
+              <a
+                href={projectUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="
+                  flex items-center justify-center gap-2 
+                  px-5 py-2.5 rounded-xl font-semibold text-sm text-white
+                  bg-primary hover:bg-hover-primary 
+                  transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-primary/20
+                "
+              >
+                <FiExternalLink size={16} />
+                Live Demo
+              </a>
+            )}
+            {sourceCodeUrl && (
+              <a
+                href={sourceCodeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="
+                  flex items-center justify-center gap-2 
+                  px-5 py-2.5 rounded-xl font-semibold text-sm text-cell-description hover:text-white
+                  bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20
+                  transition-all duration-300 transform hover:-translate-y-0.5 shadow-md
+                "
+              >
+                <FiGithub size={16} />
+                Source Code
+              </a>
+            )}
           </div>
         </div>
       </div>

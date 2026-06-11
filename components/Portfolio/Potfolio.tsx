@@ -5,7 +5,6 @@ import Masonry from "react-masonry-css";
 import Image from "next/image";
 import Modal from "react-modal";
 import { motion } from "framer-motion";
-import { colors } from "../../constants/constants";
 import useWorks, { PortfolioItem } from "../../hooks/useWorks";
 import BackgroundText from "../BackgroundText/BackgroundText";
 import CategoriesSelector from "./CategoriesSelector";
@@ -100,11 +99,13 @@ const Potfolio = ({ handleModalOpen }: Props) => {
               isOpen={open}
               style={{
                 overlay: {
-                  backgroundColor: "rgba(33, 37, 41, 0.8)",
+                  backgroundColor: "rgba(17, 20, 24, 0.8)",
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
                   zIndex: 10000,
                 },
                 content: {
-                  backgroundColor: colors.backgroundLessDarkColor,
+                  backgroundColor: "transparent",
                   border: "none",
                   padding: "0",
                   inset: "50% auto auto 50%",
@@ -112,6 +113,7 @@ const Potfolio = ({ handleModalOpen }: Props) => {
                   width: "fit-content",
                   height: "fit-content",
                   zIndex: 10000,
+                  overflow: "visible",
                 },
               }}
               htmlOpenClassName="modal-open"
