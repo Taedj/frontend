@@ -16,7 +16,8 @@ const ENDPOINTS = {
 
 async function fetchEndpoint(path: string): Promise<unknown> {
   try {
-    const res = await fetch(`${BACKEND_URL}${path}`, {
+    const cleanUrl = `${BACKEND_URL.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
+    const res = await fetch(cleanUrl, {
       cache: 'no-store', // Always fetch fresh from backend
       headers: { 'Content-Type': 'application/json' },
     });
