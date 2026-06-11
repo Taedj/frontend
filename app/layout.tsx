@@ -8,7 +8,7 @@ import {
 import clientLogger from "../lib/clientLogger";
 import KeepAlive from "../components/KeepAlive/KeepAlive";
 import "./globals.css";
-import Script from "next/script";
+
 
 // export const metadata: Metadata = {
 //   title: 'Tidjani Frontend',
