@@ -8,6 +8,7 @@ import {
 import clientLogger from "../lib/clientLogger";
 import KeepAlive from "../components/KeepAlive/KeepAlive";
 import "./globals.css";
+import Script from "next/script";
 
 // export const metadata: Metadata = {
 //   title: 'Tidjani Frontend',
@@ -39,8 +40,17 @@ export default function RootLayout({
   return (
     <QueryClientProvider client={queryClient}>
       <html lang="en">
+        <head>
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1648844307965772"
+            crossorigin="anonymous"
+            strategy="afterInteractive"
+          />
+        </head>
         <body><KeepAlive />{children}</body>
       </html>
     </QueryClientProvider>
   );
 }
+

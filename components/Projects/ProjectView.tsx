@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaArrowLeft, FaDownload, FaRocket } from 'react-icons/fa';
+import { FaArrowLeft, FaDownload, FaRocket, FaGlobe } from 'react-icons/fa';
 import { ProjectDetails } from '@/lib/github';
 
 interface CurrencyConfig {
@@ -191,6 +191,20 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                             >
                                 <FaDownload className="text-lg md:text-2xl" /> {tHero.ctaPrimaryLabel}
                             </Link>
+                            {tHero.ctaTertiaryLabel && hero.ctaTertiaryLink && (
+                                <Link
+                                    href={hero.ctaTertiaryLink}
+                                    target="_blank"
+                                    style={{
+                                        padding: `clamp(12px, 3vw, ${styles.buttonPaddingY}px) clamp(24px, 4vw, ${styles.buttonPaddingX}px)`,
+                                        fontSize: `clamp(14px, 3vw, ${styles.buttonTextSize}px)`,
+                                        borderRadius: `${styles.borderRadius}px`
+                                    }}
+                                    className="w-full md:w-auto bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-400 font-black transition-all flex items-center justify-center gap-4 hover:scale-105 active:scale-95"
+                                >
+                                    <FaGlobe className="text-lg md:text-2xl" /> {tHero.ctaTertiaryLabel}
+                                </Link>
+                            )}
                             <Link
                                 href={hero.ctaSecondaryLink}
                                 style={{

@@ -84,10 +84,12 @@ export interface ProjectDetails {
     ctaPrimaryLink: string;
     ctaSecondaryLabel: string;
     ctaSecondaryLink: string;
+    ctaTertiaryLabel?: string;
+    ctaTertiaryLink?: string;
     image: string;
     translations?: {
-      ar?: { title: string; subtitle: string; ctaPrimaryLabel: string; ctaSecondaryLabel: string };
-      fr?: { title: string; subtitle: string; ctaPrimaryLabel: string; ctaSecondaryLabel: string };
+      ar?: { title: string; subtitle: string; ctaPrimaryLabel: string; ctaSecondaryLabel: string; ctaTertiaryLabel?: string };
+      fr?: { title: string; subtitle: string; ctaPrimaryLabel: string; ctaSecondaryLabel: string; ctaTertiaryLabel?: string };
     };
   };
   chapters: Chapter[];
@@ -394,6 +396,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
       subtitle: extractValue(content, 'Subtitle:', 'Hero Section'),
       ctaPrimaryLabel: extractValue(content, 'CTA Primary Label:', 'Hero Section') || 'Download Now',
       ctaSecondaryLabel: extractValue(content, 'CTA Secondary Label:', 'Hero Section') || 'Learn More',
+      ctaTertiaryLabel: extractValue(content, 'CTA Tertiary Label:', 'Hero Section') || '',
     });
 
     const finalCtaParse = (content: string) => ({
@@ -414,6 +417,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
         ...enHero,
         ctaPrimaryLink: extractValue(enContent, 'CTA Primary Link:', 'Hero Section') || '#',
         ctaSecondaryLink: extractValue(enContent, 'CTA Secondary Link:', 'Hero Section') || '#',
+        ctaTertiaryLink: extractValue(enContent, 'CTA Tertiary Link:', 'Hero Section') || '',
         image: heroImage,
         translations: {}
       },
