@@ -161,7 +161,7 @@ const TestimonialModal = ({ isOpen, onClose }: Props) => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="testimonial-modal-form">
-            <h2 className="form-title">Let Your Comment</h2>
+            <h2 className="form-title">Leave a Review</h2>
             <p className="form-subtitle">Share your experience with us</p>
 
             {error && <div className="form-error-msg">{error}</div>}
