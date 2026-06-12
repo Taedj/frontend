@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useSlidesCount from "../../hooks/useSlidesCount";
 import BackgroundText from "../BackgroundText/BackgroundText";
@@ -20,6 +20,17 @@ const defaultAvatar = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/200
 
 const Testimonials = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Auto-open modal if URL contains ?review=true or hash is #leave-review
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("review") === "true" || window.location.hash === "#leave-review") {
+        setIsModalOpen(true);
+      }
+    }
+  }, []);
+
   const { data: reviews = [] } = useQuery<Review[]>({
     queryKey: ["reviews"],
     queryFn: () => ReviewsClient.getAll("/reviews"),
@@ -38,20 +49,20 @@ const Testimonials = () => {
           innerText={`Clients & Students\nSpeak`}
         />
         
-        {/* Leave a Review Button placed under the title and made bigger */}
+        {/* Leave a Review Button placed under the title and made even bigger */}
         <div className="mt-8 flex justify-center w-full">
           <div className="relative group">
             {/* Glowing background layer that pulses */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-[#00F2FE] rounded-2xl blur-md opacity-45 group-hover:opacity-85 transition duration-500 animate-pulse"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-[#00F2FE] rounded-3xl blur-md opacity-45 group-hover:opacity-85 transition duration-500 animate-pulse"></div>
             
             <button 
               onClick={() => setIsModalOpen(true)}
               className="
-                relative px-8 py-4 rounded-2xl font-bold text-base text-white
+                relative px-12 py-5 rounded-3xl font-extrabold text-base sm:text-lg text-white
                 bg-primary hover:bg-hover-primary 
-                transition-all duration-300 transform hover:-translate-y-0.5 shadow-xl shadow-primary/20
-                cursor-pointer border border-primary/10
-                flex items-center gap-3
+                transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] shadow-2xl shadow-primary/30
+                cursor-pointer border border-primary/20
+                flex items-center gap-4
               "
             >
               <svg 
@@ -60,7 +71,7 @@ const Testimonials = () => {
                 viewBox="0 0 24 24" 
                 strokeWidth={2.5} 
                 stroke="currentColor" 
-                className="w-5 h-5 text-white"
+                className="w-6 h-6 text-white"
               >
                 <path 
                   strokeLinecap="round" 
