@@ -83,11 +83,7 @@ const TestimonialModal = ({ isOpen, onClose }: Props) => {
     }
 
     try {
-      await ReviewsClient.post("/reviews", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await ReviewsClient.post("/reviews", formData);
       setSuccess(true);
       // Invalidate queries to fetch updated testimonials list
       queryClient.invalidateQueries({ queryKey: ["reviews"] });
