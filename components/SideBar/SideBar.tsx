@@ -10,7 +10,7 @@ import useActiveSection from "../../hooks/useActiveSection";
 
 const SideBar = () => {
   const { activeSection, setActiveSection } = useActiveSection();
-  const [HoveredIndex, setHoveredIndex] = useState(0);
+  const [HoveredIndex, setHoveredIndex] = useState(-1);
   const { data: config } = useConfig();
   const { isLogged } = useIsLogged();
   const { mutate } = useLogout();
