@@ -93,8 +93,8 @@ const JobModel = ({
       className="
         relative
         w-[92vw] sm:w-[88vw] md:w-[85vw] lg:w-[80vw] 
-        max-w-[85rem] 
-        h-[90vh] md:h-[80vh] lg:h-[75vh] 
+        max-w-[72rem] 
+        h-[90vh] md:h-[85vh] 
         p-5 sm:p-6 md:p-8 
         rounded-2xl 
         bg-job-model 

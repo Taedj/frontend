@@ -2,6 +2,8 @@
 .testimonial-modal-card {
   width: 90vw;
   max-width: 65rem;
+  max-height: 90vh;
+  overflow-y: auto;
   background: rgba(17, 20, 24, 0.7);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
@@ -11,7 +13,6 @@
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   color: #e5e7eb;
   position: relative;
-  overflow: hidden;
 }
 
 .testimonial-modal-close {
