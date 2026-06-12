@@ -32,6 +32,24 @@ class ApiClient<T> {
       };
     }
   };
+
+  post = async function (relativePath: string, data: any, config?: any) {
+    let url = this.endpoint + relativePath;
+    const [path, query] = url.split('?');
+    if (!path.endsWith('/')) {
+      url = path + '/' + (query ? `?${query}` : '');
+    }
+    try {
+      const response = await axiosInstance.post<T>(url, data, config);
+      return response.data;
+    } catch (error) {
+      console.error("base apiClient post error", error);
+      throw {
+        message: error.response?.data?.message || "An error occurred",
+        status: error.response?.status,
+      };
+    }
+  };
 }
 
 export default ApiClient;
