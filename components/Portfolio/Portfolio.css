@@ -1,30 +1,30 @@
 /* Masonry grid container */
 .masonry-grid {
   display: flex;
-  margin-left: -15px; /* Adjust gutter */
+  margin-left: -1.5rem; /* Adjust gutter */
   width: auto;
 }
 
 /* Masonry grid column */
 .masonry-grid_column {
-  padding-left: 15px; /* Adjust gutter */
+  padding-left: 1.5rem; /* Adjust gutter */
   background-clip: padding-box;
 }
 
 /* Masonry item */
 .masonry-item {
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0.8rem;
 }
 
 /* Image styling */
 .masonry-item img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   transition: transform 0.3s ease;
   display: block;
 }
@@ -43,8 +43,8 @@
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 0.8rem;
+  padding: 2rem;
   text-align: center;
 }
 
@@ -60,15 +60,15 @@
   color: white;
   font-size: 2.4rem;
   line-height: 2.8rem;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
   font-weight: 700;
 }
 
 .overlay .view-button {
   background-color: var(--color-primary);
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
   text-decoration: none;
   font-weight: 600;
   transition: background-color 0.3s ease;
@@ -83,9 +83,9 @@
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
 }
 
 @keyframes shimmer {

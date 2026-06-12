@@ -1,24 +1,24 @@
 /* Carousel.css */
 .carousel-container {
-  max-width: 1800px;
+  max-width: 180rem;
   margin: 0 auto;
   overflow: visible;
 }
 
 /* Add gap between items (for react-slick we need padding) */
 .slick-slide {
-  padding: 0 8px; /* small screens */
+  padding: 0 0.8rem; /* small screens */
 }
 
 @media (min-width: 640px) {
   .slick-slide {
-    padding: 0 12px;
+    padding: 0 1.2rem;
   }
 }
 
 @media (min-width: 1024px) {
   .slick-slide {
-    padding: 0 20px;
+    padding: 0 2rem;
   }
 }
 
