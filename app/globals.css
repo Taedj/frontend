@@ -26,6 +26,38 @@
 html {
   font-size: 62.25%;
   font-family: Poppins, sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Scale up the root font size on tablet & desktop screens so components and text don't look too small */
+@media (min-width: 640px) {
+  html {
+    font-size: 68%;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 72%;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 85%;
+  }
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 90%;
+  }
 }
 
 header, nav {
