@@ -22,25 +22,25 @@ const SideBar = () => {
       <div className="flex flex-col justify-between items-center h-screen fixed z-2 bg-bg-very-dark text-opacity-white w-sidebar">
         <div className="flex flex-col items-center">
           <div
-            className="w-72 h-72 mb-5 bg-cover rounded-full border-8 mt-10"
+            className="w-48 h-48 mb-3 bg-cover rounded-full border-[6px] mt-6"
             style={{
               backgroundImage: bgImage,
-              border: `8px solid ${colors.backgroundLessDarkColor}`,
+              border: `6px solid ${colors.backgroundLessDarkColor}`,
             }}
           ></div>
-          <h1 className="text-4xl font-semibold leading-10">
+          <h1 className="text-2xl sm:text-3xl font-semibold leading-8">
             {config?.fullname}
           </h1>
         </div>
 
-        <ul className="flex flex-col items-center list-none text-3xl leading-10 p-0 m-0 font-semibold w-full">
+        <ul className="flex flex-col items-center list-none text-xl sm:text-2xl leading-[2.2rem] p-0 m-0 font-semibold w-full">
           {sections.map((section, index) => {
             const isActive = activeSection === section;
             const isHovered = HoveredIndex === index;
             return (
               <li
                 key={section}
-                className="p-4"
+                className="py-1.5 sm:py-2 px-4"
                 style={{
                   transition: "color 0.3s",
                   color: isHovered || isActive ? colors.primaryColor : "white",
@@ -63,7 +63,7 @@ const SideBar = () => {
           })}
         </ul>
         {isLogged && (
-          <div className="text-3xl font-semibold ">
+          <div className="text-xl sm:text-2xl font-semibold ">
             <span className="hover:text-primary">
               <a href="/" onClick={() => mutate()}>
                 Logout
