@@ -38,20 +38,20 @@ const Testimonials = () => {
           innerText={`Clients & Students\nSpeak`}
         />
         
-        {/* Leave a Review Button with Sleek Gradient Glow */}
-        <div className="mt-8 md:mt-0 flex justify-center md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:z-10">
+        {/* Leave a Review Button placed under the title and made bigger */}
+        <div className="mt-8 flex justify-center w-full">
           <div className="relative group">
             {/* Glowing background layer that pulses */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-[#00F2FE] rounded-xl blur-md opacity-45 group-hover:opacity-85 transition duration-500 animate-pulse"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-[#00F2FE] rounded-2xl blur-md opacity-45 group-hover:opacity-85 transition duration-500 animate-pulse"></div>
             
             <button 
               onClick={() => setIsModalOpen(true)}
               className="
-                relative px-6 py-3 rounded-xl font-bold text-sm text-white
+                relative px-8 py-4 rounded-2xl font-bold text-base text-white
                 bg-primary hover:bg-hover-primary 
-                transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-primary/20
+                transition-all duration-300 transform hover:-translate-y-0.5 shadow-xl shadow-primary/20
                 cursor-pointer border border-primary/10
-                flex items-center gap-2
+                flex items-center gap-3
               "
             >
               <svg 
@@ -60,7 +60,7 @@ const Testimonials = () => {
                 viewBox="0 0 24 24" 
                 strokeWidth={2.5} 
                 stroke="currentColor" 
-                className="w-4 h-4 text-white"
+                className="w-5 h-5 text-white"
               >
                 <path 
                   strokeLinecap="round" 
@@ -73,7 +73,8 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div className="mt-10 sm:mt-16 md:mt-20 px-2 sm:px-6 md:px-8 max-w-full sm:max-w-[90%] md:max-w-[80%] mx-auto">
+        {/* Carousel Container: Extended to full width for maximum card visualisation */}
+        <div className="mt-10 sm:mt-16 md:mt-20 px-2 sm:px-4 md:px-6 w-full max-w-full mx-auto">
           <Carousel slideToShow={slideToShow}>
             {reviews.map((review, index) => (
               <TestimonialBox

@@ -23,7 +23,7 @@ const Carousel = ({ children, slideToShow }: Props) => {
     infinite: true,
     autoplay: true,
     autoplaySpeed: 1000,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
   };
 
   return <Slider {...settings}>{children}</Slider>;

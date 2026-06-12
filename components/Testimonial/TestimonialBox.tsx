@@ -39,10 +39,11 @@ const TestimonialBox = ({
         text-2xl sm:text-3xl    /* 👈 stops scaling after md */
         leading-relaxed 
         m-3 sm:m-6 
-        p-6 sm:p-10 md:p-16 lg:p-20 
+        p-6 sm:p-8 md:p-10 lg:p-12
         text-white 
         bg-bg-very-dark
-        min-h-[360px] sm:min-h-0
+        h-full flex flex-col
+        min-h-[320px] sm:min-h-[380px] md:min-h-[400px]
       "
     >
       {/* Avatar + Titles */}
@@ -64,7 +65,7 @@ const TestimonialBox = ({
       </div>
 
       {/* Testimonial Text */}
-      <p className="font-medium mb-6 sm:mb-8 md:mb-10 text-2xl sm:text-3xl ">
+      <p className="font-medium mb-6 sm:mb-8 md:mb-10 text-2xl sm:text-3xl flex-grow">
         {testomonial}
       </p>
 
