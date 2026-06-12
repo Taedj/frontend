@@ -5,30 +5,46 @@ const useActiveSection = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let visibleSection: string | null = null;
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            visibleSection = entry.target.id;
+    let ticking = false;
+
+    const updateActiveSection = () => {
+      if (typeof window === "undefined") return;
+
+      // Use a trigger line at 35% of the viewport height from the top
+      const triggerLine = window.scrollY + window.innerHeight * 0.35;
+      let currentSection = sections[0];
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          
+          if (triggerLine >= top) {
+            currentSection = section;
           }
         }
-        if (visibleSection) {
-          setActiveSection(visibleSection);
-        }
-      },
-      { 
-        rootMargin: "-20% 0px -35% 0px",
-        threshold: 0.15 
       }
-    );
 
-    sections.forEach((section) => {
-      const el = document.getElementById(section);
-      if (el) observer.observe(el);
-    });
+      setActiveSection(currentSection);
+    };
 
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Run once on mount to set initial section
+    updateActiveSection();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // 👇 manual override when clicking
