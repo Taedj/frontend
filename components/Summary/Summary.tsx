@@ -16,7 +16,12 @@ interface EducationItem {
 }
 
 const formatYear = (item: EducationItem) => {
-  return `${item.start_date.slice(0, 4)} - ${item.end_date.slice(0, 4)}`;
+  const start = item.start_date ? item.start_date.slice(0, 4) : "";
+  const end = item.end_date ? item.end_date.slice(0, 4) : "";
+  if (!start && !end) return "";
+  if (!start) return end;
+  if (!end) return `${start} - Present`;
+  return `${start} - ${end}`;
 };
 
 const Summary = () => {
@@ -77,7 +82,7 @@ const Summary = () => {
 
         {/* Download CV */}
         <div className="flex justify-center mt-16">
-          <a href="https://drive.google.com/file/d/1-XryxNaj88LKIjB46DbiIQ4yX3nxILg_/view?usp=sharing" download="My_CV.pdf">
+          <a href="https://drive.google.com/file/d/10VLnaJYqIIAWewj0FjhsW7pirz07s2Hj/view?usp=sharing" download="My_CV.pdf">
             <Button
               color={colors.backgroundTextDarkColor}
               height="5.2rem"

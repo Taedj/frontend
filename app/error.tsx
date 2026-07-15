@@ -1,9 +1,18 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ErrorPage = ({ error }: { error: Error }) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const handleRetry = () => {
+    // Clear all cached data so fresh fetch happens
+    queryClient.clear();
+    router.push("/");
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-bg-less-dark px-4 text-center">
       <div className="w-full max-w-3xl">
@@ -32,13 +41,12 @@ const ErrorPage = ({ error }: { error: Error }) => {
         {process.env.NODE_ENV === "development" && (
           <p className="text-red-500">{error.message}</p>
         )}
-        <a
-          href="/"
-          className="inline-block rounded-2xl bg-primary px-5 py-2 sm:px-6 sm:py-3 text-sm sm:text-base text-white font-medium "
-          onClick={() => router.push("/")}
+        <button
+          onClick={handleRetry}
+          className="inline-block rounded-2xl bg-primary px-5 py-2 sm:px-6 sm:py-3 text-sm sm:text-base text-white font-medium hover:opacity-90 transition-opacity"
         >
-          Back to Home
-        </a>
+          Retry / Back to Home
+        </button>
       </div>
     </div>
   );

@@ -2,6 +2,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
+import { usePathname } from "next/navigation";
+
 interface WarmupData {
   config?: unknown;
   services?: unknown;
@@ -35,9 +37,17 @@ export const PortfolioDataProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const queryClient = useQueryClient();
+  const pathname = usePathname();
   const [isWarmedUp, setIsWarmedUp] = useState(false);
 
+  const isHomepage = pathname === "/";
+
   useEffect(() => {
+    if (!isHomepage) {
+      setIsWarmedUp(true);
+      return;
+    }
+
     let cancelled = false;
 
     const prefetch = async () => {
@@ -99,11 +109,26 @@ export const PortfolioDataProvider: React.FC<{ children: React.ReactNode }> = ({
     return () => {
       cancelled = true;
     };
-  }, [queryClient]);
+  }, [queryClient, isHomepage]);
 
   return (
     <PortfolioContext.Provider value={{ isWarmedUp }}>
-      {children}
+      {!isWarmedUp && isHomepage ? (
+        <div className="flex flex-col min-h-screen items-center justify-center bg-[#111418] text-white">
+          <div className="relative flex items-center justify-center mb-6">
+            <div className="absolute w-12 h-12 bg-[#20C997]/10 rounded-full animate-ping"></div>
+            <div className="w-16 h-16 border-4 border-white/5 border-t-[#20C997] rounded-full animate-spin"></div>
+          </div>
+          <h2 className="text-xl font-bold tracking-wider uppercase text-white/90">
+            Tidjani Zitouni
+          </h2>
+          <p className="text-sm text-gray-400 mt-2 tracking-widest animate-pulse uppercase">
+            Loading Portfolio...
+          </p>
+        </div>
+      ) : (
+        children
+      )}
     </PortfolioContext.Provider>
   );
 };

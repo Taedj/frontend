@@ -1,5 +1,5 @@
 "use client";
-// import type { Metadata } from 'next'
+import { useState } from "react";
 import {
   QueryCache,
   QueryClient,
@@ -20,7 +20,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const queryClient = new QueryClient({
+  const [queryClient] = useState(() => new QueryClient({
     defaultOptions: {
       queries: {
         staleTime: 1000 * 60 * 60 * 24 * 3, // 3 days
@@ -35,7 +35,7 @@ export default function RootLayout({
         console.error(`Query error for ${query.queryKey}`, err);
       },
     }),
-  });
+  }));
 
   return (
     <QueryClientProvider client={queryClient}>
