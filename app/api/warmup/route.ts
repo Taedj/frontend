@@ -22,41 +22,56 @@ async function fetchEndpoint(path: string): Promise<unknown> {
       headers: { 'Content-Type': 'application/json' },
     });
     if (!res.ok) return null;
-    return await res.json();
+    // Check if response has content before parsing JSON
+    const contentType = res.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) return null;
+    const text = await res.text();
+    if (!text.trim()) return null;
+    return JSON.parse(text);
   } catch (err) {
     console.error(`[warmup] Failed to fetch ${path}:`, err);
     return null;
   }
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
-  const startTime = Date.now();
+  try {
+    const startTime = Date.now();
 
-  // Fetch all endpoints in parallel
-  const results = await Promise.allSettled(
-    Object.entries(ENDPOINTS).map(async ([key, path]) => {
-      const data = await fetchEndpoint(path);
-      return [key, data] as const;
-    })
-  );
+    // Fetch all endpoints in parallel
+    const results = await Promise.allSettled(
+      Object.entries(ENDPOINTS).map(async ([key, path]) => {
+        const data = await fetchEndpoint(path);
+        return [key, data] as const;
+      })
+    );
 
-  const payload: Record<string, unknown> = {};
-  for (const result of results) {
-    if (result.status === 'fulfilled' && result.value[1] !== null) {
-      payload[result.value[0]] = result.value[1];
+    const payload: Record<string, unknown> = {};
+    for (const result of results) {
+      if (result.status === 'fulfilled' && result.value[1] !== null) {
+        payload[result.value[0]] = result.value[1];
+      }
     }
+
+    const elapsed = Date.now() - startTime;
+    console.log(`[warmup] Fetched all data in ${elapsed}ms`);
+
+    return NextResponse.json(
+      { data: payload, fetchedAt: new Date().toISOString(), elapsed, backendUrl: BACKEND_URL },
+      {
+        headers: {
+          // Cache on Vercel edge for 10 minutes, serve stale while revalidating
+          'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=300',
+        },
+      }
+    );
+  } catch (err) {
+    console.error('[warmup] Route error:', err);
+    return NextResponse.json(
+      { error: 'Warmup failed', message: String(err) },
+      { status: 500 }
+    );
   }
-
-  const elapsed = Date.now() - startTime;
-  console.log(`[warmup] Fetched all data in ${elapsed}ms`);
-
-  return NextResponse.json(
-    { data: payload, fetchedAt: new Date().toISOString(), elapsed, backendUrl: BACKEND_URL },
-    {
-      headers: {
-        // Cache on Vercel edge for 10 minutes, serve stale while revalidating
-        'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=300',
-      },
-    }
-  );
 }
