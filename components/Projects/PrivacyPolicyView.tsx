@@ -94,7 +94,7 @@ export default function PrivacyPolicyView({
                     body: [
                         'Publisher: Taedj Dev (Dr. Tidjani Zitouni)',
                         'Primary Email: tidjanizitouni@gmail.com',
-                        'App Identifier: com.baraka.market',
+                        'App Identifier: com.taedj.maydi3ch',
                         'If you have questions, feedback, or privacy concerns, please contact us anytime.'
                     ]
                 }
@@ -174,7 +174,7 @@ export default function PrivacyPolicyView({
                     body: [
                         'الجهة المطورة: Taedj Dev (د. تيجاني زيتوني)',
                         'البريد الإلكتروني: tidjanizitouni@gmail.com',
-                        'معرف التطبيق: com.baraka.market',
+                        'معرف التطبيق: com.taedj.maydi3ch',
                         'لأية استفسارات أو ملاحظات حول الخصوصية، نرحب بتواصلكم في أي وقت.'
                     ]
                 }
@@ -254,7 +254,7 @@ export default function PrivacyPolicyView({
                     body: [
                         'Éditeur : Taedj Dev (Dr. Tidjani Zitouni)',
                         'E-mail officiel : tidjanizitouni@gmail.com',
-                        'Identifiant de l’application : com.baraka.market',
+                        'Identifiant de l’application : com.taedj.maydi3ch',
                         'Pour toute question relative à vos données, notre équipe reste à votre écoute.'
                     ]
                 }
