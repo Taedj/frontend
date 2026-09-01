@@ -1,4 +1,5 @@
-
+import fs from 'fs';
+import path from 'path';
 
 const GITHUB_USERNAME = 'Taedj';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -270,9 +271,30 @@ export async function getProjects() {
     });
 
     const results = await Promise.all(projectPromises);
-    return results.filter((p): p is NonNullable<typeof p> => p !== null);
+    const valid = results.filter((p): p is NonNullable<typeof p> => p !== null);
+    if (valid.length > 0) return valid;
+
+    // Fallback to local projects.json
+    try {
+      const localJsonPath = path.join(process.cwd(), 'data', 'projects.json');
+      if (fs.existsSync(localJsonPath)) {
+        return JSON.parse(fs.readFileSync(localJsonPath, 'utf8'));
+      }
+    } catch (e) {
+      console.warn('Could not load local projects.json:', e);
+    }
+
+    return [];
   } catch (error) {
     console.error('Error fetching projects:', error);
+    try {
+      const localJsonPath = path.join(process.cwd(), 'data', 'projects.json');
+      if (fs.existsSync(localJsonPath)) {
+        return JSON.parse(fs.readFileSync(localJsonPath, 'utf8'));
+      }
+    } catch (e) {
+      console.warn('Could not load local projects.json in catch:', e);
+    }
     return [];
   }
 }
@@ -316,10 +338,147 @@ function splitByLanguage(content: string): Record<string, string> {
   return languages;
 }
 
+function getLocalProject(slug: string): ProjectDetails | null {
+  try {
+    const possibleRoots = [
+      path.join(process.cwd(), '..', '..', slug),
+      path.join(process.cwd(), '..', '..', 'MaYdi3ch'),
+      path.join(process.cwd(), '..', '..', 'ZTAP'),
+      path.join('D:\\work\\Dev', slug),
+      path.join('D:\\work\\Dev', 'MaYdi3ch'),
+      path.join('D:\\work\\Dev', 'ZTAP'),
+    ];
+
+    let foundRoot = '';
+    for (const r of possibleRoots) {
+      if (fs.existsSync(path.join(r, 'CONTROL_WEBSITE', 'product.config.json'))) {
+        try {
+          const testConfig = JSON.parse(fs.readFileSync(path.join(r, 'CONTROL_WEBSITE', 'product.config.json'), 'utf8'));
+          if (testConfig.slug?.toLowerCase() === slug.toLowerCase() || path.basename(r).toLowerCase() === slug.toLowerCase()) {
+            foundRoot = r;
+            break;
+          }
+        } catch (e) {
+          console.warn('Could not parse test config:', e);
+        }
+      }
+    }
+
+    if (!foundRoot) return null;
+
+    const configData = fs.readFileSync(path.join(foundRoot, 'CONTROL_WEBSITE', 'product.config.json'), 'utf8');
+    const mdData = fs.readFileSync(path.join(foundRoot, 'CONTROL_WEBSITE', 'WEBSITE.md'), 'utf8');
+    const reportPath = path.join(foundRoot, 'CONTROL_WEBSITE', 'REPORT.md');
+    const reportData = fs.existsSync(reportPath) ? fs.readFileSync(reportPath, 'utf8') : '';
+
+    const config = JSON.parse(configData) as ProjectConfig;
+    const mdContent = mdData;
+
+    const localizedBlocks = splitByLanguage(mdContent);
+    const enContent = localizedBlocks.en || mdContent;
+    const arContent = localizedBlocks.ar;
+    const frContent = localizedBlocks.fr;
+
+    const getAssetUrl = (assetFile: string) => `/assets/projects/${config.slug}/${assetFile}`;
+    const heroAsset = extractValue(mdContent, 'Hero Image:', 'UI & Styling') || 'cover.png';
+    const heroImage = getAssetUrl(heroAsset);
+    const logo = extractValue(enContent, 'Brand Logo:', 'UI & Styling');
+    const background = extractValue(enContent, 'Hero Background:', 'UI & Styling');
+
+    const heroParse = (content: string) => ({
+      title: extractValue(content, 'Title:', 'Hero Section'),
+      subtitle: extractValue(content, 'Subtitle:', 'Hero Section'),
+      ctaPrimaryLabel: extractValue(content, 'CTA Primary Label:', 'Hero Section') || 'Download Now',
+      ctaSecondaryLabel: extractValue(content, 'CTA Secondary Label:', 'Hero Section') || 'Learn More',
+      ctaTertiaryLabel: extractValue(content, 'CTA Tertiary Label:', 'Hero Section') || '',
+    });
+
+    const finalCtaParse = (content: string) => ({
+      title: extractValue(content, 'Title:', 'Final CTA'),
+      subtitle: extractValue(content, 'Subtitle:', 'Final CTA'),
+      buttonLabel: extractValue(content, 'Button Label:', 'Final CTA') || 'Get Started',
+    });
+
+    const enHero = heroParse(enContent);
+    const enChapters = parseChapters(enContent, slug, 'master', false);
+    const enVision = extractValue(enContent, 'Caption:', 'Demo & Vision');
+    const enFinalCta = finalCtaParse(enContent);
+    const enPricing = parsePricing(enContent);
+
+    const details: ProjectDetails = {
+      config: { ...config, slug: config.slug || slug },
+      hero: {
+        ...enHero,
+        ctaPrimaryLink: extractValue(enContent, 'CTA Primary Link:', 'Hero Section') || '#',
+        ctaSecondaryLink: extractValue(enContent, 'CTA Secondary Link:', 'Hero Section') || '#',
+        ctaTertiaryLink: extractValue(enContent, 'CTA Tertiary Link:', 'Hero Section') || '',
+        image: heroImage,
+        translations: {}
+      },
+      chapters: enChapters.map(c => ({
+        ...c,
+        image: c.image ? `/assets/projects/${config.slug}/${c.image.split('/').pop()?.split('?')[0] || ''}` : ''
+      })),
+      vision: enVision,
+      visionTranslations: {},
+      finalCta: {
+        ...enFinalCta,
+        buttonLink: extractValue(enContent, 'Button Link:', 'Final CTA') || '#',
+        translations: {}
+      },
+      styles: {
+        heroTitleSize: parseInt(extractValue(mdContent, 'Hero Title Size:', 'UI & Styling')) || 120,
+        finalCtaTitleSize: parseInt(extractValue(mdContent, 'Final CTA Title Size:', 'UI & Styling')) || 160,
+        buttonPaddingX: parseInt(extractValue(mdContent, 'Button Padding X:', 'UI & Styling')) || 64,
+        buttonPaddingY: parseInt(extractValue(mdContent, 'Button Padding Y:', 'UI & Styling')) || 32,
+        buttonTextSize: parseInt(extractValue(mdContent, 'Button Text Size:', 'UI & Styling')) || 32,
+        sectionSpacing: parseInt(extractValue(mdContent, 'Section Spacing:', 'UI & Styling')) || 160,
+        borderRadius: parseInt(extractValue(mdContent, 'Border Radius:', 'UI & Styling')) || 32,
+        brandLogo: logo ? getAssetUrl(logo) : '',
+        heroBackground: background ? getAssetUrl(background) : '',
+        heroImgWidth: parseInt(extractValue(mdContent, 'Hero Img Width:', 'UI & Styling')) || 100,
+        heroImgOffsetY: parseInt(extractValue(mdContent, 'Hero Img Offset Y:', 'UI & Styling')) || 0,
+        heroImgScale: parseInt(extractValue(mdContent, 'Hero Img Scale:', 'UI & Styling')) || 100,
+        heroVideoWidth: parseInt(extractValue(mdContent, 'Hero Video Width (px):', 'UI & Styling')) || 0,
+        heroVideoHeight: parseInt(extractValue(mdContent, 'Hero Video Height (px):', 'UI & Styling')) || 0,
+        fontScale: parseInt(extractValue(mdContent, 'Font Scale:', 'UI & Styling')) || 100,
+        heroSubtitleSize: parseInt(extractValue(mdContent, 'Hero Subtitle Size:', 'UI & Styling')) || 32,
+        chapterTitleSize: parseInt(extractValue(mdContent, 'Chapter Title Size:', 'UI & Styling')) || 72,
+        chapterDescSize: parseInt(extractValue(mdContent, 'Chapter Desc Size:', 'UI & Styling')) || 30,
+        pricingNameSize: parseInt(extractValue(mdContent, 'Pricing Name Size:', 'UI & Styling')) || 30,
+        reportTitleSize: parseInt(extractValue(mdContent, 'Report Title Size:', 'UI & Styling')) || 96,
+        reportTextSize: parseInt(extractValue(mdContent, 'Report Text Size:', 'UI & Styling')) || 20,
+        heroVideoLink: extractValue(mdContent, 'Hero Video Link:', 'UI & Styling'),
+        heroType: (extractValue(mdContent, 'Hero Type:', 'UI & Styling') as 'mobile' | 'web' | 'desktop') || 'mobile',
+      },
+      pricing: enPricing,
+      report: reportData ? parseReport(reportData) : undefined,
+    };
+
+    if (arContent) {
+      if (details.hero.translations) details.hero.translations.ar = heroParse(arContent);
+      if (details.finalCta.translations) details.finalCta.translations.ar = finalCtaParse(arContent);
+      details.visionTranslations!.ar = extractValue(arContent, 'Caption:', 'Demo & Vision');
+    }
+    if (frContent) {
+      if (details.hero.translations) details.hero.translations.fr = heroParse(frContent);
+      if (details.finalCta.translations) details.finalCta.translations.fr = finalCtaParse(frContent);
+      details.visionTranslations!.fr = extractValue(frContent, 'Caption:', 'Demo & Vision');
+    }
+
+    return details;
+  } catch (err) {
+    console.error('Error in getLocalProject:', err);
+    return null;
+  }
+}
+
 export async function getProjectBySlug(slug: string): Promise<ProjectDetails | null> {
   try {
     const repoInfo = await getRepoInfo(slug);
-    if (!repoInfo) return null;
+    if (!repoInfo) {
+      return getLocalProject(slug);
+    }
 
     const branch = repoInfo.default_branch || 'master';
     const gistUrl = 'https://gist.githubusercontent.com/Taedj/9bf1dae53f37681b9c13dab8cde8472f/raw/config.json';
@@ -331,7 +490,9 @@ export async function getProjectBySlug(slug: string): Promise<ProjectDetails | n
       fetch(gistUrl, { cache: 'no-store' }).catch(() => null)
     ]);
 
-    if (!configData.ok || !mdData.ok) return null;
+    if (!configData.ok || !mdData.ok) {
+      return getLocalProject(slug);
+    }
 
     const config = JSON.parse(configData.content) as ProjectConfig;
     const mdContent = mdData.content;

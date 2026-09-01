@@ -10,5 +10,17 @@
     "image": "/assets/projects/dentaltid/card.png",
     "thumbnail": "/assets/projects/dentaltid/card.png",
     "imageUrl": "/assets/projects/dentaltid/card.png"
+  },
+  {
+    "name": "Ma Ydi3ch",
+    "slug": "maydi3ch",
+    "category": "Marketplace",
+    "brand": "Taedj Dev",
+    "status": "active",
+    "lastUpdated": "2026-09-01T13:36:04.333Z",
+    "description": "Algeria's Premier Zero-Waste Marketplace. Save Surplus Food, Share Free Donations, and Earn Community Points.",
+    "image": "/assets/projects/maydi3ch/card.png",
+    "thumbnail": "/assets/projects/maydi3ch/card.png",
+    "imageUrl": "/assets/projects/maydi3ch/card.png"
   }
 ]

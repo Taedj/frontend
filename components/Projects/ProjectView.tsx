@@ -38,7 +38,8 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
             features: 'Features',
             visualComing: 'Visual Coming Soon',
             ecosystem: 'TAEDJ ECOSYSTEM',
-            finality: 'Finality through Precision.'
+            finality: 'Finality through Precision.',
+            privacy: 'Privacy Policy'
         },
         ar: {
             back: 'العودة إلى مركز المشاريع',
@@ -47,7 +48,8 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
             features: 'الميزات',
             visualComing: 'العرض المرئي قريباً',
             ecosystem: 'منظومة تيدج',
-            finality: 'النهائية من خلال الدقة.'
+            finality: 'النهائية من خلال الدقة.',
+            privacy: 'سياسة الخصوصية'
         },
         fr: {
             back: 'Retour au Hub des Projets',
@@ -56,7 +58,8 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
             features: 'Fonctionnalités',
             visualComing: 'Visuel bientôt disponible',
             ecosystem: 'ÉCOSYSTÈME TAEDJ',
-            finality: 'La finalité par la précision.'
+            finality: 'La finalité par la précision.',
+            privacy: 'Politique de Confidentialité'
         }
     }[lang];
 
@@ -398,9 +401,14 @@ export default function ProjectView({ data }: { data: ProjectDetails }) {
                 </section>
             </main>
 
-            <footer className="py-32 border-t border-white/5 text-center">
-                <div className="mb-10 text-3xl font-black tracking-tighter text-white/20">{ui.ecosystem}</div>
+            <footer className="py-32 border-t border-white/5 text-center space-y-4">
+                <div className="mb-6 text-3xl font-black tracking-tighter text-white/20">{ui.ecosystem}</div>
                 <p className="text-xl text-neutral-600 font-medium">© {new Date().getFullYear()} {config.brand}. {ui.finality}</p>
+                <div>
+                    <Link href={`/projects/${config.slug}/privacy-policy`} className="text-sm text-neutral-500 hover:text-emerald-400 underline underline-offset-4 transition-colors">
+                        {ui.privacy}
+                    </Link>
+                </div>
             </footer>
         </div >
     );
