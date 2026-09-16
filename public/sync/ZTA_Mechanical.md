@@ -5,7 +5,7 @@
 **CTA Primary Label:** Explore the Tech
 **CTA Primary Link:** https://github.com/zitouna/ZTA_Mechanical
 **CTA Secondary Label:** Technical Docs
-**CTA Secondary Link:** https://www.tidjanizitouni.com/projects/ZTA_Mechanical/features
+**CTA Secondary Link:** https://frontend-chi-ecru-43.vercel.app/projects/ZTA_Mechanical/features
 
 ## Feature Chapters
 ### Chapter 1: The SIMP Optimization Core
@@ -33,7 +33,7 @@ To unlock the full potential of ZTA Mechanical, please request your professional
 ## Licensing & Support
 **Request via Email:** zitounitidjani@gmail.com
 **Request via WhatsApp:** +213 657 29 33 32
-**Official Website:** https://www.tidjanizitouni.com/projects/ZTA_Mechanical
+**Official Website:** https://frontend-chi-ecru-43.vercel.app/projects/ZTA_Mechanical
 **Trial Info:** Every new installation includes a 30-day free trial. Upon expiration, a secure activation dialog will request your professional license key.
 
 ## Final CTA
@@ -72,7 +72,7 @@ To unlock the full potential of ZTA Mechanical, please request your professional
 ## الترخيص والدعم
 **طلب عبر البريد:** zitounitidjani@gmail.com
 **طلب عبر الواتساب:** +213 657 29 33 32
-**الموقع الرسمي:** https://www.tidjanizitouni.com/projects/ZTA_Mechanical
+**الموقع الرسمي:** https://frontend-chi-ecru-43.vercel.app/projects/ZTA_Mechanical
 **معلومات التجربة:** يتضمن كل تثبيت جديد فترة تجريبية مجانية لمدة 30 يوماً. عند انتهاء الصلاحية، ستطلب نافذة تفعيل آمنة مفتاح الترخيص الاحترافي الخاص بك.
 
 ## Final CTA
@@ -110,7 +110,7 @@ Pour débloquer tout le potentiel de ZTA Mechanical, veuillez demander votre cl�
 ## Licence & Support
 **Contact par Email :** zitounitidjani@gmail.com
 **Contact par WhatsApp :** +213 657 29 33 32
-**Site Officiel :** https://www.tidjanizitouni.com/projects/ZTA_Mechanical
+**Site Officiel :** https://frontend-chi-ecru-43.vercel.app/projects/ZTA_Mechanical
 **Essai Gratuit :** Chaque nouvelle installation inclut un essai gratuit de 30 jours. À l'expiration, une boîte de dialogue d'activation sécurisée demandera votre clé de licence professionnelle.
 
 ## Final CTA
