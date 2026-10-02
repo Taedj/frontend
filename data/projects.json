@@ -22,5 +22,17 @@
     "image": "/assets/projects/maydi3ch/card.png",
     "thumbnail": "/assets/projects/maydi3ch/card.png",
     "imageUrl": "/assets/projects/maydi3ch/card.png"
+  },
+  {
+    "name": "SMARTRAD",
+    "slug": "smartrad",
+    "category": "Trading Software",
+    "brand": "Taedj Dev",
+    "status": "active",
+    "lastUpdated": "2026-10-02T11:40:00.000Z",
+    "description": "Disciplined automated trading for Deriv: 24 strategies ranked on every closed candle, strict expected-value and risk gates, full decision telemetry.",
+    "image": "/assets/projects/smartrad/card.png",
+    "thumbnail": "/assets/projects/smartrad/card.png",
+    "imageUrl": "/assets/projects/smartrad/card.png"
   }
 ]
