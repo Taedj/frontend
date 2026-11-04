@@ -473,7 +473,115 @@ function getLocalProject(slug: string): ProjectDetails | null {
   }
 }
 
+
+async function fetchDjangoEcosystemProject(slug: string): Promise<ProjectDetails | null> {
+  const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'https://sticky-grata-tidjanizitouni-028d59c3.koyeb.app';
+  try {
+    const url = `${BACKEND_URL.replace(/\/$/, '')}/home/ecosystem-projects/${slug}/`;
+    const res = await fetch(url, { cache: 'no-store', headers: { Accept: 'application/json' } });
+    if (!res.ok) return null;
+    const p = await res.json();
+    if (!p || !p.name) return null;
+
+    interface RawBackendChapter {
+      title: string;
+      title_ar?: string;
+      title_fr?: string;
+      description: string;
+      description_ar?: string;
+      description_fr?: string;
+      image?: string;
+      video_url?: string;
+    }
+
+    interface RawBackendPricing {
+      name: string;
+      subtitle?: string;
+      price: string;
+      features?: string[];
+    }
+
+    const chapters: Chapter[] = ((p.chapters || []) as RawBackendChapter[]).map((c) => ({
+      title: c.title,
+      description: c.description,
+      image: c.image || '',
+      styles: { imgWidth: 100, imgOffsetY: 0, imgScale: 100 },
+      translations: {
+        ar: c.title_ar || c.description_ar ? { title: c.title_ar || c.title, description: c.description_ar || c.description } : undefined,
+        fr: c.title_fr || c.description_fr ? { title: c.title_fr || c.title, description: c.description_fr || c.description } : undefined,
+      },
+      videoLink: c.video_url || undefined,
+    }));
+
+    const pricing: PricingPlan[] = ((p.pricing || []) as RawBackendPricing[]).map((pr) => ({
+      name: pr.name,
+      subtitle: pr.subtitle || '',
+      price: pr.price,
+      features: pr.features || [],
+    }));
+
+    return {
+      config: {
+        name: p.name,
+        slug: p.slug,
+        brand: p.brand || 'Taedj Dev',
+        category: p.category || 'Software',
+        status: p.status || 'live',
+        brandLogo: p.brand_logo || '',
+      },
+      hero: {
+        title: p.hero?.title || p.name,
+        subtitle: p.hero?.subtitle || '',
+        ctaPrimaryLabel: p.hero?.ctaPrimaryLabel || 'Explore',
+        ctaPrimaryLink: p.hero?.ctaPrimaryLink || '',
+        ctaSecondaryLabel: p.hero?.ctaSecondaryLabel || '',
+        ctaSecondaryLink: p.hero?.ctaSecondaryLink || '',
+        image: p.hero?.image || p.image || '',
+        translations: p.hero?.translations,
+      },
+      chapters,
+      vision: p.vision || '',
+      visionTranslations: p.vision_quote_ar ? { ar: p.vision_quote_ar } : undefined,
+      finalCta: {
+        title: p.finalCta?.title || `Ready to explore ${p.name}?`,
+        subtitle: p.finalCta?.subtitle || '',
+        buttonLabel: p.finalCta?.buttonLabel || 'Get Started',
+        buttonLink: p.finalCta?.buttonLink || '',
+      },
+      styles: {
+        heroTitleSize: 48,
+        finalCtaTitleSize: 36,
+        buttonPaddingX: 24,
+        buttonPaddingY: 12,
+        buttonTextSize: 16,
+        sectionSpacing: 64,
+        borderRadius: 12,
+        brandLogo: '',
+        heroBackground: '#0B0D11',
+        heroImgWidth: 100,
+        heroImgOffsetY: 0,
+        heroImgScale: 100,
+        heroVideoWidth: 100,
+        heroVideoHeight: 56,
+        fontScale: 100,
+        heroSubtitleSize: 18,
+        chapterTitleSize: 24,
+        chapterDescSize: 16,
+        pricingNameSize: 20,
+        reportTitleSize: 22,
+        reportTextSize: 16,
+      },
+      pricing,
+    };
+  } catch (err) {
+    console.warn('[Ecosystem] Django fetch for slug failed, falling back:', err);
+    return null;
+  }
+}
+
 export async function getProjectBySlug(slug: string): Promise<ProjectDetails | null> {
+  const djangoProject = await fetchDjangoEcosystemProject(slug);
+  if (djangoProject) return djangoProject;
   try {
     const repoInfo = await getRepoInfo(slug);
     if (!repoInfo) {
