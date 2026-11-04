@@ -570,6 +570,7 @@ async function fetchDjangoEcosystemProject(slug: string): Promise<ProjectDetails
         pricingNameSize: 20,
         reportTitleSize: 22,
         reportTextSize: 16,
+        heroVideoLink: p.hero?.videoUrl || undefined,
       },
       pricing,
     };
