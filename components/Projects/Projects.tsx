@@ -98,7 +98,9 @@ const Projects = () => {
                 <div className="relative w-screen left-1/2 -ml-[50vw]">
                     <div className={`flex ${hasProjects ? 'animate-scroll' : 'justify-center'} hover:pause gap-12 px-12`}>
                         {displayData.map((project, index) => {
-                            const imgPath = project.image || project.thumbnail || project.imageUrl;
+                            const slugKey = project.slug.toLowerCase().replace(/[^a-z0-9_]/g, '');
+const localFallback = `/assets/projects/${slugKey}/card.png`;
+const imgPath = project.image || project.thumbnail || project.imageUrl || localFallback;
 
                             return (
                                 <Link
