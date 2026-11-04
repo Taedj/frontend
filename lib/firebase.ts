@@ -4,12 +4,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDqW_c9YRyxM8GnICR9kSRvs1T-GhseZzY",
-  authDomain: "dentaltid.firebaseapp.com",
-  projectId: "dentaltid",
-  storageBucket: "dentaltid.firebasestorage.app",
-  messagingSenderId: "698475695605",
-  appId: "1:698475695605:web:1e576e008f891e543964bc"
+  apiKey: "AIzaSyCTDVxSWbXPIksveaaX4QydrXQHrpmBMns",
+  authDomain: "tidjani-zitouni.firebaseapp.com",
+  projectId: "tidjani-zitouni",
+  storageBucket: "tidjani-zitouni.firebasestorage.app",
+  messagingSenderId: "600530250891",
+  appId: "1:600530250891:web:7f6038d83c012f0ffd788e",
+  measurementId: "G-X1RJVJHQGZ"
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
