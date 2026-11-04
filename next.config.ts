@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "supreme-anett-tidjanizitouni-76253975.koyeb.app",
+        hostname: "sticky-grata-tidjanizitouni-028d59c3.koyeb.app",
         pathname: "/media/**",
       },
       {
