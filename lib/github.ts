@@ -491,6 +491,7 @@ async function fetchDjangoEcosystemProject(slug: string): Promise<ProjectDetails
       description_ar?: string;
       description_fr?: string;
       image?: string;
+      image_url?: string;
       video_url?: string;
     }
 
@@ -504,7 +505,7 @@ async function fetchDjangoEcosystemProject(slug: string): Promise<ProjectDetails
     const chapters: Chapter[] = ((p.chapters || []) as RawBackendChapter[]).map((c) => ({
       title: c.title,
       description: c.description,
-      image: c.image || '',
+      image: c.image || c.image_url || '',
       styles: { imgWidth: 100, imgOffsetY: 0, imgScale: 100 },
       translations: {
         ar: c.title_ar || c.description_ar ? { title: c.title_ar || c.title, description: c.description_ar || c.description } : undefined,
@@ -520,6 +521,9 @@ async function fetchDjangoEcosystemProject(slug: string): Promise<ProjectDetails
       features: pr.features || [],
     }));
 
+    const slugLower = p.slug.toLowerCase();
+    const heroImg = p.hero?.image || p.hero_image_url || p.image || `/assets/projects/${slugLower}/cover.png`;
+
     return {
       config: {
         name: p.name,
@@ -527,7 +531,7 @@ async function fetchDjangoEcosystemProject(slug: string): Promise<ProjectDetails
         brand: p.brand || 'Taedj Dev',
         category: p.category || 'Software',
         status: p.status || 'live',
-        brandLogo: p.brand_logo || '',
+        brandLogo: p.brand_logo || p.brand_logo_url || `/assets/projects/${slugLower}/logo.png`,
       },
       hero: {
         title: p.hero?.title || p.name,
@@ -536,7 +540,7 @@ async function fetchDjangoEcosystemProject(slug: string): Promise<ProjectDetails
         ctaPrimaryLink: p.hero?.ctaPrimaryLink || '',
         ctaSecondaryLabel: p.hero?.ctaSecondaryLabel || '',
         ctaSecondaryLink: p.hero?.ctaSecondaryLink || '',
-        image: p.hero?.image || p.image || '',
+        image: heroImg,
         translations: p.hero?.translations,
       },
       chapters,
